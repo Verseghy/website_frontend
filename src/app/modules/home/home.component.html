@@ -1,4 +1,4 @@
-<mat-card *ngFor="let post of posts">
+<mat-card *ngFor="let post of posts | async | async">
   <mat-card-header>
     <div mat-card-avatar class="card-avatar"></div>
     <mat-card-title>{{post.title}}</mat-card-title>
