@@ -1,0 +1,13 @@
+mat-drawer-container {
+  background: #f4f4f4;
+}
+
+mat-toolbar {
+  position: fixed;
+  top: 0;
+  z-index: 99;
+}
+
+mat-drawer-content {
+  margin-top: 56px;
+}
