@@ -17,7 +17,8 @@
     "updateMode": "prefetch",
     "resources": {
       "files": [
-        "/assets/**"
+        "/assets/**",
+        "https://firebasestorage.googleapis.com/**"
       ]
     }
   }]

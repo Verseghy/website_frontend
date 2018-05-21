@@ -1,8 +1,8 @@
-<mat-card *ngFor="let post of posts">
+<mat-card *ngFor="let post of posts | async | async">
   <mat-card-header>
-    <div mat-card-avatar class="card-avatar"></div>
+    <img mat-card-avatar class="card-avatar" [src]="post.authorImage" alt=""/>
     <mat-card-title>{{post.title}}</mat-card-title>
-    <mat-card-subtitle>{{post.date}}</mat-card-subtitle>
+    <mat-card-subtitle>{{post.dateAgo}}</mat-card-subtitle>
   </mat-card-header>
   <img mat-card-image [src]="post.image" alt=""/>
   <mat-card-content><p>{{post.description}}</p></mat-card-content>
