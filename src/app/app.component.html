@@ -5,6 +5,8 @@
       <button mat-icon-button *ngIf="isHandset" (click)="drawer.toggle()"><mat-icon>menu</mat-icon></button>
       <span>Title</span>
     </mat-toolbar>
-    <router-outlet></router-outlet>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
   </mat-drawer-content>
 </mat-drawer-container>

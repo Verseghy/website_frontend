@@ -1,13 +1,23 @@
 mat-drawer-container {
   background: #f4f4f4;
-}
-
-mat-toolbar {
-  position: fixed;
-  top: 0;
-  z-index: 99;
+  height: 100%;
 }
 
 mat-drawer-content {
-  margin-top: 56px;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
+  overflow: scroll;
+}
+
+mat-toolbar {
+  position: relative;
+  z-index: 2;
+}
+
+mat-toolbar span {
+  margin-left: 16px;
 }
