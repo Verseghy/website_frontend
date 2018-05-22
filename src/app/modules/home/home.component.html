@@ -7,7 +7,7 @@
   <img mat-card-image [src]="post.image" alt=""/>
   <mat-card-content><p>{{post.description}}</p></mat-card-content>
   <mat-card-actions>
-    <button mat-button>TOVÁBB</button>
+    <button [routerLink]="['/posts/'+post.id]" mat-button>TOVÁBB</button>
   </mat-card-actions>
 </mat-card>
 

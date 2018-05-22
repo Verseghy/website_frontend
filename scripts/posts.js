@@ -15,7 +15,7 @@ function padLeft(nr, n, str){
 
 var firestore = admin.firestore();
 
-firestore.collection('posts/').get().then(x => {
+/*firestore.collection('posts/').get().then(x => {
   x.forEach(y => {
     y.ref.delete();
   })
@@ -31,4 +31,8 @@ firestore.collection('posts/').get().then(x => {
       postsCollection.doc('p'+padLeft(elem.id, 3)).set({id: elem.id, author: elem.author, authorImage: elem.authorImage, date: null, description: elem.description, image: elem.image, title: elem.title});
     })
   })
+});*/
+
+fs.readFile('./post.md', 'utf8', (err, data) => {
+  firestore.collection('posts/').doc('p000').update({post: data});
 });

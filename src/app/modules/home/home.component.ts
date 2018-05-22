@@ -15,6 +15,7 @@ interface Post {
   dateAgo: string,
   description: string,
   image: string,
+  post: string,
   title: string
 }
 
