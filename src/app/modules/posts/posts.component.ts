@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription, Observable } from 'rxjs';
 import { OnDestroy } from '@angular/core';
@@ -23,7 +23,8 @@ interface Post {
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',
-  styleUrls: ['./posts.component.css']
+  styleUrls: ['./posts.component.css'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class PostsComponent implements OnInit, OnDestroy {
 
@@ -41,7 +42,7 @@ export class PostsComponent implements OnInit, OnDestroy {
     this.paramsSubscription = this.route.params.subscribe(params => {
       this.afStore.collection<Post>('posts', ref => ref.where('id', '==', parseInt(params.id))).valueChanges().subscribe(x => {
         x.forEach(y => {
-          this.post = this.sanitizer.sanitize(1, md.render(y.post));
+          this.post = this.sanitizer.sanitize(0, md.render(y.post));
         });
       });
     });
