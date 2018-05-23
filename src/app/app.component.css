@@ -21,3 +21,7 @@ mat-toolbar {
 mat-toolbar span {
   margin-left: 16px;
 }
+
+.fill-remaining-space {
+  flex: 1 1 auto;
+}
