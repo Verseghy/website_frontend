@@ -9,15 +9,15 @@ import { SafeHtml, DomSanitizer } from '@angular/platform-browser';
 import * as Remarkable from 'remarkable';
 
 interface Post {
-  id: number,
-  author: string,
-  authorImage: string,
-  date: Timestamp,
-  dateAgo: string,
-  description: string,
-  image: string,
-  post: string,
-  title: string
+  id: number;
+  author: string;
+  authorImage: string;
+  date: Timestamp;
+  dateAgo: string;
+  description: string;
+  image: string;
+  post: string;
+  title: string;
 }
 
 @Component({
@@ -38,9 +38,9 @@ export class PostsComponent implements OnInit, OnDestroy {
               ) { }
 
   ngOnInit() {
-    let md = new Remarkable();
+    const md = new Remarkable();
     this.paramsSubscription = this.route.params.subscribe(params => {
-      this.afStore.collection<Post>('posts', ref => ref.where('id', '==', parseInt(params.id))).valueChanges().subscribe(x => {
+      this.afStore.collection<Post>('posts', ref => ref.where('id', '==', parseInt(params.id, 10))).valueChanges().subscribe(x => {
         x.forEach(y => {
           this.post = this.sanitizer.sanitize(0, md.render(y.post));
         });

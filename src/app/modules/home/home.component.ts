@@ -8,15 +8,15 @@ import * as moment from 'moment';
 import 'moment/locale/hu';
 
 interface Post {
-  id: number,
-  author: string,
-  authorImage: string,
-  date: Timestamp,
-  dateAgo: string,
-  description: string,
-  image: string,
-  post: string,
-  title: string
+  id: number;
+  author: string;
+  authorImage: string;
+  date: Timestamp;
+  dateAgo: string;
+  description: string;
+  image: string;
+  post: string;
+  title: string;
 }
 
 @Component({
@@ -35,9 +35,9 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     moment.locale('hu');
     this.posts = this.afStore.collection<Post>('posts').valueChanges().pipe(map( async (x) => {
-      for (let i in x){
-        x[i].dateAgo = moment(x[i].date.toDate()).fromNow().toString(); 
-        x[i].authorImage = await this.afStorage.ref('authors/'+x[i].authorImage).getDownloadURL().pipe(first()).toPromise();
+      for (const i of Object.keys(x)) {
+        x[i].dateAgo = moment(x[i].date.toDate()).fromNow().toString();
+        x[i].authorImage = await this.afStorage.ref('authors/' + x[i].authorImage).getDownloadURL().pipe(first()).toPromise();
         x[i].image = await this.afStorage.ref('posts/' + x[i].image).getDownloadURL().pipe(first()).toPromise();
       }
       return x;
