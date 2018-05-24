@@ -44,7 +44,7 @@ function askType() {
 
 function askAdd(post) {
   rl.question('ID: ', a => {
-    if (a) post.id = a;
+    if (a) post.id = parseInt(a, 10);
     rl.question('Author: ', a => {
       if (a) post.author = a;
       rl.question('Author Kép: ', a => {
