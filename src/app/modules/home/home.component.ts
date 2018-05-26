@@ -26,7 +26,7 @@ interface Post {
 })
 export class HomeComponent implements OnInit {
 
-  posts: Observable<any>;
+  posts: Post[];
 
   constructor(private afStore: AngularFirestore,
               private afStorage: AngularFireStorage
@@ -34,14 +34,22 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     moment.locale('hu');
-    this.posts = this.afStore.collection<Post>('posts').valueChanges().pipe(map( async (x) => {
+    this.afStore.collection<Post>('posts').valueChanges().pipe(map( async (x) => {
       for (const i of Object.keys(x)) {
         x[i].dateAgo = moment(x[i].date.toDate()).fromNow().toString();
         x[i].authorImage = await this.afStorage.ref('authors/' + x[i].authorImage).getDownloadURL().pipe(first()).toPromise();
         x[i].image = await this.afStorage.ref('posts/' + x[i].image).getDownloadURL().pipe(first()).toPromise();
       }
       return x;
-    }));
+    })).subscribe(x => {
+      x.then(y => {
+        this.posts = y;
+      });
+    });
+  }
+
+  trackByFn(index, item) {
+    return item.id;
   }
 
 }

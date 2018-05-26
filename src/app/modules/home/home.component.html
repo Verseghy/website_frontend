@@ -1,4 +1,4 @@
-<mat-card *ngFor="let post of posts | async | async">
+<mat-card *ngFor="let post of posts; trackBy: trackByFn">
   <mat-card-header>
     <img mat-card-avatar class="card-avatar" [src]="post.authorImage" alt=""/>
     <mat-card-title>{{post.title}}</mat-card-title>
