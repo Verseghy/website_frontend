@@ -6,7 +6,8 @@ import { Timestamp } from '@firebase/firestore-types';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { AngularFireStorage } from 'angularfire2/storage';
 import { SafeHtml, DomSanitizer } from '@angular/platform-browser';
-import * as Remarkable from 'remarkable';
+import * as MarkdownIt from 'markdown-it';
+import * as MarkdownItMultimd from 'markdown-it-multimd-table';
 
 interface Post {
   id: number;
@@ -38,7 +39,7 @@ export class PostsComponent implements OnInit, OnDestroy {
               ) { }
 
   ngOnInit() {
-    const md = new Remarkable();
+    const md = new MarkdownIt().use(MarkdownItMultimd, {enableMultilineRows: true});
     this.paramsSubscription = this.route.params.subscribe(params => {
       this.afStore.collection<Post>('posts', ref => ref.where('id', '==', parseInt(params.id, 10))).valueChanges().subscribe(x => {
         x.forEach(y => {
