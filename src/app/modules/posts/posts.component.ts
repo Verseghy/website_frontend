@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef, HostBinding } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription, Observable } from 'rxjs';
 import { OnDestroy } from '@angular/core';
 import { Timestamp } from '@firebase/firestore-types';
@@ -25,8 +25,7 @@ interface Post {
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',
-  styleUrls: ['./posts.component.css'],
-  encapsulation: ViewEncapsulation.None,
+  styleUrls: ['./posts.component.css']
 })
 export class PostsComponent implements OnInit, OnDestroy {
 
@@ -38,7 +37,8 @@ export class PostsComponent implements OnInit, OnDestroy {
               private afStore: AngularFirestore,
               private afStorage: AngularFireStorage,
               private sanitizer: DomSanitizer,
-              private elRef: ElementRef
+              private elRef: ElementRef,
+              private router: Router
               ) { }
 
   ngOnInit() {
@@ -67,6 +67,9 @@ export class PostsComponent implements OnInit, OnDestroy {
       this.card.nativeElement.style.transform = 'translateY(0)';
     } else {
       this.card.nativeElement.style.transform = 'translateY(' + this.elRef.nativeElement.clientHeight + 'px)';
+      setTimeout( () => {
+        this.router.navigateByUrl('/home');
+      });
     }
   }
 

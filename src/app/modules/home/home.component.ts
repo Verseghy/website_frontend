@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
 import { map, first } from 'rxjs/operators';
@@ -6,6 +6,8 @@ import { Timestamp } from '@firebase/firestore-types';
 import { AngularFireStorage } from 'angularfire2/storage';
 import * as moment from 'moment';
 import 'moment/locale/hu';
+import { Router } from '@angular/router';
+import { MatRipple } from '@angular/material';
 
 interface Post {
   id: number;
@@ -27,9 +29,11 @@ interface Post {
 export class HomeComponent implements OnInit {
 
   posts: Post[];
+  @ViewChild(MatRipple) ripple: MatRipple;
 
   constructor(private afStore: AngularFirestore,
-              private afStorage: AngularFireStorage
+              private afStorage: AngularFireStorage,
+              private router: Router
               ) { }
 
   ngOnInit() {
@@ -50,6 +54,10 @@ export class HomeComponent implements OnInit {
 
   trackByFn(index, item) {
     return item.id;
+  }
+
+  _onClick(id) {
+    this.router.navigate(['posts', id]);
   }
 
 }

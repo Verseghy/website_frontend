@@ -11,3 +11,7 @@ body,
 app-root {
   height: 100%;
 }
+
+body {
+  overscroll-behavior: contain;
+}
