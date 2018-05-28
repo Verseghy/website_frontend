@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card (panmove)="_onPan($event)" (panend)="_onPanEnd($event)" (panstart)="_onPanStart()" #card>
   <div [innerHTML]="post" ngPreserveWhitespace></div>
 </mat-card>
 

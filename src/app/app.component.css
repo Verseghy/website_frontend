@@ -8,11 +8,6 @@ mat-drawer-content {
   flex-direction: column;
 }
 
-.content {
-  flex: 1;
-  overflow: scroll;
-}
-
 mat-toolbar {
   position: relative;
   z-index: 2;

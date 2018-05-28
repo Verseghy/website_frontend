@@ -1,3 +1,9 @@
+:host {
+  flex: 1;
+  overflow: scroll;
+  display: block;
+}
+
 mat-card {
   margin: 15px 8px;
 }

@@ -1,3 +1,9 @@
+app-posts {
+  flex: 1;
+  overflow: scroll;
+  display: block;
+}
+
 mat-card {
   margin: 7px;
 }
