@@ -56,13 +56,13 @@ export class PostsComponent implements OnInit, OnDestroy {
     this.paramsSubscription.unsubscribe();
   }
 
-  private _onPan(event: HammerInput) {
+  _onPan(event: HammerInput) {
     if ( event.deltaY > 0 ) {
       this.card.nativeElement.style.transform = 'translateY(' + event.deltaY + 'px)';
     }
   }
 
-  private _onPanEnd(event: HammerInput) {
+  _onPanEnd(event: HammerInput) {
     if ( this.elRef.nativeElement.clientHeight * 0.4 >= event.deltaY) {
       this.card.nativeElement.style.transform = 'translateY(0)';
     } else {
@@ -73,7 +73,7 @@ export class PostsComponent implements OnInit, OnDestroy {
     }
   }
 
-  private _onPanStart() {
+  _onPanStart() {
   }
 
 }
