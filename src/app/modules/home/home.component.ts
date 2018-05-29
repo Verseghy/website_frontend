@@ -1,13 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AngularFirestore } from 'angularfire2/firestore';
-import { Observable } from 'rxjs';
-import { map, first } from 'rxjs/operators';
+import { MatRipple } from '@angular/material';
+import { Router } from '@angular/router';
 import { Timestamp } from '@firebase/firestore-types';
+import { AngularFirestore } from 'angularfire2/firestore';
 import { AngularFireStorage } from 'angularfire2/storage';
 import * as moment from 'moment';
 import 'moment/locale/hu';
-import { Router } from '@angular/router';
-import { MatRipple } from '@angular/material';
+import { first, map } from 'rxjs/operators';
 
 interface Post {
   id: number;
@@ -52,7 +51,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  trackByFn(index, item) {
+  trackByFn(item) {
     return item.id;
   }
 
