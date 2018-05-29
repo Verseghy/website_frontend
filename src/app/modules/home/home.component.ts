@@ -1,3 +1,5 @@
+import 'moment/locale/hu';
+
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatRipple } from '@angular/material';
 import { Router } from '@angular/router';
@@ -5,7 +7,6 @@ import { Timestamp } from '@firebase/firestore-types';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { AngularFireStorage } from 'angularfire2/storage';
 import * as moment from 'moment';
-import 'moment/locale/hu';
 import { first, map } from 'rxjs/operators';
 
 interface Post {

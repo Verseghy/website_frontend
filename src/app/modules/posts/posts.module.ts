@@ -1,10 +1,11 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Routes, RouterModule } from '@angular/router';
-import { PostsComponent } from './posts.component';
-import { MaterialModule } from '../../material.module';
-import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 import { GestureConfig } from '@angular/material/core';
+import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
+import { RouterModule, Routes } from '@angular/router';
+
+import { MaterialModule } from '../../material.module';
+import { PostsComponent } from './posts.component';
 
 const routes: Routes = [
   {
