@@ -2,11 +2,12 @@
   <mat-drawer #drawer mode="over">I'm a drawer</mat-drawer>
   <mat-drawer-content>
     <mat-toolbar color="primary" class="mat-elevation-z6">
-      <button mat-icon-button *ngIf="isHandset" (click)="drawer.toggle()"><mat-icon>menu</mat-icon></button>
-      <span>Title</span>
+      <button mat-icon-button *ngIf="isHandset" (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>Verseghy Gimnázium</span>
+      <span class="fill-remaining-space"></span>
     </mat-toolbar>
-    <div class="content">
-      <router-outlet></router-outlet>
-    </div>
+    <router-outlet></router-outlet>
   </mat-drawer-content>
 </mat-drawer-container>

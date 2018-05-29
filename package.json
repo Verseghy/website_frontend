@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "prettier-check": "prettier -l ./**/*.{ts,js}",
+    "up-post": "node scripts/posts.js"
   },
   "private": true,
   "dependencies": {
@@ -27,6 +28,9 @@
     "angularfire2": "^5.0.0-rc.9",
     "core-js": "^2.5.4",
     "firebase": "^5.0.3",
+    "hammerjs": "^2.0.8",
+    "markdown-it": "^8.4.1",
+    "markdown-it-multimd-table": "^3.1.2",
     "moment": "^2.22.1",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26"
@@ -39,16 +43,10 @@
     "@types/jasmine": "~2.8.6",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
+    "@types/remarkable": "^1.7.0",
     "codelyzer": "~4.2.1",
     "firebase-admin": "^5.12.1",
-    "jasmine-core": "~2.99.1",
-    "jasmine-spec-reporter": "~4.2.1",
-    "karma": "~1.7.1",
-    "karma-chrome-launcher": "~2.2.0",
-    "karma-coverage-istanbul-reporter": "~1.4.2",
-    "karma-jasmine": "~1.1.1",
-    "karma-jasmine-html-reporter": "^0.2.2",
-    "protractor": "~5.3.0",
+    "prettier": "^1.13.2",
     "ts-node": "~5.0.1",
     "tslint": "~5.9.1",
     "typescript": "~2.7.2"

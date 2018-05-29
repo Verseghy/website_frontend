@@ -2,7 +2,7 @@
 
 * {
   margin: 0;
-  padding:0;
+  padding: 0;
   border: 0;
 }
 
@@ -10,4 +10,8 @@ html,
 body,
 app-root {
   height: 100%;
+}
+
+body {
+  overscroll-behavior: contain;
 }

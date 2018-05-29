@@ -1,18 +1,14 @@
-<mat-card *ngFor="let post of posts | async | async">
-  <mat-card-header>
-    <img mat-card-avatar class="card-avatar" [src]="post.authorImage" alt=""/>
-    <mat-card-title>{{post.title}}</mat-card-title>
-    <mat-card-subtitle>{{post.dateAgo}}</mat-card-subtitle>
-  </mat-card-header>
-  <img mat-card-image [src]="post.image" alt=""/>
-  <mat-card-content><p>{{post.description}}</p></mat-card-content>
+<mat-card *ngFor="let post of posts; trackBy: trackByFn" (click)="_onClick(post.id)">
+  <mat-card-content matRipple>
+    <mat-card-header>
+      <img mat-card-avatar class="card-avatar" [src]="post.authorImage" alt="" />
+      <mat-card-title>{{post.title}}</mat-card-title>
+      <mat-card-subtitle>{{post.dateAgo}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image [src]="post.image" alt="" />
+    <p>{{post.description}}</p>
+  </mat-card-content>
   <mat-card-actions>
-    <button mat-button>TOVÁBB</button>
+    <button [routerLink]="['/posts/'+post.id]" mat-button color="primary">TOVÁBB</button>
   </mat-card-actions>
 </mat-card>
-
-
-
-  
-    
-  
