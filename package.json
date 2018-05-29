@@ -42,7 +42,7 @@
     "@angular/language-service": "^6.0.3",
     "@types/node": "~8.9.4",
     "@types/remarkable": "^1.7.0",
-    "codelyzer": "~4.2.1",
+    "codelyzer": "~4.3.0",
     "firebase-admin": "^5.12.1",
     "prettier": "^1.13.2",
     "ts-node": "~5.0.1",
