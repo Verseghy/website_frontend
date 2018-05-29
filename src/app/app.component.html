@@ -2,7 +2,9 @@
   <mat-drawer #drawer mode="over">I'm a drawer</mat-drawer>
   <mat-drawer-content>
     <mat-toolbar color="primary" class="mat-elevation-z6">
-      <button mat-icon-button *ngIf="isHandset" (click)="drawer.toggle()"><mat-icon>menu</mat-icon></button>
+      <button mat-icon-button *ngIf="isHandset" (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
       <span>Verseghy Gimnázium</span>
       <span class="fill-remaining-space"></span>
     </mat-toolbar>

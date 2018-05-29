@@ -10,23 +10,17 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: '/home',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: ':id',
-    component: PostsComponent
-  }
+    component: PostsComponent,
+  },
 ];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    MaterialModule
-  ],
+  imports: [CommonModule, RouterModule.forChild(routes), MaterialModule],
   declarations: [PostsComponent],
-  providers: [
-    {provide: HAMMER_GESTURE_CONFIG, useClass: GestureConfig}
-  ],
+  providers: [{ provide: HAMMER_GESTURE_CONFIG, useClass: GestureConfig }],
 })
-export class PostsModule { }
+export class PostsModule {}

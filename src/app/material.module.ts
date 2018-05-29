@@ -14,7 +14,7 @@ import { MatCardModule } from '@angular/material/card';
     MatButtonModule,
     MatSidenavModule,
     MatCardModule,
-    MatRippleModule
+    MatRippleModule,
   ],
   exports: [
     MatToolbarModule,
@@ -22,8 +22,8 @@ import { MatCardModule } from '@angular/material/card';
     MatButtonModule,
     MatSidenavModule,
     MatCardModule,
-    MatRippleModule
+    MatRippleModule,
   ],
-  declarations: []
+  declarations: [],
 })
-export class MaterialModule { }
+export class MaterialModule {}

@@ -10,8 +10,8 @@ export const environment = {
     databaseURL: 'https://vfghonlap-001.firebaseio.com',
     projectId: 'vfghonlap-001',
     storageBucket: 'vfghonlap-001.appspot.com',
-    messagingSenderId: '442024635461'
-  }
+    messagingSenderId: '442024635461',
+  },
 };
 
 /*

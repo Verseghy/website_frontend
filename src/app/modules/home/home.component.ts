@@ -23,32 +23,48 @@ interface Post {
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-
   posts: Post[];
   @ViewChild(MatRipple) ripple: MatRipple;
 
-  constructor(private afStore: AngularFirestore,
-              private afStorage: AngularFireStorage,
-              private router: Router
-              ) { }
+  constructor(
+    private afStore: AngularFirestore,
+    private afStorage: AngularFireStorage,
+    private router: Router,
+  ) {}
 
   ngOnInit() {
     moment.locale('hu');
-    this.afStore.collection<Post>('posts').valueChanges().pipe(map( async (x) => {
-      for (const i of Object.keys(x)) {
-        x[i].dateAgo = moment(x[i].date.toDate()).fromNow().toString();
-        x[i].authorImage = await this.afStorage.ref('authors/' + x[i].authorImage).getDownloadURL().pipe(first()).toPromise();
-        x[i].image = await this.afStorage.ref('posts/' + x[i].image).getDownloadURL().pipe(first()).toPromise();
-      }
-      return x;
-    })).subscribe(x => {
-      x.then(y => {
-        this.posts = y;
+    this.afStore
+      .collection<Post>('posts')
+      .valueChanges()
+      .pipe(
+        map(async x => {
+          for (const i of Object.keys(x)) {
+            x[i].dateAgo = moment(x[i].date.toDate())
+              .fromNow()
+              .toString();
+            x[i].authorImage = await this.afStorage
+              .ref('authors/' + x[i].authorImage)
+              .getDownloadURL()
+              .pipe(first())
+              .toPromise();
+            x[i].image = await this.afStorage
+              .ref('posts/' + x[i].image)
+              .getDownloadURL()
+              .pipe(first())
+              .toPromise();
+          }
+          return x;
+        }),
+      )
+      .subscribe(x => {
+        x.then(y => {
+          this.posts = y;
+        });
       });
-    });
   }
 
   trackByFn(item) {
@@ -58,5 +74,4 @@ export class HomeComponent implements OnInit {
   _onClick(id) {
     this.router.navigate(['posts', id]);
   }
-
 }

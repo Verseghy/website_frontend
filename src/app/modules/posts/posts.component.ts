@@ -22,31 +22,35 @@ interface Post {
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',
-  styleUrls: ['./posts.component.css']
+  styleUrls: ['./posts.component.css'],
 })
 export class PostsComponent implements OnInit, OnDestroy {
-
   paramsSubscription: Subscription;
   post: SafeHtml;
 
-  constructor(private route: ActivatedRoute,
-              private afStore: AngularFirestore,
-              private sanitizer: DomSanitizer,
-              ) { }
+  constructor(
+    private route: ActivatedRoute,
+    private afStore: AngularFirestore,
+    private sanitizer: DomSanitizer,
+  ) {}
 
   ngOnInit() {
-    const md = new MarkdownIt().use(MarkdownItMultimd, {enableMultilineRows: true});
+    const md = new MarkdownIt().use(MarkdownItMultimd, {
+      enableMultilineRows: true,
+    });
     this.paramsSubscription = this.route.params.subscribe(params => {
-      this.afStore.collection<Post>('posts', ref => ref.where('id', '==', parseInt(params.id, 10))).valueChanges().subscribe(x => {
-        x.forEach(y => {
-          this.post = this.sanitizer.sanitize(0, md.render(y.post));
+      this.afStore
+        .collection<Post>('posts', ref => ref.where('id', '==', parseInt(params.id, 10)))
+        .valueChanges()
+        .subscribe(x => {
+          x.forEach(y => {
+            this.post = this.sanitizer.sanitize(0, md.render(y.post));
+          });
         });
-      });
     });
   }
 
   ngOnDestroy() {
     this.paramsSubscription.unsubscribe();
   }
-
 }

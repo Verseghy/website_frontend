@@ -7,6 +7,7 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
+    "prettier-check": "prettier -l ./**/*.{ts,js}",
     "up-post": "node scripts/posts.js"
   },
   "private": true,
