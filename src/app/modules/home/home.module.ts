@@ -1,24 +1,19 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MaterialModule } from '../../material.module';
 
-import { ToolbarComponent } from '../../components/toolbar/toolbar.component';
+import { MaterialModule } from '../../material.module';
 import { HomeComponent } from './home.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent
-  }
+    component: HomeComponent,
+  },
 ];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    MaterialModule
-  ],
-  declarations: [ToolbarComponent, HomeComponent]
+  imports: [CommonModule, RouterModule.forChild(routes), MaterialModule],
+  declarations: [HomeComponent],
 })
-export class HomeModule { }
+export class HomeModule {}
