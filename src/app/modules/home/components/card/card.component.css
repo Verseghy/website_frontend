@@ -13,6 +13,25 @@
   padding: 30px;
 }
 
+.label-container {
+  margin-bottom: 8px;
+}
+
+.label {
+  font-family: 'Cabin';
+  font-size: 10px;
+  text-transform: uppercase;
+  padding: 5px 11px 4px;
+  border-radius: 20px;
+  margin-right: 5px;
+  margin-bottom: 2px;
+  color: #000
+}
+
+.label.dark {
+  color: #fff
+}
+
 .dark .description,
 .dark .bottom p {
   color: rgba(255,255,255,0.8);
@@ -58,4 +77,16 @@ img {
   margin-left: 20px;
   font-size: 12px;
   color: #818181;
+}
+
+@media screen and (max-width: 992px){
+  :host {
+    width: calc(100% / 2);
+  }
+}
+
+@media screen and (max-width: 580px){
+  :host {
+    width: 100%;
+  }
 }
