@@ -18,7 +18,7 @@ interface Post {
     title: string;
     backgroundColor: string;
     isDark: boolean;
-  }
+  };
 }
 
 @Component({
@@ -36,7 +36,7 @@ export class CardComponent implements OnInit {
 
   ngOnInit() {
     this.post.isDark = this.contrastService.getConstrast(this.post.backgroundColor);
-    for (let i in this.post.labels) {
+    for (const i of Object.keys(this.post.labels)) {
       this.post.labels[i].isDark = this.contrastService.getConstrast(this.post.labels[i].backgroundColor);
     }
   }

@@ -9,10 +9,10 @@ export class ContrastService {
   constructor() { }
 
   getConstrast(color: string): boolean {
-    let rgb = colorParser(color).rgb;
-    let o = Math.round(((parseInt(rgb[0]) * 299) +
-      (parseInt(rgb[1]) * 587) +
-      (parseInt(rgb[2]) * 114)) / 1000);
+    const rgb = colorParser(color).rgb;
+    const o = Math.round(((parseInt(rgb[0], 10) * 299) +
+      (parseInt(rgb[1], 10) * 587) +
+      (parseInt(rgb[2], 10) * 114)) / 1000);
     return (o > 125) ? false : true;
   }
 }
