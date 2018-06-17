@@ -1,22 +1,5 @@
-mat-drawer-container {
-  background: #f4f4f4;
-  height: 100%;
-}
-
-mat-drawer-content {
+:host {
   display: flex;
   flex-direction: column;
-}
-
-mat-toolbar {
-  position: relative;
-  z-index: 2;
-}
-
-mat-toolbar span {
-  margin-left: 16px;
-}
-
-.fill-remaining-space {
-  flex: 1 1 auto;
+  height: 100%;
 }

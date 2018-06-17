@@ -1,32 +1,6 @@
 :host {
-  flex: 1;
-  overflow: scroll;
+  overflow-y: scroll;
   display: block;
-}
-
-mat-card {
-  margin: 15px 8px;
-  padding: 0;
-}
-
-mat-card-content {
-  padding: 24px;
+  flex: 1;
   position: relative;
-  margin-bottom: 0;
-}
-
-mat-card-actions {
-  margin-bottom: 0 !important;
-  margin: 0;
-  padding: 8px !important;
-}
-
-@media (max-width: 599px) {
-  mat-card-content {
-    padding: 24px 16px;
-  }
-}
-
-.card-avatar {
-  background-size: cover;
 }
