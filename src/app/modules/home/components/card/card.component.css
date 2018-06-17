@@ -13,6 +13,15 @@
   padding: 30px;
 }
 
+.dark .description,
+.dark .bottom p {
+  color: rgba(255,255,255,0.8);
+}
+
+.dark .title {
+  color: #ffffff;
+}
+
 .title {
   color: #111111;
   font-family: 'Lato';

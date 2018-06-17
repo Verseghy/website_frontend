@@ -1,4 +1,4 @@
-<div class="content" *ngIf="type === '0'">
+<div class="content" *ngIf="type === '0'" [ngStyle]="{'background-color' : post.bgColor}" [ngClass]="{'dark' : post.dark}">
   <p class="title" [routerLink]="['/posts/'+post.id]">{{post.title}}</p>
   <p class="description">{{post.description}}</p>
   <div class="bottom">
