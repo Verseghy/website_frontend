@@ -74,6 +74,7 @@
 .menu > span {
   display: block;
   padding: 0 15px;
+  transition: background-color 300ms;
 }
 
 .menu:hover > a,
@@ -87,13 +88,16 @@
 
 .submenu {
   position: absolute;
-  display: none;
+  opacity: 0;
+  pointer-events: none;
   background: #fff;
   box-shadow: 0 3px 5px rgba(0,0,0,.1);
+  transition: opacity 300ms;
 }
 
 .menu:hover .submenu {
-  display: block;
+  opacity: 1;
+  pointer-events: all;
 }
 
 .submenu a {
@@ -211,6 +215,7 @@ i {
 
   .submenu {
     position: static;
+    display: none;
     background: #009cff;
     box-shadow: none;
   }
