@@ -1,8 +1,4 @@
-<div *ngFor="let post of posts; trackBy: trackByFn" (click)="_onClick(post.id)">
-  <img [src]="post.authorImage" alt="" />
-  <p>{{post.title}}</p>
-  <p>{{post.dateAgo}}</p>
-  <img [src]="post.image" alt="" />
-  <p>{{post.description}}</p>
-  <button [routerLink]="['/posts/'+post.id]" mat-button color="primary">TOVÁBB</button>
+<div class="container">
+  <h2>Legfrissebb hírek</h2>
+  <app-card type="0" [post]="post" *ngFor="let post of posts; trackBy: trackByFn"></app-card>
 </div>

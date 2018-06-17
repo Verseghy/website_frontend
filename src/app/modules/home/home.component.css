@@ -4,3 +4,17 @@
   flex: 1;
   position: relative;
 }
+
+.container {
+  padding: 0 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+h2 {
+  font-family: 'Roboto';
+  font-size: 24px;
+  margin-left: 10px;
+  font-weight: 500;
+  margin-top: 20px;
+}
