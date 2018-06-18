@@ -1,4 +1,4 @@
-<div class="content" *ngIf="type === 0" [ngStyle]="{'background-color': post.backgroundColor}" [ngClass]="{'dark' : post.isDark}">
+<div class="content" *ngIf="post.type === 0" [ngStyle]="{'background-color': post.backgroundColor}" [ngClass]="{'dark' : post.isDark}">
   <div class="label-container">
     <span *ngFor="let label of post.labels" class="label" [ngStyle]="{'background-color': label.backgroundColor}" [ngClass]="{'dark' : label.isDark}">{{label.title}}</span>
   </div>
@@ -9,14 +9,14 @@
     <p>{{post.dateAgo}}</p>
   </div>
 </div>
-<div class="content" *ngIf="type === 1">
+<div class="content" *ngIf="post.type === 1">
   <img [src]="post.image" alt="" />
   <p [routerLink]="['/posts/'+post.id]">{{post.title}}</p>
   <p>{{post.description}}</p>
   <img [src]="post.authorImage" alt="" />
   <p>{{post.dateAgo}}</p>
 </div>
-<div class="content" *ngIf="type === 2">
+<div class="content" *ngIf="post.type === 2">
   <img [src]="post.image" alt="" />
   <p [routerLink]="['/posts/'+post.id]">{{post.title}}</p>
   <p>{{post.description}}</p>

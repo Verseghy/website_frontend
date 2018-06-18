@@ -14,6 +14,7 @@ interface Post {
   title: string;
   backgroundColor: string;
   isDark: boolean;
+  type: number;
   labels: {
     title: string;
     backgroundColor: string;
