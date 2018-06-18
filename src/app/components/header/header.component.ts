@@ -7,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
+  drawer: boolean;
+  submenu1: boolean;
+  submenu2: boolean;
+
   constructor() { }
 
   ngOnInit() {
