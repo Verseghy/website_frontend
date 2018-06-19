@@ -1,0 +1,73 @@
+:host {
+  display: inline-block;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.content {
+  box-shadow: 0 3px 5px 0 rgba(0,1,1,.1);
+  background-color: #fff;
+  padding: 30px;
+}
+
+.label-container {
+  margin-bottom: 8px;
+}
+
+.label {
+  font-family: 'Cabin';
+  font-size: 10px;
+  text-transform: uppercase;
+  padding: 5px 11px 4px;
+  border-radius: 20px;
+  margin-right: 5px;
+  margin-bottom: 2px;
+  color: #000
+}
+
+.label.dark {
+  color: #fff
+}
+
+.dark .description,
+.dark .bottom p {
+  color: rgba(255,255,255,0.8);
+}
+
+.dark .title {
+  color: #ffffff;
+}
+
+.title {
+  color: #111111;
+  font-family: 'Lato';
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.description {
+  font-size: 16px;
+  color: #5e5e5e;
+  font-family: 'Cabin';
+  font-weight: 400;
+  line-height: 22px;
+  margin-bottom: 20px;  
+}
+
+img {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.bottom p {
+  display: inline-block;
+  vertical-align: middle;
+  font-family: 'Roboto';
+  margin-left: 20px;
+  font-size: 12px;
+  color: #818181;
+}

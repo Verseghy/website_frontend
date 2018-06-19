@@ -1,32 +1,27 @@
 :host {
-  flex: 1;
-  overflow: scroll;
+  overflow-y: scroll;
   display: block;
-}
-
-mat-card {
-  margin: 15px 8px;
-  padding: 0;
-}
-
-mat-card-content {
-  padding: 24px;
+  flex: 1;
   position: relative;
-  margin-bottom: 0;
 }
 
-mat-card-actions {
-  margin-bottom: 0 !important;
-  margin: 0;
-  padding: 8px !important;
+.container {
+  padding: 0 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-@media (max-width: 599px) {
-  mat-card-content {
-    padding: 24px 16px;
-  }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-gap: 20px;
+  margin-top: 20px;
 }
 
-.card-avatar {
-  background-size: cover;
+h2 {
+  font-family: 'Lato';
+  font-size: 24px;
+  margin-left: 10px;
+  font-weight: 500;
+  margin-top: 20px;
 }
