@@ -1,12 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Timestamp } from '@firebase/firestore-types';
 import { ContrastService } from '../../../../services/contrast.service';
 
 interface Post {
   id: number;
   author: string;
   authorImage: string;
-  date: Timestamp;
+  date: Date;
   dateAgo: string;
   description: string;
   image: string;
