@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()">
   <div class="post" *ngFor="let post of posts">
     <div class="content" #content>
       <div class="background">

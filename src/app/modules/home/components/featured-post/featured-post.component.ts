@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewChildren, QueryList, AfterViewInit, ElementRef } from '@angular/core';
+import { interval } from 'rxjs';
+
 
 @Component({
   selector: 'app-featured-post',
@@ -21,9 +23,11 @@ export class FeaturedPostComponent implements OnInit, AfterViewInit {
   @ViewChildren('content') content: QueryList<any>;
 
   speed = 300;
+  autoplaySpeed = 10000;
   current = 0;
-  items;
-  itemsLength;
+  items: Array<ElementRef>;
+  itemsLength: number;
+  isHovered = false;
 
 
   constructor() { }
@@ -39,20 +43,33 @@ export class FeaturedPostComponent implements OnInit, AfterViewInit {
       }
       this._transformLeft(this.items[this.itemsLength - 1]);
     }
+    interval(this.autoplaySpeed).subscribe(() => {
+      if (!this.isHovered) {
+        this.next();
+      }
+    });
   }
 
-  next() {
+  next(): void {
     this._translateLeft(this.items[this.current]);
     this._translateMiddle(this.items[this._nextId()]);
     this._transformRight(this.items[this._previousId()]);
     this.current = this._nextId();
   }
 
-  previous() {
+  previous(): void {
     this._translateRight(this.items[this.current]);
     this._translateMiddle(this.items[this._previousId()]);
     this.current = this._previousId();
     this._transformLeft(this.items[this._previousId()]);
+  }
+
+  onMouseEnter(): void {
+    this.isHovered = true;
+  }
+
+  onMouseLeave(): void {
+    this.isHovered = false;
   }
 
   private _nextId(): number {
