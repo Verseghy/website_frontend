@@ -12,6 +12,7 @@
   margin: 0 auto;
   position: relative;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .post {
