@@ -12,6 +12,7 @@
   margin: 0 auto;
   position: relative;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .post {
@@ -24,6 +25,7 @@
   left: 0;
   height: 100%;
   width: 100%;
+  transition-property: transform, opacity;
 }
 
 .background {
