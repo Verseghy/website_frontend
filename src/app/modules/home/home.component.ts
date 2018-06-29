@@ -4,26 +4,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
 
-/* interface Post {
-  id: number;
-  author: string;
-  authorImage: string;
-  date: Date;
-  dateAgo: string;
-  description: string;
-  image: string;
-  post: string;
-  title: string;
-  backgroundColor: string;
-  isDark: boolean;
-  type: number;
-  labels: {
-    title: string;
-    backgroundColor: string;
-    isDark: boolean;
-  }
-}*/
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
