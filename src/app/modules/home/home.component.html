@@ -2,6 +2,6 @@
 <div class="container">
   <h2>Legfrissebb hírek</h2>
   <div class="grid">
-    <app-card [post]="post" *ngFor="let post of posts; trackBy: trackByFn"></app-card>
+    <app-card [post]="post" *ngFor="let post of posts | async; trackBy: trackByFn"></app-card>
   </div>
 </div>
