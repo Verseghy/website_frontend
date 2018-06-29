@@ -25,7 +25,7 @@ export class RequestService {
     /* tslint:enable */
     return Observable.create((obs) => {
       obs.next(posts);
-    })
+    });
   }
 
   listFeaturedPosts(): Observable<Post[]> {
@@ -40,7 +40,7 @@ export class RequestService {
     { image: 'https://scontent-vie1-1.xx.fbcdn.net/v/t1.15752-9/36029258_1952348851463890_4236921547433967616_n.jpg?_nc_cat=0&oh=4cb548593b3aefe071ef87d296cd1e3f&oe=5BB2DB52', author: 'TwoDCube', id: 0, title: 'Lorem Ipsum 8', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis placerat ex quis erat fermentum, non faucibus dolor sagittis. Cras egestas orci nisi, sed luctus mauris iaculis sit amet. Vestibulum pretium congue ante ac elementum', authorImage: 'https://firebasestorage.googleapis.com/v0/b/vfghonlap-001.appspot.com/o/authors%2Fauth0.jpg?alt=media&token=7d1d2600-e72b-499f-be0e-4dd9bb2d190c', dateAgo: '30 napja', labels: [{ title: 'label1', backgroundColor: '#a66bbe' }, { title: 'label1', backgroundColor: '#61c437' }], type: 0 }];
     /* tslint:enable */
     return Observable.create((obs) => {
-      obs.next(posts)
-    })
+      obs.next(posts);
+    });
   }
 }

@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     moment.locale('hu');
-    this.posts = this.requestService.listPosts()
+    this.posts = this.requestService.listPosts();
   }
 
   trackByFn(item) {

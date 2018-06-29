@@ -19,14 +19,14 @@ export class FeaturedPostComponent implements OnInit, AfterViewInit {
   items: Array<ElementRef>;
   itemsLength: number;
   isHovered = false;
-  posts: Observable<Post[]>
+  posts: Observable<Post[]>;
 
 
   constructor(
     private requestService: RequestService
   ) { }
   ngOnInit() {
-    this.posts = this.requestService.listFeaturedPosts()
+    this.posts = this.requestService.listFeaturedPosts();
   }
 
   ngAfterViewInit() {
