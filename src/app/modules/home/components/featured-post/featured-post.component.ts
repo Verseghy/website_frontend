@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChildren, QueryList, AfterViewInit, ElementRef } from '@angular/core';
-import { interval } from 'rxjs';
+import { interval, Observable } from 'rxjs';
+import { RequestService } from '../../services/request.service';
+import { Post } from '../../../../interfaces/Post';
 
 
 @Component({
@@ -9,17 +11,6 @@ import { interval } from 'rxjs';
 })
 export class FeaturedPostComponent implements OnInit, AfterViewInit {
 
-  /* tslint:disable */
-  posts = [{ image: 'https://scontent-vie1-1.xx.fbcdn.net/v/t1.15752-9/36029258_1952348851463890_4236921547433967616_n.jpg?_nc_cat=0&oh=4cb548593b3aefe071ef87d296cd1e3f&oe=5BB2DB52', author: 'TwoDCube', id: 0, title: 'Lorem Ipsum 1', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis placerat ex quis erat fermentum, non faucibus dolor sagittis. Cras egestas orci nisi, sed luctus mauris iaculis sit amet. Vestibulum pretium congue ante ac elementum', authorImage: 'https://firebasestorage.googleapis.com/v0/b/vfghonlap-001.appspot.com/o/authors%2Fauth0.jpg?alt=media&token=7d1d2600-e72b-499f-be0e-4dd9bb2d190c', dateAgo: '30 napja', labels: [{ title: 'label1', backgroundColor: '#a66bbe' }, { title: 'label1', backgroundColor: '#61c437' }], type: 0 },
-  { image: 'https://scontent-vie1-1.xx.fbcdn.net/v/t1.15752-9/36029258_1952348851463890_4236921547433967616_n.jpg?_nc_cat=0&oh=4cb548593b3aefe071ef87d296cd1e3f&oe=5BB2DB52', author: 'TwoDCube', id: 0, title: 'Lorem Ipsum 2', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis placerat ex quis erat fermentum, non faucibus dolor sagittis. Cras egestas orci nisi, sed luctus mauris iaculis sit amet. Vestibulum pretium congue ante ac elementum', authorImage: 'https://firebasestorage.googleapis.com/v0/b/vfghonlap-001.appspot.com/o/authors%2Fauth0.jpg?alt=media&token=7d1d2600-e72b-499f-be0e-4dd9bb2d190c', dateAgo: '30 napja', labels: [{ title: 'label1', backgroundColor: '#a66bbe' }, { title: 'label1', backgroundColor: '#61c437' }], type: 0 },
-  { image: 'https://scontent-vie1-1.xx.fbcdn.net/v/t1.15752-9/36029258_1952348851463890_4236921547433967616_n.jpg?_nc_cat=0&oh=4cb548593b3aefe071ef87d296cd1e3f&oe=5BB2DB52', author: 'TwoDCube', id: 0, title: 'Lorem Ipsum 3', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis placerat ex quis erat fermentum, non faucibus dolor sagittis. Cras egestas orci nisi, sed luctus mauris iaculis sit amet. Vestibulum pretium congue ante ac elementum', authorImage: 'https://firebasestorage.googleapis.com/v0/b/vfghonlap-001.appspot.com/o/authors%2Fauth0.jpg?alt=media&token=7d1d2600-e72b-499f-be0e-4dd9bb2d190c', dateAgo: '30 napja', labels: [{ title: 'label1', backgroundColor: '#a66bbe' }, { title: 'label1', backgroundColor: '#61c437' }], type: 0 },
-  { image: 'https://scontent-vie1-1.xx.fbcdn.net/v/t1.15752-9/36029258_1952348851463890_4236921547433967616_n.jpg?_nc_cat=0&oh=4cb548593b3aefe071ef87d296cd1e3f&oe=5BB2DB52', author: 'TwoDCube', id: 0, title: 'Lorem Ipsum 4', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis placerat ex quis erat fermentum, non faucibus dolor sagittis. Cras egestas orci nisi, sed luctus mauris iaculis sit amet. Vestibulum pretium congue ante ac elementum', authorImage: 'https://firebasestorage.googleapis.com/v0/b/vfghonlap-001.appspot.com/o/authors%2Fauth0.jpg?alt=media&token=7d1d2600-e72b-499f-be0e-4dd9bb2d190c', dateAgo: '30 napja', labels: [{ title: 'label1', backgroundColor: '#a66bbe' }, { title: 'label1', backgroundColor: '#61c437' }], type: 0 },
-  { image: 'https://scontent-vie1-1.xx.fbcdn.net/v/t1.15752-9/36029258_1952348851463890_4236921547433967616_n.jpg?_nc_cat=0&oh=4cb548593b3aefe071ef87d296cd1e3f&oe=5BB2DB52', author: 'TwoDCube', id: 0, title: 'Lorem Ipsum 5', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis placerat ex quis erat fermentum, non faucibus dolor sagittis. Cras egestas orci nisi, sed luctus mauris iaculis sit amet. Vestibulum pretium congue ante ac elementum', authorImage: 'https://firebasestorage.googleapis.com/v0/b/vfghonlap-001.appspot.com/o/authors%2Fauth0.jpg?alt=media&token=7d1d2600-e72b-499f-be0e-4dd9bb2d190c', dateAgo: '30 napja', labels: [{ title: 'label1', backgroundColor: '#a66bbe' }, { title: 'label1', backgroundColor: '#61c437' }], type: 0 },
-  { image: 'https://scontent-vie1-1.xx.fbcdn.net/v/t1.15752-9/36029258_1952348851463890_4236921547433967616_n.jpg?_nc_cat=0&oh=4cb548593b3aefe071ef87d296cd1e3f&oe=5BB2DB52', author: 'TwoDCube', id: 0, title: 'Lorem Ipsum 6', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis placerat ex quis erat fermentum, non faucibus dolor sagittis. Cras egestas orci nisi, sed luctus mauris iaculis sit amet. Vestibulum pretium congue ante ac elementum', authorImage: 'https://firebasestorage.googleapis.com/v0/b/vfghonlap-001.appspot.com/o/authors%2Fauth0.jpg?alt=media&token=7d1d2600-e72b-499f-be0e-4dd9bb2d190c', dateAgo: '30 napja', labels: [{ title: 'label1', backgroundColor: '#a66bbe' }, { title: 'label1', backgroundColor: '#61c437' }], type: 0 },
-  { image: 'https://scontent-vie1-1.xx.fbcdn.net/v/t1.15752-9/36029258_1952348851463890_4236921547433967616_n.jpg?_nc_cat=0&oh=4cb548593b3aefe071ef87d296cd1e3f&oe=5BB2DB52', author: 'TwoDCube', id: 0, title: 'Lorem Ipsum 7', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis placerat ex quis erat fermentum, non faucibus dolor sagittis. Cras egestas orci nisi, sed luctus mauris iaculis sit amet. Vestibulum pretium congue ante ac elementum', authorImage: 'https://firebasestorage.googleapis.com/v0/b/vfghonlap-001.appspot.com/o/authors%2Fauth0.jpg?alt=media&token=7d1d2600-e72b-499f-be0e-4dd9bb2d190c', dateAgo: '30 napja', labels: [{ title: 'label1', backgroundColor: '#a66bbe' }, { title: 'label1', backgroundColor: '#61c437' }], type: 0 },
-  { image: 'https://scontent-vie1-1.xx.fbcdn.net/v/t1.15752-9/36029258_1952348851463890_4236921547433967616_n.jpg?_nc_cat=0&oh=4cb548593b3aefe071ef87d296cd1e3f&oe=5BB2DB52', author: 'TwoDCube', id: 0, title: 'Lorem Ipsum 8', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis placerat ex quis erat fermentum, non faucibus dolor sagittis. Cras egestas orci nisi, sed luctus mauris iaculis sit amet. Vestibulum pretium congue ante ac elementum', authorImage: 'https://firebasestorage.googleapis.com/v0/b/vfghonlap-001.appspot.com/o/authors%2Fauth0.jpg?alt=media&token=7d1d2600-e72b-499f-be0e-4dd9bb2d190c', dateAgo: '30 napja', labels: [{ title: 'label1', backgroundColor: '#a66bbe' }, { title: 'label1', backgroundColor: '#61c437' }], type: 0 }];
-  /* tslint:enable */
-
   @ViewChildren('content') content: QueryList<any>;
 
   speed = 300;
@@ -28,10 +19,14 @@ export class FeaturedPostComponent implements OnInit, AfterViewInit {
   items: Array<ElementRef>;
   itemsLength: number;
   isHovered = false;
+  posts: Observable<Post[]>
 
 
-  constructor() { }
+  constructor(
+    private requestService: RequestService
+  ) { }
   ngOnInit() {
+    this.posts = this.requestService.listFeaturedPosts()
   }
 
   ngAfterViewInit() {
