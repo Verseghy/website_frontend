@@ -16,5 +16,5 @@ export interface Post {
     backgroundColor: string;
     isDark: boolean;
 
-  }
+  };
 }
