@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 import { HomeComponent } from './home.component';
 import { CardComponent } from './components/card/card.component';
@@ -14,7 +15,15 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [CommonModule, RouterModule.forChild(routes)],
-  declarations: [HomeComponent, CardComponent, FeaturedPostComponent],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    HttpClientModule
+  ],
+  declarations: [
+    HomeComponent,
+    CardComponent,
+    FeaturedPostComponent
+  ],
 })
 export class HomeModule { }

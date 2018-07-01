@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { PostsComponent } from './posts.component';
+import { RequestService } from './services/request.service';
 
 const routes: Routes = [
   {
@@ -19,5 +20,6 @@ const routes: Routes = [
 @NgModule({
   imports: [CommonModule, RouterModule.forChild(routes)],
   declarations: [PostsComponent],
+  providers: [RequestService]
 })
 export class PostsModule { }

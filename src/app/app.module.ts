@@ -8,6 +8,7 @@ import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RoutingModule } from './routing.module';
 import { HeaderComponent } from './components/header/header.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
@@ -18,6 +19,7 @@ import { HeaderComponent } from './components/header/header.component';
     }),
     BrowserAnimationsModule,
     RoutingModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
