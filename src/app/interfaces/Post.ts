@@ -12,9 +12,8 @@ export interface Post {
   isDark: boolean;
   type: number;
   labels: {
-    title: string;
-    backgroundColor: string;
+    name: string;
+    color: string;
     isDark: boolean;
-
-  };
+  }[];
 }

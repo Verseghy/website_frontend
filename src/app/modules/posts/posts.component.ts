@@ -3,6 +3,8 @@ import { Subscription, Observable } from 'rxjs';
 import { RequestService } from './services/request.service';
 import { Post } from '../../interfaces/Post';
 import { ActivatedRoute } from '@angular/router';
+import { ContrastService } from '../../services/contrast.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-posts',
@@ -16,12 +18,18 @@ export class PostsComponent implements OnInit, OnDestroy {
 
   constructor(
     private requestService: RequestService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private contrastService: ContrastService
   ) { }
 
   ngOnInit() {
     this.paramsSubscription = this.route.params.subscribe(x => {
-      this.post = this.requestService.getPostById(x['id'])
+      this.post = this.requestService.getPostById(x['id']).pipe(map(y => {
+        for (let i of Object.keys(y.labels)) {
+          y.labels[i].isDark = this.contrastService.getConstrast(y.labels[i].color);
+        }
+        return y;
+      }))
     })
   }
 
