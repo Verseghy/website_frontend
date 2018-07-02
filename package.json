@@ -17,7 +17,7 @@
     "@angular/forms": "^6.0.3",
     "@angular/http": "^6.0.3",
     "@angular/platform-browser": "^6.0.3",
-    "@angular/platform-browser-dynamic": "^6.0.3",
+    "@angular/platform-browser-dynamic": "^6.0.7",
     "@angular/pwa": "^0.6.5",
     "@angular/router": "^6.0.3",
     "@angular/service-worker": "^6.0.3",
