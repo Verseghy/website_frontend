@@ -14,7 +14,7 @@ import { map } from 'rxjs/operators';
 export class PostsComponent implements OnInit, OnDestroy {
 
   paramsSubscription: Subscription;
-  post: Observable<Post>
+  post: Observable<Post>;
 
   constructor(
     private requestService: RequestService,
@@ -25,12 +25,12 @@ export class PostsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.paramsSubscription = this.route.params.subscribe(x => {
       this.post = this.requestService.getPostById(x['id']).pipe(map(y => {
-        for (let i of Object.keys(y.labels)) {
+        for (const i of Object.keys(y.labels)) {
           y.labels[i].isDark = this.contrastService.getConstrast(y.labels[i].color);
         }
         return y;
-      }))
-    })
+      }));
+    });
   }
 
   ngOnDestroy() {
