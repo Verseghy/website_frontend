@@ -12,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 export class PostsComponent implements OnInit, OnDestroy {
 
   paramsSubscription: Subscription;
-  post: Observable<Post>
+  post: Observable<Post>;
 
   constructor(
     private requestService: RequestService,
@@ -21,8 +21,8 @@ export class PostsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.paramsSubscription = this.route.params.subscribe(x => {
-      this.post = this.requestService.getPostById(x['id'])
-    })
+      this.post = this.requestService.getPostById(x['id']);
+    });
   }
 
   ngOnDestroy() {

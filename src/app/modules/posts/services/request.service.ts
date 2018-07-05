@@ -16,6 +16,6 @@ export class RequestService {
   getPostById(id: string): Observable<Post> {
     return this.http.get<Post>(environment.baseURL + '/posts/getPost', {
       params: new HttpParams().set('id', id)
-    })
+    });
   }
 }
