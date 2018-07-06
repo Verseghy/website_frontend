@@ -1,6 +1,7 @@
 <div class="content" *ngIf="post.type === 0" [ngStyle]="{'background-color': post.backgroundColor}" [ngClass]="{'dark' : post.isDark}">
   <div class="label-container">
-    <span *ngFor="let label of post.labels" class="label" [ngStyle]="{'background-color': label.backgroundColor}" [ngClass]="{'dark' : label.isDark}">{{label.title}}</span>
+    <app-label *ngFor="let label of post.labels" [ngStyle]="{'background-color': label.color}" [ngClass]="{'dark' : label.isDark}"
+      [label]="label"></app-label>
   </div>
   <p class="title" [routerLink]="['/posts/'+post.id]">{{post.title}}</p>
   <p class="description">{{post.description}}</p>

@@ -7,7 +7,8 @@
       <div class="post-content">
         <div class="text">
           <div class="label-container">
-            <span *ngFor="let label of post.labels" class="label" [ngStyle]="{'background-color': label.backgroundColor}">{{label.title}}</span>
+            <app-label *ngFor="let label of post.labels" [ngStyle]="{'background-color': label.color}" [ngClass]="{'dark' : label.isDark}"
+              [label]="label"></app-label>
           </div>
           <h2>{{ post.title }}</h2>
           <p class="description">{{ post.description }}</p>
