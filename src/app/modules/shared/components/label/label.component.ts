@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class LabelComponent implements OnInit {
 
-  @Input('label') label: any;
+  @Input() label: any;
 
   constructor() { }
 

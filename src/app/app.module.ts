@@ -11,7 +11,11 @@ import { HeaderComponent } from './components/header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent],
+
+  declarations: [
+    AppComponent,
+    HeaderComponent
+  ],
   imports: [
     BrowserModule,
     ServiceWorkerModule.register('/ngsw-worker.js', {
