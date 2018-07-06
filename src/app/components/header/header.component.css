@@ -223,6 +223,7 @@ i {
   .menu.open:hover .submenu,
   .menu.open .submenu {
     display: block;
+    opacity: 1;
   }
 
   .menu:hover .submenu {

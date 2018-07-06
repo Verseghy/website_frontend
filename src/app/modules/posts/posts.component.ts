@@ -1,23 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { Subscription, Observable } from 'rxjs';
+import { RequestService } from './services/request.service';
+import { Post } from '../../interfaces/Post';
 import { ActivatedRoute } from '@angular/router';
-import { Timestamp } from '@firebase/firestore-types';
-import { AngularFirestore } from 'angularfire2/firestore';
-import * as MarkdownIt from 'markdown-it';
-import * as MarkdownItMultimd from 'markdown-it-multimd-table';
-import { Subscription } from 'rxjs';
-
-interface Post {
-  id: number;
-  author: string;
-  authorImage: string;
-  date: Timestamp;
-  dateAgo: string;
-  description: string;
-  image: string;
-  post: string;
-  title: string;
-}
 
 @Component({
   selector: 'app-posts',
@@ -25,28 +10,18 @@ interface Post {
   styleUrls: ['./posts.component.css'],
 })
 export class PostsComponent implements OnInit, OnDestroy {
+
   paramsSubscription: Subscription;
-  post: SafeHtml;
+  post: Observable<Post>;
 
   constructor(
-    private route: ActivatedRoute,
-    private afStore: AngularFirestore,
-    private sanitizer: DomSanitizer,
-  ) {}
+    private requestService: RequestService,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
-    const md = new MarkdownIt().use(MarkdownItMultimd, {
-      enableMultilineRows: true,
-    });
-    this.paramsSubscription = this.route.params.subscribe(params => {
-      this.afStore
-        .collection<Post>('posts', ref => ref.where('id', '==', parseInt(params.id, 10)))
-        .valueChanges()
-        .subscribe(x => {
-          x.forEach(y => {
-            this.post = this.sanitizer.sanitize(0, md.render(y.post));
-          });
-        });
+    this.paramsSubscription = this.route.params.subscribe(x => {
+      this.post = this.requestService.getPostById(x['id']);
     });
   }
 

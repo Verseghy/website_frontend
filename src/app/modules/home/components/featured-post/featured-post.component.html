@@ -1,0 +1,28 @@
+<div class="container" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()">
+  <div class="post" *ngFor="let post of posts | async">
+    <div class="content" #content>
+      <div class="background">
+        <img [src]="post.image" alt="">
+      </div>
+      <div class="post-content">
+        <div class="text">
+          <div class="label-container">
+            <span *ngFor="let label of post.labels" class="label" [ngStyle]="{'background-color': label.backgroundColor}">{{label.title}}</span>
+          </div>
+          <h2>{{ post.title }}</h2>
+          <p class="description">{{ post.description }}</p>
+          <div class="bottom">
+            <img [src]="post.authorImage" alt="" />
+            <p>{{ post.author }}</p>
+            <p>{{ post.dateAgo }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="hover"></div>
+    </div>
+  </div>
+  <div class="nav">
+    <i class="material-icons" (click)="previous()">navigate_before</i>
+    <i class="material-icons" (click)="next()">navigate_next</i>
+  </div>
+</div>
