@@ -46,6 +46,21 @@
   margin: auto 0;
 }
 
+.ekreta {
+  transition: background-color 300ms;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ekreta:hover {
+  background-color: #eceff1
+}
+
+.ekreta img {
+  height: 25px;
+  margin: 7.5px 0;
+  padding: 0 15px;
+}
+
 .menu-header {
   display: none;
 }
@@ -176,6 +191,14 @@ i {
   .middle.open {
     transform: translate3d(0,0,0);
     transition: transform .3s cubic-bezier(0.0, 0.0, 0.2, 1);
+  }
+
+  .ekreta {
+    display: block;
+  }
+
+  .ekreta img {
+    padding: 0;
   }
 
   .menu-header {
