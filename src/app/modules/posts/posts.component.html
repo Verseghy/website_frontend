@@ -45,6 +45,15 @@
       <div class="post-content">
         {{(post | async)?.content}}
       </div>
+      <div class="post-author">
+        <div class="left">
+          <img class="post-author-image" [src]="(post | async)?.author.image.url" alt="">
+        </div>
+        <div class="right">
+          <h4>{{(post | async)?.author.name}}</h4>
+          <p class="post-author-description">{{(post | async)?.author.description}}</p>
+        </div>
+      </div>
     </div>
   </div>
   <div class="sidebar">
