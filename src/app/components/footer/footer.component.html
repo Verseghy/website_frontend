@@ -19,7 +19,14 @@
   <div class="footerblock subscribe">
     <h4>Hírlevél</h4>
     <p>Iratkozz fel hírlevelünkre, hogy értesítést kapj a téged érdeklő cikkekről!</p>
-    <input type="email" value="" name="EMAIL" class="required email" placeholder="email@email.com">
-    <button>Feliratkozás</button>
+    <input type="email" value="" name="EMAIL" class="emailInput" placeholder="email@email.com" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$">
+    <button class="subscribeButton" (click)="subscribeToNewsletter()">
+      <span class="buttonText">Feliratkozás</span>
+      <div hidden class="spinner">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+      </div>
+    </button>
   </div>
 </div>
