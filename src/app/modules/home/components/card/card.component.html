@@ -5,21 +5,31 @@
   <p class="title" [routerLink]="['/posts/'+post.id]">{{post.title}}</p>
   <p class="description">{{post.description}}</p>
   <div class="bottom">
-    <img [src]="post.authorImage" alt="" />
+    <img class="authorimg" [src]="post.authorImage" alt="" />
     <p>{{post.dateAgo}}</p>
   </div>
 </div>
-<div class="content" *ngIf="post.type === 1">
-  <img [src]="post.image" alt="" />
-  <p [routerLink]="['/posts/'+post.id]">{{post.title}}</p>
-  <p>{{post.description}}</p>
-  <img [src]="post.authorImage" alt="" />
-  <p>{{post.dateAgo}}</p>
+<div class="content" *ngIf="post.type === 1" [ngStyle]="{'background-color': post.backgroundColor}" [ngClass]="{'dark' : post.isDark}">
+  <img class="postimg" [src]="post.image" alt=""/>
+  <div class="label-container">
+    <span *ngFor="let label of post.labels" class="label" [ngStyle]="{'background-color': label.backgroundColor}" [ngClass]="{'dark' : label.isDark}">{{label.title}}</span>
+  </div>
+  <p class="title" [routerLink]="['/posts/'+post.id]">{{post.title}}</p>
+  <p class="description">{{post.description}}</p>
+  <div class="bottom">
+    <img class="authorimg" [src]="post.authorImage" alt="" />
+    <p>{{post.dateAgo}}</p>
+  </div>
 </div>
-<div class="content" *ngIf="post.type === 2">
-  <img [src]="post.image" alt="" />
-  <p [routerLink]="['/posts/'+post.id]">{{post.title}}</p>
-  <p>{{post.description}}</p>
-  <img [src]="post.authorImage" alt="" />
-  <p>{{post.dateAgo}}</p>
+<div class="content type2" *ngIf="post.type === 2" [ngStyle]="{'background-color': post.backgroundColor}" [ngClass]="{'dark' : post.isDark}">
+  <img class="bgimg" [src]="post.image" alt=""/>
+  <div class="label-container">
+    <span *ngFor="let label of post.labels" class="label" [ngStyle]="{'background-color': label.backgroundColor}" [ngClass]="{'dark' : label.isDark}">{{label.title}}</span>
+  </div>
+  <p class="title" [routerLink]="['/posts/'+post.id]">{{post.title}}</p>
+  <p class="description">{{post.description}}</p>
+  <div class="bottom">
+    <img class="authorimg" [src]="post.authorImage" alt="" />
+    <p>{{post.dateAgo}}</p>
+  </div>
 </div>

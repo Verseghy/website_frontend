@@ -2,20 +2,24 @@
   display: inline-block;
   box-sizing: border-box;
   position: relative;
+  overflow: hidden;
 }
 
 .content {
   box-shadow: 0 3px 5px 0 rgba(0,1,1,.1);
   background-color: #fff;
   padding: 30px;
+  overflow: hidden;
 }
 
 .label-container {
   margin-bottom: 8px;
+  z-index: 1;
+  position: relative;
 }
 
 .label {
-  font-family: 'Cabin';
+  font-family: 'Cabin', sans-serif;
   font-size: 10px;
   text-transform: uppercase;
   padding: 5px 11px 4px;
@@ -40,34 +44,76 @@
 
 .title {
   color: #111111;
-  font-family: 'Lato';
+  font-family: 'Lato', sans-serif;
   font-size: 22px;
   font-weight: 700;
   margin-bottom: 8px;
+  z-index: 1;
+  position: relative;
 }
 
 .description {
   font-size: 16px;
   color: #5e5e5e;
-  font-family: 'Cabin';
+  font-family: 'Cabin', sans-serif;
   font-weight: 400;
   line-height: 22px;
-  margin-bottom: 20px;  
+  margin-bottom: 20px;
+  z-index: 1;
+  position: relative;
 }
 
-img {
+.authorimg{
   width: 24px;
   height: 24px;
   border-radius: 50%;
   display: inline-block;
   vertical-align: middle;
+  z-index: 1;
+  position: relative;
+}
+
+.postimg{
+  width: calc(100% + 60px);
+  margin: -30px -30px 10px -30px;
+  padding: 0;
+}
+
+.bgimg{
+  position: absolute;
+  z-index: 0;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  margin: -30px;
+  filter: brightness(40%) blur(3px);
+  transform: scale(1.05); /*hides white edge blur*/
+  /*display: block;
+  top: 50%;
+  left: 50%;
+  min-height: 100%;
+  min-width: 100%;
+  transform: translate(-50%, -50%);*/
 }
 
 .bottom p {
   display: inline-block;
   vertical-align: middle;
-  font-family: 'Roboto';
+  font-family: 'Roboto', sans-serif;
   margin-left: 20px;
   font-size: 12px;
   color: #818181;
+  z-index: 1;
+  position: relative;
+}
+
+.type2 .title{
+  color: #fff;
+}
+.type2 .description{
+  color: #e1e1e1;
+}
+
+.type2 .bottom p{
+  color: #cdcdcd;
 }
