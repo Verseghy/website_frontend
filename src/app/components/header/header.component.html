@@ -1,14 +1,14 @@
 <div class="container">
   <div class="right">
-    <img class="logo-image" src="assets/logo.svg" alt="" routerLink="/home">
-    <h1 class="title" routerLink="/home">Verseghy</h1>
+    <img class="logo-image" src="assets/logo.svg" alt="" routerLink="/">
+    <h1 class="title" routerLink="/">Verseghy</h1>
   </div>
   <div class="middle" [ngClass]="{'open' : drawer}">
     <div class="menu-header">
       <i class="material-icons menu-close" (click)="drawer = !drawer">close</i>
     </div>
     <div class="menu">
-      <a href="" routerLink="/home" class="active">Főoldal</a>
+      <a href="" routerLink="/" class="active">Főoldal</a>
     </div>
     <div class="menu" (click)="submenu1 = !submenu1" [ngClass]="{'open' : submenu1}">
       <span>Menza</span>

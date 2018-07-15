@@ -9,7 +9,7 @@ import { RequestService } from './services/request.service';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/home',
+    redirectTo: '/',
     pathMatch: 'full',
   },
   {
