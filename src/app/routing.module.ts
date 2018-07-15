@@ -4,17 +4,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'home',
+    path: '',
     loadChildren: './modules/home/home.module#HomeModule',
   },
   {
     path: 'posts',
     loadChildren: './modules/posts/posts.module#PostsModule',
-  },
-  {
-    path: '',
-    redirectTo: '/home',
-    pathMatch: 'full',
   },
 ];
 
@@ -23,4 +18,4 @@ const routes: Routes = [
   exports: [RouterModule],
   declarations: [],
 })
-export class RoutingModule {}
+export class RoutingModule { }
