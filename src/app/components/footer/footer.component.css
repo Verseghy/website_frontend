@@ -1,4 +1,4 @@
-.container{
+:host{
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -9,6 +9,8 @@
   font-family: 'Cabin', sans-serif;
   font-weight: 400;
   line-height: 22px;
+
+  margin-top: 30px;
 }
 
 .footerblock{
@@ -122,7 +124,7 @@ h4{
 
 
 @media (max-width: 906px) {
-  .container{
+  :host{
     justify-content: flex-start;
   }
   .footerblock{

@@ -10,6 +10,7 @@ import { RoutingModule } from './routing.module';
 import { HeaderComponent } from './components/header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FooterComponent } from './components/footer/footer.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent],
@@ -21,6 +22,7 @@ import { FooterComponent } from './components/footer/footer.component';
     BrowserAnimationsModule,
     RoutingModule,
     HttpClientModule,
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

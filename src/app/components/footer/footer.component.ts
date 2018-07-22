@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {faCheck} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-footer',
@@ -7,41 +8,37 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
+  faCheck = faCheck;
+  @ViewChild('subscribeButton') subscribeButton: ElementRef;
+  @ViewChild('spinner') spinner: ElementRef;
+  @ViewChild('buttonText') buttonText: ElementRef;
+  @ViewChild('emailInput') emailInput: ElementRef;
+  @ViewChild('checkMark') checkMark: ElementRef;
+
   constructor() { }
 
   ngOnInit() {
   }
 
   subscribeToNewsletter() {
-    const button = document.getElementsByClassName('subscribeButton')[0];
-    const spinner = document.getElementsByClassName('spinner')[0];
-    const buttonText = button.getElementsByClassName('buttonText')[0];
-    const emailInput = <HTMLInputElement>document.getElementsByClassName('emailInput')[0];
 
+    if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(this.emailInput.nativeElement.value)) {
+      this.spinner.nativeElement.removeAttribute('hidden');
+      this.buttonText.nativeElement.setAttribute('hidden', 'true');
+      this.subscribeButton.nativeElement.setAttribute('disabled', 'true');
 
-    if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(emailInput.value)) {
-      spinner.removeAttribute('hidden');
-      buttonText.setAttribute('hidden', 'true');
-      button.setAttribute('disabled', 'true');
-
-      console.dir(emailInput.value);
-      emailInput.value = '';
-      setTimeout(() => this.subscribeConfirmed(), 3000);
+      console.dir(this.emailInput.nativeElement.value);
+      this.emailInput.nativeElement.value = '';
+      setTimeout(() => this._subscribeConfirmed(), 3000);
     } else {
       alert('Hibás email-cím!');
     }
 
   }
 
-  subscribeConfirmed() {
-    const button = document.getElementsByClassName('subscribeButton')[0];
-    const spinner = document.getElementsByClassName('spinner')[0];
-    const buttonText = button.getElementsByClassName('buttonText')[0];
-
-    spinner.setAttribute('hidden', 'true');
-    buttonText.removeAttribute('hidden');
-    button.className += ' done';
-    buttonText.innerHTML = '✔';
+  private _subscribeConfirmed() {
+    this.spinner.nativeElement.setAttribute('hidden', 'true');
+    this.subscribeButton.nativeElement.className += ' done';
+    this.checkMark.nativeElement.removeAttribute('hidden');
   }
-
 }
