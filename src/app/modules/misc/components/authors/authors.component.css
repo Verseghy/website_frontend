@@ -4,13 +4,26 @@
 
 .container {
   max-width: 1200px;
-  padding: 0 10px;
-  margin: 0 auto;
-  margin-top: 20px;
+  margin: 20px auto 0;
+  padding: 0 10px 5px;
+}
+
+h1 {
+  font-family: 'Open-Sans', sans-serif;
+  font-size: 36px;
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: 500;
+}
+
+h1:not(:first-child) {
+  margin-top: 30px;
+}
+
+.grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 20px;
-  padding-bottom: 5px;
 }
 
 .author {
@@ -23,23 +36,82 @@
 }
 
 .name {
-  font-family: 'Lato';
+  font-family: 'Open-Sans', sans-serif;
   font-size: 24px;
   margin-bottom: 10px;
 }
 
 .links {
-  font-family: 'Cabin';
+  font-family: 'Cabin', sans-serif;
+  font-size: 16px;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  font-size: 24px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 16px;
+  color: #5e5e5e;
+  fill: #5e5e5e;
+}
+
+.links a {
+  display: block;
+  vertical-align: middle;
+  text-decoration: none;
+  color: #5e5e5e;
+  margin: 2px 0;
   font-size: 16px;
 }
 
 .description {
   grid-column: span 2;
-  font-family: 'Cabin';
+  font-family: 'Cabin', sans-serif;
   font-size: 16px;
+  color: #5e5e5e;
 }
 
 img {
   width: 200px;
   height: 200px;
+  grid-row: span 2;
+}
+
+@media screen and (max-width: 992px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  h1 {
+    font-size: 32px;
+  }
+
+  .author {
+    grid-template-columns: 1fr;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+  }
+
+  .name {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .links {
+    background-color: #f1f1f1;
+    padding: 10px;
+    border-radius: 5px;
+  }
+
+  .description {
+    grid-column: span 1;
+  }
 }
