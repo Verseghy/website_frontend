@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {RouterModule, Routes} from '@angular/router';
 
 const routes: Routes = [
   {
@@ -11,6 +11,10 @@ const routes: Routes = [
     path: 'posts',
     loadChildren: './modules/posts/posts.module#PostsModule',
   },
+  {
+    path: 'misc',
+    loadChildren: './modules/misc/misc.module#MiscModule',
+  }
 ];
 
 @NgModule({
