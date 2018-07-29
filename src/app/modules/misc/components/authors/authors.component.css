@@ -1,0 +1,45 @@
+:host {
+  overflow-y: scroll;
+}
+
+.container {
+  max-width: 1200px;
+  padding: 0 10px;
+  margin: 0 auto;
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+  padding-bottom: 5px;
+}
+
+.author {
+  background: #fff;
+  box-shadow: 0 3px 5px 0 rgba(0, 1, 1, .1);
+  padding: 10px 15px;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  grid-gap: 10px;
+}
+
+.name {
+  font-family: 'Lato';
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.links {
+  font-family: 'Cabin';
+  font-size: 16px;
+}
+
+.description {
+  grid-column: span 2;
+  font-family: 'Cabin';
+  font-size: 16px;
+}
+
+img {
+  width: 200px;
+  height: 200px;
+}
