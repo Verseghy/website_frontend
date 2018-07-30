@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  hmr: true,
   baseURL: 'https://api.vfghonlap.twodcube.xyz/api'
 };
 
