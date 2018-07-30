@@ -4,6 +4,7 @@ import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import {AppModule} from './app/app.module';
 import {environment} from './environments/environment';
 
+import 'hammerjs';
 import {hmrBootstrap} from './hmr';
 
 if (environment.production) {
@@ -20,5 +21,11 @@ if (environment.hmr) {
     console.log('Are you using the --hmr flag for ng serve?');
   }
 } else {
-  bootstrap().catch(err => console.log(err));
+  bootstrap()
+    .then(() => {
+      if ('serviceWorker' in navigator && environment.production) {
+        navigator.serviceWorker.register('/ngsw-worker.js');
+      }
+    })
+    .catch(err => console.log(err));
 }
