@@ -19,7 +19,7 @@
     "@angular/platform-browser": "^6.0.9",
     "@angular/platform-browser-dynamic": "^6.0.9",
     "@angular/pwa": "^0.6.5",
-    "@angular/router": "^6.0.9",
+    "@angular/router": "^6.1.0",
     "@angular/service-worker": "^6.0.9",
     "@fortawesome/angular-fontawesome": "^0.1.1",
     "@fortawesome/fontawesome-svg-core": "^1.2.2",
