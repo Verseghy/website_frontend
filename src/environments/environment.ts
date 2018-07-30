@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseURL: 'http://twodcube.xyz/api'
+  baseURL: 'https://api.vfghonlap.twodcube.xyz/api'
 };
 
 /*
