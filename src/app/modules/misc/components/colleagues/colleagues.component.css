@@ -1,0 +1,51 @@
+:host {
+  overflow-y: scroll;
+}
+
+.container {
+  max-width: 1200px;
+  padding: 0 20px 5px;
+  margin: 0 auto;
+  font-family: 'Cabin', sans-serif;
+  font-size: 16px;
+  display: grid;
+  grid-template-columns: 1fr 200px;
+  grid-gap: 20px;
+  margin-top: 20px;
+}
+
+.card,
+.sidebar {
+  background: #fff;
+  box-shadow: 0 3px 5px 0 rgba(0,1,1,.1);
+  padding: 40px 40px 48px;
+}
+
+.card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+  margin-bottom: 20px;
+}
+
+.sidebar {
+  position: sticky;
+}
+
+.card-title {
+  grid-column: span 2;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.item img {
+  grid-row: span 3;
+}
+
+.sidebar span {
+  display: block;
+  margin: 10px 0;
+}
