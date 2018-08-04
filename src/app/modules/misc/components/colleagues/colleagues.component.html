@@ -6,7 +6,7 @@
         <div class="item" *ngFor="let _ of [1,2,3,4,5,6]">
           <img src="/assets/modules/misc/components/colleagues/100x150.png" alt="" />
           <span class="name">Lorem Ipsum</span>
-          <span class="title">Igazgatóhejettes</span>
+          <span class="title">Igazgatóhelyettes</span>
           <span class="subject">matek - fizika</span>
           <ul class="description">
             <li>"Bonis Bona - Kiváló versenyfelkészítő" díj, (2015.)</li>
@@ -22,7 +22,7 @@
         <div class="item" *ngFor="let _ of [1,2,3,4,5,6]">
           <img src="/assets/modules/misc/components/colleagues/100x150.png" alt="" />
           <span class="name">Lorem Ipsum</span>
-          <span class="title">Igazgatóhejettes</span>
+          <span class="title">Igazgatóhelyettes</span>
           <span class="subject">matek - fizika</span>
           <ul class="description">
             <li>"Bonis Bona - Kiváló versenyfelkészítő" díj, (2015.)</li>
@@ -38,7 +38,7 @@
         <div class="item" *ngFor="let _ of [1,2,3,4,5,6]">
           <img src="/assets/modules/misc/components/colleagues/100x150.png" alt="" />
           <span class="name">Lorem Ipsum</span>
-          <span class="title">Igazgatóhejettes</span>
+          <span class="title">Igazgatóhelyettes</span>
           <span class="subject">matek - fizika</span>
           <ul class="description">
             <li>"Bonis Bona - Kiváló versenyfelkészítő" díj, (2015.)</li>
@@ -54,7 +54,7 @@
         <div class="item" *ngFor="let _ of [1,2,3,4,5,6]">
           <img src="/assets/modules/misc/components/colleagues/100x150.png" alt="" />
           <span class="name">Lorem Ipsum</span>
-          <span class="title">Igazgatóhejettes</span>
+          <span class="title">Igazgatóhelyettes</span>
           <span class="subject">matek - fizika</span>
           <ul class="description">
             <li>"Bonis Bona - Kiváló versenyfelkészítő" díj, (2015.)</li>
@@ -70,7 +70,7 @@
         <div class="item" *ngFor="let _ of [1,2,3,4,5,6]">
           <img src="/assets/modules/misc/components/colleagues/100x150.png" alt="" />
           <span class="name">Lorem Ipsum</span>
-          <span class="title">Igazgatóhejettes</span>
+          <span class="title">Igazgatóhelyettes</span>
           <span class="subject">matek - fizika</span>
           <ul class="description">
             <li>"Bonis Bona - Kiváló versenyfelkészítő" díj, (2015.)</li>
@@ -86,7 +86,7 @@
         <div class="item" *ngFor="let _ of [1,2,3,4,5,6]">
           <img src="/assets/modules/misc/components/colleagues/100x150.png" alt="" />
           <span class="name">Lorem Ipsum</span>
-          <span class="title">Igazgatóhejettes</span>
+          <span class="title">Igazgatóhelyettes</span>
           <span class="subject">matek - fizika</span>
           <ul class="description">
             <li>"Bonis Bona - Kiváló versenyfelkészítő" díj, (2015.)</li>
@@ -102,7 +102,7 @@
         <div class="item" *ngFor="let _ of [1,2,3,4,5,6]">
           <img src="/assets/modules/misc/components/colleagues/100x150.png" alt="" />
           <span class="name">Lorem Ipsum</span>
-          <span class="title">Igazgatóhejettes</span>
+          <span class="title">Igazgatóhelyettes</span>
           <span class="subject">matek - fizika</span>
           <ul class="description">
             <li>"Bonis Bona - Kiváló versenyfelkészítő" díj, (2015.)</li>
@@ -117,13 +117,13 @@
   </div>
   <div class="sidebar-container">
     <div class="sidebar">
-      <span (click)="clickHandler(0)">Vezetőség</span>
-      <span (click)="clickHandler(1)">Tanárok</span>
-      <span (click)="clickHandler(2)">Óraadók</span>
-      <span (click)="clickHandler(3)">Gazdasági-, adminisztratív- és technikai dolgozóink</span>
-      <span (click)="clickHandler(4)">Konyhai dolgozók</span>
-      <span (click)="clickHandler(5)">Takarítók</span>
-      <span (click)="clickHandler(6)">Karbantartók</span>
+      <span [ngClass]="{'active': currentScrollPosition === 0}" (click)="clickHandler(0)">Vezetőség</span>
+      <span [ngClass]="{'active': currentScrollPosition === 1}" (click)="clickHandler(1)">Tanárok</span>
+      <span [ngClass]="{'active': currentScrollPosition === 2}" (click)="clickHandler(2)">Óraadók</span>
+      <span [ngClass]="{'active': currentScrollPosition === 3}" (click)="clickHandler(3)">Gazdasági-, adminisztratív- és technikai dolgozóink</span>
+      <span [ngClass]="{'active': currentScrollPosition === 4}" (click)="clickHandler(4)">Konyhai dolgozók</span>
+      <span [ngClass]="{'active': currentScrollPosition === 5}" (click)="clickHandler(5)">Takarítók</span>
+      <span [ngClass]="{'active': currentScrollPosition === 6}" (click)="clickHandler(6)">Karbantartók</span>
     </div>
   </div>
 </div>

@@ -24,13 +24,15 @@
 .card {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 10px;
+  grid-column-gap: 10px;
+  grid-row-gap: 30px;
   margin-bottom: 20px;
 }
 
 .sidebar {
   position: sticky;
   top: 0;
+  padding: 30px 30px;
 }
 
 .card-title {
@@ -39,14 +41,65 @@
 
 .item {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 100px 1fr;
+  grid-gap: 10px;
 }
 
 .item img {
   grid-row: span 3;
 }
 
+.item .name {
+  font-weight: 700;
+  font-size: 24px;
+  font-family: 'Lato', sans-serif;
+}
+
+.item .title {
+  font-style: italic;
+}
+
+.item .subject {
+  color: #999;
+}
+
+.item .description {
+  grid-column: span 2;
+}
+
+.item li {
+  list-style: none;
+  margin: 5px 0;
+  font-size: 14px;
+}
+
 .sidebar span {
   display: block;
   margin: 10px 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.sidebar span.active {
+  color: #009cff;
+}
+
+@media screen and (max-width: 992px) {
+  .card {
+    grid-template-columns: 1fr;
+  }
+
+  .card-title {
+    grid-column: span 1;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    display: none;
+  }
 }
