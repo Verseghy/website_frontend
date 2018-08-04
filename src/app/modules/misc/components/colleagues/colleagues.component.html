@@ -1,7 +1,7 @@
 <div class="container">
   <div class="content-container">
     <div class="content">
-      <div class="card">
+      <div #header class="card">
         <h2 class="card-title">Vezetőség</h2>
         <div class="item" *ngFor="let _ of [1,2,3,4,5,6]">
           <img src="/assets/modules/misc/components/colleagues/100x150.png" alt="" />
@@ -17,7 +17,7 @@
           </ul>
         </div>
       </div>
-      <div class="card">
+      <div #header class="card">
         <h2 class="card-title">Tanárok</h2>
         <div class="item" *ngFor="let _ of [1,2,3,4,5,6]">
           <img src="/assets/modules/misc/components/colleagues/100x150.png" alt="" />
@@ -33,7 +33,7 @@
           </ul>
         </div>
       </div>
-      <div class="card">
+      <div #header class="card">
         <h2 class="card-title">Óraadók</h2>
         <div class="item" *ngFor="let _ of [1,2,3,4,5,6]">
           <img src="/assets/modules/misc/components/colleagues/100x150.png" alt="" />
@@ -49,7 +49,7 @@
           </ul>
         </div>
       </div>
-      <div class="card">
+      <div #header class="card">
         <h2 class="card-title">Gazdasági-, adminisztratív- és technikai dolgozóink</h2>
         <div class="item" *ngFor="let _ of [1,2,3,4,5,6]">
           <img src="/assets/modules/misc/components/colleagues/100x150.png" alt="" />
@@ -65,7 +65,7 @@
           </ul>
         </div>
       </div>
-      <div class="card">
+      <div #header class="card">
         <h2 class="card-title">Konyhai dolgozók</h2>
         <div class="item" *ngFor="let _ of [1,2,3,4,5,6]">
           <img src="/assets/modules/misc/components/colleagues/100x150.png" alt="" />
@@ -81,7 +81,7 @@
           </ul>
         </div>
       </div>
-      <div class="card">
+      <div #header class="card">
         <h2 class="card-title">Takarítók</h2>
         <div class="item" *ngFor="let _ of [1,2,3,4,5,6]">
           <img src="/assets/modules/misc/components/colleagues/100x150.png" alt="" />
@@ -97,7 +97,7 @@
           </ul>
         </div>
       </div>
-      <div class="card">
+      <div #header class="card">
         <h2 class="card-title">Karbantartók</h2>
         <div class="item" *ngFor="let _ of [1,2,3,4,5,6]">
           <img src="/assets/modules/misc/components/colleagues/100x150.png" alt="" />
@@ -117,13 +117,13 @@
   </div>
   <div class="sidebar-container">
     <div class="sidebar">
-      <span>Vezetőség</span>
-      <span>Tanárok</span>
-      <span>Óraadók</span>
-      <span>Gazdasági-, adminisztratív- és technikai dolgozóink</span>
-      <span>Konyhai dolgozók</span>
-      <span>Takarítók</span>
-      <span>Karbantartók</span>
+      <span *ngIf="currentScrollPosition === 0">Vezetőség</span>
+      <span *ngIf="currentScrollPosition === 1">Tanárok</span>
+      <span *ngIf="currentScrollPosition === 2">Óraadók</span>
+      <span *ngIf="currentScrollPosition === 3">Gazdasági-, adminisztratív- és technikai dolgozóink</span>
+      <span *ngIf="currentScrollPosition === 4">Konyhai dolgozók</span>
+      <span *ngIf="currentScrollPosition === 5">Takarítók</span>
+      <span *ngIf="currentScrollPosition === 6">Karbantartók</span>
     </div>
   </div>
 </div>

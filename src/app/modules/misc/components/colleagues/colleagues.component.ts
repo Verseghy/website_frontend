@@ -1,15 +1,54 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChildren} from '@angular/core';
+import {fromEvent, interval, Subscription} from 'rxjs';
+import {debounce} from 'rxjs/operators';
 
 @Component({
   selector: 'app-colleagues',
   templateUrl: './colleagues.component.html',
   styleUrls: ['./colleagues.component.css']
 })
-export class ColleaguesComponent implements OnInit {
+export class ColleaguesComponent implements OnInit, OnDestroy, AfterViewInit {
+
+  @ViewChildren('header') header: QueryList<ElementRef>;
+  currentScrollPosition: number | null;
+  private _scrollSubscriber: Subscription;
+  private _visibleCards: Array<boolean> = [];
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this._scrollSubscriber = fromEvent(window, 'scroll').pipe(debounce(() => interval(50))).subscribe(() => {
+        this._scrollHandler();
+      });
+      this._scrollHandler();
+    });
+  }
+
+  ngOnDestroy() {
+    this._scrollSubscriber.unsubscribe();
+  }
+
+  private _scrollHandler(): void {
+    this.header.forEach((item, index) => {
+      const rect = item.nativeElement.getBoundingClientRect();
+      this._visibleCards[index] = rect.top < window.innerHeight && rect.bottom >= 0;
+    });
+
+    this.currentScrollPosition = this._findFirstTrue(this._visibleCards);
+    console.log(this.currentScrollPosition);
+  }
+
+  private _findFirstTrue(array: Array<boolean>): number | null {
+    for (const index of Object.keys(array)) {
+      if (array[index]) {
+        return Number(index);
+      }
+    }
+    return null;
   }
 
 }
