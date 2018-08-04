@@ -32,6 +32,10 @@ export class ColleaguesComponent implements OnInit, OnDestroy, AfterViewInit {
     this._scrollSubscriber.unsubscribe();
   }
 
+  clickHandler(n: number): void {
+    window.scrollTo(0, this.header.toArray()[n].nativeElement.getBoundingClientRect().top + window.scrollY);
+  }
+
   private _scrollHandler(): void {
     this.header.forEach((item, index) => {
       const rect = item.nativeElement.getBoundingClientRect();
@@ -39,7 +43,6 @@ export class ColleaguesComponent implements OnInit, OnDestroy, AfterViewInit {
     });
 
     this.currentScrollPosition = this._findFirstTrue(this._visibleCards);
-    console.log(this.currentScrollPosition);
   }
 
   private _findFirstTrue(array: Array<boolean>): number | null {

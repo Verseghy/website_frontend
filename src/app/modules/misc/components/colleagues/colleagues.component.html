@@ -117,13 +117,13 @@
   </div>
   <div class="sidebar-container">
     <div class="sidebar">
-      <span *ngIf="currentScrollPosition === 0">Vezetőség</span>
-      <span *ngIf="currentScrollPosition === 1">Tanárok</span>
-      <span *ngIf="currentScrollPosition === 2">Óraadók</span>
-      <span *ngIf="currentScrollPosition === 3">Gazdasági-, adminisztratív- és technikai dolgozóink</span>
-      <span *ngIf="currentScrollPosition === 4">Konyhai dolgozók</span>
-      <span *ngIf="currentScrollPosition === 5">Takarítók</span>
-      <span *ngIf="currentScrollPosition === 6">Karbantartók</span>
+      <span (click)="clickHandler(0)">Vezetőség</span>
+      <span (click)="clickHandler(1)">Tanárok</span>
+      <span (click)="clickHandler(2)">Óraadók</span>
+      <span (click)="clickHandler(3)">Gazdasági-, adminisztratív- és technikai dolgozóink</span>
+      <span (click)="clickHandler(4)">Konyhai dolgozók</span>
+      <span (click)="clickHandler(5)">Takarítók</span>
+      <span (click)="clickHandler(6)">Karbantartók</span>
     </div>
   </div>
 </div>

@@ -30,6 +30,7 @@
 
 .sidebar {
   position: sticky;
+  top: 0;
 }
 
 .card-title {
