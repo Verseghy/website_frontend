@@ -10,6 +10,7 @@ export interface Post {
   labels: Label[];
   title: string;
   type: number;
+  backgroundDark?: boolean;
 }
 
 export interface Author {
@@ -28,4 +29,5 @@ export interface Label {
   id: number;
   color: string;
   name: string;
+  backgroundDark?: boolean;
 }
