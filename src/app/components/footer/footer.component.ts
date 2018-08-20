@@ -10,6 +10,7 @@ export class FooterComponent implements OnInit {
   @ViewChild('subscribeButton') subscribeButton: ElementRef;
   @ViewChild('buttonText') buttonText: ElementRef;
   @ViewChild('emailInput') emailInput: ElementRef;
+  buttonTextVisible = true;
   spinnerVisible = false;
   checkMarkVisible = false;
   email: string;
@@ -23,7 +24,7 @@ export class FooterComponent implements OnInit {
 
     if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(this.emailInput.nativeElement.value)) {
       this.spinnerVisible = true;
-      this.buttonText.nativeElement.setAttribute('hidden', 'true');
+      this.buttonTextVisible = false;
       this.subscribeButton.nativeElement.setAttribute('disabled', 'true');
       console.log(this.email);
       this.email = '';
