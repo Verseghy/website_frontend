@@ -1,8 +1,5 @@
 :host {
-  overflow-y: scroll;
-  display: block;
   flex: 1;
-  position: relative;
 }
 
 .container {
