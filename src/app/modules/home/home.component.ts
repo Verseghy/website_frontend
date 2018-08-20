@@ -1,8 +1,5 @@
-import 'moment/locale/hu';
-
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import * as moment from 'moment';
 import { RequestService } from './services/request.service';
 import { Observable } from 'rxjs';
 import { Post } from '../../interfaces/Post';
@@ -21,7 +18,6 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    moment.locale('hu');
     this.posts = this.requestService.listPosts();
   }
 

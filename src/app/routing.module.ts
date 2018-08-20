@@ -14,6 +14,10 @@ const routes: Routes = [
   {
     path: 'misc',
     loadChildren: './modules/misc/misc.module#MiscModule',
+  },
+  {
+    path: 'events',
+    loadChildren: './modules/events/events.module#EventsModule',
   }
 ];
 
