@@ -1,26 +1,27 @@
-<div class="content" *ngIf="post.type === 0" [ngStyle]="{'background-color': post.backgroundColor}" [ngClass]="{'dark' : post.isDark}">
+<div class="content" *ngIf="post.type === 0" [ngStyle]="{'background-color': post.color}" [ngClass]="{'dark' : post.backgroundDark}"
+  [routerLink]="['/posts/'+post.id]">
   <div class="label-container">
-    <app-label *ngFor="let label of post.labels" [ngStyle]="{'background-color': label.color}" [ngClass]="{'dark' : label.isDark}"
+    <app-label *ngFor="let label of post.labels" [ngStyle]="{'background-color': label.color}" [ngClass]="{'dark' : label.backgroundDark}"
       [label]="label"></app-label>
   </div>
-  <p class="title" [routerLink]="['/posts/'+post.id]">{{post.title}}</p>
-  <p class="description">{{post.description}}</p>
-  <div class="bottom">
-    <img [src]="post.authorImage" alt="" />
-    <p>{{post.dateAgo}}</p>
+  <p class="title">{{ post.title }}</p>
+  <p class=" description ">{{ post.description }}</p>
+  <div class="bottom ">
+    <img [src]="post.author.image.url" alt=" " />
+    <p>{{ post.date }}</p>
   </div>
 </div>
-<div class="content" *ngIf="post.type === 1">
-  <img [src]="post.image" alt="" />
-  <p [routerLink]="['/posts/'+post.id]">{{post.title}}</p>
-  <p>{{post.description}}</p>
-  <img [src]="post.authorImage" alt="" />
-  <p>{{post.dateAgo}}</p>
+<div class="content " *ngIf="post.type===1 " [routerLink]="[ '/posts/'+post.id] ">
+  <img [src]="post.index_image.url" alt=" " />
+  <p>{{ post.title }}</p>
+  <p>{{ post.description }}</p>
+  <img [src]="post.author.image.url " alt=" " />
+  <p>{{ post.date }}</p>
 </div>
-<div class="content" *ngIf="post.type === 2">
-  <img [src]="post.image" alt="" />
-  <p [routerLink]="['/posts/'+post.id]">{{post.title}}</p>
-  <p>{{post.description}}</p>
-  <img [src]="post.authorImage" alt="" />
-  <p>{{post.dateAgo}}</p>
+<div class="content " *ngIf="post.type===2 " [routerLink]="[ '/posts/'+post.id] ">
+  <img [src]="post.index_image.url" alt=" " />
+  <p>{{ post.title }}</p>
+  <p>{{ post.description }}</p>
+  <img [src]="post.author.image.url " alt=" " />
+  <p>{{ post.date }}</p>
 </div>

@@ -16,9 +16,9 @@ export class CardComponent implements OnInit {
   constructor(private contrastService: ContrastService) { }
 
   ngOnInit() {
-    this.post.isDark = this.contrastService.getConstrast(this.post.backgroundColor);
+    this.post.backgroundDark = this.contrastService.getConstrast(this.post.color);
     for (const i of Object.keys(this.post.labels)) {
-      this.post.labels[i].isDark = this.contrastService.getConstrast(this.post.labels[i].color);
+      this.post.labels[i].backgroundDark = this.contrastService.getConstrast(this.post.labels[i].color);
     }
   }
 
