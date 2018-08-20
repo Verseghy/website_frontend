@@ -11,7 +11,7 @@ export class FooterComponent implements OnInit {
   @ViewChild('spinner') spinner: ElementRef;
   @ViewChild('buttonText') buttonText: ElementRef;
   @ViewChild('emailInput') emailInput: ElementRef;
-  @ViewChild('checkMark') checkMark: ElementRef;
+  checkMarkVisible = false;
 
   constructor() { }
 
@@ -37,6 +37,6 @@ export class FooterComponent implements OnInit {
   private _subscribeConfirmed() {
     this.spinner.nativeElement.setAttribute('hidden', 'true');
     this.subscribeButton.nativeElement.className += ' done';
-    this.checkMark.nativeElement.removeAttribute('hidden');
+    this.checkMarkVisible = true;
   }
 }
