@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-footer',
@@ -7,13 +7,12 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  @ViewChild('subscribeButton') subscribeButton: ElementRef;
-  @ViewChild('buttonText') buttonText: ElementRef;
-  @ViewChild('emailInput') emailInput: ElementRef;
   buttonTextVisible = true;
   spinnerVisible = false;
   checkMarkVisible = false;
   email: string;
+  subscribeButtonDisabled = false;
+  subscribeButtonDone = false;
 
   constructor() { }
 
@@ -22,10 +21,10 @@ export class FooterComponent implements OnInit {
 
   subscribeToNewsletter() {
 
-    if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(this.emailInput.nativeElement.value)) {
+    if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(this.email)) {
       this.spinnerVisible = true;
       this.buttonTextVisible = false;
-      this.subscribeButton.nativeElement.setAttribute('disabled', 'true');
+      this.subscribeButtonDisabled = true;
       console.log(this.email);
       this.email = '';
       setTimeout(() => this._subscribeConfirmed(), 3000);
@@ -37,7 +36,7 @@ export class FooterComponent implements OnInit {
 
   private _subscribeConfirmed() {
     this.spinnerVisible = false;
-    this.subscribeButton.nativeElement.className += ' done';
+    this.subscribeButtonDone = true;
     this.checkMarkVisible = true;
   }
 }
