@@ -1,5 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {faCheck} from '@fortawesome/free-solid-svg-icons';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-footer',
@@ -8,7 +7,6 @@ import {faCheck} from '@fortawesome/free-solid-svg-icons';
 })
 export class FooterComponent implements OnInit {
 
-  faCheck = faCheck;
   @ViewChild('subscribeButton') subscribeButton: ElementRef;
   @ViewChild('spinner') spinner: ElementRef;
   @ViewChild('buttonText') buttonText: ElementRef;
