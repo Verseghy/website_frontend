@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.posts = this.requestService.listPosts();
+    this.posts = this.requestService.listPosts(0);
   }
 
   trackByFn(item) {
