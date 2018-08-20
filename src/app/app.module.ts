@@ -13,6 +13,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { FormsModule } from '@angular/forms';
+
 
 library.add(faCheck);
 
@@ -31,7 +33,8 @@ library.add(faCheck);
     BrowserAnimationsModule,
     RoutingModule,
     HttpClientModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

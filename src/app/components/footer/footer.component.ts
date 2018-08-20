@@ -12,6 +12,7 @@ export class FooterComponent implements OnInit {
   @ViewChild('emailInput') emailInput: ElementRef;
   spinnerVisible = false;
   checkMarkVisible = false;
+  email: string;
 
   constructor() { }
 
@@ -24,9 +25,8 @@ export class FooterComponent implements OnInit {
       this.spinnerVisible = true;
       this.buttonText.nativeElement.setAttribute('hidden', 'true');
       this.subscribeButton.nativeElement.setAttribute('disabled', 'true');
-
-      console.dir(this.emailInput.nativeElement.value);
-      this.emailInput.nativeElement.value = '';
+      console.log(this.email);
+      this.email = '';
       setTimeout(() => this._subscribeConfirmed(), 3000);
     } else {
       alert('Hibás email-cím!');
