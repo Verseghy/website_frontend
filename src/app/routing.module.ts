@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {RouterModule, Routes} from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'home',
+    path: '',
     loadChildren: './modules/home/home.module#HomeModule',
   },
   {
@@ -12,10 +12,13 @@ const routes: Routes = [
     loadChildren: './modules/posts/posts.module#PostsModule',
   },
   {
-    path: '',
-    redirectTo: '/home',
-    pathMatch: 'full',
+    path: 'misc',
+    loadChildren: './modules/misc/misc.module#MiscModule',
   },
+  {
+    path: 'events',
+    loadChildren: './modules/events/events.module#EventsModule',
+  }
 ];
 
 @NgModule({
@@ -23,4 +26,4 @@ const routes: Routes = [
   exports: [RouterModule],
   declarations: [],
 })
-export class RoutingModule {}
+export class RoutingModule { }

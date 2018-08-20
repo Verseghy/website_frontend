@@ -3,3 +3,11 @@
   flex-direction: column;
   height: 100%;
 }
+
+.content {
+  overflow-y: scroll;
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
