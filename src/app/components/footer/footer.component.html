@@ -23,8 +23,8 @@
       #emailInput>
     <button class="subscribeButton" (click)="subscribeToNewsletter()" #subscribeButton>
       <span class="buttonText" #buttonText>Feliratkozás</span>
-      <fa-icon [icon]="['fas', 'check']" *ngIf="checkMarkVisible" #checkMark></fa-icon>
-      <div hidden class="spinner" #spinner>
+      <fa-icon [icon]="['fas', 'check']" *ngIf="checkMarkVisible"></fa-icon>
+      <div *ngIf="spinnerVisible" class="spinner">
         <div class="bounce1"></div>
         <div class="bounce2"></div>
         <div class="bounce3"></div>
