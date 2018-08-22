@@ -1,20 +1,20 @@
-.container{
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
+:host {
+  background-color: #111;
+  margin-top: 25px
+}
 
-  background-color: white;
+.container{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 40px;
   font-size: 16px;
-  color: #464646;
+  color: #fff;
   font-family: 'Cabin', sans-serif;
   font-weight: 400;
   line-height: 22px;
-}
-
-.footerblock{
-  /*background-color: #009cff;*/
-  margin: 20px 40px 20px 40px;
-  max-width: 300px;
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 40px 20px;
 }
 
 .footerblock ul{
@@ -22,8 +22,10 @@
 }
 
 ul li{
-  border-bottom: 1px solid #cdcdcd;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
   line-height: 2.5;
+  color: rgba(255,255,255,0.8);
+  font-size: 14px;
 }
 
 ul li:last-child{
@@ -32,23 +34,25 @@ ul li:last-child{
 
 input {
   border: 1px solid;
-  padding: 6px;
-  width: 286px;
+  padding: 10px;
+  display: block;
   margin: 15px 0 5px 0;
-  height: 30px;
-  border-radius: 5px;
+  height: 40px;
+  border-radius: 2px;
+  border: 0;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 button{
   color: #FFF;
+  text-transform: uppercase;
   font-weight: bold;
   background-color: #009cff;
   height: 40px;
-  width: 300px;
+  width: 100%;
   margin: 0 0 10px 0;
-  border: 1px solid white;
-  border-radius: 5px;
-
+  border-radius: 2px;
   transition: all 0.2s ease-in-out;
 }
 
@@ -73,7 +77,7 @@ button:hover{
 h4{
   font-size: 22px;
   margin-bottom: 10px;
-  color: #0f0f0f;
+  color: #fff;
 }
 
 /*spinner*/
@@ -119,16 +123,8 @@ h4{
     }
 }
 
-
-
-@media (max-width: 906px) {
-  .container{
-    justify-content: flex-start;
+@media screen and (max-width: 800px) {
+  .container {
+    grid-template-columns: 1fr;
   }
-  .footerblock{
-    /*background-color: #009cff;*/
-    margin: 20px 50px 20px 50px;
-    max-width: 300px;
-  }
-
 }

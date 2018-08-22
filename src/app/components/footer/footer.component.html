@@ -19,10 +19,12 @@
   <div class="footerblock subscribe">
     <h4>Hírlevél</h4>
     <p>Iratkozz fel hírlevelünkre, hogy értesítést kapj a téged érdeklő cikkekről!</p>
-    <input type="email" value="" name="EMAIL" class="emailInput" placeholder="email@email.com" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$">
-    <button class="subscribeButton" (click)="subscribeToNewsletter()">
-      <span class="buttonText">Feliratkozás</span>
-      <div hidden class="spinner">
+    <input type="email" value="" name="EMAIL" class="emailInput" placeholder="email@email.com" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
+      [(ngModel)]="email" #emailInput>
+    <button class="subscribeButton" (click)="subscribeToNewsletter()" [disabled]="subscribeButtonDisabled" [ngClass]="{'done': subscribeButtonDone}">
+      <span class="buttonText" *ngIf="buttonTextVisible">Feliratkozás</span>
+      <fa-icon [icon]="['fas', 'check']" *ngIf="checkMarkVisible"></fa-icon>
+      <div *ngIf="spinnerVisible" class="spinner">
         <div class="bounce1"></div>
         <div class="bounce2"></div>
         <div class="bounce3"></div>

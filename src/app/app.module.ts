@@ -10,9 +10,21 @@ import { RoutingModule } from './routing.module';
 import { HeaderComponent } from './components/header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FooterComponent } from './components/footer/footer.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { FormsModule } from '@angular/forms';
+
+
+library.add(faCheck);
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent],
+
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    FooterComponent
+  ],
   imports: [
     BrowserModule,
     ServiceWorkerModule.register('/ngsw-worker.js', {
@@ -21,6 +33,8 @@ import { FooterComponent } from './components/footer/footer.component';
     BrowserAnimationsModule,
     RoutingModule,
     HttpClientModule,
+    FontAwesomeModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
