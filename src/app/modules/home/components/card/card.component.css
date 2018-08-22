@@ -2,14 +2,16 @@
   display: inline-block;
   box-sizing: border-box;
   position: relative;
-  overflow: hidden;
 }
 
 .content {
   box-shadow: 0 3px 5px 0 rgba(0,1,1,.1);
   background-color: #fff;
   padding: 30px;
-  overflow: hidden;
+  padding-bottom: 54px;
+  height: 100%;
+  box-sizing: border-box;
+  cursor: pointer;
 }
 
 .label-container {
@@ -24,9 +26,9 @@
   text-transform: uppercase;
   padding: 5px 11px 4px;
   border-radius: 20px;
-  margin-right: 5px;
-  margin-bottom: 2px;
-  color: #000
+  margin: 2px 5px 2px 0;
+  color: #000;
+  display: inline-block;
 }
 
 .label.dark {
@@ -50,6 +52,11 @@
   margin-bottom: 8px;
   z-index: 1;
   position: relative;
+  transition: color .3s;
+}
+
+.content:hover .title {
+  color: #009cff
 }
 
 .description {
@@ -77,32 +84,38 @@
   width: calc(100% + 60px);
   margin: -30px -30px 10px -30px;
   padding: 0;
+  object-fit: cover;
+  height: 200px;
 }
 
-.bgimg{
+.bg-image {
   position: absolute;
-  z-index: 0;
-  object-fit: cover;
   width: 100%;
   height: 100%;
   margin: -30px;
+  overflow: hidden;
+}
+
+.bg-image img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   filter: brightness(40%) blur(3px);
-  transform: scale(1.05); /*hides white edge blur*/
-  /*display: block;
-  top: 50%;
-  left: 50%;
-  min-height: 100%;
-  min-width: 100%;
-  transform: translate(-50%, -50%);*/
+  transform: scale(1.05);
+}
+
+.bottom {
+  position: absolute;
+  bottom: 30px;
 }
 
 .bottom p {
   display: inline-block;
   vertical-align: middle;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Cabin', sans-serif;
   margin-left: 20px;
   font-size: 12px;
-  color: #818181;
+  color: #5e5e5e;
   z-index: 1;
   position: relative;
 }
