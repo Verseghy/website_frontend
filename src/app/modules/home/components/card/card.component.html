@@ -1,27 +1,41 @@
 <div class="content" *ngIf="post.type === 0" [ngStyle]="{'background-color': post.color}" [ngClass]="{'dark' : post.backgroundDark}"
   [routerLink]="['/posts/'+post.id]">
   <div class="label-container">
-    <app-label *ngFor="let label of post.labels" [ngStyle]="{'background-color': label.color}" [ngClass]="{'dark' : label.backgroundDark}"
-      [label]="label"></app-label>
+    <span *ngFor="let label of post.labels" class="label" [ngStyle]="{'background-color': label.color}" [ngClass]="{'dark' : label.backgroundDark}">{{label.name}}</span>
   </div>
-  <p class="title">{{ post.title }}</p>
-  <p class=" description ">{{ post.description }}</p>
-  <div class="bottom ">
-    <img [src]="post.author.image.url" alt=" " />
-    <p>{{ post.date }}</p>
+  <p class="title">{{post.title}}</p>
+  <p class="description">{{post.description}}</p>
+  <div class="bottom">
+    <img class="authorimg" [src]="post.author.image.url" alt="" />
+    <p>{{post.author.name}}</p>
+    <p>{{post.date}}</p>
   </div>
 </div>
-<div class="content " *ngIf="post.type===1 " [routerLink]="[ '/posts/'+post.id] ">
-  <img [src]="post.index_image.url" alt=" " />
-  <p>{{ post.title }}</p>
-  <p>{{ post.description }}</p>
-  <img [src]="post.author.image.url " alt=" " />
-  <p>{{ post.date }}</p>
+<div class="content" *ngIf="post.type === 1" [ngStyle]="{'background-color': post.color}" [ngClass]="{'dark' : post.backgroundDark}"
+  [routerLink]="['/posts/'+post.id]">
+  <img class="postimg" [src]="post.index_image.url" alt="" />
+  <div class="label-container">
+    <span *ngFor="let label of post.labels" class="label" [ngStyle]="{'background-color': label.color}" [ngClass]="{'dark' : label.backgroundDark}">{{label.name}}</span>
+  </div>
+  <p class="title">{{post.title}}</p>
+  <div class="bottom">
+    <img class="authorimg" [src]="post.author.image.url" alt="" />
+    <p>{{post.author.name}}</p>
+    <p>{{post.date}}</p>
+  </div>
 </div>
-<div class="content " *ngIf="post.type===2 " [routerLink]="[ '/posts/'+post.id] ">
-  <img [src]="post.index_image.url" alt=" " />
-  <p>{{ post.title }}</p>
-  <p>{{ post.description }}</p>
-  <img [src]="post.author.image.url " alt=" " />
-  <p>{{ post.date }}</p>
+<div class="content type2" *ngIf="post.type === 2" [routerLink]="['/posts/'+post.id]">
+  <div class="bg-image">
+    <img class="bgimg" [src]="post.index_image.url" alt="" />
+  </div>
+  <div class="label-container">
+    <span *ngFor="let label of post.labels" class="label" [ngStyle]="{'background-color': label.color}" [ngClass]="{'dark' : label.backgroundDark}">{{label.name}}</span>
+  </div>
+  <p class="title">{{post.title}}</p>
+  <p class="description">{{post.description}}</p>
+  <div class="bottom">
+    <img class="authorimg" [src]="post.author.image.url" alt="" />
+    <p>{{post.author.name}}</p>
+    <p>{{post.date}}</p>
+  </div>
 </div>
