@@ -1,7 +1,8 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {EventsComponent} from './components/events/events.component';
-import {RouterModule, Routes} from '@angular/router';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { EventsComponent } from './components/events/events.component';
+import { RouterModule, Routes } from '@angular/router';
+import { NgxCalendarLibModule } from '@verseghy/ngx-calendar-lib'
 
 const routes: Routes = [
   {
@@ -13,7 +14,8 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    NgxCalendarLibModule
   ],
   declarations: [EventsComponent]
 })
