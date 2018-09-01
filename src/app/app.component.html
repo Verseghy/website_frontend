@@ -1,5 +1,5 @@
 <app-header></app-header>
-<div class="content">
-  <router-outlet></router-outlet>
+<div class="content" [@routerAnimation]="outlet.isActivated ? outlet.activatedRoute : ''">
+  <router-outlet #outlet="outlet"></router-outlet>
   <app-footer></app-footer>
 </div>
