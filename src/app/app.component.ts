@@ -20,10 +20,15 @@ import {
             ':enter', [
               style({
                 opacity: 0,
-                transform: 'translateY(100px)'
+                transform: 'translateY(50px)',
+                position: 'absolute',
+                top: '0',
+                left: '0',
+                right: '0',
+                zIndex: '8'
               }),
               animate(
-                '2s',
+                '100ms ease-out',
                 style({
                   opacity: 1,
                   transform: 'translateY(0)'
@@ -38,7 +43,7 @@ import {
                 opacity: 1,
               }),
               animate(
-                '2s',
+                '100ms',
                 style({ opacity: 0 })
               )
             ],
