@@ -177,10 +177,6 @@ h2 {
   transition: background-color .3s;
 }
 
-.container:hover .hover {
-  background-color: rgba(0,0,0,0.5);
-}
-
 @media screen and (max-width: 992px){
   :host {
     height: 400px;
@@ -245,5 +241,11 @@ h2 {
   .description {
     font-size: 14px;
     line-height: 20px;
+  }
+}
+
+@media screen and (min-width: 992px){
+  .container:hover .hover {
+    background-color: rgba(0,0,0,0.5);
   }
 }
