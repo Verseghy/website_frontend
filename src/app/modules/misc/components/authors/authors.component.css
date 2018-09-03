@@ -37,11 +37,6 @@ h1:not(:first-child) {
   margin-bottom: 10px;
 }
 
-.links {
-  font-family: 'Cabin', sans-serif;
-  font-size: 16px;
-}
-
 .icon {
   width: 24px;
   height: 24px;
@@ -64,8 +59,6 @@ h1:not(:first-child) {
 
 .description {
   grid-column: span 2;
-  font-family: 'Cabin', sans-serif;
-  font-size: 16px;
   color: #5e5e5e;
 }
 

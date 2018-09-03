@@ -144,7 +144,6 @@ h1 {
   font-size: 12px;
   line-height: 18px;
   color: #818181;
-  font-family: 'Cabin';
   vertical-align: middle;
 }
 
@@ -157,7 +156,6 @@ h1 {
 
 .post-content {
   color: #5e5e5e;
-  font-family: 'Cabin';
   line-height: 1.5;
 }
 
@@ -180,7 +178,6 @@ h1 {
 
 .post-author-description {
   color: #5e5e5e;
-  font-family: 'Cabin';
   line-height: 1.5;
 }
 
