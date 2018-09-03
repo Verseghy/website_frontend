@@ -13,4 +13,5 @@ body {
   overscroll-behavior: contain;
   background-color: #f3f3f3;
   font-family: Cabin;
+  font-size: 16px;
 }
