@@ -8,10 +8,10 @@
       <i class="material-icons menu-close" (click)="drawer = !drawer">close</i>
     </div>
     <div class="menu">
-      <a href="" routerLink="/" class="active">Főoldal</a>
+      <a href="" routerLink="/" class="active" (click)="sidenav.close()">Főoldal</a>
     </div>
-    <div class="menu" (click)="submenu1 = !submenu1" [ngClass]="{'open' : submenu1}">
-      <span>Menza</span>
+    <div class="menu" (click)="submenu1 = !submenu1;  sidenav.close()" [ngClass]="{'open' : submenu1}">
+      <a>Menza</a>
       <i class="material-icons arrow">expand_more</i>
       <div class="submenu">
         <a href="">Étlap</a>
@@ -19,20 +19,20 @@
       </div>
     </div>
     <div class="menu">
-      <a href="" routerLink="/events">Események</a>
+      <a href="" routerLink="/events" (click)="sidenav.close()">Események</a>
     </div>
     <div class="menu">
-      <span routerLink="/misc/archive">Archívum</span>
+      <a href="" routerLink="/misc/archive" (click)="sidenav.close()">Archívum</a>
     </div>
-    <div class="menu" (click)="submenu2 = !submenu2" [ngClass]="{'open' : submenu2}">
+    <div class="menu" (click)="submenu2 = !submenu2; sidenav.close()" [ngClass]="{'open' : submenu2}">
       <span>Iskoláról</span>
       <i class="material-icons arrow">expand_more</i>
       <div class="submenu">
-        <a href="" routerLink="/misc/history">Történet</a>
-        <a href="">Munkatársak</a>
-        <a href="" routerLink="/misc/classes">Osztályok</a>
-        <a href="" routerLink="/misc/documents">Dokumentumok</a>
-        <a href="" routerLink="/misc/authors">Fejlesztők</a>
+        <a href="" routerLink="/misc/history" (click)="sidenav.close()">Történet</a>
+        <a href="" (click)="sidenav.close()">Munkatársak</a>
+        <a href="" routerLink="/misc/classes" (click)="sidenav.close()">Osztályok</a>
+        <a href="" routerLink="/misc/documents" (click)="sidenav.close()">Dokumentumok</a>
+        <a href="" routerLink="/misc/authors" (click)="sidenav.close()">Fejlesztők</a>
       </div>
     </div>
   </div>
