@@ -1,0 +1,12 @@
+:host {
+  height: 100vh;
+  display: flex;
+}
+
+.container {
+  margin: 20px 10px 0;
+  background: #fff;
+  box-shadow: 0 3px 5px 0 rgba(0,1,1,.1);
+  padding: 20px 40px 48px;
+  flex: 1;
+}
