@@ -216,6 +216,7 @@ i {
     display: none;
     background: #009cff;
     box-shadow: none;
+    min-width: 110px;
   }
 
   .menu.open:hover .submenu,
