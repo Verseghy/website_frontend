@@ -7,9 +7,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 40px;
-  font-size: 16px;
   color: #fff;
-  font-family: 'Cabin', sans-serif;
   font-weight: 400;
   line-height: 22px;
   margin: 0 auto;

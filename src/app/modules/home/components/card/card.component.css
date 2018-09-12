@@ -21,7 +21,6 @@
 }
 
 .label {
-  font-family: 'Cabin', sans-serif;
   font-size: 10px;
   text-transform: uppercase;
   padding: 5px 11px 4px;
@@ -60,9 +59,7 @@
 }
 
 .description {
-  font-size: 16px;
   color: #5e5e5e;
-  font-family: 'Cabin', sans-serif;
   font-weight: 400;
   line-height: 22px;
   margin-bottom: 20px;
@@ -112,7 +109,6 @@
 .bottom p {
   display: inline-block;
   vertical-align: middle;
-  font-family: 'Cabin', sans-serif;
   margin-left: 20px;
   font-size: 12px;
   color: #5e5e5e;
