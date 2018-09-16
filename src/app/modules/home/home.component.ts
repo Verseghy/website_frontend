@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RequestService } from './services/request.service';
 import { Observable } from 'rxjs';
-import { Post } from '../../interfaces/Post';
+import { Post } from '../../models/Post';
 
 @Component({
   selector: 'app-home',

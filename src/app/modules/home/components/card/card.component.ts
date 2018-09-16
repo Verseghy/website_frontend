@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ContrastService } from '../../../../services/contrast.service';
-import { Post } from '../../../../interfaces/Post';
+import { Post } from '../../../../models/Post';
 
 @Component({
   selector: 'app-card',

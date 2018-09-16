@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChildren, QueryList, AfterViewInit, ElementRef } from '@angular/core';
 import { interval, Observable } from 'rxjs';
 import { RequestService } from '../../services/request.service';
-import { Post } from '../../../../interfaces/Post';
+import { Post } from '../../../../models/Post';
 
 
 @Component({
