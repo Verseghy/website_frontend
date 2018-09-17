@@ -106,6 +106,7 @@
   background: #fff;
   box-shadow: 0 3px 5px rgba(0,0,0,.1);
   transition: opacity 300ms;
+  min-width: 140px;
 }
 
 .menu:hover .submenu {
