@@ -10,8 +10,8 @@
     <div class="menu">
       <a href="" routerLink="/" class="active" (click)="drawer = !drawer">Főoldal</a>
     </div>
-    <div class="menu" (click)="submenu1 = !submenu1;" [ngClass]="{'open' : submenu1}">
-      <a>Menza</a>
+    <div class="menu" (click)="submenu1 = !submenu1" [ngClass]="{'open' : submenu1}">
+      <span>Menza</span>
       <i class="material-icons arrow">expand_more</i>
       <div class="submenu">
         <a href="" (click)="drawer = !drawer">Étlap</a>
