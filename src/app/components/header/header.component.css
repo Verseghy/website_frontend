@@ -91,6 +91,7 @@
   background: #fff;
   box-shadow: 0 3px 5px rgba(0,0,0,.1);
   transition: opacity 300ms;
+  min-width: 140px;
 }
 
 .menu:hover .submenu {
@@ -216,7 +217,6 @@ i {
     display: none;
     background: #009cff;
     box-shadow: none;
-    min-width: 110px;
   }
 
   .menu.open:hover .submenu,
