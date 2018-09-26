@@ -1,6 +1,6 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {RouterModule, Routes} from '@angular/router';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
@@ -18,6 +18,10 @@ const routes: Routes = [
   {
     path: 'events',
     loadChildren: './modules/events/events.module#EventsModule',
+  },
+  {
+    path: 'canteen',
+    loadChildren: './modules/canteen/canteen.module#CanteenModule'
   }
 ];
 
