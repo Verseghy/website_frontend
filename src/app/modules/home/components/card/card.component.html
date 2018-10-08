@@ -6,27 +6,27 @@
   <p class="title">{{post.title}}</p>
   <p class="description">{{post.description}}</p>
   <div class="bottom">
-    <img class="authorimg" [src]="post.author.image.url" alt="" />
+    <img class="authorimg" [src]="post.author.image" alt="" />
     <p>{{post.author.name}}</p>
     <p>{{post.date}}</p>
   </div>
 </div>
 <div class="content" *ngIf="post.type === 1" [ngStyle]="{'background-color': post.color}" [ngClass]="{'dark' : post.backgroundDark}"
   [routerLink]="['/posts/'+post.id]">
-  <img class="postimg" [src]="post.index_image.url" alt="" />
+  <img class="postimg" [src]="post.index_image" alt="" />
   <div class="label-container">
     <span *ngFor="let label of post.labels" class="label" [ngStyle]="{'background-color': label.color}" [ngClass]="{'dark' : label.backgroundDark}">{{label.name}}</span>
   </div>
   <p class="title">{{post.title}}</p>
   <div class="bottom">
-    <img class="authorimg" [src]="post.author.image.url" alt="" />
+    <img class="authorimg" [src]="post.author.image" alt="" />
     <p>{{post.author.name}}</p>
     <p>{{post.date}}</p>
   </div>
 </div>
 <div class="content type2" *ngIf="post.type === 2" [routerLink]="['/posts/'+post.id]">
   <div class="bg-image">
-    <img class="bgimg" [src]="post.index_image.url" alt="" />
+    <img class="bgimg" [src]="post.index_image" alt="" />
   </div>
   <div class="label-container">
     <span *ngFor="let label of post.labels" class="label" [ngStyle]="{'background-color': label.color}" [ngClass]="{'dark' : label.backgroundDark}">{{label.name}}</span>
@@ -34,7 +34,7 @@
   <p class="title">{{post.title}}</p>
   <p class="description">{{post.description}}</p>
   <div class="bottom">
-    <img class="authorimg" [src]="post.author.image.url" alt="" />
+    <img class="authorimg" [src]="post.author.image" alt="" />
     <p>{{post.author.name}}</p>
     <p>{{post.date}}</p>
   </div>
