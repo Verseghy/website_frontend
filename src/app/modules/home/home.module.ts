@@ -2,9 +2,9 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { SharedModule } from '../../modules/shared/shared.module';
+import { SharedModule } from '../shared/shared.module';
 
-import { HomeComponent } from './home.component';
+import { HomeComponent } from './components/home/home.component';
 import { CardComponent } from './components/card/card.component';
 import { FeaturedPostComponent } from './components/featured-post/featured-post.component';
 

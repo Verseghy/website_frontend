@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { RequestService } from './services/request.service';
-import { Post } from '../../models/Post';
+import { RequestService } from '../../services/request.service';
+import { Post } from '../../../../models/Post';
 import { ActivatedRoute } from '@angular/router';
-import { ContrastService } from '../../services/contrast.service';
+import { ContrastService } from '../../../../services/contrast.service';
 import { map } from 'rxjs/operators';
 
 @Component({
