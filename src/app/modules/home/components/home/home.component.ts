@@ -1,11 +1,8 @@
-import 'moment/locale/hu';
-
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import * as moment from 'moment';
-import { RequestService } from './services/request.service';
+import { RequestService } from '../../services/request.service';
 import { Observable } from 'rxjs';
-import { Post } from '../../interfaces/Post';
+import { Post } from '../../../../models/Post';
 
 @Component({
   selector: 'app-home',
@@ -21,8 +18,7 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    moment.locale('hu');
-    this.posts = this.requestService.listPosts();
+    this.posts = this.requestService.listPosts(0);
   }
 
   trackByFn(item) {

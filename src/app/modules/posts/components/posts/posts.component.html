@@ -1,6 +1,6 @@
 <div class="background-image">
   <div class="background">
-    <img [src]="(post | async)?.index_image.url" alt="">
+    <img [src]="post?.index_image" alt="">
   </div>
 </div>
 <div class="container">
@@ -27,31 +27,31 @@
     <div class="content">
       <div class="post-header">
         <div class="label-container">
-          <app-label *ngFor="let label of (post | async)?.labels" [ngStyle]="{'background-color': label.color}" [ngClass]="{'dark' : label.isDark}"
+          <app-label *ngFor="let label of post?.labels" [ngStyle]="{'background-color': label.color}" [ngClass]="{'dark' : label.isDark}"
             [label]="label"></app-label>
         </div>
-        <h1>{{(post | async)?.title}}</h1>
+        <h1>{{post?.title}}</h1>
         <div class="meta">
           <div class="author">
-            <img class="author-image" [src]="(post | async)?.author.image.url" alt="">
-            <span>{{(post | async)?.author.name}}</span>
+            <img class="author-image" [src]="post?.author.image" alt="">
+            <span>{{post?.author.name}}</span>
           </div>
           <div class="date">
             <i class="material-icons">date_range</i>
-            <span>{{(post | async)?.date}}</span>
+            <span>{{post?.date}}</span>
           </div>
         </div>
       </div>
       <div class="post-content">
-        {{(post | async)?.content}}
+        {{post?.content}}
       </div>
       <div class="post-author">
         <div class="left">
-          <img class="post-author-image" [src]="(post | async)?.author.image.url" alt="">
+          <img class="post-author-image" [src]="post?.author.image" alt="">
         </div>
         <div class="right">
-          <h4>{{(post | async)?.author.name}}</h4>
-          <p class="post-author-description">{{(post | async)?.author.description}}</p>
+          <h4>{{post?.author.name}}</h4>
+          <p class="post-author-description">{{post?.author.description}}</p>
         </div>
       </div>
     </div>

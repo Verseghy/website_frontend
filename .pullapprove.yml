@@ -1,0 +1,26 @@
+version: 3
+
+pullapprove_conditions:
+- "'WIP' not in title"
+- "base.ref == 'master'"
+- "'*travis*' in statuses.succeeded"
+
+notifications:
+- when: pull_request.opened
+  if: "author_assosciation in ['FIRST_TIMER', 'FIRST_TIME_CONTRIBUTOR', 'CONTRIBUTOR']"
+  comment: >
+    Hey @{{ author }}, please make sure your tests pass and you have looked everything over. Then we will review.
+
+    Thanks for the PR!
+- when: pullapprove.approved
+  comment: "The review is completed. @twodcube, please merge this in when ready."
+
+groups:
+  code:
+    reviewers:
+      teams:
+      - reviewers
+    reviews:
+      required: 1  # number of approvals required from this group
+      request: 1  # number of review requests sent at a time
+      request_order: random  # "random" or "given"

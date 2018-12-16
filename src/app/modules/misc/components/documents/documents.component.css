@@ -1,13 +1,7 @@
-:host {
-  overflow-y: scroll;
-}
-
 .container {
   max-width: 1200px;
   padding: 0 20px;
   margin: 0 auto;
-  font-family: 'Cabin', sans-serif;
-  font-size: 16px;
 }
 
 .content {
@@ -15,7 +9,7 @@
   box-shadow: 0 3px 5px 0 rgba(0,1,1,.1);
   padding: 40px 40px 48px;
   margin-top: 20px;
-  
+
 }
 
 h2 {

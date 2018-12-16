@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SharedModule } from '../../modules/shared/shared.module';
+import { SharedModule } from '../shared/shared.module';
 
-import { PostsComponent } from './posts.component';
+import { PostsComponent } from './components/posts/posts.component';
 import { RequestService } from './services/request.service';
 
 const routes: Routes = [

@@ -7,6 +7,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { faFileAlt } from '@fortawesome/free-solid-svg-icons';
+import { ArchiveComponent } from './components/archive/archive.component';
+import { HistoryComponent } from './components/history/history.component';
+import { ClassesComponent } from './components/classes/classes.component';
 import { ColleaguesComponent } from './components/colleagues/colleagues.component';
 
 library.add(faGithub, faLinkedin, faFileAlt);
@@ -26,6 +29,18 @@ const routes: Routes = [
     component: DocumentsComponent,
   },
   {
+    path: 'archive',
+    component: ArchiveComponent,
+  },
+  {
+    path: 'history',
+    component: HistoryComponent,
+  },
+  {
+    path: 'classes',
+    component: ClassesComponent,
+  },
+  {
     path: 'colleagues',
     component: ColleaguesComponent,
   },
@@ -37,7 +52,13 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     FontAwesomeModule
   ],
-  declarations: [AuthorsComponent, DocumentsComponent, ColleaguesComponent, ColleaguesComponent]
+  declarations: [
+    AuthorsComponent,
+    DocumentsComponent,
+    ArchiveComponent,
+    HistoryComponent,
+    ClassesComponent
+  ]
 })
 export class MiscModule {
 }

@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription, Observable } from 'rxjs';
-import { RequestService } from './services/request.service';
-import { Post } from '../../interfaces/Post';
+import { Subscription } from 'rxjs';
+import { RequestService } from '../../services/request.service';
+import { Post } from '../../../../models/Post';
 import { ActivatedRoute } from '@angular/router';
-import { ContrastService } from '../../services/contrast.service';
+import { ContrastService } from '../../../../services/contrast.service';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -14,7 +14,7 @@ import { map } from 'rxjs/operators';
 export class PostsComponent implements OnInit, OnDestroy {
 
   paramsSubscription: Subscription;
-  post: Observable<Post>;
+  post: Post;
 
   constructor(
     private requestService: RequestService,
@@ -24,12 +24,12 @@ export class PostsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.paramsSubscription = this.route.params.subscribe(x => {
-      this.post = this.requestService.getPostById(x['id']).pipe(map(y => {
+      this.requestService.getPostById(x['id']).pipe(map(y => {
         for (const i of Object.keys(y.labels)) {
           y.labels[i].isDark = this.contrastService.getConstrast(y.labels[i].color);
         }
         return y;
-      }));
+      })).subscribe(post => this.post = post);
     });
   }
 
