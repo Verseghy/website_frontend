@@ -10,6 +10,7 @@ import {faFileAlt} from '@fortawesome/free-solid-svg-icons';
 import {ArchiveComponent} from './components/archive/archive.component';
 import {HistoryComponent} from './components/history/history.component';
 import {ClassesComponent} from './components/classes/classes.component';
+import {ColleaguesComponent} from './components/colleagues/colleagues.component';
 
 library.add(faGithub, faLinkedin, faFileAlt);
 
@@ -39,6 +40,10 @@ const routes: Routes = [
     path: 'classes',
     component: ClassesComponent,
   },
+  {
+    path: 'colleagues',
+    component: ColleaguesComponent,
+  },
 ];
 
 @NgModule({
@@ -52,7 +57,8 @@ const routes: Routes = [
     DocumentsComponent,
     ArchiveComponent,
     HistoryComponent,
-    ClassesComponent
+    ClassesComponent,
+    ColleaguesComponent
   ]
 })
 export class MiscModule {
