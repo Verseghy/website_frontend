@@ -87,7 +87,7 @@
     "karma": "~3.0.0",
     "karma-chrome-launcher": "~2.2.0",
     "karma-coverage-istanbul-reporter": "~2.0.1",
-    "karma-jasmine": "~1.1.0",
+    "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^0.2.2",
     "ngrx-store-freeze": "0.2.4",
     "prettier": "1.15.2",
