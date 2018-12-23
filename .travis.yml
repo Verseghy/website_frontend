@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+  - '10'
+cache:
+  directories:
+    - $HOME/.npm
+
+script:
+  - npm run nx affected:apps -- --base $TRAVIS_BRANCH
+  - npm run nx affected:libs -- --base $TRAVIS_BRANCH
+  - npm run nx affected:lint -- --base $TRAVIS_BRANCH
+  - travis_wait 30 npm run nx affected:build -- --base $TRAVIS_BRANCH
