@@ -14,6 +14,7 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FormsModule } from "@angular/forms";
+import { NxModule } from "@nrwl/nx";
 
 
 library.add(faCheck);
@@ -34,7 +35,8 @@ library.add(faCheck);
     RoutingModule,
     HttpClientModule,
     FontAwesomeModule,
-    FormsModule
+    FormsModule,
+    NxModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent],
