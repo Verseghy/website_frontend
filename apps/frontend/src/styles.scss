@@ -1,0 +1,17 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  overscroll-behavior: contain;
+  background-color: #f3f3f3;
+  font-family: Cabin, serif;
+  font-size: 16px;
+}

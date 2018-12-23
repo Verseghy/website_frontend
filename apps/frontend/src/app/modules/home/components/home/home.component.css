@@ -1,0 +1,24 @@
+:host {
+  flex: 1;
+}
+
+.container {
+  padding: 0 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-gap: 20px;
+  margin-top: 20px;
+}
+
+h2 {
+  font-family: 'Lato', serif;
+  font-size: 24px;
+  margin-left: 10px;
+  font-weight: 500;
+  margin-top: 20px;
+}
