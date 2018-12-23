@@ -249,6 +249,34 @@
           }
         }
       }
+    },
+    "calendar": {
+      "root": "libs/calendar",
+      "sourceRoot": "libs/calendar/src",
+      "projectType": "library",
+      "prefix": "verseghy",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/calendar/tsconfig.lib.json",
+              "libs/calendar/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "libs/calendar/jest.config.js",
+            "tsConfig": "libs/calendar/tsconfig.spec.json",
+            "setupFile": "libs/calendar/src/test-setup.ts"
+          }
+        }
+      }
     }
   },
   "cli": {

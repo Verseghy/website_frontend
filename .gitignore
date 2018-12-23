@@ -40,3 +40,6 @@ Thumbs.db
 
 # Service keys
 *serviceAccountKey.json
+
+# Python
+*__pycache__*
