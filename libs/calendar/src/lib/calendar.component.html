@@ -1,0 +1,24 @@
+<div class="controls">
+  <div class="middle">
+    <button (click)="prevMonth()" class="next">&lt;</button>
+    <span class="month">{{ formatedDate }}</span>
+    <button (click)="nextMonth()" class="prev">&gt;</button>
+  </div>
+  <button (click)="now()" class="now">Now</button>
+</div>
+<div class="grid">
+  <div class="cellElement header" *ngFor="let item of shortDayNames"><span>{{ item }}</span></div>
+  <div #cellElement *ngFor="let cell of cells; trackBy: trackBy1" class="cellElement" [ngClass]="{'today' : cell.today}">
+    <span class="date">{{ cell.day }}</span>
+    <div class="events">
+      <div class="event" *ngFor="let event of cell.renderedEvents; trackBy: trackBy2" [ngStyle]="{'top': event.top, 'width': event.width, 'background-color': event.color }" [ngClass]="{'more': event.more}">
+        <span>{{ event.title }}</span>
+        <verseghy-popup [event]="getEvent(event.id)"></verseghy-popup>
+      </div>
+      <div class="event more" *ngIf="cell.moreEvents.length" [ngStyle]="{'top': cell.moreEventsTop}">
+        <span>{{ cell.moreEventsCount }} további</span>
+        <verseghy-popup [event]="getEvent(cell.moreEvents)" [moreEvents]="true"></verseghy-popup>
+      </div>
+    </div>
+  </div>
+</div>

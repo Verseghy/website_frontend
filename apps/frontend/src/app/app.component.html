@@ -1,0 +1,5 @@
+<verseghy-header></verseghy-header>
+<div class="content" [@routerAnimation]="outlet.isActivated ? outlet.activatedRoute : ''">
+  <router-outlet #outlet="outlet"></router-outlet>
+  <verseghy-footer></verseghy-footer>
+</div>

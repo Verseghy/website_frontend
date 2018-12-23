@@ -1,0 +1,29 @@
+:host {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+:host > div {
+  position: absolute;
+  z-index: 14;
+}
+
+.moreEvents {
+  box-shadow: 0 24px 38px 3px rgba(0,0,0,0.14), 0 9px 46px 8px rgba(0,0,0,0.12), 0 11px 15px -7px rgba(0,0,0,0.2);
+  background: #fff;
+  padding: 20px;
+}
+
+.event {
+  height: 22px;
+  padding: 0 8px;
+  line-height: 20px;
+  color: #fff;
+  font-size: 12px;
+  border-radius: 2px;
+  display: block;
+  margin: 2px 0;
+}

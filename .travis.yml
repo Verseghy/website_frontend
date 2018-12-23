@@ -1,11 +1,10 @@
 language: node_js
 node_js:
-  - '8'
+  - '10'
 cache:
   directories:
     - $HOME/.npm
 
 script:
-- npm run lint
-- travis_wait 30 npm run ng build -- --prod
-
+  - travis_wait 30 npm run nx affected:lint -- --all
+  - travis_wait 30 npm run nx affected:build -- --all

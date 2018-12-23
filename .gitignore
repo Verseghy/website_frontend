@@ -38,4 +38,8 @@ testem.log
 .DS_Store
 Thumbs.db
 
-/scripts/ADMINKEY_DO_NOT_UPLOAD.json
+# Service keys
+*serviceAccountKey.json
+
+# Python
+*__pycache__*

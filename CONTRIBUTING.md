@@ -38,10 +38,9 @@ Must be one of the following:
 * **style**: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
 
 ### Scope
-The scope should be the name of the module affected.
+The scope should be the name of project affected.
 
 The following is the list of supported scopes:
 
-* **main**
-* **home**
-* **posts**
+* **frontend**
+* **math-competition**

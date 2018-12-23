@@ -1,6 +1,0 @@
-{
-  "editor.tabSize": 2,
-  "editor.formatOnSave": true,
-  "editor.formatOnSaveTimeout": 100000,
-  "typescript.tsdk": "node_modules/typescript/lib"
-}
