@@ -1,0 +1,18 @@
+<div class="content">
+  <form (ngSubmit)="onSubmit()" [formGroup]="teamForm" class="form">
+    <mdc-form-field>
+      <mdc-text-field [helperText]="formHelperTeamname" formControlName="teamname" label="Csapatnév" minlength="3" outlined required></mdc-text-field>
+      <mdc-text-field-helper-text #formHelperTeamname="mdcHelperText" validation>
+        <span *ngIf="teamForm.controls['teamname'].hasError('required')">Csapatnév kötelező</span>
+        <span *ngIf="teamForm.controls['teamname'].hasError('minlength')">Felhasználónév nem elég hosszú</span>
+      </mdc-text-field-helper-text>
+
+      <div *ngFor="let member of members; index as i" class="members">
+        <mdc-text-field (change)="onChange()" [formControl]="member.controls.email" label="Email" minlength="3" outlined></mdc-text-field>
+        <mdc-text-field (change)="onChange()" [formControl]="member.controls.name" label="Név (osztály)" minlength="3" outlined></mdc-text-field>
+      </div>
+
+      <button [disabled]="!teamForm.valid" mdc-button outlined primary type="submit">Regisztráció</button>
+    </mdc-form-field>
+  </form>
+</div>

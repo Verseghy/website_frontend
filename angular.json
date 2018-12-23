@@ -126,6 +126,129 @@
           }
         }
       }
+    },
+    "math-competition": {
+      "root": "apps/math-competition/",
+      "sourceRoot": "apps/math-competition/src",
+      "projectType": "application",
+      "prefix": "verseghy",
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/math-competition",
+            "index": "apps/math-competition/src/index.html",
+            "main": "apps/math-competition/src/main.ts",
+            "polyfills": "apps/math-competition/src/polyfills.ts",
+            "tsConfig": "apps/math-competition/tsconfig.app.json",
+            "assets": [
+              "apps/math-competition/src/favicon.ico",
+              "apps/math-competition/src/assets",
+              "apps/math-competition/src/manifest.json"
+            ],
+            "styles": [
+              "apps/math-competition/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/math-competition/src/environments/environment.ts",
+                  "with": "apps/math-competition/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "math-competition:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "math-competition:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "math-competition:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/math-competition/tsconfig.app.json",
+              "apps/math-competition/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "apps/math-competition/jest.config.js",
+            "tsConfig": "apps/math-competition/tsconfig.spec.json",
+            "setupFile": "apps/math-competition/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "math-competition-e2e": {
+      "root": "apps/math-competition-e2e",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "apps/math-competition-e2e/protractor.conf.js",
+            "devServerTarget": "math-competition:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "math-competition:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/math-competition-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "cli": {

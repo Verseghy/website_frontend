@@ -1,0 +1,38 @@
+:host {
+  display: block;
+  border-bottom: 1px solid #eceff1;
+  padding: 10px 24px;
+}
+
+.id {
+  margin-bottom: 5px;
+  display: block;
+  color: #5f6368;
+  font-family: 'Roboto';
+}
+
+mdc-text-field {
+  margin-top: 20px;
+}
+
+mdc-text-field::before, mdc-text-field::after {
+  display: none;
+}
+
+img {
+  object-fit: contain;
+  width: 100%;
+  height: 200px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+@media screen and (max-width: 600px) {
+  :host {
+    padding: 10px 12px;
+  }
+
+  mdc-text-field {
+    width: 100%;
+  }
+}

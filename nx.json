@@ -13,6 +13,12 @@
     },
     "frontend-e2e": {
       "tags": []
+    },
+    "math-competition": {
+      "tags": []
+    },
+    "math-competition-e2e": {
+      "tags": []
     }
   }
 }
