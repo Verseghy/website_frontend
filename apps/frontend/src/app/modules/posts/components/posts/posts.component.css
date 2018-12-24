@@ -18,23 +18,23 @@
 }
 
 .background:before {
-  content: "";
+  content: '';
   top: 0;
   position: absolute;
   height: 100%;
   z-index: 2;
-  background: linear-gradient(to right,#000 0,rgba(0,0,0,0) 100%);
+  background: linear-gradient(to right, #000 0, rgba(0, 0, 0, 0) 100%);
   width: 40%;
 }
 
 .background:after {
-  content: "";
+  content: '';
   top: 0;
   right: 0;
   position: absolute;
   height: 100%;
   z-index: 2;
-  background: linear-gradient(to left,#000 0,rgba(0,0,0,0) 100%);
+  background: linear-gradient(to left, #000 0, rgba(0, 0, 0, 0) 100%);
   width: 40%;
 }
 
@@ -53,7 +53,7 @@
 
 .share {
   background: #fff;
-  box-shadow: 0 3px 5px 0 rgba(0,1,1,.1);
+  box-shadow: 0 3px 5px 0 rgba(0, 1, 1, 0.1);
   padding: 15px;
   position: sticky;
   top: 40px;
@@ -103,7 +103,7 @@
   position: relative;
   z-index: 3;
   background: #fff;
-  box-shadow: 0 3px 5px 0 rgba(0,1,1,.1);
+  box-shadow: 0 3px 5px 0 rgba(0, 1, 1, 0.1);
   margin-top: -75px;
   padding: 40px 60px 50px;
 }
@@ -165,12 +165,12 @@ h1 {
 
 .recent-posts {
   background: #fff;
-  box-shadow: 0 3px 5px 0 rgba(0,1,1,.1);
+  box-shadow: 0 3px 5px 0 rgba(0, 1, 1, 0.1);
 }
 
 .post-author {
   display: flex;
-  border-top: 1px solid rgba(94,94,94,0.1);
+  border-top: 1px solid rgba(94, 94, 94, 0.1);
   padding-top: 35px;
   margin: 24px 0;
 }
@@ -203,7 +203,7 @@ h4 {
   height: 80px;
 }
 
-@media screen and (max-width: 992px){
+@media screen and (max-width: 992px) {
   .background-image img {
     height: 400px;
   }
@@ -222,14 +222,14 @@ h4 {
   }
 }
 
-@media screen and (max-width: 576px){
+@media screen and (max-width: 576px) {
   .background-image img {
     height: 320px;
   }
 
   .background:before,
   .background:after {
-    background: rgba(0,0,0,.5);
+    background: rgba(0, 0, 0, 0.5);
     width: 50%;
   }
 

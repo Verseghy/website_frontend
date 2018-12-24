@@ -1,19 +1,19 @@
-import { AngularFirestoreModule } from "@angular/fire/firestore";
-import { AngularFireAuthModule } from "@angular/fire/auth";
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { LoginscreenComponent } from "./components/loginscreen/loginscreen.component";
-import { RouterModule, Routes } from "@angular/router";
+import { AngularFirestoreModule } from '@angular/fire/firestore'
+import { AngularFireAuthModule } from '@angular/fire/auth'
+import { NgModule } from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { LoginscreenComponent } from './components/loginscreen/loginscreen.component'
+import { RouterModule, Routes } from '@angular/router'
 
-import { MdcButtonModule, MdcFormFieldModule, MdcTextFieldModule } from "@angular-mdc/web";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { MdcButtonModule, MdcFormFieldModule, MdcTextFieldModule } from '@angular-mdc/web'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
 const routes: Routes = [
   {
     path: '',
     component: LoginscreenComponent,
-  }
-];
+  },
+]
 
 @NgModule({
   declarations: [LoginscreenComponent],
@@ -26,7 +26,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     MdcButtonModule,
     AngularFireAuthModule,
-    AngularFirestoreModule
-  ]
+    AngularFirestoreModule,
+  ],
 })
-export class LoginModule { }
+export class LoginModule {}

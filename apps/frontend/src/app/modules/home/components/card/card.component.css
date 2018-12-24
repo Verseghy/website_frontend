@@ -5,7 +5,7 @@
 }
 
 .content {
-  box-shadow: 0 3px 5px 0 rgba(0,1,1,.1);
+  box-shadow: 0 3px 5px 0 rgba(0, 1, 1, 0.1);
   background-color: #fff;
   padding: 30px;
   padding-bottom: 54px;
@@ -31,12 +31,12 @@
 }
 
 .label.dark {
-  color: #fff
+  color: #fff;
 }
 
 .dark .description,
 .dark .bottom p {
-  color: rgba(255,255,255,0.8);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .dark .title {
@@ -51,11 +51,11 @@
   margin-bottom: 8px;
   z-index: 1;
   position: relative;
-  transition: color .3s;
+  transition: color 0.3s;
 }
 
 .content:hover .title {
-  color: #009cff
+  color: #009cff;
 }
 
 .description {
@@ -67,7 +67,7 @@
   position: relative;
 }
 
-.authorimg{
+.authorimg {
   width: 24px;
   height: 24px;
   border-radius: 50%;
@@ -77,7 +77,7 @@
   position: relative;
 }
 
-.postimg{
+.postimg {
   width: calc(100% + 60px);
   margin: -30px -30px 10px -30px;
   padding: 0;
@@ -93,7 +93,7 @@
   overflow: hidden;
 }
 
-.bg-image img{
+.bg-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -116,13 +116,13 @@
   position: relative;
 }
 
-.type2 .title{
+.type2 .title {
   color: #fff;
 }
-.type2 .description{
+.type2 .description {
   color: #e1e1e1;
 }
 
-.type2 .bottom p{
+.type2 .bottom p {
   color: #cdcdcd;
 }

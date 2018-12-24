@@ -35,23 +35,23 @@
 }
 
 .background:before {
-  content: "";
+  content: '';
   top: 0;
   position: absolute;
   height: 100%;
   z-index: 2;
-  background: linear-gradient(to right,#000 0,rgba(0,0,0,0) 100%);
+  background: linear-gradient(to right, #000 0, rgba(0, 0, 0, 0) 100%);
   width: 70%;
 }
 
 .background:after {
-  content: "";
+  content: '';
   top: 0;
   right: 0;
   position: absolute;
   height: 100%;
   z-index: 2;
-  background: linear-gradient(to left,#000 0,rgba(0,0,0,0) 100%);
+  background: linear-gradient(to left, #000 0, rgba(0, 0, 0, 0) 100%);
   width: 70%;
 }
 
@@ -103,11 +103,11 @@ h2 {
   border-radius: 20px;
   margin-right: 5px;
   margin-bottom: 2px;
-  color: #000
+  color: #000;
 }
 
 .label.dark {
-  color: #fff
+  color: #fff;
 }
 
 .bottom {
@@ -148,14 +148,14 @@ h2 {
 .nav i {
   margin: 0 3px;
   color: #5e5e5e;
-  background-color: rgba(255,255,255,.5);
+  background-color: rgba(255, 255, 255, 0.5);
   height: 36px;
   width: 36px;
   line-height: 36px;
   text-align: center;
   border-radius: 50%;
   cursor: pointer;
-  transition: background-color .3s;
+  transition: background-color 0.3s;
   -webkit-tap-highlight-color: transparent;
   user-select: none;
 }
@@ -170,10 +170,10 @@ h2 {
   z-index: 4;
   position: absolute;
   top: 0;
-  transition: background-color .3s;
+  transition: background-color 0.3s;
 }
 
-@media screen and (max-width: 992px){
+@media screen and (max-width: 992px) {
   :host {
     height: 400px;
   }
@@ -181,7 +181,7 @@ h2 {
   .container {
     height: 400px;
   }
-  
+
   .post-content {
     padding: 0 40px;
   }
@@ -196,7 +196,7 @@ h2 {
   }
 }
 
-@media screen and (max-width: 576px){
+@media screen and (max-width: 576px) {
   :host {
     height: 320px;
   }
@@ -207,7 +207,7 @@ h2 {
 
   .background:before,
   .background:after {
-    background: rgba(0,0,0,.5);
+    background: rgba(0, 0, 0, 0.5);
     width: 50%;
   }
 
@@ -240,8 +240,8 @@ h2 {
   }
 }
 
-@media screen and (min-width: 992px){
+@media screen and (min-width: 992px) {
   .container:hover .hover {
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
   }
 }

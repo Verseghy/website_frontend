@@ -6,6 +6,6 @@ export const environment = {
     databaseURL: 'https://vfgmath.firebaseio.com',
     projectId: 'vfgmath',
     storageBucket: 'vfgmath.appspot.com',
-    messagingSenderId: '648717635240'
-  }
-};
+    messagingSenderId: '648717635240',
+  },
+}

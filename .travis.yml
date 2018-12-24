@@ -7,4 +7,5 @@ cache:
 
 script:
   - travis_wait 30 npm run nx affected:lint -- --all
+  - travis_wait 30 npm run nx format:check
   - travis_wait 30 npm run nx affected:build -- --all

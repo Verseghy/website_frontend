@@ -1,7 +1,5 @@
 <verseghy-featured-post></verseghy-featured-post>
 <div class="container">
   <h2>Legfrissebb hírek</h2>
-  <div class="grid">
-    <verseghy-card [post]="post" *ngFor="let post of posts | async; trackBy: trackByFn"></verseghy-card>
-  </div>
+  <div class="grid"><verseghy-card [post]="post" *ngFor="let post of (posts | async); trackBy: trackByFn"></verseghy-card></div>
 </div>

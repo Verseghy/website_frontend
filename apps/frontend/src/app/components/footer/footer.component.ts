@@ -1,42 +1,38 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core'
 
 @Component({
   selector: 'verseghy-footer',
   templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.css']
+  styleUrls: ['./footer.component.css'],
 })
 export class FooterComponent implements OnInit {
+  buttonTextVisible = true
+  spinnerVisible = false
+  checkMarkVisible = false
+  email: string
+  subscribeButtonDisabled = false
+  subscribeButtonDone = false
 
-  buttonTextVisible = true;
-  spinnerVisible = false;
-  checkMarkVisible = false;
-  email: string;
-  subscribeButtonDisabled = false;
-  subscribeButtonDone = false;
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   subscribeToNewsletter() {
-
     if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(this.email)) {
-      this.spinnerVisible = true;
-      this.buttonTextVisible = false;
-      this.subscribeButtonDisabled = true;
-      console.log(this.email);
-      this.email = '';
-      setTimeout(() => this._subscribeConfirmed(), 3000);
+      this.spinnerVisible = true
+      this.buttonTextVisible = false
+      this.subscribeButtonDisabled = true
+      console.log(this.email)
+      this.email = ''
+      setTimeout(() => this._subscribeConfirmed(), 3000)
     } else {
-      alert('Hibás email-cím!');
+      alert('Hibás email-cím!')
     }
-
   }
 
   private _subscribeConfirmed() {
-    this.spinnerVisible = false;
-    this.subscribeButtonDone = true;
-    this.checkMarkVisible = true;
+    this.spinnerVisible = false
+    this.subscribeButtonDone = true
+    this.checkMarkVisible = true
   }
 }

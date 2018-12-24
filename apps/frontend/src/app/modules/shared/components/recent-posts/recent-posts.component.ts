@@ -1,15 +1,12 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core'
 
 @Component({
   selector: 'verseghy-recent-posts',
   templateUrl: './recent-posts.component.html',
-  styleUrls: ['./recent-posts.component.css']
+  styleUrls: ['./recent-posts.component.css'],
 })
 export class RecentPostsComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

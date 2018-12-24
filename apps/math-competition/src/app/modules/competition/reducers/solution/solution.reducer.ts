@@ -1,45 +1,39 @@
-import * as actions from "./solution.actions";
-import { createEntityAdapter, EntityState } from "@ngrx/entity";
-import { createFeatureSelector } from "@ngrx/store";
+import * as actions from './solution.actions'
+import { createEntityAdapter, EntityState } from '@ngrx/entity'
+import { createFeatureSelector } from '@ngrx/store'
 
 export interface Solution {
-  id: string;
-  solution: number;
+  id: string
+  solution: number
 }
 
-export const solutionsAdapter = createEntityAdapter<Solution>();
+export const solutionsAdapter = createEntityAdapter<Solution>()
 export interface State extends EntityState<Solution> {}
 
-export const initialState: State = solutionsAdapter.getInitialState();
+export const initialState: State = solutionsAdapter.getInitialState()
 
-export function solutionReducer(
-  state: State = initialState,
-  action: actions.SolutionActions) {
-
+export function solutionReducer(state: State = initialState, action: actions.SolutionActions) {
   switch (action.type) {
     case actions.ADDED:
-      return solutionsAdapter.addOne(action.payload, state);
+      return solutionsAdapter.addOne(action.payload, state)
 
     case actions.MODIFIED:
-      return solutionsAdapter.updateOne({
-        id: action.payload.id,
-        changes: action.payload
-      }, state);
+      return solutionsAdapter.updateOne(
+        {
+          id: action.payload.id,
+          changes: action.payload,
+        },
+        state
+      )
 
     case actions.REMOVED:
-      return solutionsAdapter.removeOne(action.payload.id, state);
+      return solutionsAdapter.removeOne(action.payload.id, state)
 
     default:
-      return state;
-
+      return state
   }
 }
 
-export const getSolutionState = createFeatureSelector<State>('solutions');
+export const getSolutionState = createFeatureSelector<State>('solutions')
 
-export const {
-  selectIds,
-  selectEntities,
-  selectAll,
-  selectTotal,
-} = solutionsAdapter.getSelectors(getSolutionState);
+export const { selectIds, selectEntities, selectAll, selectTotal } = solutionsAdapter.getSelectors(getSolutionState)

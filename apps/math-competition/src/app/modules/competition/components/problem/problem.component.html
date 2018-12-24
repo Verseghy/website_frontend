@@ -1,4 +1,11 @@
-<span class="id">{{problem.id}}.</span>
-<span>{{problem.text}}</span><br />
-<img [src]="imagesrc | async" alt=""><br />
-<mdc-text-field outlined autocomplete="off" label="válasz" #solution (blur)="submit()" (keydown.enter)="$event.target.blur()"></mdc-text-field>
+<span class="id">{{ problem.id }}.</span> <span>{{ problem.text }}</span
+><br />
+<img [src]="imagesrc | async" alt="" /><br />
+<mdc-text-field
+  outlined
+  autocomplete="off"
+  label="válasz"
+  #solution
+  (blur)="submit()"
+  (keydown.enter)="$event.target.blur()"
+></mdc-text-field>

@@ -1,16 +1,12 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core'
 
 @Component({
   selector: 'verseghy-events',
   templateUrl: './events.component.html',
-  styleUrls: ['./events.component.css']
+  styleUrls: ['./events.component.css'],
 })
 export class EventsComponent implements OnInit {
+  constructor() {}
 
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
