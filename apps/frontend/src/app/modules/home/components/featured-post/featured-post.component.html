@@ -1,14 +1,16 @@
 <div (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()" class="container">
-  <div *ngFor="let post of posts | async" class="post">
+  <div *ngFor="let post of (posts | async)" class="post">
     <div #content class="content">
-      <div class="background">
-        <img [src]="post.image" alt="">
-      </div>
+      <div class="background"><img [src]="post.image" alt="" /></div>
       <div class="post-content">
         <div class="text">
           <div class="label-container">
-            <verseghy-label *ngFor="let label of post.labels" [label]="label" [ngClass]="{'dark' : label.isDark}"
-              [ngStyle]="{'background-color': label.color}"></verseghy-label>
+            <verseghy-label
+              *ngFor="let label of post.labels"
+              [label]="label"
+              [ngClass]="{ dark: label.isDark }"
+              [ngStyle]="{ 'background-color': label.color }"
+            ></verseghy-label>
           </div>
           <h2>{{ post.title }}</h2>
           <p class="description">{{ post.description }}</p>
@@ -23,7 +25,6 @@
     </div>
   </div>
   <div class="nav">
-    <i (click)="previous()" class="material-icons">navigate_before</i>
-    <i (click)="next()" class="material-icons">navigate_next</i>
+    <i (click)="previous()" class="material-icons">navigate_before</i> <i (click)="next()" class="material-icons">navigate_next</i>
   </div>
 </div>

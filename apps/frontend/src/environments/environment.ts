@@ -5,8 +5,8 @@
 export const environment = {
   production: false,
   hmr: true,
-  baseURL: 'https://api.vfghonlap.twodcube.xyz/api'
-};
+  baseURL: 'https://api.vfghonlap.twodcube.xyz/api',
+}
 
 /*
  * In development mode, to ignore zone related error stack frames such as

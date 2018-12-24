@@ -1,13 +1,13 @@
-import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
-import { TimeGuard } from "./guards/time.guard";
-import { AuthGuard } from "./guards/auth.guard";
+import { NgModule } from '@angular/core'
+import { RouterModule, Routes } from '@angular/router'
+import { TimeGuard } from './guards/time.guard'
+import { AuthGuard } from './guards/auth.guard'
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: 'login',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'login',
@@ -31,13 +31,12 @@ const routes: Routes = [
   },
   {
     path: '**',
-    loadChildren: './modules/notfound/notfound.module#NotfoundModule'
-  }
-];
+    loadChildren: './modules/notfound/notfound.module#NotfoundModule',
+  },
+]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}

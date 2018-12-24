@@ -1,25 +1,24 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { NotfoundscreenComponent } from "./notfoundscreen.component";
+import { NotfoundscreenComponent } from './notfoundscreen.component'
 
 describe('NotfoundscreenComponent', () => {
-  let component: NotfoundscreenComponent;
-  let fixture: ComponentFixture<NotfoundscreenComponent>;
+  let component: NotfoundscreenComponent
+  let fixture: ComponentFixture<NotfoundscreenComponent>
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NotfoundscreenComponent ]
-    })
-    .compileComponents();
-  }));
+      declarations: [NotfoundscreenComponent],
+    }).compileComponents()
+  }))
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NotfoundscreenComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(NotfoundscreenComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+})

@@ -1,6 +1,6 @@
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { RouterModule, Routes } from "@angular/router";
+import { NgModule } from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { RouterModule, Routes } from '@angular/router'
 
 const routes: Routes = [
   {
@@ -18,12 +18,12 @@ const routes: Routes = [
   {
     path: 'events',
     loadChildren: './modules/events/events.module#EventsModule',
-  }
-];
+  },
+]
 
 @NgModule({
   imports: [CommonModule, RouterModule.forRoot(routes)],
   exports: [RouterModule],
   declarations: [],
 })
-export class RoutingModule { }
+export class RoutingModule {}

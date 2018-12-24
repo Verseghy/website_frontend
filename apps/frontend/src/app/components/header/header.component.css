@@ -1,7 +1,7 @@
 :host {
   height: 64px;
   background: #fff;
-  box-shadow: 0 3px 5px 0 rgba(0,1,1,.1);
+  box-shadow: 0 3px 5px 0 rgba(0, 1, 1, 0.1);
   z-index: 10;
 }
 
@@ -52,7 +52,7 @@
 }
 
 .ekreta:hover {
-  background-color: #eceff1
+  background-color: #eceff1;
 }
 
 .ekreta img {
@@ -92,7 +92,7 @@
 
 .menu:hover > a,
 .menu:hover > span {
-  background-color: #eceff1
+  background-color: #eceff1;
 }
 
 .menu i {
@@ -104,7 +104,7 @@
   opacity: 0;
   pointer-events: none;
   background: #fff;
-  box-shadow: 0 3px 5px rgba(0,0,0,.1);
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
   transition: opacity 300ms;
   min-width: 140px;
 }
@@ -140,7 +140,7 @@ i {
 }
 
 .backdrop {
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
   top: 0;
   left: 0;
@@ -148,7 +148,7 @@ i {
   bottom: 0;
   z-index: 9;
   opacity: 0;
-  transition: opacity .3s;
+  transition: opacity 0.3s;
   pointer-events: none;
 }
 
@@ -180,16 +180,16 @@ i {
     width: 256px;
     max-width: calc(100% - 56px);
     background: #fff;
-    box-shadow: 0 3px 5px 0 rgba(0,1,1,.1);
+    box-shadow: 0 3px 5px 0 rgba(0, 1, 1, 0.1);
     z-index: 10;
-    transform: translate3d(256px,0,0);
-    transition: transform .3s cubic-bezier(0.4, 0.0, 1, 1);
+    transform: translate3d(256px, 0, 0);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 1, 1);
     overflow-y: scroll;
   }
 
   .middle.open {
-    transform: translate3d(0,0,0);
-    transition: transform .3s cubic-bezier(0.0, 0.0, 0.2, 1);
+    transform: translate3d(0, 0, 0);
+    transition: transform 0.3s cubic-bezier(0, 0, 0.2, 1);
   }
 
   .ekreta {
@@ -202,7 +202,7 @@ i {
 
   .menu-header {
     display: block;
-    border-bottom: 1px solid #ccc
+    border-bottom: 1px solid #ccc;
   }
 
   .menu-close {
@@ -228,11 +228,11 @@ i {
     right: 0;
     top: 0;
     margin: 0;
-    transition: transform .3s;
+    transition: transform 0.3s;
   }
 
   .menu.open i {
-    transform: rotate3d(1,0,0,180deg);
+    transform: rotate3d(1, 0, 0, 180deg);
   }
 
   .submenu {
@@ -257,7 +257,7 @@ i {
   }
 
   .submenu a:hover {
-    background-color: rgba(0,0,0,0.1);
+    background-color: rgba(0, 0, 0, 0.1);
     color: #fff;
   }
 

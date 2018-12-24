@@ -2,11 +2,11 @@
   <h1>Verseghy Matematikaverseny</h1>
   <div class="timer">
     <div class="timer-inner">
-      <span>Hátralévő idő: </span><span class="time">{{timestring}}</span>
+      <span>Hátralévő idő: </span><span class="time">{{ timestring }}</span>
     </div>
   </div>
   <button (click)="logoutHandler()" class="logout" mdc-button outlined>Kijelentkezés</button>
-  <div *ngFor="let problem of (problems | async)?.entities | keyvalue:comparator" >
+  <div *ngFor="let problem of ((problems | async)?.entities | keyvalue: comparator)">
     <verseghy-problem [problem]="problem.value"></verseghy-problem>
   </div>
 </div>

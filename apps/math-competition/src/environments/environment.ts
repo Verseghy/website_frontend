@@ -10,9 +10,9 @@ export const environment = {
     databaseURL: 'https://vfgmath.firebaseio.com',
     projectId: 'vfgmath',
     storageBucket: 'vfgmath.appspot.com',
-    messagingSenderId: '648717635240'
-  }
-};
+    messagingSenderId: '648717635240',
+  },
+}
 
 /*
  * For easier debugging in development mode, you can import the following file

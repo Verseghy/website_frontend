@@ -1,25 +1,22 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { ContrastService } from "../../../../services/contrast.service";
-import { Post } from "../../../../models/Post";
+import { Component, Input, OnInit } from '@angular/core'
+import { ContrastService } from '../../../../services/contrast.service'
+import { Post } from '../../../../models/Post'
 
 @Component({
   selector: 'verseghy-card',
   templateUrl: './card.component.html',
-  styleUrls: ['./card.component.css']
+  styleUrls: ['./card.component.css'],
 })
 export class CardComponent implements OnInit {
+  @Input() type = 0
+  @Input() post: Post
 
-
-  @Input() type = 0;
-  @Input() post: Post;
-
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
-    this.post.backgroundDark = ContrastService.getConstrast(this.post.color);
+    this.post.backgroundDark = ContrastService.getConstrast(this.post.color)
     for (const i of Object.keys(this.post.labels)) {
-      this.post.labels[i].backgroundDark = ContrastService.getConstrast(this.post.labels[i].color);
+      this.post.labels[i].backgroundDark = ContrastService.getConstrast(this.post.labels[i].color)
     }
   }
-
 }

@@ -15,7 +15,8 @@ mdc-text-field {
   margin-top: 20px;
 }
 
-mdc-text-field::before, mdc-text-field::after {
+mdc-text-field::before,
+mdc-text-field::after {
   display: none;
 }
 

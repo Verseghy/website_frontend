@@ -1,5 +1,5 @@
-import { Component } from "@angular/core";
-import { animate, group, query, style, transition, trigger } from "@angular/animations";
+import { Component } from '@angular/core'
+import { animate, group, query, style, transition, trigger } from '@angular/animations'
 
 @Component({
   selector: 'verseghy-root',
@@ -10,7 +10,8 @@ import { animate, group, query, style, transition, trigger } from "@angular/anim
       transition('* => *', [
         group([
           query(
-            ':enter', [
+            ':enter',
+            [
               style({
                 opacity: 0,
                 transform: 'translateY(50px)',
@@ -18,36 +19,33 @@ import { animate, group, query, style, transition, trigger } from "@angular/anim
                 top: '0',
                 left: '0',
                 right: '0',
-                zIndex: '8'
+                zIndex: '8',
               }),
               animate(
                 '100ms ease-out',
                 style({
                   opacity: 1,
-                  transform: 'translateY(0)'
+                  transform: 'translateY(0)',
                 })
-              )
+              ),
             ],
             { optional: true }
           ),
           query(
-            ':leave', [
+            ':leave',
+            [
               style({
                 opacity: 1,
               }),
-              animate(
-                '100ms',
-                style({ opacity: 0 })
-              )
+              animate('100ms', style({ opacity: 0 })),
             ],
             { optional: true }
-          )
-        ])
-      ])
-    ])
-  ]
+          ),
+        ]),
+      ]),
+    ]),
+  ],
 })
 export class AppComponent {
-
-  constructor() { }
+  constructor() {}
 }
