@@ -63,7 +63,7 @@ export class RegisterteamComponent implements OnInit {
         member.controls.email.value === null &&
         member.controls.name.value == null
       ) {
-        (<FormArray>this.teamForm.controls.members).removeAt(indexnumber)
+        ;(<FormArray>this.teamForm.controls.members).removeAt(indexnumber)
         break
       }
     }
