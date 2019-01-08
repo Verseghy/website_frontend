@@ -50,7 +50,6 @@ describe('ProblemComponent', () => {
     const testfixture = TestBed.createComponent(TestComponent)
     const testcomponent = testfixture.componentInstance
     component = testcomponent.problemComponent
-    console.log(component)
     testfixture.detectChanges()
   })
 
