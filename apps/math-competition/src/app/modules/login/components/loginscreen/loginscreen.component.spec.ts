@@ -9,6 +9,11 @@ import { RouterTestingModule } from '@angular/router/testing'
 import { StoreModule } from '@ngrx/store'
 import { EffectsModule } from '@ngrx/effects'
 
+const AngularFirestoreStub = {
+  collection() {},
+}
+const AngularFireAuthStub = {}
+
 describe('LoginscreenComponent', () => {
   let component: LoginscreenComponent
   let fixture: ComponentFixture<LoginscreenComponent>
@@ -23,12 +28,12 @@ describe('LoginscreenComponent', () => {
         ReactiveFormsModule,
         MdcButtonModule,
         StoreModule.forRoot({}),
-        EffectsModule.forRoot([])
+        EffectsModule.forRoot([]),
       ],
       providers: [
-        { provide: AngularFireAuth, useValue: AngularFireAuthStub},
-        { provide: AngularFirestore, useValue: AngularFirestoreStub}
-      ]
+        { provide: AngularFireAuth, useValue: AngularFireAuthStub },
+        { provide: AngularFirestore, useValue: AngularFirestoreStub },
+      ],
     }).compileComponents()
   }))
 
@@ -42,8 +47,3 @@ describe('LoginscreenComponent', () => {
     expect(component).toBeTruthy()
   })
 })
-
-const AngularFirestoreStub = {
-  collection() {}
-};
-const AngularFireAuthStub = {};

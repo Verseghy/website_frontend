@@ -6,10 +6,7 @@ import { LoadingBarRouterModule } from '@ngx-loading-bar/router'
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule,
-        LoadingBarRouterModule
-      ],
+      imports: [RouterTestingModule, LoadingBarRouterModule],
       declarations: [AppComponent],
     })
   }))

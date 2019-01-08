@@ -7,24 +7,31 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { AngularFireAuth } from '@angular/fire/auth'
 import { AngularFirestore } from '@angular/fire/firestore'
 
+const AngularFirestoreStub = {
+  collection() {
+    return {
+      doc() {
+        return {
+          get() {
+            return {
+              subscribe() {},
+            }
+          },
+        }
+      },
+    }
+  },
+}
+const AngularFireStub = {}
+
 describe('RegisterteamComponent', () => {
   let component: RegisterteamComponent
   let fixture: ComponentFixture<RegisterteamComponent>
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule,
-        RouterTestingModule,
-        ReactiveFormsModule,
-        MdcTextFieldModule,
-        MdcFormFieldModule,
-        MdcButtonModule
-      ],
-      providers: [
-        { provide: AngularFireAuth, useValue: AngularFireStub},
-        { provide: AngularFirestore, useValue: AngularFirestoreStub}
-      ],
+      imports: [RouterTestingModule, RouterTestingModule, ReactiveFormsModule, MdcTextFieldModule, MdcFormFieldModule, MdcButtonModule],
+      providers: [{ provide: AngularFireAuth, useValue: AngularFireStub }, { provide: AngularFirestore, useValue: AngularFirestoreStub }],
       declarations: [RegisterteamComponent],
     }).compileComponents()
   }))
@@ -39,14 +46,3 @@ describe('RegisterteamComponent', () => {
     expect(component).toBeTruthy()
   })
 })
-
-const AngularFirestoreStub = {
-  collection() { return {
-    doc() { return {
-      get() { return {
-        subscribe() {}
-      }}
-    }}
-  }}
-};
-const AngularFireStub = {};

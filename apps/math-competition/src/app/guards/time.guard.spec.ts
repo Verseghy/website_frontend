@@ -8,14 +8,8 @@ import { APP_BASE_HREF } from '@angular/common'
 describe('TimeGuard', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [
-        TimeGuard,
-        {provide: APP_BASE_HREF, useValue: '/'}
-      ],
-      imports: [
-        StoreModule.forRoot({}),
-        RouterModule.forRoot([]),
-      ]
+      providers: [TimeGuard, { provide: APP_BASE_HREF, useValue: '/' }],
+      imports: [StoreModule.forRoot({}), RouterModule.forRoot([])],
     })
   })
 

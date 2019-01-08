@@ -8,24 +8,28 @@ import { AngularFirestore } from '@angular/fire/firestore'
 import { StoreModule } from '@ngrx/store'
 import { EffectsModule } from '@ngrx/effects'
 
+@Component({ selector: 'verseghy-problem', template: '', styles: [] })
+class ProblemComponent {
+  @Input() problem
+}
+
+const AngularFirestoreStub = {
+  collection() {},
+}
+const AngularFireAuthStub = {}
+
 describe('CompetitionscreenComponent', () => {
   let component: CompetitionscreenComponent
   let fixture: ComponentFixture<CompetitionscreenComponent>
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule,
-        StoreModule.forRoot({}),
-        EffectsModule.forRoot([])],
-      declarations: [
-        CompetitionscreenComponent,
-        ProblemComponent
-      ],
+      imports: [RouterTestingModule, StoreModule.forRoot({}), EffectsModule.forRoot([])],
+      declarations: [CompetitionscreenComponent, ProblemComponent],
       providers: [
-        { provide: AngularFireAuth, useValue: AngularFireAuthStub},
-        { provide: AngularFirestore, useValue: AngularFirestoreStub}
-      ]
+        { provide: AngularFireAuth, useValue: AngularFireAuthStub },
+        { provide: AngularFirestore, useValue: AngularFirestoreStub },
+      ],
     }).compileComponents()
   }))
 
@@ -39,11 +43,3 @@ describe('CompetitionscreenComponent', () => {
     expect(component).toBeTruthy()
   })
 })
-
-@Component({selector: 'verseghy-problem', template: '', styles: []}) class ProblemComponent {
-  @Input() problem
-}
-const AngularFirestoreStub = {
-  collection() {}
-};
-const AngularFireAuthStub = {};

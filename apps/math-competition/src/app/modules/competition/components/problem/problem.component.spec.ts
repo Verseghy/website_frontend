@@ -10,23 +10,39 @@ import { AngularFireStorage } from '@angular/fire/storage'
 import { Component, ViewChild } from '@angular/core'
 import { Problem } from '../../reducers/problem/problem.reducer'
 
+@Component({
+  selector: 'verseghy-test-component',
+  template: `
+    <verseghy-problem [problem]="problem"></verseghy-problem>
+  `,
+})
+class TestComponent {
+  @ViewChild(ProblemComponent) public problemComponent: ProblemComponent
+  problem: Problem = {
+    image: false,
+    id: '0',
+    text: '',
+  }
+}
+
+const AngularFirestoreStub = {
+  collection() {},
+}
+const AngularFireAuthStub = {}
+const AngularFirestorageStub = {}
+
 describe('ProblemComponent', () => {
   let component: ProblemComponent
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [TestComponent, ProblemComponent],
-      imports: [
-        MdcButtonModule,
-        MdcTextFieldModule,
-        StoreModule.forRoot({}),
-        EffectsModule.forRoot([])
-      ],
+      imports: [MdcButtonModule, MdcTextFieldModule, StoreModule.forRoot({}), EffectsModule.forRoot([])],
       providers: [
-        { provide: AngularFireAuth, useValue: AngularFireAuthStub},
-        { provide: AngularFirestore, useValue: AngularFirestoreStub},
-        { provide: AngularFireStorage, useValue: AngularFirestorageStub}
-      ]
+        { provide: AngularFireAuth, useValue: AngularFireAuthStub },
+        { provide: AngularFirestore, useValue: AngularFirestoreStub },
+        { provide: AngularFireStorage, useValue: AngularFirestorageStub },
+      ],
     }).compileComponents()
   }))
 
@@ -42,24 +58,3 @@ describe('ProblemComponent', () => {
     expect(component).toBeTruthy()
   })
 })
-
-const AngularFirestoreStub = {
-  collection() {}
-}
-const AngularFireAuthStub = {}
-const AngularFirestorageStub = {}
-
-@Component({
-  selector: 'verseghy-test-component',
-  template: `<verseghy-problem
-    [problem]="problem"
-  ></verseghy-problem>`,
-})
-class TestComponent {
-  @ViewChild(ProblemComponent) public problemComponent: ProblemComponent
-  problem: Problem = {
-    image: false,
-    id: '0',
-    text: ''
-  }
-}

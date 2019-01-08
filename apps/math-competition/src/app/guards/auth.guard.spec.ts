@@ -8,14 +8,8 @@ import { APP_BASE_HREF } from '@angular/common'
 describe('AuthGuard', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [
-        AuthGuard,
-        {provide: APP_BASE_HREF, useValue: '/'}
-      ],
-      imports: [
-        StoreModule.forRoot({}),
-        RouterModule.forRoot([]),
-      ]
+      providers: [AuthGuard, { provide: APP_BASE_HREF, useValue: '/' }],
+      imports: [StoreModule.forRoot({}), RouterModule.forRoot([])],
     })
   })
 

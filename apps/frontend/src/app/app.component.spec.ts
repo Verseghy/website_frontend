@@ -3,6 +3,11 @@ import { AppComponent } from './app.component'
 import { RouterTestingModule } from '@angular/router/testing'
 import { Component } from '@angular/core'
 
+@Component({ selector: 'verseghy-header', template: '', styles: [] })
+class HeaderComponent {}
+@Component({ selector: 'verseghy-footer', template: '', styles: [] })
+class FooterComponent {}
+
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -17,6 +22,3 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy()
   })
 })
-
-@Component({selector: 'verseghy-header', template: '', styles: []}) class HeaderComponent {}
-@Component({selector: 'verseghy-footer', template: '', styles: []}) class FooterComponent {}
