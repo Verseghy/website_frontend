@@ -1,6 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 
 import { LoginscreenComponent } from './loginscreen.component'
+import { MdcButtonModule, MdcFormFieldModule, MdcTextFieldModule } from '@angular-mdc/web'
+import { ReactiveFormsModule } from '@angular/forms'
+import { AngularFireAuth } from '@angular/fire/auth'
+import { AngularFirestore } from '@angular/fire/firestore'
+import { RouterTestingModule } from '@angular/router/testing'
+import { StoreModule } from '@ngrx/store'
+import { EffectsModule } from '@ngrx/effects'
 
 describe('LoginscreenComponent', () => {
   let component: LoginscreenComponent
@@ -9,6 +16,19 @@ describe('LoginscreenComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [LoginscreenComponent],
+      imports: [
+        RouterTestingModule,
+        MdcTextFieldModule,
+        MdcFormFieldModule,
+        ReactiveFormsModule,
+        MdcButtonModule,
+        StoreModule.forRoot({}),
+        EffectsModule.forRoot([])
+      ],
+      providers: [
+        { provide: AngularFireAuth, useValue: AngularFireAuthStub},
+        { provide: AngularFirestore, useValue: AngularFirestoreStub}
+      ]
     }).compileComponents()
   }))
 
@@ -22,3 +42,8 @@ describe('LoginscreenComponent', () => {
     expect(component).toBeTruthy()
   })
 })
+
+const AngularFirestoreStub = {
+  collection() {}
+};
+const AngularFireAuthStub = {};

@@ -1,6 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 
 import { CompetitionscreenComponent } from './competitionscreen.component'
+import { RouterTestingModule } from '@angular/router/testing'
+import { Component, Input } from '@angular/core'
+import { AngularFireAuth } from '@angular/fire/auth'
+import { AngularFirestore } from '@angular/fire/firestore'
+import { StoreModule } from '@ngrx/store'
+import { EffectsModule } from '@ngrx/effects'
 
 describe('CompetitionscreenComponent', () => {
   let component: CompetitionscreenComponent
@@ -8,7 +14,18 @@ describe('CompetitionscreenComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [CompetitionscreenComponent],
+      imports: [
+        RouterTestingModule,
+        StoreModule.forRoot({}),
+        EffectsModule.forRoot([])],
+      declarations: [
+        CompetitionscreenComponent,
+        ProblemComponent
+      ],
+      providers: [
+        { provide: AngularFireAuth, useValue: AngularFireAuthStub},
+        { provide: AngularFirestore, useValue: AngularFirestoreStub}
+      ]
     }).compileComponents()
   }))
 
@@ -22,3 +39,11 @@ describe('CompetitionscreenComponent', () => {
     expect(component).toBeTruthy()
   })
 })
+
+@Component({selector: 'verseghy-problem', template: '', styles: []}) class ProblemComponent {
+  @Input() problem
+}
+const AngularFirestoreStub = {
+  collection() {}
+};
+const AngularFireAuthStub = {};
