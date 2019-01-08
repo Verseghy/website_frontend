@@ -1,9 +1,15 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "../../dist/out-tsc/apps/frontend",
     "types": []
   },
-  "exclude": ["src/test-setup.ts", "**/*.spec.ts"],
-  "include": ["**/*.ts", "../../node_modules/@types/node/index.d.ts"]
+  "exclude": [
+    "src/test-setup.ts",
+    "**/*.spec.ts"
+  ],
+  "include": [
+    "**/*.ts",
+    "../../node_modules/@types/node/index.d.ts"
+  ]
 }
