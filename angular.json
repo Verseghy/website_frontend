@@ -82,6 +82,7 @@
           "options": {
             "tsConfig": [
               "apps/frontend/tsconfig.app.json",
+              "apps/frontend/tsconfig.spec.json",
               "apps/frontend/tsconfig.spec.json"
             ],
             "exclude": [
@@ -205,6 +206,7 @@
           "options": {
             "tsConfig": [
               "apps/math-competition/tsconfig.app.json",
+              "apps/math-competition/tsconfig.spec.json",
               "apps/math-competition/tsconfig.spec.json"
             ],
             "exclude": [
