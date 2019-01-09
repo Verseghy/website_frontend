@@ -11,6 +11,8 @@ script:
 - travis_wait 30 npm run nx affected:test -- --all
 
 before_deploy:
+- openssl aes-256-cbc -K $encrypted_73a04b219ad5_key -iv $encrypted_73a04b219ad5_iv
+  -in deploy_key.enc -out ./deploy_key -d
 - eval "$(ssh-agent -s)"
 - chmod 600 ./deploy_key
 - echo -e "Host $SERVER_IP_ADDRESS\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
@@ -22,7 +24,3 @@ deploy:
   script: deploy.sh
   on:
     branch: master
-
-before_install:
-- openssl aes-256-cbc -K $encrypted_73a04b219ad5_key -iv $encrypted_73a04b219ad5_iv
-  -in deploy_key.enc -out ./deploy_key -d
