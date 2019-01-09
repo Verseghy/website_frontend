@@ -20,7 +20,8 @@
       "@verseghy/calendar": [
         "libs/calendar/src/index.ts"
       ]
-    }
+    },
+    "module": "es2015"
   },
   "exclude": [
     "node_modules",
