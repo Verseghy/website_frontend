@@ -1,9 +1,11 @@
 language: node_js
 node_js:
 - '10'
+
 cache:
   directories:
   - "$HOME/.npm"
+
 script:
 - travis_wait 30 npm run nx affected:lint -- --all
 - travis_wait 30 npm run nx format:check
