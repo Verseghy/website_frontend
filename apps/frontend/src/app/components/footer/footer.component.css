@@ -26,6 +26,11 @@ ul li {
   font-size: 14px;
 }
 
+ul li a {
+  text-decoration: none;
+  color: inherit;
+}
+
 ul li:last-child {
   border-bottom: none;
 }
