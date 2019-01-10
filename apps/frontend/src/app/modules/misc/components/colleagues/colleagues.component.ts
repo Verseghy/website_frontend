@@ -1,6 +1,9 @@
 import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core'
 import { fromEvent, interval, Subscription } from 'rxjs'
 import { debounce } from 'rxjs/operators'
+import { Store } from '@ngrx/store'
+import { ColleaguesState } from '../../reducer/colleagues/colleagues.reducer'
+import { LoadColleagues } from '../../reducer/colleagues/colleagues.actions'
 
 @Component({
   selector: 'verseghy-colleagues',
@@ -13,9 +16,11 @@ export class ColleaguesComponent implements OnInit, OnDestroy, AfterViewInit {
   private _scrollSubscriber: Subscription
   private _visibleCards: Array<boolean> = []
 
-  constructor() {}
+  constructor(private store: Store<ColleaguesState>) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.store.dispatch(new LoadColleagues())
+  }
 
   ngAfterViewInit() {
     setTimeout(() => {
