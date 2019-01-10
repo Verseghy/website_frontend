@@ -19,7 +19,6 @@ import { StoreModule } from '@ngrx/store'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 import { EffectsModule } from '@ngrx/effects'
 
-
 library.add(faCheck)
 
 @NgModule({
@@ -38,7 +37,7 @@ library.add(faCheck)
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({
-       maxAge: 25,
+      maxAge: 25,
     }),
   ],
   providers: [],

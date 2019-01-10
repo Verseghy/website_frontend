@@ -13,14 +13,13 @@ export class ColleaguesEffects {
     switchMap(() => {
       return this.colleaguesService.getColleagues()
     }),
-    map((data) => {
+    map(data => {
       return new ColleaguesLoaded(data)
     }),
-    catchError((error) => {
+    catchError(error => {
       return of(new ColleaguesLoadError(error))
     })
   )
-
 
   constructor(private actions$: Actions, private colleaguesService: ColleaguesService) {}
 }

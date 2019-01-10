@@ -55,7 +55,13 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  imports: [CommonModule, RouterModule.forChild(routes), FontAwesomeModule, StoreModule.forFeature(COLLEAGUES_FEATURE_KEY, colleaguesReducer, { initialState: colleaguesInitialState }), EffectsModule.forFeature([ColleaguesEffects])],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    FontAwesomeModule,
+    StoreModule.forFeature(COLLEAGUES_FEATURE_KEY, colleaguesReducer, { initialState: colleaguesInitialState }),
+    EffectsModule.forFeature([ColleaguesEffects]),
+  ],
   declarations: [AuthorsComponent, DocumentsComponent, ArchiveComponent, HistoryComponent, ClassesComponent, ColleaguesComponent],
 })
 export class MiscModule {}

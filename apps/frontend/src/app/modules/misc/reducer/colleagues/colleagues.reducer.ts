@@ -2,7 +2,6 @@ import { ColleaguesAction, ColleaguesActionTypes } from './colleagues.actions'
 
 export const COLLEAGUES_FEATURE_KEY = 'colleagues'
 
-
 export interface Entity {
   id: number
   name: string

@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http'
 import { environment } from '../../../../environments/environment.prod'
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ColleaguesService {
   private baseURL: string = environment.baseURL + '/colleagues'
@@ -14,5 +14,5 @@ export class ColleaguesService {
     return this.http.get<Entity[]>(this.baseURL + '/listColleagues')
   }
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 }
