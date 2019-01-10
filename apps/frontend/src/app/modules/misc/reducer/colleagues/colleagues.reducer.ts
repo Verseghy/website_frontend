@@ -15,7 +15,7 @@ export interface Entity {
 }
 
 export interface ColleaguesState {
-  list: Entity[] // list of Colleagues; analogous to a sql normalized table
+  categories: Entity[][] // list of Colleagues; analogous to a sql normalized table
   loaded: boolean // has the Colleagues list been loaded
   error?: any // last none error (if any)
 }
@@ -25,16 +25,21 @@ export interface ColleaguesPartialState {
 }
 
 export const initialState: ColleaguesState = {
-  list: [],
+  categories: null,
   loaded: false,
 }
 
 export function colleaguesReducer(state: ColleaguesState = initialState, action: ColleaguesAction): ColleaguesState {
   switch (action.type) {
     case ColleaguesActionTypes.ColleaguesLoaded: {
+      const categories: Entity[][] = [[], [], [], [], [], []]
+
+      for (const colleague of action.payload) {
+        categories[colleague.category].push(colleague)
+      }
       state = {
         ...state,
-        list: action.payload,
+        categories,
         loaded: true,
       }
       break
