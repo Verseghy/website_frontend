@@ -1,8 +1,10 @@
+import { SafeHtml } from '@angular/platform-browser'
+
 export interface Post {
   id: number
   author: Author
   color: string
-  content: string
+  content: string | SafeHtml
   date: string
   description: string
   images: Image[]

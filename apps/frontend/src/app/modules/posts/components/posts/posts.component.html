@@ -3,13 +3,13 @@
 </div>
 <div class="container">
   <div class="share-container">
-    <div class="share">
+    <!--<div class="share">
       <div class="share-facebook"><img src="/assets/svg/facebook.svg" alt="" /></div>
       <div class="share-twitter"><img src="/assets/svg/twitter.svg" alt="" /></div>
       <div class="share-reddit"><img src="/assets/svg/reddit.svg" alt="" /></div>
       <div class="share-pinterest"><img src="/assets/svg/pinterest.svg" alt="" /></div>
       <div class="share-mail"><img src="/assets/svg/mail.svg" alt="" /></div>
-    </div>
+    </div>-->
   </div>
   <div class="content-container">
     <div class="content">
@@ -32,7 +32,7 @@
           </div>
         </div>
       </div>
-      <div class="post-content">{{ post?.content }}</div>
+      <div class="post-content" [innerHTML]="post?.content"></div>
       <div class="post-author">
         <div class="left"><img class="post-author-image" [src]="post?.author.image" alt="" /></div>
         <div class="right">
