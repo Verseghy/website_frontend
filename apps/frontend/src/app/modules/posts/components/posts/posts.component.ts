@@ -5,6 +5,7 @@ import { Post } from '../../../../models/Post'
 import { ActivatedRoute } from '@angular/router'
 import { ContrastService } from '../../../../services/contrast.service'
 import { map } from 'rxjs/operators'
+import { DomSanitizer } from '@angular/platform-browser'
 
 @Component({
   selector: 'verseghy-posts',
@@ -15,7 +16,11 @@ export class PostsComponent implements OnInit, OnDestroy {
   paramsSubscription: Subscription
   post: Post
 
-  constructor(private requestService: RequestService, private route: ActivatedRoute) {}
+  constructor(
+    private requestService: RequestService,
+    private route: ActivatedRoute,
+    private sanitizer: DomSanitizer
+  ) {}
 
   ngOnInit() {
     this.paramsSubscription = this.route.params.subscribe(x => {
