@@ -27,6 +27,7 @@ export class PostsComponent implements OnInit, OnDestroy {
             for (const i of Object.keys(y.labels)) {
               y.labels[i].isDark = ContrastService.getConstrast(y.labels[i].color)
             }
+            y.content = this.sanitizer.bypassSecurityTrustHtml(<string>y.content)
             return y
           })
         )
