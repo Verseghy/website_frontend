@@ -16,11 +16,7 @@ export class PostsComponent implements OnInit, OnDestroy {
   paramsSubscription: Subscription
   post: Post
 
-  constructor(
-    private requestService: RequestService,
-    private route: ActivatedRoute,
-    private sanitizer: DomSanitizer
-  ) {}
+  constructor(private requestService: RequestService, private route: ActivatedRoute, private sanitizer: DomSanitizer) {}
 
   ngOnInit() {
     this.paramsSubscription = this.route.params.subscribe(x => {
