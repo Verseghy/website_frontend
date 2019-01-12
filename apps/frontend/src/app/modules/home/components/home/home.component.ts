@@ -20,9 +20,4 @@ export class HomeComponent implements OnInit {
   trackByFn(item) {
     return item.id
   }
-
-  _onClick(id) {
-    // TODO: fix this
-    this.router.navigate(['posts', id])
-  }
 }

@@ -25,7 +25,8 @@
             "assets": [
               "apps/frontend/src/favicon.ico",
               "apps/frontend/src/assets",
-              "apps/frontend/src/manifest.json"
+              "apps/frontend/src/manifest.json",
+              "apps/frontend/src/.htaccess"
             ],
             "styles": [
               "apps/frontend/src/styles.scss"
@@ -49,7 +50,7 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "serviceWorker": true,
+              "serviceWorker": false,
               "budgets": [
                 {
                   "type": "initial",
