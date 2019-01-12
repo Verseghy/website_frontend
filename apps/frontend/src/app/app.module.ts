@@ -17,15 +17,7 @@ library.add(faCheck)
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    RoutingModule,
-    HttpClientModule,
-    FontAwesomeModule,
-    FormsModule,
-    NxModule.forRoot(),
-  ],
+  imports: [BrowserModule, BrowserAnimationsModule, RoutingModule, HttpClientModule, FontAwesomeModule, FormsModule, NxModule.forRoot()],
   providers: [],
   bootstrap: [AppComponent],
 })

@@ -1,5 +1,5 @@
 <div (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()" class="container">
-  <div *ngFor="let post of posts | async" class="post">
+  <div *ngFor="let post of (posts | async)" class="post">
     <div #content class="content">
       <div class="background"><img [src]="post.index_image.url" alt="" /></div>
       <div class="post-content">

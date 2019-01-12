@@ -24,7 +24,7 @@ export class RequestService {
       {
         index_image: {
           id: 0,
-          url: 'https://www.facebook.com/photo/download/?fbid=1050235181810846&ext=1547547255&hash=AeQfDg7Ckvj-4sHq'
+          url: 'https://www.facebook.com/photo/download/?fbid=1050235181810846&ext=1547547255&hash=AeQfDg7Ckvj-4sHq',
         },
         author: {
           id: 0,
@@ -32,22 +32,21 @@ export class RequestService {
           description: '',
           image: {
             id: 0,
-            url: '/assets/logo.svg'
+            url: '/assets/logo.svg',
           },
         },
         id: 0,
         title: 'Elindult az új honlapunk!',
-        description:
-          '',
+        description: '',
         labels: [{ id: 0, name: 'Fejlesztések', color: '#a66bbe' }, { id: 1, name: 'Weboldal', color: '#61c437' }],
         type: 0,
         color: '#FFF',
-        date: ''
+        date: '',
       },
       {
         index_image: {
           id: 0,
-          url: 'https://www.facebook.com/photo/download/?fbid=1050235181810846&ext=1547547255&hash=AeQfDg7Ckvj-4sHq'
+          url: 'https://www.facebook.com/photo/download/?fbid=1050235181810846&ext=1547547255&hash=AeQfDg7Ckvj-4sHq',
         },
         author: {
           id: 0,
@@ -55,22 +54,21 @@ export class RequestService {
           description: '',
           image: {
             id: 0,
-            url: '/assets/logo.svg'
+            url: '/assets/logo.svg',
           },
         },
         id: 0,
         title: 'Elindult az új honlapunk!',
-        description:
-          '',
+        description: '',
         labels: [{ id: 0, name: 'Fejlesztések', color: '#a66bbe' }, { id: 1, name: 'Weboldal', color: '#61c437' }],
         type: 0,
         color: '#FFF',
-        date: ''
+        date: '',
       },
       {
         index_image: {
           id: 0,
-          url: 'https://www.facebook.com/photo/download/?fbid=1050235181810846&ext=1547547255&hash=AeQfDg7Ckvj-4sHq'
+          url: 'https://www.facebook.com/photo/download/?fbid=1050235181810846&ext=1547547255&hash=AeQfDg7Ckvj-4sHq',
         },
         author: {
           id: 0,
@@ -78,17 +76,16 @@ export class RequestService {
           description: '',
           image: {
             id: 0,
-            url: '/assets/logo.svg'
+            url: '/assets/logo.svg',
           },
         },
         id: 0,
         title: 'Elindult az új honlapunk!',
-        description:
-          '',
+        description: '',
         labels: [{ id: 0, name: 'Fejlesztések', color: '#a66bbe' }, { id: 1, name: 'Weboldal', color: '#61c437' }],
         type: 0,
         color: '#FFF',
-        date: ''
+        date: '',
       },
     ]
     /* tslint:enable */
