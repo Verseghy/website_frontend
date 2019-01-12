@@ -11,6 +11,7 @@ import { ArchiveComponent } from './components/archive/archive.component'
 import { HistoryComponent } from './components/history/history.component'
 import { ClassesComponent } from './components/classes/classes.component'
 import { ColleaguesComponent } from './components/colleagues/colleagues.component'
+import { CanteenComponent } from '../canteen/components/canteen/canteen.component'
 
 library.add(faGithub, faLinkedin, faFileAlt)
 
@@ -47,7 +48,11 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  imports: [CommonModule, RouterModule.forChild(routes), FontAwesomeModule],
-  declarations: [AuthorsComponent, DocumentsComponent, ArchiveComponent, HistoryComponent, ClassesComponent, ColleaguesComponent],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    FontAwesomeModule,
+  ],
+  declarations: [AuthorsComponent, DocumentsComponent, ArchiveComponent, HistoryComponent, ClassesComponent, ColleaguesComponent, CanteenComponent],
 })
 export class MiscModule {}
