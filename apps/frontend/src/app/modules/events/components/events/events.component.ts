@@ -8,15 +8,7 @@ import { Settings } from '@verseghy/calendar'
 })
 export class EventsComponent implements OnInit {
   calendarSettings: Settings = {
-    shortDayNames: [
-      'Hé',
-      'Ke',
-      'Sze',
-      'Csüt',
-      'Pé',
-      'Szo',
-      'Vas'
-    ]
+    shortDayNames: ['Hé', 'Ke', 'Sze', 'Csüt', 'Pé', 'Szo', 'Vas'],
   }
 
   constructor() {}

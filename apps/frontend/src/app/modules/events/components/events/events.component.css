@@ -1,17 +1,17 @@
 .container {
-    max-width: 1200px;
-    padding: 0 20px;
-    margin: 0 auto;
+  max-width: 1200px;
+  padding: 0 20px;
+  margin: 0 auto;
 }
 
 .content {
-    background: #fff;
-    box-shadow: 0 3px 5px 0 rgba(0, 1, 1, 0.1);
-    padding: 40px 40px 48px;
-    margin-top: 20px;
+  background: #fff;
+  box-shadow: 0 3px 5px 0 rgba(0, 1, 1, 0.1);
+  padding: 40px 40px 48px;
+  margin-top: 20px;
 }
 
 .calendar {
-    min-height: 700px;
-    position: relative;
+  min-height: 700px;
+  position: relative;
 }

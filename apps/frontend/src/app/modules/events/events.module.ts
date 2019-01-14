@@ -12,11 +12,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    CalendarModule
-  ],
+  imports: [CommonModule, RouterModule.forChild(routes), CalendarModule],
   declarations: [EventsComponent],
 })
 export class EventsModule {}
