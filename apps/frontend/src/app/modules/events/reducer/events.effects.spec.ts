@@ -11,9 +11,7 @@ import { DataPersistence, NxModule } from '@nrwl/nx'
 import { EventsEffects } from './events.effects'
 import { HttpClient } from '@angular/common/http'
 
-const httpMock = {
-
-}
+const httpMock = {}
 
 describe('EventsEffects', () => {
   const actions: Observable<any> = of({})
@@ -22,8 +20,7 @@ describe('EventsEffects', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [NxModule.forRoot(), StoreModule.forRoot({}), EffectsModule.forRoot([])],
-      providers: [EventsEffects, DataPersistence, provideMockActions(() => actions),
-        { provide: HttpClient, useValue: httpMock}],
+      providers: [EventsEffects, DataPersistence, provideMockActions(() => actions), { provide: HttpClient, useValue: httpMock }],
     })
 
     effects = TestBed.get(EventsEffects)
