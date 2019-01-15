@@ -24,7 +24,7 @@ export class EventsEffects {
       }
     }),
     switchMap(data => data),
-    switchMap((data) => {
+    switchMap(data => {
       return of(new EventsLoaded(data))
     })
   )

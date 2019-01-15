@@ -10,18 +10,22 @@ export enum EventsActionTypes {
 
 export class MonthChange implements Action {
   readonly type = EventsActionTypes.MonthChange
-  constructor(public payload: {
-    year: number,
-    month: number
-  }) {}
+  constructor(
+    public payload: {
+      year: number
+      month: number
+    }
+  ) {}
 }
 
 export class AddLoadedMonth implements Action {
   readonly type = EventsActionTypes.AddLoadedMonth
-  constructor(public payload: {
-    year: number,
-    month: number
-  }) {}
+  constructor(
+    public payload: {
+      year: number
+      month: number
+    }
+  ) {}
 }
 
 export class EventsLoadError implements Action {
@@ -34,4 +38,4 @@ export class EventsLoaded implements Action {
   constructor(public payload: Entity[]) {}
 }
 
-export type EventsAction =  EventsLoaded | EventsLoadError | MonthChange | AddLoadedMonth
+export type EventsAction = EventsLoaded | EventsLoadError | MonthChange | AddLoadedMonth

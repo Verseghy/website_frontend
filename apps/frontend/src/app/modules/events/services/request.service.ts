@@ -5,19 +5,19 @@ import { HttpClient } from '@angular/common/http'
 import { environment } from '../../../../environments/environment'
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RequestService {
   private baseURL = environment.baseURL + '/events'
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  getEvents(month: {year: number, month: number}): Observable<Entity[]> {
+  getEvents(month: { year: number; month: number }): Observable<Entity[]> {
     return this.http.get<Entity[]>(this.baseURL + '/getEventsByMonth', {
-     params: {
-       'year': month.year.toString(),
-       'month': month.month.toString()
-     }
+      params: {
+        year: month.year.toString(),
+        month: month.month.toString(),
+      },
     })
   }
 }

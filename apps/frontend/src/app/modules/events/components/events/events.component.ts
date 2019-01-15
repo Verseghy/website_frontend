@@ -15,15 +15,26 @@ export class EventsComponent implements OnInit {
   calendarSettings: Settings = {
     shortDayNames: ['Hé', 'Ke', 'Sze', 'Csüt', 'Pé', 'Szo', 'Vas'],
     shortMonthNames: ['Jan', 'Febr', 'Márc', 'Ápr', 'Máj', 'Jún', 'Júl', 'Aug', 'Szept', 'Okt', 'Nov', 'Dec'],
-    monthNames: ['Január', 'Február', 'Március', 'Április', 'Május', 'Június', 'Július', 'Augusztus', 'Szeptember', 'Október', 'November', 'December'],
+    monthNames: [
+      'Január',
+      'Február',
+      'Március',
+      'Április',
+      'Május',
+      'Június',
+      'Július',
+      'Augusztus',
+      'Szeptember',
+      'Október',
+      'November',
+      'December',
+    ],
     today: 'Ma',
-    moreEvent: 'Több esemény'
+    moreEvent: 'Több esemény',
   }
   calendarEvents: Observable<Event[]>
 
-  constructor(
-    private store: Store<EventsState>
-  ) {}
+  constructor(private store: Store<EventsState>) {}
 
   ngOnInit() {
     this.calendarEvents = this.store.pipe(
@@ -31,21 +42,14 @@ export class EventsComponent implements OnInit {
       map((data: EventsState) => {
         let calendarEvents: Event[] = []
         for (const item of data.list) {
-          calendarEvents = [...calendarEvents, new Event(
-            item.id,
-            item.title,
-            item.description,
-            item.date_from,
-            item.date_to,
-            item.color
-          )]
+          calendarEvents = [...calendarEvents, new Event(item.id, item.title, item.description, item.date_from, item.date_to, item.color)]
         }
         return calendarEvents
       })
     )
   }
 
-  onMonthChange(value: {year: number, month: number}) {
+  onMonthChange(value: { year: number; month: number }) {
     value.month++
     this.store.dispatch(new MonthChange(value))
   }

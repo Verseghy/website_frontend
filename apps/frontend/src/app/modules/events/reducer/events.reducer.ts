@@ -14,8 +14,8 @@ export interface Entity {
 export interface EventsState {
   list: Entity[]
   loaded: boolean
-  error?: any,
-  loadedMonths: {year: number, month: number}[]
+  error?: any
+  loadedMonths: { year: number; month: number }[]
 }
 
 export interface EventsPartialState {
@@ -25,7 +25,7 @@ export interface EventsPartialState {
 export const initialState: EventsState = {
   list: [],
   loaded: false,
-  loadedMonths: []
+  loadedMonths: [],
 }
 
 export function eventsReducer(state: EventsState = initialState, action: EventsAction): EventsState {
@@ -33,7 +33,7 @@ export function eventsReducer(state: EventsState = initialState, action: EventsA
     case EventsActionTypes.MonthChange: {
       state = {
         ...state,
-        loaded: false
+        loaded: false,
       }
       break
     }
@@ -51,7 +51,7 @@ export function eventsReducer(state: EventsState = initialState, action: EventsA
       state = {
         ...state,
         loaded: true,
-        error: action.payload
+        error: action.payload,
       }
       break
     }
@@ -59,7 +59,7 @@ export function eventsReducer(state: EventsState = initialState, action: EventsA
     case EventsActionTypes.AddLoadedMonth: {
       state = {
         ...state,
-        loadedMonths: [...state.loadedMonths, action.payload]
+        loadedMonths: [...state.loadedMonths, action.payload],
       }
       break
     }
