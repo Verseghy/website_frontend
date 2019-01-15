@@ -1,10 +1,9 @@
-import { AfterViewInit, Component, ElementRef, HostListener, Input, OnInit } from '@angular/core'
+import { AfterViewInit, Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core'
 import { DisplayedEvent, Settings } from './calendar.interfaces'
 import { Event } from './lib/event'
 import { Cell } from './lib/cell'
 import { addMonths, differenceInDays, format, isAfter, isBefore, isEqual, subMonths } from 'date-fns'
 import { Renderer } from './lib/renderer'
-import { BehaviorSubject } from 'rxjs'
 
 @Component({
   selector: 'verseghy-calendar',
@@ -14,10 +13,10 @@ import { BehaviorSubject } from 'rxjs'
 export class CalendarComponent implements OnInit, AfterViewInit {
   private _date = new Date()
   public shortDayNames: string[]
-  public monthChange$ = new BehaviorSubject<any>({
-    year: this.date.getFullYear(),
-    month: this.date.getMonth(),
-  })
+  @Output() monthChanged = new EventEmitter<{
+    year: number,
+    month: number
+  }>()
   private _events: Event[] = []
   private _displayedEvents: DisplayedEvent[] = []
   private _renderer = new Renderer()
@@ -84,10 +83,15 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     this._generateEvents()
   }
 
-  public addEvent(event: Event) {
-    this._events.push(event)
+  @Input('events') public set events(events: Event[]) {
+    this._events = events
+    console.log(events)
     this._sortEventsArray()
     this._generateEvents()
+  }
+
+  public get events() {
+    return this._events
   }
 
   @HostListener('window:resize')
@@ -159,7 +163,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   private _changeMonth(): void {
     this._renderer.changeMonth(this._date)
     this._cells = this._renderer.getCells()
-    this.monthChange$.next({
+    this.monthChanged.emit({
       year: this.date.getFullYear(),
       month: this.date.getMonth(),
     })
