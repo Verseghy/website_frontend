@@ -5,6 +5,7 @@ import { Post } from '../../../../models/Post'
 import { ActivatedRoute } from '@angular/router'
 import { ContrastService } from '../../../../services/contrast.service'
 import { map } from 'rxjs/operators'
+import { DomSanitizer } from '@angular/platform-browser'
 
 @Component({
   selector: 'verseghy-posts',
@@ -15,7 +16,7 @@ export class PostsComponent implements OnInit, OnDestroy {
   paramsSubscription: Subscription
   post: Post
 
-  constructor(private requestService: RequestService, private route: ActivatedRoute) {}
+  constructor(private requestService: RequestService, private route: ActivatedRoute, private sanitizer: DomSanitizer) {}
 
   ngOnInit() {
     this.paramsSubscription = this.route.params.subscribe(x => {
@@ -26,6 +27,7 @@ export class PostsComponent implements OnInit, OnDestroy {
             for (const i of Object.keys(y.labels)) {
               y.labels[i].isDark = ContrastService.getConstrast(y.labels[i].color)
             }
+            y.content = this.sanitizer.bypassSecurityTrustHtml(<string>y.content)
             return y
           })
         )
