@@ -1,14 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  EventEmitter,
-  HostListener,
-  Input,
-  OnInit,
-  Output,
-  ViewChild,
-} from '@angular/core'
+import { AfterViewInit, Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild } from '@angular/core'
 import { DisplayedEvent, Settings } from '@verseghy/calendar'
 import { Event } from './lib/event'
 import { Cell } from './lib/cell'
