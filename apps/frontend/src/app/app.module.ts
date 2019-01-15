@@ -22,9 +22,6 @@ library.add(faCheck)
   declarations: [AppComponent, HeaderComponent, FooterComponent],
   imports: [
     BrowserModule,
-    ServiceWorkerModule.register('/ngsw-worker.js', {
-      enabled: environment.production,
-    }),
     BrowserAnimationsModule,
     RoutingModule,
     HttpClientModule,
