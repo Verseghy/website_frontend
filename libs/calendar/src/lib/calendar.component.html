@@ -1,30 +1,44 @@
 <div class="controls">
   <div class="middle">
-    <button (click)="prevMonth()" class="next">&lt;</button> <span class="month">{{ formatedDate }}</span>
-    <button (click)="nextMonth()" class="prev">&gt;</button>
+    <button class="next" (click)="prevMonth()">&lt;</button>
+    <span class="month">{{ formatedDate }}</span>
+    <button class="prev" (click)="nextMonth()">&gt;</button>
   </div>
-  <button (click)="now()" class="now">Now</button>
+  <button class="now" (click)="now()">{{ today }}</button>
 </div>
 <div class="grid">
-  <div class="cellElement header" *ngFor="let item of shortDayNames">
-    <span>{{ item }}</span>
-  </div>
-  <div #cellElement *ngFor="let cell of cells; trackBy: trackBy1" class="cellElement" [ngClass]="{ today: cell.today }">
+  <div class="cellElement header" *ngFor="let item of shortDayNames"><span>{{ item }}</span></div>
+  <div #cellElement *ngFor="let cell of cells; trackBy: trackBy1" class="cellElement" [ngClass]="{'today' : cell.today}">
     <span class="date">{{ cell.day }}</span>
     <div class="events">
-      <div
-        class="event"
-        *ngFor="let event of cell.renderedEvents; trackBy: trackBy2"
-        [ngStyle]="{ top: event.top, width: event.width, 'background-color': event.color }"
-        [ngClass]="{ more: event.more }"
-      >
+      <div class="event" *ngFor="let event of cell.renderedEvents; trackBy: trackBy2" [ngStyle]="{'top': event.top, 'width': event.width, 'background-color': event.color }" [ngClass]="{'more': event.more}" (click)="setEventDetailsPopup(event.id, $event)">
         <span>{{ event.title }}</span>
-        <verseghy-popup [event]="getEvent(event.id)"></verseghy-popup>
       </div>
-      <div class="event more" *ngIf="cell.moreEvents.length" [ngStyle]="{ top: cell.moreEventsTop }">
-        <span>{{ cell.moreEventsCount }} további</span>
-        <verseghy-popup [event]="getEvent(cell.moreEvents)" [moreEvents]="true"></verseghy-popup>
+      <div class="event more" *ngIf="cell.moreEventsVisible" [ngStyle]="{'top': cell.moreEventsTop}" (click)="setMoreEventsPopup(cell.date, cell.getEvents)">
+        <span>{{ cell.moreEventsText }}</span>
       </div>
     </div>
+  </div>
+</div>
+<div class="popup">
+  <div class="more-events" #moreEventsPopup [ngStyle]="{'margin-top': moreEventsPopupTop + 'px', 'margin-left': moreEventsPopupLeft + 'px'}" *ngIf="moreEventsPopupVisible" #moreEvents>
+    <div class="header">
+      <span class="day">{{ moreEventsPopupDay }}</span>
+      <h2 class="date">{{ moreEventsPopupDate }}</h2>
+      <span class="close" (click)="closeMoreEventsPopup()">x</span>
+    </div>
+    <div class="events">
+      <div class="event popup-event" *ngFor="let event of moreEventsPopupEvents" [ngStyle]="{'background-color': event.color }" (click)="setEventDetailsPopup(event.id, $event)"><span>{{ event.title }}</span></div>
+    </div>
+  </div>
+</div>
+<div class="popup">
+  <div class="eventDetails" [ngStyle]="{'margin-top': eventDetailsPopupTop + 'px', 'margin-left': eventDetailsPopupLeft + 'px'}" *ngIf="eventDetailsPopupVisible" #eventDetails>
+    <div class="header" [ngStyle]="{'background-color': eventDetailsPopupColor}">
+      <h2 class="title">{{ eventDetailsPopupTitle }}</h2>
+      <span class="close" (click)="closeEventDetailsPopup()">x</span>
+    </div>
+    <span class="date">{{ eventDetailsPopupDate }}</span>
+    <p class="description">{{ eventDetailsPopupDescription }}</p>
   </div>
 </div>
