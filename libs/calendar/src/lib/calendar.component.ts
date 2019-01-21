@@ -12,6 +12,7 @@ import { BehaviorSubject } from 'rxjs'
   styleUrls: ['./calendar.component.css'],
 })
 export class CalendarComponent implements OnInit, AfterViewInit {
+  private _date = new Date()
   public shortDayNames: string[]
   public monthChange$ = new BehaviorSubject<any>({
     year: this.date.getFullYear(),
@@ -28,8 +29,6 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   get cells() {
     return this._cells
   }
-
-  private _date = new Date()
 
   get date() {
     return this._date
