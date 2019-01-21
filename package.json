@@ -33,7 +33,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular-mdc/web": "^0.42.6",
+    "@angular-mdc/web": "^0.43.3",
     "@angular/animations": "^7.2.1",
     "@angular/common": "^7.2.1",
     "@angular/compiler": "^7.2.1",
