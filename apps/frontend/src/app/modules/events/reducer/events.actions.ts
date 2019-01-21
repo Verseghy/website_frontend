@@ -21,10 +21,7 @@ export class MonthChange implements Action {
 export class AddLoadedMonth implements Action {
   readonly type = EventsActionTypes.AddLoadedMonth
   constructor(
-    public payload: {
-      year: number
-      month: number
-    }
+    public payload: string
   ) {}
 }
 

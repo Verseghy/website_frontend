@@ -15,8 +15,8 @@ export class EventsEffects {
     ofType<MonthChange>(EventsActionTypes.MonthChange),
     withLatestFrom(this.store.pipe(select(EVENTS_FEATURE_KEY))),
     map(([action, storeState]) => {
-      if (!storeState.loadedMonths.includes(action.payload)) {
-        this.store.dispatch(new AddLoadedMonth(action.payload))
+      if (!storeState.loadedMonths.includes(JSON.stringify(action.payload))) {
+        this.store.dispatch(new AddLoadedMonth(JSON.stringify(action.payload)))
         return this.request.getEvents(action.payload)
       } else {
         const empty: Entity[] = []

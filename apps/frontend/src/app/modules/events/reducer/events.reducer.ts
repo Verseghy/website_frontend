@@ -15,7 +15,7 @@ export interface EventsState {
   list: Entity[]
   loaded: boolean
   error?: any
-  loadedMonths: { year: number; month: number }[]
+  loadedMonths: string[]
 }
 
 export interface EventsPartialState {
