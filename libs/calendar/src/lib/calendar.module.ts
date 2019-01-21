@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
-import { CalendarComponent } from '@verseghy/calendar'
+import { CalendarComponent } from './calendar.component'
 import { PopupComponent } from './popup/popup.component'
 
 @NgModule({

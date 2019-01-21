@@ -1,5 +1,5 @@
 import { format, getDate, getMonth } from 'date-fns'
-import { Settings } from '@verseghy/calendar'
+import { Settings } from '../calendar.interfaces'
 
 export class Cell {
   private _id: number

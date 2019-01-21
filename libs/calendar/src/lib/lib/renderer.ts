@@ -1,4 +1,4 @@
-import { DisplayedEvent, Settings } from '@verseghy/calendar'
+import { DisplayedEvent, Settings } from '../calendar.interfaces'
 import {
   addDays,
   differenceInDays,
