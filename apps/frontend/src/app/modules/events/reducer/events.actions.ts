@@ -20,9 +20,7 @@ export class MonthChange implements Action {
 
 export class AddLoadedMonth implements Action {
   readonly type = EventsActionTypes.AddLoadedMonth
-  constructor(
-    public payload: string
-  ) {}
+  constructor(public payload: string) {}
 }
 
 export class EventsLoadError implements Action {
