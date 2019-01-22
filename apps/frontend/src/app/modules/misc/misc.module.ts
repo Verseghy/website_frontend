@@ -6,7 +6,7 @@ import { RouterModule, Routes } from '@angular/router'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
-import { faFileAlt } from '@fortawesome/free-solid-svg-icons'
+import { faEnvelope, faFileAlt } from '@fortawesome/free-solid-svg-icons'
 import { ArchiveComponent } from './components/archive/archive.component'
 import { HistoryComponent } from './components/history/history.component'
 import { ClassesComponent } from './components/classes/classes.component'
@@ -20,7 +20,7 @@ import {
 } from './reducer/colleagues/colleagues.reducer'
 import { ColleaguesEffects } from './reducer/colleagues/colleagues.effects'
 
-library.add(faGithub, faLinkedin, faFileAlt)
+library.add(faGithub, faLinkedin, faFileAlt, faEnvelope)
 
 const routes: Routes = [
   {
