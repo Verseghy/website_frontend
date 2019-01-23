@@ -1,4 +1,4 @@
-import { DisplayedEvent } from '../ngx-calendar-lib.interfaces'
+import { DisplayedEvent } from '../calendar.interfaces'
 import {
   addDays,
   differenceInDays,

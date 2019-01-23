@@ -7,8 +7,7 @@
 .content {
   box-shadow: 0 3px 5px 0 rgba(0, 1, 1, 0.1);
   background-color: #fff;
-  padding: 30px;
-  padding-bottom: 54px;
+  padding: 30px 30px 54px;
   height: 100%;
   box-sizing: border-box;
   cursor: pointer;
