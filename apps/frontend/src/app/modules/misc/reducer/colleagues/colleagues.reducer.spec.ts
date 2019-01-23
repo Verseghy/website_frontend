@@ -15,14 +15,14 @@ describe('Colleagues Reducer', () => {
 
   describe('valid Colleagues actions ', () => {
     it('should return set the list of known Colleagues', () => {
-      const colleaguess = [createColleagues('PRODUCT-AAA'), createColleagues('PRODUCT-zzz')]
+      const colleaguess = [createColleagues(1, 'PRODUCT-AAA', 0), createColleagues(2, 'PRODUCT-zzz', 1)]
       const action = new ColleaguesLoaded(colleaguess)
       const result: ColleaguesState = colleaguesReducer(initialState, action)
-      const selId: string = getColleaguesId(result.list[1])
+      const selId: string = getColleaguesId(result.categories[0][0])
 
       expect(result.loaded).toBe(true)
-      expect(result.list.length).toBe(2)
-      expect(selId).toBe('PRODUCT-zzz')
+      expect(result.categories[0].length).toBe(1)
+      expect(selId).toBe(1)
     })
   })
 

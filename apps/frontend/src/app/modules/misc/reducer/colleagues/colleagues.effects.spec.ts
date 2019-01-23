@@ -9,6 +9,13 @@ import { provideMockActions } from '@ngrx/effects/testing'
 import { DataPersistence, NxModule } from '@nrwl/nx'
 
 import { ColleaguesEffects } from './colleagues.effects'
+import { ColleaguesService } from '../../services/colleagues.service'
+
+const ColleaguesServiceMock = {
+  getColleagues: () => {
+    return of([])
+  }
+}
 
 describe('ColleaguesEffects', () => {
   const actions: Observable<any> = of({})
@@ -17,7 +24,15 @@ describe('ColleaguesEffects', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [NxModule.forRoot(), StoreModule.forRoot({}), EffectsModule.forRoot([])],
-      providers: [ColleaguesEffects, DataPersistence, provideMockActions(() => actions)],
+      providers: [
+        ColleaguesEffects,
+        DataPersistence,
+        provideMockActions(() => actions),
+        {
+          provide: ColleaguesService,
+          useValue: ColleaguesServiceMock,
+        }
+      ],
     })
 
     effects = TestBed.get(ColleaguesEffects)
