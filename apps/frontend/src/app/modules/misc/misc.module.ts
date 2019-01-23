@@ -13,11 +13,7 @@ import { ClassesComponent } from './components/classes/classes.component'
 import { ColleaguesComponent } from './components/colleagues/colleagues.component'
 import { StoreModule } from '@ngrx/store'
 import { EffectsModule } from '@ngrx/effects'
-import {
-  COLLEAGUES_FEATURE_KEY,
-  colleaguesReducer,
-  initialState as colleaguesInitialState,
-} from './reducer/colleagues/colleagues.reducer'
+import { COLLEAGUES_FEATURE_KEY, colleaguesReducer, initialState as colleaguesInitialState } from './reducer/colleagues/colleagues.reducer'
 import { ColleaguesEffects } from './reducer/colleagues/colleagues.effects'
 
 library.add(faGithub, faLinkedin, faFileAlt, faEnvelope)

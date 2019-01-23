@@ -14,7 +14,7 @@ import { ColleaguesService } from '../../services/colleagues.service'
 const ColleaguesServiceMock = {
   getColleagues: () => {
     return of([])
-  }
+  },
 }
 
 describe('ColleaguesEffects', () => {
@@ -31,7 +31,7 @@ describe('ColleaguesEffects', () => {
         {
           provide: ColleaguesService,
           useValue: ColleaguesServiceMock,
-        }
+        },
       ],
     })
 

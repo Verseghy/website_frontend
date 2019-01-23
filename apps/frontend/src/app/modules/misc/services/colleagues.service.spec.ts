@@ -5,7 +5,7 @@ import { of } from 'rxjs'
 import { HttpClient } from '@angular/common/http'
 
 const HttpMock = {
-  get: () => of([])
+  get: () => of([]),
 }
 
 describe('ColleaguesService', () => {
