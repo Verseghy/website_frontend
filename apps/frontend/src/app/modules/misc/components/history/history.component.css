@@ -17,12 +17,6 @@
   font-weight: 900;
 }
 
-:host {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-
 h2 {
   font-size: 30px;
 }
