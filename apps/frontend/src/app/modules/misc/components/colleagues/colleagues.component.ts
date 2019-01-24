@@ -1,6 +1,9 @@
 import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core'
-import { fromEvent, interval, Subscription } from 'rxjs'
-import { debounce } from 'rxjs/operators'
+import { fromEvent, interval, Observable, Subscription } from 'rxjs'
+import { debounce, map } from 'rxjs/operators'
+import { select, Store } from '@ngrx/store'
+import { COLLEAGUES_FEATURE_KEY, ColleaguesState, Entity } from '../../reducer/colleagues/colleagues.reducer'
+import { LoadColleagues } from '../../reducer/colleagues/colleagues.actions'
 
 @Component({
   selector: 'verseghy-colleagues',
@@ -12,10 +15,28 @@ export class ColleaguesComponent implements OnInit, OnDestroy, AfterViewInit {
   currentScrollPosition: number | null
   private _scrollSubscriber: Subscription
   private _visibleCards: Array<boolean> = []
+  categories: string[] = [
+    'Vezetőség',
+    'Tanárok',
+    'Óraadók',
+    'Gazdasági-, adminisztratív- és technikai dolgozóink',
+    'Konyhai dolgozók',
+    'Takarítók',
+    'Karbantartók',
+  ]
+  colleagues: Observable<Entity[][]>
 
-  constructor() {}
+  constructor(private store: Store<ColleaguesState>) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.store.dispatch(new LoadColleagues())
+    this.colleagues = this.store.pipe(
+      select(COLLEAGUES_FEATURE_KEY),
+      map((state: ColleaguesState) => {
+        return state.categories
+      })
+    )
+  }
 
   ngAfterViewInit() {
     setTimeout(() => {

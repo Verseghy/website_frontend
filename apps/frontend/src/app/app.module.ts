@@ -12,12 +12,28 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import { FormsModule } from '@angular/forms'
 import { NxModule } from '@nrwl/nx'
+import { StoreModule } from '@ngrx/store'
+import { StoreDevtoolsModule } from '@ngrx/store-devtools'
+import { EffectsModule } from '@ngrx/effects'
 
 library.add(faCheck)
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent],
-  imports: [BrowserModule, BrowserAnimationsModule, RoutingModule, HttpClientModule, FontAwesomeModule, FormsModule, NxModule.forRoot()],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    RoutingModule,
+    HttpClientModule,
+    FontAwesomeModule,
+    FormsModule,
+    NxModule.forRoot(),
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+    }),
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
