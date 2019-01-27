@@ -21,8 +21,8 @@ const routes: Routes = [
   },
   {
     path: 'canteen',
-    loadChildren: './modules/canteen/canteen.module#CanteenModule'
-  }
+    loadChildren: './modules/canteen/canteen.module#CanteenModule',
+  },
 ]
 
 @NgModule({

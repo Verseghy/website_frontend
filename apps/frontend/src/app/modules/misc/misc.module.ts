@@ -48,11 +48,15 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    FontAwesomeModule,
+  imports: [CommonModule, RouterModule.forChild(routes), FontAwesomeModule],
+  declarations: [
+    AuthorsComponent,
+    DocumentsComponent,
+    ArchiveComponent,
+    HistoryComponent,
+    ClassesComponent,
+    ColleaguesComponent,
+    CanteenComponent,
   ],
-  declarations: [AuthorsComponent, DocumentsComponent, ArchiveComponent, HistoryComponent, ClassesComponent, ColleaguesComponent, CanteenComponent],
 })
 export class MiscModule {}

@@ -7,14 +7,13 @@ import { map } from 'rxjs/operators'
 @Component({
   selector: 'verseghy-canteen',
   templateUrl: './canteen.component.html',
-  styleUrls: ['./canteen.component.scss']
+  styleUrls: ['./canteen.component.scss'],
 })
 export class CanteenComponent implements OnInit {
-
   thisWeek: Entity[]
   nextWeek: Entity[]
 
-  constructor(private store: Store<CanteenState>) { }
+  constructor(private store: Store<CanteenState>) {}
 
   ngOnInit() {
     this.store.dispatch(new LoadCanteen())

@@ -32,7 +32,7 @@ library.add(faCheck)
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
-    })
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

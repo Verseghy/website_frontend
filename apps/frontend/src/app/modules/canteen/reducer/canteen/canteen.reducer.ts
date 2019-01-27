@@ -54,11 +54,10 @@ export function canteenReducer(state: CanteenState = initialState, action: Cante
   switch (action.type) {
     case CanteenActionTypes.CanteenLoaded: {
       const processedCanteens: WeekCanteen[] = [{}, {}]
-      for (const week of [0,1])
-      {
+      for (const week of [0, 1]) {
         for (const day of action.payload[week]) {
           const dayOfWeek = getDay(day.date)
-          processedCanteens[week][dayOfWeek] = day;
+          processedCanteens[week][dayOfWeek] = day
         }
       }
 

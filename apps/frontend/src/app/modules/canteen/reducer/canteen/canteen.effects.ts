@@ -12,10 +12,10 @@ export class CanteenEffects {
     switchMap(() => {
       return this.canteenService.getCanteen()
     }),
-    map((data) => {
+    map(data => {
       return new CanteenLoaded(data)
     }),
-    catchError((error) => {
+    catchError(error => {
       return of(new CanteenLoadError(error))
     })
   )
