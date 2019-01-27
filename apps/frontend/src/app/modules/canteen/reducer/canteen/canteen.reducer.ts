@@ -1,4 +1,5 @@
 import { CanteenAction, CanteenActionTypes } from './canteen.actions'
+import { getDay } from 'date-fns'
 
 export const CANTEEN_FEATURE_KEY = 'canteen'
 
@@ -24,8 +25,18 @@ export interface Entity {
   date: string
 }
 
+export interface WeekCanteen {
+  0?: Entity
+  1?: Entity
+  2?: Entity
+  3?: Entity
+  4?: Entity
+  5?: Entity
+  6?: Entity
+}
+
 export interface CanteenState {
-  canteen: Entity[][]
+  canteen: WeekCanteen[]
   loaded: boolean // has the Canteen list been loaded
   error?: any // last none error (if any)
 }
@@ -42,9 +53,18 @@ export const initialState: CanteenState = {
 export function canteenReducer(state: CanteenState = initialState, action: CanteenAction): CanteenState {
   switch (action.type) {
     case CanteenActionTypes.CanteenLoaded: {
+      const processedCanteens: WeekCanteen[] = [{}, {}]
+      for (const week of [0,1])
+      {
+        for (const day of action.payload[week]) {
+          const dayOfWeek = getDay(day.date)
+          processedCanteens[week][dayOfWeek] = day;
+        }
+      }
+
       state = {
         ...state,
-        canteen: action.payload,
+        canteen: processedCanteens,
         loaded: true,
       }
       break
