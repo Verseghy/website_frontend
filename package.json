@@ -74,7 +74,7 @@
     "@ngrx/store-devtools": "^7.1.0",
     "@nrwl/builders": "7.4.1",
     "@nrwl/schematics": "7.4.1",
-    "@types/jasmine": "~3.3.5",
+    "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/jest": "^23.3.12",
     "@types/node": "^10.12.18",
