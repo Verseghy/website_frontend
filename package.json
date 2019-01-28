@@ -90,7 +90,7 @@
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.0",
     "ngrx-store-freeze": "0.2.4",
-    "prettier": "1.15.3",
+    "prettier": "1.16.1",
     "protractor": "~5.4.2",
     "ts-node": "~7.0.0",
     "tslint": "~5.12.0",
