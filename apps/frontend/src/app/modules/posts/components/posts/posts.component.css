@@ -40,11 +40,9 @@
 
 .container {
   max-width: 1500px;
-  margin: 0 auto;
-  margin-top: 30px;
-  padding: 0 20px;
+  margin: 30px auto 0;
   display: flex;
-  padding-bottom: 5px;
+  padding: 0 20px 5px;
 }
 
 .share-container {
@@ -62,8 +60,7 @@
 .share > div {
   width: 33px;
   height: 33px;
-  margin: 2px 0;
-  margin-bottom: 10px;
+  margin: 2px 0 10px;
   cursor: pointer;
 }
 
@@ -163,7 +160,12 @@ h1 {
   margin-bottom: 30px;
 }
 
-.post-content >>> h1, >>> h2, >>> h3, >>> h4, >>> h5, >>> h6 {
+.post-content >>> h1,
+>>> h2,
+>>> h3,
+>>> h4,
+>>> h5,
+>>> h6 {
   margin-bottom: 15px;
   margin-top: 50px;
 }
