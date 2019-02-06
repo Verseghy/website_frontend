@@ -12,20 +12,16 @@ import { CanteenEffects } from './canteen.effects'
 import { CanteenService } from '../../services/canteen.service'
 
 const CanteenServiceMock = {
-  getCanteen: () => of([], [])
+  getCanteen: () => of([], []),
 }
 
 describe('CanteenEffects', () => {
-  let actions: Observable<any>
+  const actions: Observable<any> = of({})
   let effects: CanteenEffects
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        NxModule.forRoot(),
-        StoreModule.forRoot({}),
-        EffectsModule.forRoot([])
-      ],
+      imports: [NxModule.forRoot(), StoreModule.forRoot({}), EffectsModule.forRoot([])],
       providers: [
         CanteenEffects,
         DataPersistence,
@@ -33,7 +29,7 @@ describe('CanteenEffects', () => {
         {
           provide: CanteenService,
           useValue: CanteenServiceMock,
-        }
+        },
       ],
     })
 

@@ -16,11 +16,11 @@ describe('Canteen Reducer', () => {
 
   describe('valid Canteen actions ', () => {
     it('should return set the list of known Canteen', () => {
-      const now = new Date();
-      const monday = setDay(now, 1);
-      const friday = setDay(now, 5);
+      const now = new Date()
+      const monday = setDay(now, 1)
+      const friday = setDay(now, 5)
 
-      const canteens = [[createCanteen(1,friday.toDateString()), createCanteen(2,monday.toDateString())], []]
+      const canteens = [[createCanteen(1, friday.toDateString()), createCanteen(2, monday.toDateString())], []]
       const action = new CanteenLoaded(canteens)
       const result: CanteenState = canteenReducer(initialState, action)
       const selId: string = getCanteenId(result.canteen[0][1])
@@ -28,7 +28,6 @@ describe('Canteen Reducer', () => {
       expect(result.loaded).toBe(true)
       expect(result.canteen.length).toBe(2)
       expect(selId).toBe(2)
-
     })
   })
 
