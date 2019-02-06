@@ -13,8 +13,8 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import { FormsModule } from '@angular/forms'
 import { NxModule } from '@nrwl/nx'
 import { StoreModule } from '@ngrx/store'
-import { EffectsModule } from '@ngrx/effects'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
+import { EffectsModule } from '@ngrx/effects'
 
 library.add(faCheck)
 
