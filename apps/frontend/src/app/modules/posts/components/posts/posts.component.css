@@ -121,7 +121,7 @@ h1 {
   color: #111111;
   font-family: 'Lato', serif;
   font-weight: 700;
-  font-size: 40px;
+  font-size: 3.5em;
   line-height: 1.2;
 }
 
@@ -132,7 +132,7 @@ h1 {
 
 .author-image {
   width: 24px;
-  height: 24px;
+  height: auto;
   border-radius: 50%;
   margin-right: 4px;
   vertical-align: middle;
@@ -154,8 +154,18 @@ h1 {
 }
 
 .post-content {
-  color: #5e5e5e;
-  line-height: 1.5;
+  color: #000000;
+  line-height: 1.6;
+  font-size: 1.3em;
+}
+
+.post-content >>> p {
+  margin-bottom: 30px;
+}
+
+.post-content >>> h1, >>> h2, >>> h3, >>> h4, >>> h5, >>> h6 {
+  margin-bottom: 15px;
+  margin-top: 50px;
 }
 
 .sidebar {
@@ -200,7 +210,7 @@ h4 {
 .post-author-image {
   border-radius: 50%;
   width: 80px;
-  height: 80px;
+  height: auto;
 }
 
 @media screen and (max-width: 992px) {
@@ -263,7 +273,7 @@ h4 {
     margin: 0 auto;
     display: block;
     width: 100px;
-    height: 100px;
+    height: auto;
   }
 
   h4 {
