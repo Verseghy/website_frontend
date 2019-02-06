@@ -1,4 +1,4 @@
-import { DisplayedEvent } from '../calendar.interfaces'
+import { DisplayedEvent, Settings } from '../calendar.interfaces'
 import {
   addDays,
   differenceInDays,
@@ -22,10 +22,11 @@ import { Cell } from './cell'
 import { ElementRef } from '@angular/core'
 
 export class Renderer {
-  public HostElementRef: ElementRef
   private _date = new Date()
   private _cells: Cell[] = []
   private _events: DisplayedEvent[] = []
+  private _settings: Settings
+  public HostElementRef: ElementRef
 
   public renderEvents(): void {
     const firstCellDate = this._getFirstCellDate()
@@ -77,7 +78,6 @@ export class Renderer {
   public changeMonth(date: Date): void {
     this._date = date
     this._generateCells()
-    this.renderEvents()
   }
 
   public setEvents(events: DisplayedEvent[]): void {
@@ -88,18 +88,12 @@ export class Renderer {
     return this._cells
   }
 
-  public resize(): void {
-    for (const item of this._cells) {
-      item.maxRows = this._getMaxVisibleRows()
-    }
-  }
-
   private _generateCells(): Cell[] {
     this._clearCells()
     const rows = this._getRowsInMonth()
     const firstCellDate = this._getFirstCellDate()
     for (let i = 0; i < 7 * rows; i++) {
-      const cell = new Cell(i, isToday(addDays(firstCellDate, i)), addDays(firstCellDate, i), this._getMaxVisibleRows())
+      const cell = new Cell(i, isToday(addDays(firstCellDate, i)), addDays(firstCellDate, i), this._getMaxVisibleRows(), this._settings)
       this._cells.push(cell)
     }
     return this._cells
@@ -126,7 +120,7 @@ export class Renderer {
     const lastCellDate = this._getLastCellDate()
     return (
       isAfter(format(item.startDate, 'YYYY-MM-DD'), format(subDays(firstCellDate, 1), 'YYYY-MM-DD')) &&
-      isBefore(format(item.endDate, 'YYYY-MM-DD'), format(lastCellDate, 'YYYY-MM-DD'))
+      isBefore(format(item.endDate, 'YYYY-MM-DD'), format(addDays(lastCellDate, 1), 'YYYY-MM-DD'))
     )
   }
 
@@ -164,5 +158,15 @@ export class Renderer {
     const height = (this.HostElementRef.nativeElement.offsetHeight - 68) / this._getRowsInMonth() - 32
     const maxRows = Math.floor(height / 24)
     return maxRows
+  }
+
+  public resize(): void {
+    for (const item of this._cells) {
+      item.maxRows = this._getMaxVisibleRows()
+    }
+  }
+
+  set settings(settings: Settings) {
+    this._settings = settings
   }
 }

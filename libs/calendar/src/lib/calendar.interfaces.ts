@@ -8,4 +8,8 @@ export interface DisplayedEvent {
 
 export interface Settings {
   shortDayNames?: string[]
+  shortMonthNames?: string[]
+  monthNames?: string[]
+  today?: string
+  moreEvent?: string
 }

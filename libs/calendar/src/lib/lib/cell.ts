@@ -1,4 +1,5 @@
-import { format, getDate } from 'date-fns'
+import { format, getDate, getMonth } from 'date-fns'
+import { Settings } from '../calendar.interfaces'
 
 export class Cell {
   private _id: number
@@ -11,48 +12,29 @@ export class Cell {
     color: string
     placeholder: boolean
   }[] = []
+  private _date: Date
+  private _today: boolean
+  private _maxRows: number
+  private _moreEventsTop: string
+  private _moreEventsCount = 0
+  private _settings: Settings
+  private _moreEventsVisible: boolean
 
-  constructor(id: number, today: boolean, date: Date, maxRows: number) {
+  constructor(id: number, today: boolean, date: Date, maxRows: number, settings: Settings) {
     this._id = id
     this._today = today
     this._date = date
     this._maxRows = maxRows
+    this._settings = settings
   }
 
-  private _date: Date
-
-  get date(): Date {
-    return this._date
-  }
-
-  private _today: boolean
-
-  get today(): boolean {
-    return this._today
-  }
-
-  private _maxRows: number
-
-  set maxRows(rows: number) {
-    this._maxRows = rows
-  }
-
-  private _moreEvents: number[] = []
-
-  get moreEvents(): number[] {
-    return this._moreEvents
-  }
-
-  private _moreEventsTop: string
-
-  get moreEventsTop(): string {
-    return this._moreEventsTop
-  }
-
-  private _moreEventsCount = 0
-
-  get moreEventsCount(): number {
-    return this._moreEventsCount
+  public getRow(width: number): number {
+    for (const item of Object.keys(this._rows)) {
+      if (this._rows[item].width <= width) {
+        return Number(item) + 1
+      }
+    }
+    return this._rows.length + 1
   }
 
   get firstFreeRow(): number {
@@ -66,9 +48,40 @@ export class Cell {
 
   get day(): string {
     if (getDate(this._date) === 1) {
-      return format(this._date, 'MMM. D')
+      return this._settings.shortMonthNames[getMonth(this._date)] + format(this._date, '. D')
     }
     return format(this._date, 'D')
+  }
+
+  get today(): boolean {
+    return this._today
+  }
+
+  get date(): Date {
+    return this._date
+  }
+
+  get getEvents(): number[] {
+    const events = []
+    for (const item of this._rows) {
+      if (!item.free) {
+        events.push({ id: item.id, order: item.row })
+      }
+    }
+    return events
+  }
+
+  get moreEventsVisible(): boolean {
+    return this._moreEventsVisible
+  }
+
+  get moreEventsTop(): string {
+    return this._moreEventsTop
+  }
+
+  get moreEventsText(): string {
+    const text = this._settings.moreEvent
+    return text.replace('{count}', String(this._moreEventsCount))
   }
 
   get renderedEvents() {
@@ -104,25 +117,15 @@ export class Cell {
       }
     }
     if (moreEvents) {
+      this._moreEventsVisible = true
       this._moreEventsTop = (this._maxRows - 1) * 24 + 'px'
       this._moreEventsCount = moreEvents
-      this._moreEvents = []
-      for (const item of this._rows) {
-        if (!item.free) {
-          this._moreEvents.push(item.id)
-        }
-      }
     }
     return events
   }
 
-  public getRow(width: number): number {
-    for (const item of Object.keys(this._rows)) {
-      if (this._rows[item].width <= width) {
-        return Number(item) + 1
-      }
-    }
-    return this._rows.length + 1
+  set maxRows(rows: number) {
+    this._maxRows = rows
   }
 
   public push(id: number, row: number, title: string, width: number, color: string, placeholder: boolean) {
