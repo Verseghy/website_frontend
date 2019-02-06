@@ -3,16 +3,6 @@ import { getDay } from 'date-fns'
 
 export const CANTEEN_FEATURE_KEY = 'canteen'
 
-/**
- * Interface for the 'Canteen' data used in
- *  - CanteenState, and
- *  - canteenReducer
- *
- *  Note: replace if already defined in another module
- */
-
-/* tslint:disable:no-empty-interface */
-
 export class Menu {
   id: number
   menu: string

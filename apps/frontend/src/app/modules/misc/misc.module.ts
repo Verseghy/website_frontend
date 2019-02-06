@@ -13,7 +13,11 @@ import { ClassesComponent } from './components/classes/classes.component'
 import { ColleaguesComponent } from './components/colleagues/colleagues.component'
 import { StoreModule } from '@ngrx/store'
 import { EffectsModule } from '@ngrx/effects'
-import { COLLEAGUES_FEATURE_KEY, colleaguesReducer, initialState as colleaguesInitialState } from './reducer/colleagues/colleagues.reducer'
+import {
+  COLLEAGUES_FEATURE_KEY,
+  colleaguesReducer,
+  initialState as colleaguesInitialState,
+} from './reducer/colleagues/colleagues.reducer'
 import { ColleaguesEffects } from './reducer/colleagues/colleagues.effects'
 
 library.add(faGithub, faLinkedin, faFileAlt, faEnvelope)
@@ -58,13 +62,6 @@ const routes: Routes = [
     StoreModule.forFeature(COLLEAGUES_FEATURE_KEY, colleaguesReducer, { initialState: colleaguesInitialState }),
     EffectsModule.forFeature([ColleaguesEffects]),
   ],
-  declarations: [
-    AuthorsComponent,
-    DocumentsComponent,
-    ArchiveComponent,
-    HistoryComponent,
-    ClassesComponent,
-    ColleaguesComponent,
-  ],
+  declarations: [AuthorsComponent, DocumentsComponent, ArchiveComponent, HistoryComponent, ClassesComponent, ColleaguesComponent],
 })
 export class MiscModule {}
