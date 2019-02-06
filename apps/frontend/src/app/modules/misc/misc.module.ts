@@ -58,7 +58,6 @@ const routes: Routes = [
     StoreModule.forFeature(COLLEAGUES_FEATURE_KEY, colleaguesReducer, { initialState: colleaguesInitialState }),
     EffectsModule.forFeature([ColleaguesEffects]),
   ],
-
   declarations: [
     AuthorsComponent,
     DocumentsComponent,
