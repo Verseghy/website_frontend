@@ -24,7 +24,7 @@ export class RequestService {
       {
         index_image: {
           id: 0,
-          url: 'https://www.facebook.com/photo/download/?fbid=1050235181810846&ext=1547547255&hash=AeQfDg7Ckvj-4sHq',
+          url: 'https://images.pexels.com/photos/160107/pexels-photo-160107.jpeg',
         },
         author: {
           id: 0,
@@ -39,14 +39,14 @@ export class RequestService {
         title: 'Elindult az új honlapunk!',
         description: '',
         labels: [{ id: 0, name: 'Fejlesztések', color: '#a66bbe' }, { id: 1, name: 'Weboldal', color: '#61c437' }],
-        type: 0,
+        type: '0',
         color: '#FFF',
         date: '',
       },
       {
         index_image: {
           id: 0,
-          url: 'https://www.facebook.com/photo/download/?fbid=1050235181810846&ext=1547547255&hash=AeQfDg7Ckvj-4sHq',
+          url: 'https://images.pexels.com/photos/160107/pexels-photo-160107.jpeg',
         },
         author: {
           id: 0,
@@ -61,14 +61,14 @@ export class RequestService {
         title: 'Elindult az új honlapunk!',
         description: '',
         labels: [{ id: 0, name: 'Fejlesztések', color: '#a66bbe' }, { id: 1, name: 'Weboldal', color: '#61c437' }],
-        type: 0,
+        type: '0',
         color: '#FFF',
         date: '',
       },
       {
         index_image: {
           id: 0,
-          url: 'https://www.facebook.com/photo/download/?fbid=1050235181810846&ext=1547547255&hash=AeQfDg7Ckvj-4sHq',
+          url: 'https://images.pexels.com/photos/160107/pexels-photo-160107.jpeg',
         },
         author: {
           id: 0,
@@ -83,7 +83,7 @@ export class RequestService {
         title: 'Elindult az új honlapunk!',
         description: '',
         labels: [{ id: 0, name: 'Fejlesztések', color: '#a66bbe' }, { id: 1, name: 'Weboldal', color: '#61c437' }],
-        type: 0,
+        type: '0',
         color: '#FFF',
         date: '',
       },
