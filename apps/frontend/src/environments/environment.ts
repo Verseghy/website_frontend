@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   hmr: true,
-  baseURL: 'https://api.vfghonlap.twodcube.xyz/api',
+  baseURL: 'https://backend.verseghy-gimnazium.net/api',
 }
 
 /*

@@ -1,5 +1,5 @@
 <div
-  *ngIf="post.type === 0"
+  *ngIf="post.type === '0'"
   [ngClass]="{ dark: post.backgroundDark }"
   [ngStyle]="{ 'background-color': post.color }"
   [routerLink]="['/posts/' + post.id]"
@@ -24,7 +24,7 @@
 </div>
 <div
   class="content"
-  *ngIf="post.type === 1"
+  *ngIf="post.type === '2'"
   [ngStyle]="{ 'background-color': post.color }"
   [ngClass]="{ dark: post.backgroundDark }"
   [routerLink]="['/posts/' + post.id]"
@@ -46,7 +46,7 @@
     <p>{{ post.date }}</p>
   </div>
 </div>
-<div class="content type2" *ngIf="post.type === 2" [routerLink]="['/posts/' + post.id]">
+<div class="content type2" *ngIf="post.type === '1'" [routerLink]="['/posts/' + post.id]">
   <div class="bg-image"><img class="bgimg" [src]="post.index_image" alt="" /></div>
   <div class="label-container">
     <span

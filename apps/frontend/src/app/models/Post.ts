@@ -11,7 +11,7 @@ export interface Post {
   index_image: Image
   labels?: Label[]
   title: string
-  type: number
+  type: string
   backgroundDark?: boolean
 }
 

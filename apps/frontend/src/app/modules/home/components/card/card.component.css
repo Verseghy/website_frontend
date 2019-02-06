@@ -11,6 +11,7 @@
   height: 100%;
   box-sizing: border-box;
   cursor: pointer;
+  min-height: 300px;
 }
 
 .label-container {
@@ -68,7 +69,7 @@
 
 .authorimg {
   width: 24px;
-  height: 24px;
+  height: auto;
   border-radius: 50%;
   display: inline-block;
   vertical-align: middle;

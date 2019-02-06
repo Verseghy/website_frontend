@@ -1,1 +1,11 @@
-<p>Feltöltés alatt</p>
+<div class="container">
+  <div class="content">
+    <h2>Események</h2>
+    <verseghy-calendar
+      (monthChanged)="onMonthChange($event)"
+      [events]="calendarEvents | async"
+      class="calendar"
+      [settings]="calendarSettings"
+    ></verseghy-calendar>
+  </div>
+</div>

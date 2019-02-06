@@ -11,7 +11,10 @@ import { ArchiveComponent } from './components/archive/archive.component'
 import { HistoryComponent } from './components/history/history.component'
 import { ClassesComponent } from './components/classes/classes.component'
 import { ColleaguesComponent } from './components/colleagues/colleagues.component'
-import { CanteenComponent } from '../canteen/components/canteen/canteen.component'
+import { StoreModule } from '@ngrx/store'
+import { EffectsModule } from '@ngrx/effects'
+import { COLLEAGUES_FEATURE_KEY, colleaguesReducer, initialState as colleaguesInitialState } from './reducer/colleagues/colleagues.reducer'
+import { ColleaguesEffects } from './reducer/colleagues/colleagues.effects'
 
 library.add(faGithub, faLinkedin, faFileAlt, faEnvelope)
 
@@ -48,7 +51,14 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  imports: [CommonModule, RouterModule.forChild(routes), FontAwesomeModule],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    FontAwesomeModule,
+    StoreModule.forFeature(COLLEAGUES_FEATURE_KEY, colleaguesReducer, { initialState: colleaguesInitialState }),
+    EffectsModule.forFeature([ColleaguesEffects]),
+  ],
+
   declarations: [
     AuthorsComponent,
     DocumentsComponent,
@@ -56,7 +66,6 @@ const routes: Routes = [
     HistoryComponent,
     ClassesComponent,
     ColleaguesComponent,
-    CanteenComponent,
   ],
 })
 export class MiscModule {}
