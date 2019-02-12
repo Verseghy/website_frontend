@@ -40,38 +40,38 @@ jobs:
     docker:
       - image: circleci/node:10-browsers
 
-      working_directory: ~/repo
+    working_directory: ~/repo
 
-      steps:
-        - checkout
-        - run: npm run nx affected:test -- --all
+    steps:
+      - checkout
+      - run: npm run nx affected:test -- --all
 
   test-format:
     docker:
       - image: circleci/node:10-browsers
 
-      working_directory: ~/repo
+    working_directory: ~/repo
 
-      steps:
-        - checkout
-        - run: npm run nx format:check
+    steps:
+      - checkout
+      - run: npm run nx format:check
 
   test-build:
     docker:
       - image: circleci/node:10-browsers
 
-      working_directory: ~/repo
+    working_directory: ~/repo
 
-      steps:
-        - checkout
-        - run: npm run nx affected:build -- --all --prod
+    steps:
+      - checkout
+      - run: npm run nx affected:build -- --all --prod
 
   test-test:
     docker:
       - image: circleci/node:10-browsers
 
-      working_directory: ~/repo
+    working_directory: ~/repo
 
-      steps:
-        - checkout
-        - run: npm run affected:test -- --all
+    steps:
+      - checkout
+      - run: npm run affected:test -- --all
