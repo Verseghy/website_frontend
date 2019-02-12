@@ -16,7 +16,15 @@ workflows:
       - test-test:
           requires:
             - dependencies
-      # deploy requires approval
+      - deploy-frontend:
+          requires:
+            - test-lint
+            - test-format
+            - test-build
+            - test-test
+          #filters:
+          #  branches:
+          #    only: master
 jobs:
   dependencies:
     docker:
@@ -77,6 +85,10 @@ jobs:
             - dependencies-{{ checksum "package.json" }}
             - dependencies-
       - run: npm run nx affected:build -- --all --prod
+      - save_cache:
+          paths:
+            - dist
+          key: dist-{{ .Revision }}
 
   test-test:
     docker:
@@ -91,3 +103,15 @@ jobs:
             - dependencies-{{ checksum "package.json" }}
             - dependencies-
       - run: npm run affected:test -- --all
+
+  deploy-frontend:
+    machine:
+      enabled: true
+    steps:
+      - add_ssh_keys:
+            fingerprints:
+              - "c0:27:a5:27:4d:c1:62:42:af:c8:2d:b1:90:c2:65:d1"
+      - restore_cache:
+          keys:
+            - dist-{{ .Revision }}
+      - run: ./deploy.sh
