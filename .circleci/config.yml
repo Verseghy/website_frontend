@@ -4,18 +4,18 @@ workflows:
   build_test_and_deploy:
     jobs:
       - dependencies
-      - test-lint
-        requires:
-          - dependencies
-      - test-format
-        requires:
-          - dependencies
-      - test-build
-        requires:
-          - dependencies
-      - test-test
-        requires:
-          - dependencies
+      - test-lint:
+          requires:
+            - dependencies
+      - test-format:
+          requires:
+            - dependencies
+      - test-build:
+          requires:
+            - dependencies
+      - test-test:
+          requires:
+            - dependencies
       # deploy requires approval
 jobs:
   dependencies:
