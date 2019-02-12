@@ -44,6 +44,10 @@ jobs:
 
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - dependencies-{{ checksum "package.json" }}
+            - dependencies-
       - run: npm run nx affected:test -- --all
 
   test-format:
@@ -54,6 +58,10 @@ jobs:
 
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - dependencies-{{ checksum "package.json" }}
+            - dependencies-
       - run: npm run nx format:check
 
   test-build:
@@ -64,6 +72,10 @@ jobs:
 
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - dependencies-{{ checksum "package.json" }}
+            - dependencies-
       - run: npm run nx affected:build -- --all --prod
 
   test-test:
@@ -74,4 +86,8 @@ jobs:
 
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - dependencies-{{ checksum "package.json" }}
+            - dependencies-
       - run: npm run affected:test -- --all
