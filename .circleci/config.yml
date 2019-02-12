@@ -22,9 +22,9 @@ workflows:
             - test-format
             - test-build
             - test-test
-          #filters:
-          #  branches:
-          #    only: master
+          filters:
+            branches:
+             only: master
 jobs:
   dependencies:
     docker:
