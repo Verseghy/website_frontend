@@ -118,4 +118,5 @@ jobs:
       - restore_cache:
           keys:
             - dist-{{ .Revision }}
-      - run: ./deploy.sh
+      - run: shopt -s dotglob
+      - run: rsync -avz --delete ./dist/apps/frontend/ sowpch@verseghy-gimnazium.net:/home/sowpch/beta.verseghy-gimnazium.net/
