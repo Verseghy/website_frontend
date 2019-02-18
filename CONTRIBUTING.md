@@ -41,7 +41,6 @@ Must be one of the following:
 The scope should be the name of project affected.
 
 The following is the list of supported scopes:
-
 * **frontend**
 * **math-competition**
 * **calendar**
