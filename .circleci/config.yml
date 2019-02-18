@@ -1,0 +1,122 @@
+version: 2
+workflows:
+  version: 2
+  build_test_and_deploy:
+    jobs:
+      - dependencies
+      - test-lint:
+          requires:
+            - dependencies
+      - test-format:
+          requires:
+            - dependencies
+      - test-build:
+          requires:
+            - dependencies
+      - test-test:
+          requires:
+            - dependencies
+      - deploy-frontend:
+          requires:
+            - test-lint
+            - test-format
+            - test-build
+            - test-test
+          filters:
+            branches:
+             only: master
+jobs:
+  dependencies:
+    docker:
+      - image: circleci/node:10-browsers
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - dependencies-{{ checksum "package.json" }}
+            - dependencies-
+      - run: npm install
+      - save_cache:
+          paths:
+            - node_modules
+          key: dependencies-{{ checksum "package.json" }}
+
+  test-lint:
+    docker:
+      - image: circleci/node:10-browsers
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - dependencies-{{ checksum "package.json" }}
+            - dependencies-
+      - run: npm run nx affected:test -- --all
+
+  test-format:
+    docker:
+      - image: circleci/node:10-browsers
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - dependencies-{{ checksum "package.json" }}
+            - dependencies-
+      - run: npm run nx format:check
+
+  test-build:
+    docker:
+      - image: circleci/node:10-browsers
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - dependencies-{{ checksum "package.json" }}
+            - dependencies-
+      - run: npm run nx affected:build -- --all --prod
+      - save_cache:
+          paths:
+            - dist
+          key: dist-{{ .Revision }}
+
+  test-test:
+    docker:
+      - image: circleci/node:10-browsers
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - dependencies-{{ checksum "package.json" }}
+            - dependencies-
+      - run: npm run affected:test -- --all
+
+  deploy-frontend:
+    machine:
+      enabled: true
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+      - add_ssh_keys:
+            fingerprints:
+              - "c0:27:a5:27:4d:c1:62:42:af:c8:2d:b1:90:c2:65:d1"
+      - restore_cache:
+          keys:
+            - dist-{{ .Revision }}
+      - run: shopt -s dotglob
+      - run: rsync -avz --delete ./dist/apps/frontend/ sowpch@verseghy-gimnazium.net:/home/sowpch/beta.verseghy-gimnazium.net/
