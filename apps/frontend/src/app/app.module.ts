@@ -15,6 +15,7 @@ import { NxModule } from '@nrwl/nx'
 import { StoreModule } from '@ngrx/store'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 import { EffectsModule } from '@ngrx/effects'
+import { LoadersCssModule } from 'angular2-loaders-css'
 
 library.add(faCheck)
 
@@ -33,6 +34,7 @@ library.add(faCheck)
     StoreDevtoolsModule.instrument({
       maxAge: 25,
     }),
+    LoadersCssModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

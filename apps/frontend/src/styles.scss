@@ -1,3 +1,5 @@
+@import "node_modules/loaders.css/src/loaders";
+
 * {
   margin: 0;
   padding: 0;
@@ -14,4 +16,18 @@ body {
   background-color: #f3f3f3;
   font-family: Cabin, serif;
   font-size: 16px;
+}
+
+.pacman > div:nth-child(1),
+.pacman > div:nth-child(2) {
+  border-top: 25px solid #E0E0E0;
+  border-left: 25px solid #E0E0E0;
+  border-bottom: 25px solid #E0E0E0;
+}
+
+.pacman > div:nth-child(3),
+.pacman > div:nth-child(4),
+.pacman > div:nth-child(5),
+.pacman > div:nth-child(6) {
+  background-color: #E0E0E0;
 }

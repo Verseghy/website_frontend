@@ -1,5 +1,6 @@
-import { Component } from '@angular/core'
+import { AfterViewInit, Component } from '@angular/core'
 import { animate, group, query, style, transition, trigger } from '@angular/animations'
+import { NavigationCancel, NavigationEnd, NavigationStart, Router } from '@angular/router'
 
 @Component({
   selector: 'verseghy-root',
@@ -46,6 +47,23 @@ import { animate, group, query, style, transition, trigger } from '@angular/anim
     ]),
   ],
 })
-export class AppComponent {
-  constructor() {}
+export class AppComponent implements AfterViewInit {
+
+  loaded = false;
+  constructor(private router: Router) {
+  }
+
+  ngAfterViewInit(): void {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        this.loaded = false
+      } else if (
+        event instanceof NavigationEnd ||
+        event instanceof NavigationCancel
+      ) {
+        this.loaded = false
+      }
+    })
+  }
+
 }
