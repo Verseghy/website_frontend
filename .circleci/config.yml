@@ -16,12 +16,17 @@ workflows:
       - test-test:
           requires:
             - dependencies
+      - test-e2e:
+          requires:
+            - dependencies
+            - test-build
       - deploy-frontend:
           requires:
             - test-lint
             - test-format
             - test-build
             - test-test
+            - test-e2e
           filters:
             branches:
              only: master
@@ -89,6 +94,20 @@ jobs:
           paths:
             - dist
           key: dist-{{ .Revision }}
+
+  test-e2e:
+    docker:
+      - image: circleci/node:10-browsers
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - dependencies-{{ checksum "package.json" }}
+            - dependencies-
+      - run: npm run nx affected:e2e -- --all --prod --headless
 
   test-test:
     docker:
