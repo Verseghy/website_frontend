@@ -42,7 +42,7 @@ jobs:
           keys:
             - dependencies-{{ checksum "package.json" }}
             - dependencies-
-      - run: npm install
+      - run: CYPRESS_INSTALL_BINARY=0 npm install
       - save_cache:
           paths:
             - node_modules
