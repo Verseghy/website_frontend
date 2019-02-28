@@ -47,6 +47,7 @@ jobs:
       - save_cache:
           paths:
             - node_modules
+            - /home/circleci/.cache/
           key: dependencies-{{ checksum "package.json" }}
 
   test-lint:
