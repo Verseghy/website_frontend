@@ -16,12 +16,16 @@ workflows:
       - test-test:
           requires:
             - dependencies
-      - deploy-frontend:
+      - test-e2e:
           requires:
+            - dependencies
             - test-lint
             - test-format
             - test-build
             - test-test
+      - deploy-frontend:
+          requires:
+            - test-e2e
           filters:
             branches:
              only: master
@@ -38,7 +42,7 @@ jobs:
           keys:
             - dependencies-{{ checksum "package.json" }}
             - dependencies-
-      - run: npm install
+      - run: CYPRESS_INSTALL_BINARY=0 npm install
       - save_cache:
           paths:
             - node_modules
@@ -89,6 +93,21 @@ jobs:
           paths:
             - dist
           key: dist-{{ .Revision }}
+
+  test-e2e:
+    docker:
+      - image: circleci/node:10-browsers
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - dependencies-{{ checksum "package.json" }}
+            - dependencies-
+      - run: ./node_modules/.bin/cypress install
+      - run: npm run nx affected:e2e -- --all --prod --headless
 
   test-test:
     docker:
