@@ -271,5 +271,17 @@
     "defaultCollection": "@nrwl/schematics",
     "packageManager": "npm"
   },
-  "defaultProject": "frontend"
+  "defaultProject": "frontend",
+  "schematics": {
+    "@nrwl/schematics:library": {
+      "unitTestRunner": "karma"
+    },
+    "@nrwl/schematics:application": {
+      "unitTestRunner": "karma",
+      "e2eTestRunner": "protractor"
+    },
+    "@nrwl/schematics:node-application": {
+      "framework": "express"
+    }
+  }
 }
