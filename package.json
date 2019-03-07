@@ -14,6 +14,8 @@
     "build:frontend": "ng build --project=frontend --prod",
     "start:math-competition": "ng serve --project=math-competition",
     "build:math-competition": "ng build --project=math-competition --prod",
+    "start:videoplayer-demo": "ng serve --project=videoplayer-demo",
+    "build:videoplayer-demo": "ng build --project=videoplayer-demo --prod",
     "affected:apps": "./node_modules/.bin/nx affected:apps",
     "affected:libs": "./node_modules/.bin/nx affected:libs",
     "affected:build": "./node_modules/.bin/nx affected:build",

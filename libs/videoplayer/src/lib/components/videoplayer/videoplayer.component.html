@@ -1,0 +1,25 @@
+<video #video
+  (timeupdate)="onTimeUpdate($event)"
+  (click)="videoClick()"
+  (loadedmetadata)="onLoadedmetadata()"
+  (dblclick)="dblclick()"
+  (pause)="onPause()"
+  (play)="onPlay()"
+>
+  <source [src]="source"/>
+</video>
+<verseghy-controls class="controls" 
+  (onChangeTime)="onTimeChange($event)"
+  (onChangeVolume)="onChangeVolume($event)"
+  (onQualityChange)="onQualityChange($event)"
+  [duration]="duration"
+  [time]="time"
+  [host]="host"
+  [qualities]="qualities"
+  [buffers]="buffers"
+  [video]="video"
+  [paused]="paused"
+  [fullscreen]="fullscreen"
+  [color]="color"
+>
+</verseghy-controls>

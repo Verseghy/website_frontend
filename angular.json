@@ -28,9 +28,7 @@
               "apps/frontend/src/manifest.json",
               "apps/frontend/src/.htaccess"
             ],
-            "styles": [
-              "apps/frontend/src/styles.scss"
-            ],
+            "styles": ["apps/frontend/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -81,14 +79,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "apps/frontend/tsconfig.app.json",
-              "apps/frontend/tsconfig.spec.json",
-              "apps/frontend/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "tsConfig": ["apps/frontend/tsconfig.app.json", "apps/frontend/tsconfig.spec.json", "apps/frontend/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**"]
           }
         },
         "test": {
@@ -122,9 +114,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "apps/frontend-e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
@@ -153,9 +143,7 @@
               "apps/math-competition/src/assets",
               "apps/math-competition/src/manifest.json"
             ],
-            "styles": [
-              "apps/math-competition/src/styles.scss"
-            ],
+            "styles": ["apps/math-competition/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -210,9 +198,7 @@
               "apps/math-competition/tsconfig.spec.json",
               "apps/math-competition/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "test": {
@@ -246,9 +232,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "apps/math-competition-e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
@@ -262,13 +246,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "libs/calendar/tsconfig.lib.json",
-              "libs/calendar/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "tsConfig": ["libs/calendar/tsconfig.lib.json", "libs/calendar/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**"]
           }
         },
         "test": {
@@ -277,6 +256,145 @@
             "jestConfig": "libs/calendar/jest.config.js",
             "tsConfig": "libs/calendar/tsconfig.spec.json",
             "setupFile": "libs/calendar/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "videoplayer": {
+      "root": "libs/videoplayer",
+      "sourceRoot": "libs/videoplayer/src",
+      "projectType": "library",
+      "prefix": "verseghy",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["libs/videoplayer/tsconfig.lib.json", "libs/videoplayer/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "libs/videoplayer/jest.config.js",
+            "tsConfig": "libs/videoplayer/tsconfig.spec.json",
+            "setupFile": "libs/videoplayer/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "videoplayer-demo": {
+      "root": "apps/videoplayer-demo/",
+      "sourceRoot": "apps/videoplayer-demo/src",
+      "projectType": "application",
+      "prefix": "verseghy",
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "style": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/videoplayer-demo",
+            "index": "apps/videoplayer-demo/src/index.html",
+            "main": "apps/videoplayer-demo/src/main.ts",
+            "polyfills": "apps/videoplayer-demo/src/polyfills.ts",
+            "tsConfig": "apps/videoplayer-demo/tsconfig.app.json",
+            "assets": ["apps/videoplayer-demo/src/favicon.ico", "apps/videoplayer-demo/src/assets"],
+            "styles": ["apps/videoplayer-demo/src/styles.scss"],
+            "scripts": [],
+            "es5BrowserSupport": true
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/videoplayer-demo/src/environments/environment.ts",
+                  "with": "apps/videoplayer-demo/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "videoplayer-demo:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "videoplayer-demo:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "videoplayer-demo:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/videoplayer-demo/tsconfig.app.json", "apps/videoplayer-demo/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "apps/videoplayer-demo/jest.config.js",
+            "tsConfig": "apps/videoplayer-demo/tsconfig.spec.json",
+            "setupFile": "apps/videoplayer-demo/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "videoplayer-demo-e2e": {
+      "root": "apps/videoplayer-demo-e2e",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "apps/videoplayer-demo-e2e/protractor.conf.js",
+            "devServerTarget": "videoplayer-demo:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "videoplayer-demo:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/videoplayer-demo-e2e/tsconfig.e2e.json",
+            "exclude": ["**/node_modules/**"]
           }
         }
       }

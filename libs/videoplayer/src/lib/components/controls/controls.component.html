@@ -1,0 +1,44 @@
+<button class="play" *ngIf="playButtonVisible" (click)="playVideo()">
+    <fa-icon [icon]="['fas','play']"></fa-icon>
+</button>
+<button class="pause" *ngIf="pauseButtonVisible" (click)="pauseVideo()">
+  <fa-icon [icon]="['fas','pause']"></fa-icon>
+</button>
+<div class="progress-bar">
+  <div class="progress-bg">
+      <div class="progress" [ngStyle]="{'background-color': color, 'width.%': progressBarWidth}" ></div>
+      <div class="buffer" *ngFor="let buffer of buffersArray" [ngStyle]="{'left.%': buffer.left, 'width.%': buffer.width}"></div>
+      <div class="progress-dot" [ngStyle]="{'background-color': color, 'left.%': progressBarWidth}"></div>
+  </div>
+  <input type="range" min="0" max="1" step="0.0001" [value]="time" class="slider" [(ngModel)]="progressSliderValue" class="progress-slider" (input)="changeProgress($event)" (change)="changeProgress($event)">
+</div>
+<span class="time">{{ timeLeft }}</span>
+<button class="volume-down" *ngIf="volumeButtonVisible" (click)="mute()">
+  <fa-icon [icon]="['fas','volume-down']"></fa-icon>
+</button>
+<button class="volume-mute" *ngIf="muteButtonVisible" (click)="unmute()">
+  <fa-icon [icon]="['fas','volume-mute']"></fa-icon>
+</button>
+<div class="volume-bar">
+  <div class="volume-bg">
+      <div class="volume" [ngStyle]="{'background-color': color, 'width.%': volumeBarWidth}" ></div>
+      <div class="volume-dot" [ngStyle]="{'background-color': color, 'left.%': volumeBarWidth}" #volumeDot></div>
+  </div>
+  <input type="range" min="0" max="1" value="0.5" step="0.001" class="slider" class="volume-slider" [(ngModel)]="volumeSliderValue" (input)="changeVolume($event)">
+</div>
+<button class="settings" (click)="toggleSettingsMenu()" #settingsButton>
+  <fa-icon [icon]="['fas','cog']"></fa-icon>
+</button>
+<div class="quality" *ngIf="settingsMenu" #settingsMenu>
+  <span class="head">Minőség</span>
+  <div *ngFor="let item of qualities" (click)="setQuality(item)">
+    <fa-icon [icon]="['fas', 'check']" *ngIf="item == activeQuality"></fa-icon>
+    <span>{{ item }}</span>
+  </div>
+</div>
+<button class="fullscreen" *ngIf="fullscreenButtonVisible" (click)="toggleFullscreen()">
+  <fa-icon [icon]="['fas','expand']"></fa-icon>
+</button>
+<button class="exit-fullscreen" *ngIf="exitFullscreenButtonVisible" (click)="toggleFullscreen()">
+  <fa-icon [icon]="['fas','compress']"></fa-icon>
+</button>

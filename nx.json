@@ -22,6 +22,15 @@
     },
     "calendar": {
       "tags": []
+    },
+    "videoplayer": {
+      "tags": []
+    },
+    "videoplayer-demo": {
+      "tags": []
+    },
+    "videoplayer-demo-e2e": {
+      "tags": []
     }
   }
 }
