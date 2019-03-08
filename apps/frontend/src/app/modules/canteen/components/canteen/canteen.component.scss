@@ -1,0 +1,140 @@
+$breakpoints: (
+        xs: 576px,
+        sm: 768px,
+        md: 992px,
+        lg: 1200px,
+        xl: 1600px,
+);
+
+@mixin respond-above($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+    @media (min-width: $breakpoint-value) {
+      @content;
+    }
+  } @else {
+    @warn 'Invalid breakpoint: #{$breakpoint}.';
+  }
+}
+
+@mixin respond-below($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+    @media (max-width: ($breakpoint-value - 1)) {
+      @content;
+    }
+  } @else {
+    @warn 'Invalid breakpoint: #{$breakpoint}.';
+  }
+}
+
+@mixin respond-between($lower, $upper) {
+  @if map-has-key($breakpoints, $lower) and map-has-key($breakpoints, $upper) {
+    $lower-breakpoint: map-get($breakpoints, $lower);
+    $upper-breakpoint: map-get($breakpoints, $upper);
+
+    @media (min-width: $lower-breakpoint) and (max-width: ($upper-breakpoint - 1)) {
+      @content;
+    }
+  } @else {
+    @if (map-has-key($breakpoints, $lower) == false) {
+      @warn 'Your lower breakpoint was invalid: #{$lower}.';
+    }
+
+    @if (map-has-key($breakpoints, $upper) == false) {
+      @warn 'Your upper breakpoint was invalid: #{$upper}.';
+    }
+  }
+}
+
+:host {
+  height: 100%;
+  //background-color: blue;
+  box-sizing: border-box;
+  padding: 20px;
+  margin: auto;
+  display: grid;
+  grid-template-rows: 40px 1fr;
+  grid-row-gap: 15px;
+
+  @include respond-above(xl) {
+    width: 1600px;
+  }
+
+  @include respond-below(xs) {
+    width: 100vw
+  }
+
+  @include respond-between(xs, sm) {
+    width: 576px;
+  }
+
+  @include respond-between(sm, md) {
+    width: 768px;
+  }
+
+  @include respond-between(md, lg) {
+    width: 992px;
+  }
+
+  @include respond-between(lg, xl) {
+    width: 1200px
+  }
+
+  .text {
+    //background-color: white;
+    width: 60%;
+    height: 100%;
+    margin: auto;
+    text-align: center;
+    box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.75);
+    background-color: white;
+  }
+
+  .table {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 50px repeat(5, 140px);
+    grid-auto-flow: column;
+
+    @include respond-below(sm) {
+      grid-template-columns: 1fr;
+      grid-template-rows: 50px repeat(5, 140px) 50px repeat(5, 140px);
+    }
+
+    .menu-header {
+      //background-color: aqua;
+      //border: 2px solid black;
+      box-sizing: border-box;
+      padding: 10px;
+      text-align: center;
+
+      * {
+        margin: auto;
+      }
+    }
+
+    .menu {
+      //background-color: coral;
+      //border: 2px solid black;
+      box-sizing: border-box;
+      padding: 10px;
+      .text {
+
+      }
+
+    }
+
+    .col1 {
+      grid-column: 1;
+    }
+
+    .col2 {
+      grid-column: 2;
+    }
+  }
+}
+// TODO: Fix scrolling issue
+// TODO: Move media queries to separate file

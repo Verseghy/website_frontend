@@ -1,1 +1,19 @@
-<p>canteen works!</p>
+<h1 class="text">Menza</h1>
+<div class="table">
+    <ng-container *ngFor="let week of [0, 1]">
+        <div class="menu-header">
+            <h2 class="text">{{week_prefixes[week]}}</h2>
+        </div>
+        <div class="menu" *ngFor="let day of [1,2,3,4,5]">
+            <div class="text">
+                <h2>{{weekdays[day-1]}}</h2>
+                <ng-container *ngIf="(canteen|async)[week][day] as thisDay">
+                    <p *ngFor="let meal of thisDay.menus">
+                        {{meal.menu}}
+                    </p>
+                </ng-container>
+            </div>
+        </div>
+    </ng-container>
+</div>
+
