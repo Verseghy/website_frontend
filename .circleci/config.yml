@@ -60,7 +60,7 @@ jobs:
           keys:
             - dependencies-{{ checksum "package.json" }}
             - dependencies-
-      - run: npm run nx affected:test -- --all
+      - run: npm run nx affected:lint -- --all
 
   test-format:
     docker:
