@@ -6,7 +6,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { ControlsComponent } from './components/controls/controls.component'
 import { FormsModule } from '@angular/forms'
 import { ProgressbarComponent } from './components/progressbar/progressbar.component'
-import { VideoService } from './services/video.service'
+import { VideoService } from './services/video.service';
+import { PlayPauseButtonComponent } from './components/play-pause-button/play-pause-button.component'
 
 @NgModule({
   imports: [
@@ -18,7 +19,7 @@ import { VideoService } from './services/video.service'
     ]),
     FontAwesomeModule,
   ],
-  declarations: [VideoplayerComponent, ControlsComponent, ProgressbarComponent],
+  declarations: [VideoplayerComponent, ControlsComponent, ProgressbarComponent, PlayPauseButtonComponent],
   exports: [VideoplayerComponent],
   providers: [VideoService],
 })

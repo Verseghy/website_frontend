@@ -91,10 +91,12 @@ export class VideoplayerComponent implements OnInit {
 
   onPlay() {
     this.paused = false
+    this.videoService.paused$.next(false)
   }
 
   onPause() {
     this.paused = true
+    this.videoService.paused$.next(true)
   }
 
   @HostListener('fullscreenchange')

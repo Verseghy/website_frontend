@@ -40,8 +40,6 @@ export class ControlsComponent implements OnInit, OnChanges {
   activeQuality = '1080p60'
   @HostBinding('class.settingsMenuOpen') settingsMenu = false
 
-  pauseButtonVisible = true
-  playButtonVisible = false
   fullscreenButtonVisible = true
   exitFullscreenButtonVisible = false
   volumeButtonVisible = true
@@ -61,16 +59,6 @@ export class ControlsComponent implements OnInit, OnChanges {
       this.timeLeft = this._formatTime(Math.round(this.duration - this.video.currentTime))
     }
 
-    if ('paused' in changes) {
-      if (this.paused) {
-        this.pauseButtonVisible = false
-        this.playButtonVisible = true
-      } else {
-        this.pauseButtonVisible = true
-        this.playButtonVisible = false
-      }
-    }
-
     if ('fullscreen' in changes) {
       if (this.fullscreen) {
         this.fullscreenButtonVisible = false
@@ -80,19 +68,6 @@ export class ControlsComponent implements OnInit, OnChanges {
         this.exitFullscreenButtonVisible = false
       }
     }
-  }
-
-  playVideo() {
-    const playPromise = this.video.play()
-    if (playPromise !== null) {
-      playPromise.catch(() => {
-        this.video.play()
-      })
-    }
-  }
-
-  pauseVideo() {
-    this.video.pause()
   }
 
   changeVolume(event: any) {
@@ -159,7 +134,7 @@ export class ControlsComponent implements OnInit, OnChanges {
     switch (event.code) {
       case 'Space':
       case 'KeyK':
-        this.video.paused ? this.playVideo() : this.pauseVideo()
+        this.video.paused ? this.video.play() : this.video.pause()
         break
 
       case 'KeyF':

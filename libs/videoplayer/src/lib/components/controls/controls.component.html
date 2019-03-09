@@ -1,9 +1,4 @@
-<button class="play" *ngIf="playButtonVisible" (click)="playVideo()">
-  <fa-icon [icon]="['fas', 'play']"></fa-icon>
-</button>
-<button class="pause" *ngIf="pauseButtonVisible" (click)="pauseVideo()">
-  <fa-icon [icon]="['fas', 'pause']"></fa-icon>
-</button>
+<verseghy-play-pause-button></verseghy-play-pause-button>
 <verseghy-progressbar></verseghy-progressbar>
 <span class="time">{{ timeLeft }}</span>
 <button class="volume-down" *ngIf="volumeButtonVisible" (click)="mute()">

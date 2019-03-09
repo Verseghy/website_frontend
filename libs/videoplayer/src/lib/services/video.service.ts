@@ -9,6 +9,7 @@ export class VideoService {
   buffers$: BehaviorSubject<Buffer[]> = new BehaviorSubject([])
   duration$: Subject<number> = new Subject()
   video: HTMLVideoElement
+  paused$: BehaviorSubject<boolean> = new BehaviorSubject(true)
 
   constructor() {}
 }

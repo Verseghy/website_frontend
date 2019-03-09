@@ -1,0 +1,16 @@
+button {
+  padding: 0;
+  color: #fff;
+  display: inline-block;
+  font-size: 18px;
+  height: 48px;
+  width: 36px;
+  vertical-align: middle;
+  cursor: pointer;
+  background: 0;
+  border: 0;
+}
+
+button:focus {
+  outline: 0;
+}

@@ -1,0 +1,6 @@
+<button class="play" *ngIf="buttonVisible$ | async" (click)="playVideo()">
+  <fa-icon [icon]="['fas', 'play']"></fa-icon>
+</button>
+<button class="pause" *ngIf="!(buttonVisible$ | async)" (click)="pauseVideo()">
+  <fa-icon [icon]="['fas', 'pause']"></fa-icon>
+</button>
