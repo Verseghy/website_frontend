@@ -28,7 +28,7 @@ export class ControlsComponent implements OnInit, OnChanges {
   @Input() video: HTMLVideoElement
   @Input() duration: number
   @Input() paused: boolean
-  @Input() isFullscreen: boolean
+  @Input() fullscreen: boolean
   @Input() color: boolean
   @Input() time: number
   @ViewChild('settingsMenu') settingsMenuElement: ElementRef
@@ -71,8 +71,8 @@ export class ControlsComponent implements OnInit, OnChanges {
       }
     }
 
-    if ('isFullscreen' in changes) {
-      if (this.isFullscreen) {
+    if ('fullscreen' in changes) {
+      if (this.fullscreen) {
         this.fullscreenButtonVisible = false
         this.exitFullscreenButtonVisible = true
       } else {
@@ -101,7 +101,7 @@ export class ControlsComponent implements OnInit, OnChanges {
   }
 
   toggleFullscreen() {
-    if (this.isFullscreen) {
+    if (this.fullscreen) {
       this.document.exitFullscreen()
     } else {
       this.host.nativeElement.requestFullscreen()
