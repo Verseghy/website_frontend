@@ -99,9 +99,10 @@
       "prefix": "",
       "architect": {
         "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
+          "builder": "@nrwl/builders:cypress",
           "options": {
-            "protractorConfig": "apps/frontend-e2e/protractor.conf.js",
+            "cypressConfig": "apps/frontend-e2e/cypress.json",
+            "tsConfig": "apps/frontend-e2e/tsconfig.e2e.json",
             "devServerTarget": "frontend:serve"
           },
           "configurations": {
@@ -217,9 +218,10 @@
       "prefix": "",
       "architect": {
         "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
+          "builder": "@nrwl/builders:cypress",
           "options": {
-            "protractorConfig": "apps/math-competition-e2e/protractor.conf.js",
+            "cypressConfig": "apps/math-competition-e2e/cypress.json",
+            "tsConfig": "apps/math-competition-e2e/tsconfig.e2e.json",
             "devServerTarget": "math-competition:serve"
           },
           "configurations": {
