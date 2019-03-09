@@ -1,52 +1,52 @@
 :host {
-    position: relative;
+  position: relative;
 }
 
 .progress-slider {
-    box-sizing: border-box;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: 5px;
-    z-index: 10;
-    opacity: 0;
-    display: block;
-    width: calc(100% - 10px);
-    cursor: pointer;
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 5px;
+  z-index: 10;
+  opacity: 0;
+  display: block;
+  width: calc(100% - 10px);
+  cursor: pointer;
 }
 
 .progress-bg {
-    position: relative;
-    background: grey;
-    height: 4px;
-    margin: 22px 10px;
-    border-radius: 2px;
+  position: relative;
+  background: grey;
+  height: 4px;
+  margin: 22px 10px;
+  border-radius: 2px;
 }
 
 .progress,
 .buffer {
-    position: absolute;
-    height: 4px;
-    width: 0;
-    border-radius: 2px;
-    z-index: 3;
+  position: absolute;
+  height: 4px;
+  width: 0;
+  border-radius: 2px;
+  z-index: 3;
 }
 
 .buffer {
-    width: 50%;
-    z-index: 2;
-    background: white;
+  width: 50%;
+  z-index: 2;
+  background: white;
 }
 
 .progress-dot {
-    width: 15px;
-    height: 15px;
-    position: absolute;
-    border-radius: 50%;
-    margin-top: -5px;
-    left: -7.5px;
-    z-index: 3;
-    transform: translateX(-7.5px);
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  border-radius: 50%;
+  margin-top: -5px;
+  left: -7.5px;
+  z-index: 3;
+  transform: translateX(-7.5px);
 }

@@ -7,10 +7,10 @@
   (pause)="onPause()"
   (play)="onPlay()"
 >
-  <source [src]="source"/>
+  <source [src]="source" />
 </video>
 <verseghy-controls
-  class="controls" 
+  class="controls"
   (onQualityChange)="onQualityChange($event)"
   [duration]="duration"
   [time]="time"

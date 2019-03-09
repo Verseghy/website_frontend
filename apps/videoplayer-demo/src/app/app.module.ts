@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core'
 import { AppComponent } from './app.component'
 import { NxModule } from '@nrwl/nx'
 import { RouterModule } from '@angular/router'
-import { VideoplayerModule } from '@verseghy/videoplayer';
+import { VideoplayerModule } from '@verseghy/videoplayer'
 
 @NgModule({
   declarations: [AppComponent],

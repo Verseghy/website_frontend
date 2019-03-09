@@ -1,34 +1,28 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, Inject, HostListener} from '@angular/core';
-import { DOCUMENT } from '@angular/common';
-import { VideoService } from '../../services/video.service';
-import { Buffer } from '../../videoplayer.interface';
-import { BehaviorSubject } from 'rxjs';
+import { Component, OnInit, Input, ViewChild, ElementRef, Inject, HostListener } from '@angular/core'
+import { DOCUMENT } from '@angular/common'
+import { VideoService } from '../../services/video.service'
+import { Buffer } from '../../videoplayer.interface'
 
 @Component({
   selector: 'verseghy-videoplayer',
   templateUrl: './videoplayer.component.html',
-  styleUrls: ['./videoplayer.component.scss']
+  styleUrls: ['./videoplayer.component.scss'],
 })
 export class VideoplayerComponent implements OnInit {
-
   @Input() src: Object
   @Input() color = 'red'
   @Input() autoplay = false
   @ViewChild('video') video: ElementRef
   videoElement: HTMLVideoElement
-  time = 0;
-  source = ""
+  time = 0
+  source = ''
   host: ElementRef
   duration = 0
   paused = true
   fullscreen = false
   qualities: String[]
 
-  constructor(
-    private elref: ElementRef,
-    @Inject(DOCUMENT) private document: any,
-    private videoService: VideoService
-  ) {}
+  constructor(private elref: ElementRef, @Inject(DOCUMENT) private document: any, private videoService: VideoService) {}
 
   ngOnInit() {
     this._validateSrc()
@@ -51,21 +45,21 @@ export class VideoplayerComponent implements OnInit {
     this.videoService.time$.next(event.target.currentTime)
 
     this.time = event.target.currentTime / this.video.nativeElement.duration
-    
+
     const buffered = this.video.nativeElement.buffered
-    let buffersArray = [];
+    let buffersArray = []
     for (let i = 0; i < buffered.length; i++) {
-      const left = (buffered.start(i) / (this.duration)) * 100
-      const width = ((buffered.end(i) - buffered.start(i)) / (this.duration)) * 100
-      const array: Buffer = {left: left, width: width}
-      buffersArray = [...buffersArray,array]
+      const left = (buffered.start(i) / this.duration) * 100
+      const width = ((buffered.end(i) - buffered.start(i)) / this.duration) * 100
+      const array: Buffer = { left: left, width: width }
+      buffersArray = [...buffersArray, array]
     }
     this.videoService.buffers$.next(buffersArray)
   }
 
   onQualityChange(quality: string) {
-    let isPaused = false;
-    if (this.video.nativeElement.paused) isPaused = true;
+    let isPaused = false
+    if (this.video.nativeElement.paused) isPaused = true
     const currentTime = this.video.nativeElement.currentTime
     this.video.nativeElement.pause()
     this.source = this.src[quality]
@@ -107,6 +101,4 @@ export class VideoplayerComponent implements OnInit {
   onFullscreenchange() {
     this.fullscreen = !this.fullscreen
   }
-
-
 }

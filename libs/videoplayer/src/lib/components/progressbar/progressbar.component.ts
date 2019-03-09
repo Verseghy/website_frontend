@@ -7,10 +7,9 @@ import { VideoService } from '../../services/video.service'
 @Component({
   selector: 'verseghy-progressbar',
   templateUrl: './progressbar.component.html',
-  styleUrls: ['./progressbar.component.scss']
+  styleUrls: ['./progressbar.component.scss'],
 })
 export class ProgressbarComponent implements OnInit {
-
   color: string
   buffers$: BehaviorSubject<Buffer[]>
   time$: Observable<number>
@@ -18,19 +17,17 @@ export class ProgressbarComponent implements OnInit {
   duration$: Subject<number>
   progressbarValue$: BehaviorSubject<number> = new BehaviorSubject(0)
 
-  constructor(
-    private videoService: VideoService,
-  ) { }
+  constructor(private videoService: VideoService) {}
 
   ngOnInit() {
     this.time$ = this.videoService.time$.pipe(
-      tap((time) => {
+      tap(time => {
         this.progressbarValue$.next(time)
       })
     )
     this.disabled$ = this.videoService.duration$.pipe(
       startWith(false),
-      map((duration) => {
+      map(duration => {
         return !duration
       })
     )
@@ -43,5 +40,4 @@ export class ProgressbarComponent implements OnInit {
     this.progressbarValue$.next(event.target.value)
     this.videoService.video.currentTime = event.target.value
   }
-
 }

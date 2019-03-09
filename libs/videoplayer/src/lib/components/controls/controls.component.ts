@@ -1,4 +1,16 @@
-import { Component, OnInit, Output, EventEmitter, ViewChild, Input, ElementRef, OnChanges, Inject, HostListener, HostBinding } from '@angular/core'
+import {
+  Component,
+  OnInit,
+  Output,
+  EventEmitter,
+  ViewChild,
+  Input,
+  ElementRef,
+  OnChanges,
+  Inject,
+  HostListener,
+  HostBinding,
+} from '@angular/core'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faPause, faPlay, faVolumeDown, faVolumeMute, faExpand, faCompress, faCog, faCheck } from '@fortawesome/free-solid-svg-icons'
 import { DOCUMENT } from '@angular/common'
@@ -7,10 +19,9 @@ import { Buffer } from '../../videoplayer.interface'
 @Component({
   selector: 'verseghy-controls',
   templateUrl: './controls.component.html',
-  styleUrls: ['./controls.component.scss']
+  styleUrls: ['./controls.component.scss'],
 })
 export class ControlsComponent implements OnInit, OnChanges {
-
   @Output() qualityChange: EventEmitter<string> = new EventEmitter()
   @Input() host: ElementRef
   @Input() qualities: String[]
@@ -39,13 +50,11 @@ export class ControlsComponent implements OnInit, OnChanges {
   volumeBarWidth = 50
   volumeSliderValue = 0.5
 
-
   constructor(@Inject(DOCUMENT) private document: Document) {
     library.add(faPause, faPlay, faVolumeDown, faVolumeMute, faExpand, faCompress, faCog, faCheck)
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   ngOnChanges(changes: any) {
     if ('time' in changes) {
@@ -75,8 +84,10 @@ export class ControlsComponent implements OnInit, OnChanges {
 
   playVideo() {
     const playPromise = this.video.play()
-    if (playPromise !== null){
-      playPromise.catch(() => { this.video.play() })
+    if (playPromise !== null) {
+      playPromise.catch(() => {
+        this.video.play()
+      })
     }
   }
 
@@ -106,7 +117,7 @@ export class ControlsComponent implements OnInit, OnChanges {
       this.volumeButtonVisible = true
       this.muteButtonVisible = false
     }
-    const percentage = 100 * this.volumeSliderValue;
+    const percentage = 100 * this.volumeSliderValue
 
     this.volumeBarWidth = percentage
   }
@@ -123,7 +134,7 @@ export class ControlsComponent implements OnInit, OnChanges {
   }
 
   private _formatTime(time: number): string {
-    const hours   = Math.floor(time / 3.6e3) % 60
+    const hours = Math.floor(time / 3.6e3) % 60
     const minutes = Math.floor(time / 60) % 60
     const seconds = time % 60
 
@@ -148,41 +159,41 @@ export class ControlsComponent implements OnInit, OnChanges {
     switch (event.code) {
       case 'Space':
       case 'KeyK':
-        (this.video.paused) ? this.playVideo() : this.pauseVideo()
+        this.video.paused ? this.playVideo() : this.pauseVideo()
         break
-        
+
       case 'KeyF':
         this.toggleFullscreen()
         break
 
       case 'KeyM':
-        (this.volumeButtonVisible) ? this.mute() : this.unmute()
+        this.volumeButtonVisible ? this.mute() : this.unmute()
         break
-        
+
       case 'ArrowLeft':
-        (this.video.currentTime < 5) ? this.video.currentTime = 0 : this.video.currentTime -= 5
+        this.video.currentTime < 5 ? (this.video.currentTime = 0) : (this.video.currentTime -= 5)
         break
 
       case 'ArrowRight':
-        (this.video.currentTime > this.duration - 5) ? this.video.currentTime = this.duration : this.video.currentTime += 5
+        this.video.currentTime > this.duration - 5 ? (this.video.currentTime = this.duration) : (this.video.currentTime += 5)
         break
 
       case 'ArrowUp':
-        (this.volumeSliderValue <= 0.95) ? this.volumeSliderValue = Number(this.volumeSliderValue) + 0.05 : this.volumeSliderValue = 1
+        this.volumeSliderValue <= 0.95 ? (this.volumeSliderValue = Number(this.volumeSliderValue) + 0.05) : (this.volumeSliderValue = 1)
         this._volumeChange()
         break
 
       case 'ArrowDown':
-        (this.volumeSliderValue >= 0.05) ? this.volumeSliderValue -= 0.05 : this.volumeSliderValue = 0
+        this.volumeSliderValue >= 0.05 ? (this.volumeSliderValue -= 0.05) : (this.volumeSliderValue = 0)
         this._volumeChange()
         break
 
       case 'KeyJ':
-        (this.video.currentTime < 10) ? this.video.currentTime = 0 : this.video.currentTime -= 10
+        this.video.currentTime < 10 ? (this.video.currentTime = 0) : (this.video.currentTime -= 10)
         break
 
       case 'KeyL':
-        (this.video.currentTime > this.duration - 10) ? this.video.currentTime = this.duration : this.video.currentTime += 10
+        this.video.currentTime > this.duration - 10 ? (this.video.currentTime = this.duration) : (this.video.currentTime += 10)
         break
 
       case 'Backquote':
@@ -194,35 +205,35 @@ export class ControlsComponent implements OnInit, OnChanges {
         break
 
       case 'Digit2':
-        this.video.currentTime = this.duration / 10 * 2
+        this.video.currentTime = (this.duration / 10) * 2
         break
 
       case 'Digit3':
-        this.video.currentTime = this.duration / 10 * 3
+        this.video.currentTime = (this.duration / 10) * 3
         break
 
       case 'Digit4':
-        this.video.currentTime = this.duration / 10 * 4
+        this.video.currentTime = (this.duration / 10) * 4
         break
 
       case 'Digit5':
-        this.video.currentTime = this.duration / 10 * 5
+        this.video.currentTime = (this.duration / 10) * 5
         break
 
       case 'Digit6':
-        this.video.currentTime = this.duration / 10 * 6
+        this.video.currentTime = (this.duration / 10) * 6
         break
 
       case 'Digit7':
-        this.video.currentTime = this.duration / 10 * 7
+        this.video.currentTime = (this.duration / 10) * 7
         break
 
       case 'Digit8':
-        this.video.currentTime = this.duration / 10 * 8
+        this.video.currentTime = (this.duration / 10) * 8
         break
 
       case 'Digit9':
-        this.video.currentTime = this.duration / 10 * 9
+        this.video.currentTime = (this.duration / 10) * 9
         break
     }
   }

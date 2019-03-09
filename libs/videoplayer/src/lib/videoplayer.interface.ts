@@ -1,4 +1,4 @@
 export interface Buffer {
-    left: number
-    width: number
+  left: number
+  width: number
 }
