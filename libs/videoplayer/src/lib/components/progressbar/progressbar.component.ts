@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { Buffer } from '../../videoplayer.interface'
-import { BehaviorSubject, Observable, of } from 'rxjs'
-import { map } from 'rxjs/operators'
+import { BehaviorSubject, Observable, of, Subject } from 'rxjs'
+import { map, startWith, tap } from 'rxjs/operators'
 import { VideoService } from '../../services/video.service'
 
 @Component({
@@ -12,9 +12,11 @@ import { VideoService } from '../../services/video.service'
 export class ProgressbarComponent implements OnInit {
 
   color: string
-  progressBarWidth: number
   buffers$: BehaviorSubject<Buffer[]>
-  time$: Observable<number> = of(0)
+  time$: Observable<number>
+  disabled$: Observable<boolean>
+  duration$: Subject<number>
+  progressbarValue$: BehaviorSubject<number> = new BehaviorSubject(0)
 
   constructor(
     private videoService: VideoService,
@@ -22,16 +24,24 @@ export class ProgressbarComponent implements OnInit {
 
   ngOnInit() {
     this.time$ = this.videoService.time$.pipe(
-      map((time) => {
-        return time / this.videoService.duration
+      tap((time) => {
+        this.progressbarValue$.next(time)
+      })
+    )
+    this.disabled$ = this.videoService.duration$.pipe(
+      startWith(false),
+      map((duration) => {
+        return !duration
       })
     )
     this.color = this.videoService.color
     this.buffers$ = this.videoService.buffers$
+    this.duration$ = this.videoService.duration$
   }
 
-  changeProgress(event: Event) {
-    console.log(event)
+  changeProgress(event: any) {
+    this.progressbarValue$.next(event.target.value)
+    this.videoService.video.currentTime = event.target.value
   }
 
 }

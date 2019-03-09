@@ -2,6 +2,7 @@ import { Component, OnInit, Input, ViewChild, ElementRef, Inject, HostListener} 
 import { DOCUMENT } from '@angular/common';
 import { VideoService } from '../../services/video.service';
 import { Buffer } from '../../videoplayer.interface';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'verseghy-videoplayer',
@@ -38,6 +39,7 @@ export class VideoplayerComponent implements OnInit {
     this.video.nativeElement.volume = 0.5
     this.video.nativeElement.autoplay = this.autoplay
     this.videoService.color = this.color
+    this.videoService.video = this.videoElement
   }
 
   private _validateSrc() {
@@ -51,6 +53,7 @@ export class VideoplayerComponent implements OnInit {
 
   onTimeUpdate(event) {
     this.videoService.time$.next(event.target.currentTime)
+
     this.time = event.target.currentTime / this.video.nativeElement.duration
     
     const buffered = this.video.nativeElement.buffered
@@ -93,7 +96,7 @@ export class VideoplayerComponent implements OnInit {
 
   onLoadedmetadata() {
     this.duration = this.videoElement.duration
-    this.videoService.duration = this.videoElement.duration
+    this.videoService.duration$.next(this.videoElement.duration)
   }
 
   onPlay() {

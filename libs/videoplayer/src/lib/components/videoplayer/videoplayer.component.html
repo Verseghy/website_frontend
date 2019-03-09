@@ -1,4 +1,5 @@
-<video #video
+<video
+  #video
   (timeupdate)="onTimeUpdate($event)"
   (click)="videoClick()"
   (loadedmetadata)="onLoadedmetadata()"
@@ -8,7 +9,8 @@
 >
   <source [src]="source"/>
 </video>
-<verseghy-controls class="controls" 
+<verseghy-controls
+  class="controls" 
   (onChangeTime)="onTimeChange($event)"
   (onQualityChange)="onQualityChange($event)"
   [duration]="duration"
