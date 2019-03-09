@@ -11,9 +11,9 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class VideoplayerComponent implements OnInit {
 
-  @Input('src') src: Object
-  @Input('color') color: string = 'red'
-  @Input('autoplay') autoplay = false
+  @Input() src: Object
+  @Input() color = 'red'
+  @Input() autoplay = false
   @ViewChild('video') video: ElementRef
   videoElement: HTMLVideoElement
   time = 0;
@@ -43,12 +43,8 @@ export class VideoplayerComponent implements OnInit {
   }
 
   private _validateSrc() {
-    if (typeof this.src !== 'object') throw 'Invalid src attribute for VideoplayerComponent'
-    if (Object.keys(this.src).length == 0) throw 'Invalid src attribute for VideoplayerComponent'
-  }
-
-  onTimeChange(event) {
-    //this.video.nativeElement.currentTime = this.video.nativeElement.duration * event
+    if (typeof this.src !== 'object') throw new Error('Invalid src attribute')
+    if (Object.keys(this.src).length === 0) throw new Error('Invalid src attribute')
   }
 
   onTimeUpdate(event) {

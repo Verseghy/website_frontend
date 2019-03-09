@@ -6,7 +6,7 @@ import { Buffer } from '../videoplayer.interface';
 export class VideoService {
 
   time$: BehaviorSubject<number> = new BehaviorSubject(0)
-  color: string = 'red'
+  color = 'red'
   buffers$: BehaviorSubject<Buffer[]> = new BehaviorSubject([])
   duration$: Subject<number> = new Subject()
   video: HTMLVideoElement

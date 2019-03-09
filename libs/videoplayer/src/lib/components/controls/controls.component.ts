@@ -11,15 +11,15 @@ import { Buffer } from '../../videoplayer.interface'
 })
 export class ControlsComponent implements OnInit, OnChanges {
 
-  @Output('onChangeTime') onChangeTime: EventEmitter<number> = new EventEmitter()
-  @Output('onQualityChange') onQualityChange: EventEmitter<string> = new EventEmitter()
-  @Input('host') host: ElementRef
-  @Input('qualities') qualities: String[]
-  @Input('video') video: HTMLVideoElement
-  @Input('duration') duration: number
-  @Input('paused') paused: boolean
-  @Input('fullscreen') isFullscreen: boolean
-  @Input('color') color: boolean
+  @Output() qualityChange: EventEmitter<string> = new EventEmitter()
+  @Input() host: ElementRef
+  @Input() qualities: String[]
+  @Input() video: HTMLVideoElement
+  @Input() duration: number
+  @Input() paused: boolean
+  @Input() isFullscreen: boolean
+  @Input() color: boolean
+  @Input() time: number
   @ViewChild('settingsMenu') settingsMenuElement: ElementRef
   @ViewChild('settingsButton') settingsButton: ElementRef
   timeLeft: string
@@ -37,7 +37,6 @@ export class ControlsComponent implements OnInit, OnChanges {
   muteButtonVisible = false
   progressBarWidth = 0
   volumeBarWidth = 50
-  @Input('time') time: number
   volumeSliderValue = 0.5
 
 
@@ -74,12 +73,6 @@ export class ControlsComponent implements OnInit, OnChanges {
     }
   }
 
-  /*changeProgress(event: any) {
-    this.onChangeTime.emit(this.progressSliderValue)
-    const percentage = 100 * this.progressSliderValue
-    this.progressBarWidth = percentage
-  }*/
-
   playVideo() {
     const playPromise = this.video.play()
     if (playPromise !== null){
@@ -106,7 +99,7 @@ export class ControlsComponent implements OnInit, OnChanges {
 
   private _volumeChange() {
     this.video.volume = this.volumeSliderValue
-    if (this.volumeSliderValue == 0) {
+    if (this.volumeSliderValue === 0) {
       this.volumeButtonVisible = false
       this.muteButtonVisible = true
     } else {
@@ -138,7 +131,7 @@ export class ControlsComponent implements OnInit, OnChanges {
     const minutes2 = ('0' + minutes).slice(-2)
     const seconds2 = ('0' + seconds).slice(-2)
 
-    if (hours2 == '00:') hours2 = ''
+    if (hours2 === '00:') hours2 = ''
 
     return hours2 + minutes2 + ':' + seconds2
   }
@@ -146,7 +139,7 @@ export class ControlsComponent implements OnInit, OnChanges {
   setQuality(quality: string) {
     if (quality !== this.activeQuality) {
       this.activeQuality = quality
-      this.onQualityChange.emit(quality)
+      this.qualityChange.emit(quality)
     }
   }
 
