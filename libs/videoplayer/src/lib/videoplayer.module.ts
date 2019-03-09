@@ -5,6 +5,8 @@ import { VideoplayerComponent } from './components/videoplayer/videoplayer.compo
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ControlsComponent } from './components/controls/controls.component';
 import { FormsModule } from '@angular/forms';
+import { ProgressbarComponent } from './components/progressbar/progressbar.component';
+import { VideoService } from './services/video.service';
 
 
 @NgModule({
@@ -17,7 +19,8 @@ import { FormsModule } from '@angular/forms';
     ]),
     FontAwesomeModule
   ],
-  declarations: [VideoplayerComponent, ControlsComponent],
+  declarations: [VideoplayerComponent, ControlsComponent, ProgressbarComponent],
   exports: [VideoplayerComponent],
+  providers: [VideoService],
 })
 export class VideoplayerModule {}

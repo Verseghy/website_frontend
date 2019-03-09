@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, ViewChild, ElementRef, Inject, HostListener} from '@angular/core';
 import { DOCUMENT } from '@angular/common';
+import { VideoService } from '../../services/video.service';
+import { Buffer } from '../../videoplayer.interface';
 
 @Component({
   selector: 'verseghy-videoplayer',
@@ -10,12 +12,12 @@ export class VideoplayerComponent implements OnInit {
 
   @Input('src') src: Object
   @Input('color') color: string = 'red'
+  @Input('autoplay') autoplay = false
   @ViewChild('video') video: ElementRef
   videoElement: HTMLVideoElement
   time = 0;
   source = ""
   host: ElementRef
-  buffers: TimeRanges = {length: 0, start: () => {return 0}, end: () => {return 0}}
   duration = 0
   paused = true
   fullscreen = false
@@ -23,7 +25,8 @@ export class VideoplayerComponent implements OnInit {
 
   constructor(
     private elref: ElementRef,
-    @Inject(DOCUMENT) private document: any
+    @Inject(DOCUMENT) private document: any,
+    private videoService: VideoService
   ) {}
 
   ngOnInit() {
@@ -32,6 +35,9 @@ export class VideoplayerComponent implements OnInit {
     this.host = this.elref
     this.videoElement = this.video.nativeElement
     this.qualities = Object.keys(this.src)
+    this.video.nativeElement.volume = 0.5
+    this.video.nativeElement.autoplay = this.autoplay
+    this.videoService.color = this.color
   }
 
   private _validateSrc() {
@@ -40,16 +46,22 @@ export class VideoplayerComponent implements OnInit {
   }
 
   onTimeChange(event) {
-    this.video.nativeElement.currentTime = this.video.nativeElement.duration * event
+    //this.video.nativeElement.currentTime = this.video.nativeElement.duration * event
   }
 
   onTimeUpdate(event) {
+    this.videoService.time$.next(event.target.currentTime)
     this.time = event.target.currentTime / this.video.nativeElement.duration
-    this.buffers = this.video.nativeElement.buffered;
-  }
-
-  onChangeVolume(event: any) {
-    this.video.nativeElement.volume = event
+    
+    const buffered = this.video.nativeElement.buffered
+    let buffersArray = [];
+    for (let i = 0; i < buffered.length; i++) {
+      const left = (buffered.start(i) / (this.duration)) * 100
+      const width = ((buffered.end(i) - buffered.start(i)) / (this.duration)) * 100
+      const array: Buffer = {left: left, width: width}
+      buffersArray = [...buffersArray,array]
+    }
+    this.videoService.buffers$.next(buffersArray)
   }
 
   onQualityChange(quality: string) {
@@ -81,6 +93,7 @@ export class VideoplayerComponent implements OnInit {
 
   onLoadedmetadata() {
     this.duration = this.videoElement.duration
+    this.videoService.duration = this.videoElement.duration
   }
 
   onPlay() {
@@ -95,4 +108,6 @@ export class VideoplayerComponent implements OnInit {
   onFullscreenchange() {
     this.fullscreen = !this.fullscreen
   }
+
+
 }

@@ -12,11 +12,9 @@ import { Buffer } from '../../videoplayer.interface'
 export class ControlsComponent implements OnInit, OnChanges {
 
   @Output('onChangeTime') onChangeTime: EventEmitter<number> = new EventEmitter()
-  @Output('onChangeVolume') onChangeVolume: EventEmitter<number> = new EventEmitter()
   @Output('onQualityChange') onQualityChange: EventEmitter<string> = new EventEmitter()
   @Input('host') host: ElementRef
   @Input('qualities') qualities: String[]
-  @Input('buffers') buffers: TimeRanges
   @Input('video') video: HTMLVideoElement
   @Input('duration') duration: number
   @Input('paused') paused: boolean
@@ -39,8 +37,8 @@ export class ControlsComponent implements OnInit, OnChanges {
   muteButtonVisible = false
   progressBarWidth = 0
   volumeBarWidth = 50
-  @Input('time') progressSliderValue: number
-  volumeSliderValue: number
+  @Input('time') time: number
+  volumeSliderValue = 0.5
 
 
   constructor(@Inject(DOCUMENT) private document: Document) {
@@ -51,15 +49,8 @@ export class ControlsComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: any) {
-    if ('progressSliderValue' in changes) {
-      const percentage = 100 * this.progressSliderValue
-      this.progressBarWidth = percentage
-      if (this.progressSliderValue == 1) this.video.pause()
+    if ('time' in changes) {
       this.timeLeft = this._formatTime(Math.round(this.duration - this.video.currentTime))
-    }
-
-    if ('buffers' in changes) {
-      this._createBuffers()
     }
 
     if ('paused' in changes) {
@@ -83,14 +74,17 @@ export class ControlsComponent implements OnInit, OnChanges {
     }
   }
 
-  changeProgress(event: any) {
+  /*changeProgress(event: any) {
     this.onChangeTime.emit(this.progressSliderValue)
     const percentage = 100 * this.progressSliderValue
     this.progressBarWidth = percentage
-  }
+  }*/
 
   playVideo() {
-    this.video.play()
+    const playPromise = this.video.play()
+    if (playPromise !== null){
+      playPromise.catch(() => { this.video.play() })
+    }
   }
 
   pauseVideo() {
@@ -99,6 +93,7 @@ export class ControlsComponent implements OnInit, OnChanges {
 
   changeVolume(event: any) {
     this._volumeChange()
+    console.log(this.volumeSliderValue)
   }
 
   toggleFullscreen() {
@@ -110,7 +105,7 @@ export class ControlsComponent implements OnInit, OnChanges {
   }
 
   private _volumeChange() {
-    this.onChangeVolume.emit(this.volumeSliderValue);
+    this.video.volume = this.volumeSliderValue
     if (this.volumeSliderValue == 0) {
       this.volumeButtonVisible = false
       this.muteButtonVisible = true
@@ -155,79 +150,87 @@ export class ControlsComponent implements OnInit, OnChanges {
     }
   }
 
-  private _createBuffers() {
-    const length = this.buffers.length
-    this.buffersArray = [];
-    for (let i = 0; i < length; i++) {
-      const left = (this.buffers.start(i) / (this.duration)) * 100
-      const width = ((this.buffers.end(i) - this.buffers.start(i)) / (this.duration)) * 100
-      const array: Buffer = {left: left, width: width}
-      this.buffersArray = [...this.buffersArray,array]
-    }
-  }
-
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
-    if (event.code == 'Space' || event.code == 'KeyK') {
-      if (this.video.paused) {
-        this.playVideo()
-      } else {
-        this.pauseVideo()
-      }
-    }
-    if (event.code == 'KeyF') {
-      this.toggleFullscreen()
-    }
-    if (event.code == 'ArrowLeft') {
-      if (this.video.currentTime < 5) {
+    switch (event.code) {
+      case 'Space':
+      case 'KeyK':
+        (this.video.paused) ? this.playVideo() : this.pauseVideo()
+        break
+        
+      case 'KeyF':
+        this.toggleFullscreen()
+        break
+
+      case 'KeyM':
+        (this.volumeButtonVisible) ? this.mute() : this.unmute()
+        break
+        
+      case 'ArrowLeft':
+        (this.video.currentTime < 5) ? this.video.currentTime = 0 : this.video.currentTime -= 5
+        break
+
+      case 'ArrowRight':
+        (this.video.currentTime > this.duration - 5) ? this.video.currentTime = this.duration : this.video.currentTime += 5
+        break
+
+      case 'ArrowUp':
+        (this.volumeSliderValue <= 0.95) ? this.volumeSliderValue = Number(this.volumeSliderValue) + 0.05 : this.volumeSliderValue = 1
+        this._volumeChange()
+        break
+
+      case 'ArrowDown':
+        (this.volumeSliderValue >= 0.05) ? this.volumeSliderValue -= 0.05 : this.volumeSliderValue = 0
+        this._volumeChange()
+        break
+
+      case 'KeyJ':
+        (this.video.currentTime < 10) ? this.video.currentTime = 0 : this.video.currentTime -= 10
+        break
+
+      case 'KeyL':
+        (this.video.currentTime > this.duration - 10) ? this.video.currentTime = this.duration : this.video.currentTime += 10
+        break
+
+      case 'Backquote':
         this.video.currentTime = 0
-      } else {
-        this.video.currentTime -= 5
-      }
-    }
-    if (event.code == 'ArrowRight') {
-      if (this.video.currentTime > this.duration - 5) {
-        this.video.currentTime = this.duration
-      } else {
-        this.video.currentTime += 5
-      }
-    }
-    if (event.code == 'ArrowUp') {
-      if (this.volumeSliderValue <= 0.95) {
-        this.volumeSliderValue = Number(this.volumeSliderValue) + 0.05
-      } else {
-        this.volumeSliderValue = 1
-      }
-      this._volumeChange()
-    }
-    if (event.code == 'ArrowDown') {
-      if (this.volumeSliderValue >= 0.05) {
-        this.volumeSliderValue -= 0.05
-      } else {
-        this.volumeSliderValue = 0
-      }
-      this._volumeChange()
-    }
-    if (event.code == 'KeyJ') {
-      if (this.video.currentTime < 10) {
-        this.video.currentTime = 0
-      } else {
-        this.video.currentTime -= 10
-      }
-    }
-    if (event.code == 'KeyL') {
-      if (this.video.currentTime > this.duration - 10) {
-        this.video.currentTime = this.duration
-      } else {
-        this.video.currentTime += 10
-      }
-    }
-    if (event.code.includes('Digit') || event.code == 'Backquote') {
-      let number = Number(event.code.substr(5))
-      if (number !== 0) {
-        if (event.code == 'Backquote') number = 0;
-        this.video.currentTime = this.duration / 10 * number
-      }
+        break
+
+      case 'Digit1':
+        this.video.currentTime = this.duration / 10
+        break
+
+      case 'Digit2':
+        this.video.currentTime = this.duration / 10 * 2
+        break
+
+      case 'Digit3':
+        this.video.currentTime = this.duration / 10 * 3
+        break
+
+      case 'Digit4':
+        this.video.currentTime = this.duration / 10 * 4
+        break
+
+      case 'Digit5':
+        this.video.currentTime = this.duration / 10 * 5
+        break
+
+      case 'Digit6':
+        this.video.currentTime = this.duration / 10 * 6
+        break
+
+      case 'Digit7':
+        this.video.currentTime = this.duration / 10 * 7
+        break
+
+      case 'Digit8':
+        this.video.currentTime = this.duration / 10 * 8
+        break
+
+      case 'Digit9':
+        this.video.currentTime = this.duration / 10 * 9
+        break
     }
   }
 
@@ -242,5 +245,9 @@ export class ControlsComponent implements OnInit, OnChanges {
         this.settingsMenu = false
       }
     }
+  }
+
+  onVolumeSliderClick() {
+    this.muteVolume = this.video.volume
   }
 }

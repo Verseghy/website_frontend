@@ -1,0 +1,6 @@
+<div class="progress-bg">
+  <div class="progress" [ngStyle]="{'background-color': color, 'width.%': (time$ | async) * 100}" ></div>
+  <div class="buffer" *ngFor="let buffer of (buffers$ | async)" [ngStyle]="{'left.%': buffer.left, 'width.%': buffer.width}"></div>
+  <div class="progress-dot" [ngStyle]="{'background-color': color, 'left.%': (time$ | async) * 100}"></div>
+</div>
+<input type="range" min="0" max="1" step="0.0001" class="slider" [value]="time$ | async" class="progress-slider" (input)="changeProgress($event)">
