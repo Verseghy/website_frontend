@@ -1,0 +1,6 @@
+<button *ngIf="!(isFullscreen$ | async)" (click)="toggleFullscreen()">
+  <fa-icon [icon]="['fas', 'expand']"></fa-icon>
+</button>
+<button *ngIf="isFullscreen$ | async" (click)="toggleFullscreen()">
+  <fa-icon [icon]="['fas', 'compress']"></fa-icon>
+</button>

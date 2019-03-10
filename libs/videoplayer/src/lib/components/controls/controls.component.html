@@ -35,9 +35,4 @@
     <span>{{ item }}</span>
   </div>
 </div>
-<button class="fullscreen" *ngIf="fullscreenButtonVisible" (click)="toggleFullscreen()">
-  <fa-icon [icon]="['fas', 'expand']"></fa-icon>
-</button>
-<button class="exit-fullscreen" *ngIf="exitFullscreenButtonVisible" (click)="toggleFullscreen()">
-  <fa-icon [icon]="['fas', 'compress']"></fa-icon>
-</button>
+<verseghy-fullscreen-button></verseghy-fullscreen-button>

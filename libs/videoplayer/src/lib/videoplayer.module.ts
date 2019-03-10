@@ -7,7 +7,8 @@ import { ControlsComponent } from './components/controls/controls.component'
 import { FormsModule } from '@angular/forms'
 import { ProgressbarComponent } from './components/progressbar/progressbar.component'
 import { VideoService } from './services/video.service';
-import { PlayPauseButtonComponent } from './components/play-pause-button/play-pause-button.component'
+import { PlayPauseButtonComponent } from './components/play-pause-button/play-pause-button.component';
+import { FullscreenButtonComponent } from './components/fullscreen-button/fullscreen-button.component'
 
 @NgModule({
   imports: [
@@ -19,7 +20,7 @@ import { PlayPauseButtonComponent } from './components/play-pause-button/play-pa
     ]),
     FontAwesomeModule,
   ],
-  declarations: [VideoplayerComponent, ControlsComponent, ProgressbarComponent, PlayPauseButtonComponent],
+  declarations: [VideoplayerComponent, ControlsComponent, ProgressbarComponent, PlayPauseButtonComponent, FullscreenButtonComponent],
   exports: [VideoplayerComponent],
   providers: [VideoService],
 })

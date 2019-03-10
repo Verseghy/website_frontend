@@ -19,7 +19,6 @@ export class VideoplayerComponent implements OnInit {
   host: ElementRef
   duration = 0
   paused = true
-  fullscreen = false
   qualities: String[]
 
   constructor(private elref: ElementRef, @Inject(DOCUMENT) private document: any, private videoService: VideoService) {}
@@ -34,6 +33,7 @@ export class VideoplayerComponent implements OnInit {
     this.video.nativeElement.autoplay = this.autoplay
     this.videoService.color = this.color
     this.videoService.video = this.videoElement
+    this.videoService.host = this.host.nativeElement
   }
 
   private _validateSrc() {
@@ -77,11 +77,7 @@ export class VideoplayerComponent implements OnInit {
   }
 
   dblclick() {
-    if (this.fullscreen) {
-      this.document.exitFullscreen()
-    } else {
-      this.host.nativeElement.requestFullscreen()
-    }
+    this.videoService.toggleFullscreen()
   }
 
   onLoadedmetadata() {
@@ -101,6 +97,6 @@ export class VideoplayerComponent implements OnInit {
 
   @HostListener('fullscreenchange')
   onFullscreenchange() {
-    this.fullscreen = !this.fullscreen
+    this.videoService.isFullscreen$.next(this.videoService.isFullscreen())
   }
 }

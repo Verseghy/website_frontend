@@ -15,6 +15,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { faPause, faPlay, faVolumeDown, faVolumeMute, faExpand, faCompress, faCog, faCheck } from '@fortawesome/free-solid-svg-icons'
 import { DOCUMENT } from '@angular/common'
 import { Buffer } from '../../videoplayer.interface'
+import { VideoService } from '../../services/video.service';
 
 @Component({
   selector: 'verseghy-controls',
@@ -28,7 +29,6 @@ export class ControlsComponent implements OnInit, OnChanges {
   @Input() video: HTMLVideoElement
   @Input() duration: number
   @Input() paused: boolean
-  @Input() fullscreen: boolean
   @Input() color: boolean
   @Input() time: number
   @ViewChild('settingsMenu') settingsMenuElement: ElementRef
@@ -40,15 +40,13 @@ export class ControlsComponent implements OnInit, OnChanges {
   activeQuality = '1080p60'
   @HostBinding('class.settingsMenuOpen') settingsMenu = false
 
-  fullscreenButtonVisible = true
-  exitFullscreenButtonVisible = false
   volumeButtonVisible = true
   muteButtonVisible = false
   progressBarWidth = 0
   volumeBarWidth = 50
   volumeSliderValue = 0.5
 
-  constructor(@Inject(DOCUMENT) private document: Document) {
+  constructor(@Inject(DOCUMENT) private document: Document, private videoService: VideoService) {
     library.add(faPause, faPlay, faVolumeDown, faVolumeMute, faExpand, faCompress, faCog, faCheck)
   }
 
@@ -58,29 +56,11 @@ export class ControlsComponent implements OnInit, OnChanges {
     if ('time' in changes) {
       this.timeLeft = this._formatTime(Math.round(this.duration - this.video.currentTime))
     }
-
-    if ('fullscreen' in changes) {
-      if (this.fullscreen) {
-        this.fullscreenButtonVisible = false
-        this.exitFullscreenButtonVisible = true
-      } else {
-        this.fullscreenButtonVisible = true
-        this.exitFullscreenButtonVisible = false
-      }
-    }
   }
 
   changeVolume(event: any) {
     this._volumeChange()
     console.log(this.volumeSliderValue)
-  }
-
-  toggleFullscreen() {
-    if (this.fullscreen) {
-      this.document.exitFullscreen()
-    } else {
-      this.host.nativeElement.requestFullscreen()
-    }
   }
 
   private _volumeChange() {
@@ -138,7 +118,7 @@ export class ControlsComponent implements OnInit, OnChanges {
         break
 
       case 'KeyF':
-        this.toggleFullscreen()
+        this.videoService.toggleFullscreen()
         break
 
       case 'KeyM':
