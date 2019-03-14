@@ -72,7 +72,7 @@
     "@angular/language-service": "^7.2.7",
     "@ngrx/store-devtools": "^7.3.0",
     "@nrwl/builders": "7.5.2",
-    "@nrwl/schematics": "7.5.2",
+    "@nrwl/schematics": "7.7.0",
     "@types/jasmine": "^3.3.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/jest": "^23.3.13",
