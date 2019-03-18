@@ -12,7 +12,7 @@ describe('Events Reducer', () => {
       date_from: new Date(),
       date_to: new Date(),
       description: '',
-      color: ''
+      color: '',
     })
   })
 
