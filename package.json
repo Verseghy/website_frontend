@@ -87,7 +87,7 @@
     "jest-preset-angular": "7.0.0",
     "karma": "~4.0.1",
     "karma-chrome-launcher": "~2.2.0",
-    "karma-coverage-istanbul-reporter": "~2.0.1",
+    "karma-coverage-istanbul-reporter": "~2.0.5",
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.0",
     "ngrx-store-freeze": "0.2.4",
