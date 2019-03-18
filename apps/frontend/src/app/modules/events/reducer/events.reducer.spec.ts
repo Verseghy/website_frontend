@@ -6,22 +6,26 @@ describe('Events Reducer', () => {
   let createEvents
 
   beforeEach(() => {
-    createEvents = (id: string, name = ''): Entity => ({
+    createEvents = (id: number, title = ''): Entity => ({
       id,
-      name: name || `name-${id}`,
+      title: title || `name-${id}`,
+      date_from: new Date(),
+      date_to: new Date(),
+      description: '',
+      color: ''
     })
   })
 
   describe('valid Events actions ', () => {
     it('should return set the list of known Events', () => {
-      const eventss = [createEvents('PRODUCT-AAA'), createEvents('PRODUCT-zzz')]
+      const eventss = [createEvents(0), createEvents(123)]
       const action = new EventsLoaded(eventss)
       const result: EventsState = eventsReducer(initialState, action)
       const selId: string = getEventsId(result.list[1])
 
       expect(result.loaded).toBe(true)
       expect(result.list.length).toBe(2)
-      expect(selId).toBe('PRODUCT-zzz')
+      expect(selId).toBe(123)
     })
   })
 
