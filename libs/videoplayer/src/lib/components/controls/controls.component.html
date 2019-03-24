@@ -1,30 +1,7 @@
 <verseghy-play-pause-button></verseghy-play-pause-button>
 <verseghy-progressbar></verseghy-progressbar>
 <span class="time">{{ timeLeft }}</span>
-<button class="volume-down" *ngIf="volumeButtonVisible" (click)="mute()">
-  <fa-icon [icon]="['fas', 'volume-down']"></fa-icon>
-</button>
-<button class="volume-mute" *ngIf="muteButtonVisible" (click)="unmute()">
-  <fa-icon [icon]="['fas', 'volume-mute']"></fa-icon>
-</button>
-<div class="volume-bar">
-  <div class="volume-bg">
-    <div class="volume" [ngStyle]="{ 'background-color': color, 'width.%': volumeBarWidth }"></div>
-    <div class="volume-dot" [ngStyle]="{ 'background-color': color, 'left.%': volumeBarWidth }" #volumeDot></div>
-  </div>
-  <input
-    type="range"
-    min="0"
-    max="1"
-    value="0.5"
-    step="0.001"
-    class="slider"
-    class="volume-slider"
-    [(ngModel)]="volumeSliderValue"
-    (input)="changeVolume($event)"
-    (mousedown)="onVolumeSliderClick()"
-  />
-</div>
+<verseghy-volume></verseghy-volume>
 <button class="settings" (click)="toggleSettingsMenu()" #settingsButton>
   <fa-icon [icon]="['fas', 'cog']"></fa-icon>
 </button>

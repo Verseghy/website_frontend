@@ -1,0 +1,13 @@
+<button *ngIf="!(muted$ | async)" (click)="toggleMute()">
+  <fa-icon [icon]="['fas', 'volume-down']"></fa-icon>
+</button>
+<button *ngIf="muted$ | async" (click)="toggleMute()">
+  <fa-icon [icon]="['fas', 'volume-mute']"></fa-icon>
+</button>
+<div class="volume-bar">
+  <div class="volume-bg">
+    <div class="volume" [ngStyle]="{ 'background-color': color, 'width.%': (volume$ | async) * 100 }"></div>
+    <div class="volume-dot" [ngStyle]="{ 'background-color': color, 'left.%': (volume$ | async) * 100 }" #volumeDot></div>
+  </div>
+  <input type="range" min="0" max="1" value="0.5" step="0.001" [value]="volume$ | async" (input)="volumeChange($event)" (mousedown)="volumeSliderClick()" />
+</div>

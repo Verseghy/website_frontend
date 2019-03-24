@@ -13,6 +13,8 @@ export class VideoService {
   paused$: BehaviorSubject<boolean> = new BehaviorSubject(true)
   host: any
   isFullscreen$: BehaviorSubject<boolean> = new BehaviorSubject(false)
+  muted$: BehaviorSubject<boolean> = new BehaviorSubject(false)
+  volume$: BehaviorSubject<number> = new BehaviorSubject(0.5)
 
   constructor(@Inject(DOCUMENT) private document: any) {}
 

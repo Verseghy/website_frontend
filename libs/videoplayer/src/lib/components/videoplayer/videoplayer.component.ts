@@ -2,6 +2,11 @@ import { Component, OnInit, Input, ViewChild, ElementRef, Inject, HostListener }
 import { DOCUMENT } from '@angular/common'
 import { VideoService } from '../../services/video.service'
 import { Buffer } from '../../videoplayer.interface'
+import { Store } from '@ngrx/store';
+import { RootState } from '../../+state/root.reducer';
+import { VolumeChange } from '../../+state/root.actions';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'verseghy-videoplayer',
@@ -20,8 +25,14 @@ export class VideoplayerComponent implements OnInit {
   duration = 0
   paused = true
   qualities: String[]
+  videoVolume: Observable<number>
 
-  constructor(private elref: ElementRef, @Inject(DOCUMENT) private document: any, private videoService: VideoService) {}
+  constructor(
+    private elref: ElementRef,
+    @Inject(DOCUMENT) private document: any,
+    private videoService: VideoService,
+    private store: Store<{root: RootState}>  
+  ) {}
 
   ngOnInit() {
     this._validateSrc()
@@ -34,6 +45,11 @@ export class VideoplayerComponent implements OnInit {
     this.videoService.color = this.color
     this.videoService.video = this.videoElement
     this.videoService.host = this.host.nativeElement
+    this.videoVolume = this.store.pipe(
+      map(state => {
+        return state.root.volume.currentVolume
+      })
+    )
   }
 
   private _validateSrc() {

@@ -6,6 +6,7 @@
   (dblclick)="dblclick()"
   (pause)="onPause()"
   (play)="onPlay()"
+  [volume]="videoVolume | async"
 >
   <source [src]="source" />
 </video>

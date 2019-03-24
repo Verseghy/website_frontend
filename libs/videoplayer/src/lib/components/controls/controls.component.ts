@@ -43,8 +43,6 @@ export class ControlsComponent implements OnInit, OnChanges {
   volumeButtonVisible = true
   muteButtonVisible = false
   progressBarWidth = 0
-  volumeBarWidth = 50
-  volumeSliderValue = 0.5
 
   constructor(@Inject(DOCUMENT) private document: Document, private videoService: VideoService) {
     library.add(faPause, faPlay, faVolumeDown, faVolumeMute, faExpand, faCompress, faCog, faCheck)
@@ -56,36 +54,6 @@ export class ControlsComponent implements OnInit, OnChanges {
     if ('time' in changes) {
       this.timeLeft = this._formatTime(Math.round(this.duration - this.video.currentTime))
     }
-  }
-
-  changeVolume(event: any) {
-    this._volumeChange()
-    console.log(this.volumeSliderValue)
-  }
-
-  private _volumeChange() {
-    this.video.volume = this.volumeSliderValue
-    if (this.volumeSliderValue === 0) {
-      this.volumeButtonVisible = false
-      this.muteButtonVisible = true
-    } else {
-      this.volumeButtonVisible = true
-      this.muteButtonVisible = false
-    }
-    const percentage = 100 * this.volumeSliderValue
-
-    this.volumeBarWidth = percentage
-  }
-
-  mute() {
-    this.muteVolume = this.volumeSliderValue
-    this.volumeSliderValue = 0
-    this._volumeChange()
-  }
-
-  unmute() {
-    this.volumeSliderValue = this.muteVolume
-    this._volumeChange()
   }
 
   private _formatTime(time: number): string {
@@ -121,26 +89,12 @@ export class ControlsComponent implements OnInit, OnChanges {
         this.videoService.toggleFullscreen()
         break
 
-      case 'KeyM':
-        this.volumeButtonVisible ? this.mute() : this.unmute()
-        break
-
       case 'ArrowLeft':
         this.video.currentTime < 5 ? (this.video.currentTime = 0) : (this.video.currentTime -= 5)
         break
 
       case 'ArrowRight':
         this.video.currentTime > this.duration - 5 ? (this.video.currentTime = this.duration) : (this.video.currentTime += 5)
-        break
-
-      case 'ArrowUp':
-        this.volumeSliderValue <= 0.95 ? (this.volumeSliderValue = Number(this.volumeSliderValue) + 0.05) : (this.volumeSliderValue = 1)
-        this._volumeChange()
-        break
-
-      case 'ArrowDown':
-        this.volumeSliderValue >= 0.05 ? (this.volumeSliderValue -= 0.05) : (this.volumeSliderValue = 0)
-        this._volumeChange()
         break
 
       case 'KeyJ':
