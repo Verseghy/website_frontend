@@ -47,7 +47,7 @@
     "@fortawesome/angular-fontawesome": "^0.3.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.15",
     "@fortawesome/free-brands-svg-icons": "^5.7.2",
-    "@fortawesome/free-solid-svg-icons": "^5.7.2",
+    "@fortawesome/free-solid-svg-icons": "^5.8.1",
     "@ngrx/effects": "7.3.0",
     "@ngrx/entity": "^7.3.0",
     "@ngrx/router-store": "7.3.0",
