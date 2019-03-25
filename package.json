@@ -68,7 +68,7 @@
     "@angular-devkit/build-angular": "~0.13.5",
     "@angular/cli": "7.3.6",
     "@angular/compiler-cli": "^7.2.9",
-    "@angular/language-service": "^7.2.9",
+    "@angular/language-service": "^7.2.10",
     "@ngrx/schematics": "^7.3.0",
     "@ngrx/store-devtools": "7.3.0",
     "@nrwl/builders": "7.7.1",
