@@ -83,7 +83,7 @@
     "ngrx-store-freeze": "0.2.4",
     "prettier": "1.16.4",
     "ts-node": "~8.0.2",
-    "tslint": "^5.13.1",
+    "tslint": "^5.14.0",
     "typescript": "~3.2.4"
   }
 }
