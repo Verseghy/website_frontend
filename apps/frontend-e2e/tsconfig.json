@@ -1,6 +1,7 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "types": ["jasmine", "jasminewd2", "node"]
-  }
+    "types": ["cypress"]
+  },
+  "include": ["**/*.ts"]
 }

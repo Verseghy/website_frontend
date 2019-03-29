@@ -1,9 +1,10 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../dist/out-tsc/apps/math-competition-e2e",
-    "module": "commonjs",
-    "target": "es5",
-    "types": ["jasmine", "jasminewd2", "node"]
-  }
+    "sourceMap": false,
+    "outDir": "../../dist/out-tsc/apps/math-competition2-e2e/src",
+    "lib": ["es2015", "dom"],
+    "types": ["cypress", "node"]
+  },
+  "include": ["src/**/*.ts", "../../node_modules/cypress"]
 }
