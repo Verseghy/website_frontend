@@ -16,7 +16,7 @@ describe('Canteen Reducer', () => {
 
   describe('valid Canteen actions ', () => {
     it('should return set the list of known Canteen', () => {
-      const date = new Date("01-01-2019")
+      const date = new Date('01-01-2019')
       const monday = setDay(date, 1)
       const friday = setDay(date, 5)
 

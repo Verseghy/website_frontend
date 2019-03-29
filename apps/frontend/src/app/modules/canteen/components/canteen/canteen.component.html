@@ -7,11 +7,8 @@
     <div class="text">
       <h2>{{ weekdays[day - 1] }}</h2>
       <ng-container *ngIf="(canteen | async)[week][day] as thisDay">
-        <p *ngFor="let meal of thisDay.menus">
-          {{ meal.menu }}
-        </p>
+        <p *ngFor="let meal of thisDay.menus">{{ meal.menu }}</p>
       </ng-container>
     </div>
   </div>
 </ng-container>
-
