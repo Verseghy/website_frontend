@@ -25,7 +25,6 @@ export class CanteenService {
   getCanteen(): Observable<[Entity[], Entity[]]> {
     const now: Date = new Date()
     const year: number = now.getFullYear()
-    console.log(now)
     const week: number = getISOWeek(now)
 
     const thisWeek = this.getForWeek(year, week)

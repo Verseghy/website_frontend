@@ -13,8 +13,8 @@ import { Observable } from 'rxjs'
 export class CanteenComponent implements OnInit {
   canteen: Observable<WeekCanteen[]>
 
-  weekdays = ["Hétfő", "Kedd", "Szerda", "Csütörtök", "Péntek", "Szombat","Vasárnap"]
-  week_prefixes = ["Heti menü", "Jövő heti menü"]
+  weekdays = ['Hétfő', 'Kedd', 'Szerda', 'Csütörtök', 'Péntek', 'Szombat', 'Vasárnap']
+  week_prefixes = ['Heti menü', 'Jövő heti menü']
 
   constructor(private store: Store<CanteenState>) {}
 

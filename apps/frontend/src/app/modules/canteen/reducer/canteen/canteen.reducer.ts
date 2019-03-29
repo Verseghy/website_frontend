@@ -28,8 +28,8 @@ export interface WeekCanteen {
 export interface CanteenState {
   thisWeek: WeekCanteen
   nextWeek: WeekCanteen
-  loaded: boolean // has the Canteen list been loaded
-  error?: any // last none error (if any)
+  loaded: boolean
+  error?: any
 }
 
 export interface CanteenPartialState {
@@ -58,6 +58,7 @@ export function canteenReducer(state: CanteenState = initialState, action: Cante
         thisWeek: processedCanteens[0],
         nextWeek: processedCanteens[1],
         loaded: true,
+        error: null,
       }
       break
     }

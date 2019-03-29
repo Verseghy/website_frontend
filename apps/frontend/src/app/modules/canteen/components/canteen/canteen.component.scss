@@ -1,9 +1,9 @@
 $breakpoints: (
-        xs: 576px,
-        sm: 768px,
-        md: 992px,
-        lg: 1200px,
-        xl: 1600px,
+  xs: 576px,
+  sm: 768px,
+  md: 992px,
+  lg: 1200px,
+  xl: 1600px,
 );
 
 @mixin respond-above($breakpoint) {
@@ -53,16 +53,33 @@ $breakpoints: (
   box-sizing: border-box;
   padding: 20px;
   margin: auto;
+
   display: grid;
-  grid-template-rows: 40px 1fr;
-  grid-row-gap: 15px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: min-content min-content repeat(5, 140px);
+  grid-auto-flow: column;
+  grid-gap: 20px;
+
+  @include respond-below(sm) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 50px 50px repeat(5, 140px) 50px repeat(5, 140px);
+  }
+
+  .menu-header {
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+  .menu {
+    box-sizing: border-box;
+  }
 
   @include respond-above(xl) {
     width: 1600px;
   }
 
   @include respond-below(xs) {
-    width: 100vw
+    width: 100vw;
   }
 
   @include respond-between(xs, sm) {
@@ -78,44 +95,28 @@ $breakpoints: (
   }
 
   @include respond-between(lg, xl) {
-    width: 1200px
-  }
-
-
-  .text {
-    width: 60%;
-    height: 100%;
-    margin: auto;
-    text-align: center;
-    box-shadow: 0 3px 5px 0 rgba(0, 1, 1, 0.1);
-    background-color: white;
-
-    @include respond-below(sm) {
-      width: 90%;
-    }
-  }
-
-  .table {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 50px repeat(5, 140px);
-    grid-auto-flow: column;
-
-    @include respond-below(sm) {
-      grid-template-columns: 1fr;
-      grid-template-rows: 50px repeat(5, 140px) 50px repeat(5, 140px);
-    }
-
-    .menu-header {
-      box-sizing: border-box;
-      padding: 10px;
-      text-align: center;
-    }
-
-    .menu {
-      box-sizing: border-box;
-      padding: 10px;
-    }
+    width: 1200px;
   }
 }
-// TODO: Fix scrolling issue
+
+.text {
+  width: 60%;
+  height: 100%;
+  margin: auto;
+  text-align: center;
+  box-shadow: 0 3px 5px 0 rgba(0, 1, 1, 0.1);
+  background-color: white;
+
+  @include respond-below(sm) {
+    width: 90%;
+  }
+}
+
+h1 {
+  grid-column: span 2;
+  background-color: red;
+}
+
+h2 {
+  line-height: 50px;
+}
