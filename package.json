@@ -53,7 +53,7 @@
     "@ngrx/router-store": "7.4.0",
     "@ngrx/store": "7.4.0",
     "@ngx-loading-bar/http-client": "3.0.0",
-    "@ngx-loading-bar/router": "3.0.0",
+    "@ngx-loading-bar/router": "4.2.0",
     "@nrwl/nx": "7.7.2",
     "core-js": "2.6.5",
     "date-fns": "1.30.1",
