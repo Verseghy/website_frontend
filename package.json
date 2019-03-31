@@ -74,7 +74,7 @@
     "@nrwl/builders": "7.7.2",
     "@nrwl/schematics": "7.7.2",
     "@types/jest": "24.0.11",
-    "@types/node": "11.11.6",
+    "@types/node": "11.12.2",
     "codelyzer": "4.5.0",
     "cypress": "3.2.0",
     "dotenv": "6.2.0",
