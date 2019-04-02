@@ -76,6 +76,7 @@ $breakpoints: (
   padding-bottom: 10px;
   box-shadow: 0 3px 5px 0 rgba(0, 1, 1, 0.1);
   background-color: white;
+
   @include respond-below(sm) {
     margin-top: 20px;
   }
@@ -101,6 +102,7 @@ h2 {
   font-size: 48px;
   font-weight: 500;
   margin-bottom: 25px;
+  
   @include respond-below(sm) {
     grid-column: span 1;
     font-size: 34px;
