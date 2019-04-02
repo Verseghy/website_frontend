@@ -19,6 +19,10 @@ const routes: Routes = [
     path: 'events',
     loadChildren: './modules/events/events.module#EventsModule',
   },
+  {
+    path: 'canteen',
+    loadChildren: './modules/canteen/canteen.module#CanteenModule',
+  },
 ]
 
 @NgModule({

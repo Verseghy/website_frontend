@@ -1,0 +1,115 @@
+$breakpoints: (
+  xs: 576px,
+  sm: 768px,
+  md: 992px,
+  lg: 1200px,
+  xl: 1600px,
+);
+
+@mixin respond-above($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+    @media (min-width: $breakpoint-value) {
+      @content;
+    }
+  } @else {
+    @warn 'Invalid breakpoint: #{$breakpoint}.';
+  }
+}
+
+@mixin respond-below($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+    @media (max-width: ($breakpoint-value - 1)) {
+      @content;
+    }
+  } @else {
+    @warn 'Invalid breakpoint: #{$breakpoint}.';
+  }
+}
+
+@mixin respond-between($lower, $upper) {
+  @if map-has-key($breakpoints, $lower) and map-has-key($breakpoints, $upper) {
+    $lower-breakpoint: map-get($breakpoints, $lower);
+    $upper-breakpoint: map-get($breakpoints, $upper);
+
+    @media (min-width: $lower-breakpoint) and (max-width: ($upper-breakpoint - 1)) {
+      @content;
+    }
+  } @else {
+    @if (map-has-key($breakpoints, $lower) == false) {
+      @warn 'Your lower breakpoint was invalid: #{$lower}.';
+    }
+
+    @if (map-has-key($breakpoints, $upper) == false) {
+      @warn 'Your upper breakpoint was invalid: #{$upper}.';
+    }
+  }
+}
+
+:host {
+  width: 100%;
+  max-width: 900px;
+  box-sizing: border-box;
+  padding: 20px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(7, min-content);
+  grid-auto-flow: column;
+  grid-column-gap: 20px;
+
+  @include respond-below(sm) {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(13, min-content);
+    padding: 20px 8px;
+  }
+}
+
+.menu-header {
+  text-align: center;
+  display: block;
+  font-size: 24px;
+  padding: 15px 20px;
+  padding-bottom: 10px;
+  box-shadow: 0 3px 5px 0 rgba(0, 1, 1, 0.1);
+  background-color: white;
+
+  @include respond-below(sm) {
+    margin-top: 20px;
+  }
+}
+
+.day {
+  flex: 1;
+  padding: 10px 20px;
+  border-top: 1px solid #e0e0e0;
+  box-shadow: 0 3px 5px 0 rgba(0, 1, 1, 0.1);
+  background-color: white;
+}
+
+.day-name {
+  font-size: 20px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+h2 {
+  grid-column: span 2;
+  text-align: center;
+  font-size: 48px;
+  font-weight: 500;
+  margin-bottom: 25px;
+
+  @include respond-below(sm) {
+    grid-column: span 1;
+    font-size: 34px;
+    margin-bottom: 5px;
+  }
+}
+
+p {
+  margin: 2px 0;
+}
