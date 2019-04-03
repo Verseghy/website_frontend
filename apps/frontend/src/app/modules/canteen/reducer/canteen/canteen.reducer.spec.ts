@@ -10,13 +10,11 @@ describe('Canteen Reducer', () => {
     createCanteen = (
       id: number,
       date,
-      menu: [Menu, Menu, Menu?] = [
-        {id: 0, menu: 'meal1', type: 0},
-        {id: 0, menu: 'meal1', type: 0}
-      ]): Entity => ({
-        id,
-        menu: menu,
-        date: date,
+      menu: [Menu, Menu, Menu?] = [{ id: 0, menu: 'meal1', type: 0 }, { id: 0, menu: 'meal1', type: 0 }]
+    ): Entity => ({
+      id,
+      menu: menu,
+      date: date,
     })
   })
 
