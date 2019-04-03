@@ -1,5 +1,5 @@
 import { CanteenLoaded } from './canteen.actions'
-import { canteenReducer, CanteenState, Entity, initialState } from './canteen.reducer'
+import { canteenReducer, CanteenState, Entity, initialState, Menu } from './canteen.reducer'
 import { setDay } from 'date-fns'
 
 describe('Canteen Reducer', () => {
@@ -7,9 +7,13 @@ describe('Canteen Reducer', () => {
   let createCanteen
 
   beforeEach(() => {
-    createCanteen = (id: number, date, menu = []): Entity => ({
+    createCanteen = (
+      id: number,
+      date,
+      menu: [Menu, Menu, Menu?] = [{ id: 0, menu: 'meal1', type: 0 }, { id: 0, menu: 'meal1', type: 0 }]
+    ): Entity => ({
       id,
-      menu: menu || [],
+      menu: menu,
       date: date,
     })
   })
