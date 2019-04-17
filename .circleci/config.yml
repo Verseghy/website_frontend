@@ -43,6 +43,7 @@ jobs:
             - dependencies-{{ checksum "yarn.lock" }}
             - dependencies-
       - run: CYPRESS_INSTALL_BINARY=0 yarn
+      - run: yarn check
       - save_cache:
           paths:
             - node_modules
