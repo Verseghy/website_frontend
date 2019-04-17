@@ -28,7 +28,9 @@
               "apps/frontend/src/manifest.json",
               "apps/frontend/src/.htaccess"
             ],
-            "styles": ["apps/frontend/src/styles.scss"],
+            "styles": [
+              "apps/frontend/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -79,8 +81,14 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/frontend/tsconfig.app.json", "apps/frontend/tsconfig.spec.json", "apps/frontend/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
+            "tsConfig": [
+              "apps/frontend/tsconfig.app.json",
+              "apps/frontend/tsconfig.spec.json",
+              "apps/frontend/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         },
         "test": {
@@ -115,7 +123,9 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "apps/frontend-e2e/tsconfig.e2e.json",
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
@@ -144,7 +154,9 @@
               "apps/math-competition/src/assets",
               "apps/math-competition/src/manifest.json"
             ],
-            "styles": ["apps/math-competition/src/styles.scss"],
+            "styles": [
+              "apps/math-competition/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -199,7 +211,9 @@
               "apps/math-competition/tsconfig.spec.json",
               "apps/math-competition/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         },
         "test": {
@@ -234,7 +248,9 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "apps/math-competition-e2e/tsconfig.e2e.json",
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
@@ -248,8 +264,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["libs/calendar/tsconfig.lib.json", "libs/calendar/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
+            "tsConfig": [
+              "libs/calendar/tsconfig.lib.json",
+              "libs/calendar/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         },
         "test": {
@@ -269,16 +290,16 @@
       "versionMismatch": false
     },
     "defaultCollection": "@nrwl/schematics",
-    "packageManager": "npm"
+    "packageManager": "yarn"
   },
   "defaultProject": "frontend",
   "schematics": {
     "@nrwl/schematics:library": {
-      "unitTestRunner": "karma",
+      "unitTestRunner": "jest",
       "framework": "angular"
     },
     "@nrwl/schematics:application": {
-      "unitTestRunner": "karma",
+      "unitTestRunner": "jest",
       "e2eTestRunner": "protractor"
     },
     "@nrwl/schematics:node-application": {
