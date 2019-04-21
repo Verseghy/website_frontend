@@ -132,10 +132,10 @@
   resolved "https://registry.yarnpkg.com/@angular-mdc/theme/-/theme-1.0.0.tgz#54a4dde1628cfe8200d1fc593254d62467d111b9"
   integrity sha512-9T/NrERTkr0GtsIrJ6FYzpRB0F0OF/XeIq6ioHBh4MN2rPeKbnAw1kSzhautXN9DRr6Q1Jhnt2NQbvUbUr7GpA==
 
-"@angular-mdc/web@1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@angular-mdc/web/-/web-1.0.2.tgz#8c7696e89c156516f90cc5ec1022d7e884fffb71"
-  integrity sha512-SQkIQao5R5Q1ailiznKdiQIqN7+Rt65bpcuJh/1aZ0a9Tx3eYXweZQxyzleWVCjRKdi21h7OCvBkiJELTvLhlA==
+"@angular-mdc/web@1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@angular-mdc/web/-/web-1.0.3.tgz#b78858a7b39e5d8a0b917af3ab357fc33ac23dc4"
+  integrity sha512-IR/yaQdI5oNtB6gqbVGNiT/HW6UM8bcJyn2BRmVOEQJo7SyA2+ktgVdT6OFQRI71afUEVBVk6Hrxc8M2ywli8Q==
   dependencies:
     "@angular-mdc/theme" "1.0.0"
     material-components-web "^1.1.1"
