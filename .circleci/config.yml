@@ -40,13 +40,13 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - dependencies-{{ checksum "package.json" }}
+            - dependencies-{{ checksum "yarn.lock" }}
             - dependencies-
-      - run: CYPRESS_INSTALL_BINARY=0 npm install
+      - run: CYPRESS_INSTALL_BINARY=0 yarn
       - save_cache:
           paths:
             - node_modules
-          key: dependencies-{{ checksum "package.json" }}
+          key: dependencies-{{ checksum "yarn.lock" }}
 
   test-lint:
     docker:
@@ -58,9 +58,9 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - dependencies-{{ checksum "package.json" }}
+            - dependencies-{{ checksum "yarn.lock" }}
             - dependencies-
-      - run: npm run nx affected:lint -- --all
+      - run: yarn nx affected:lint --all
 
   test-format:
     docker:
@@ -72,9 +72,9 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - dependencies-{{ checksum "package.json" }}
+            - dependencies-{{ checksum "yarn.lock" }}
             - dependencies-
-      - run: npm run nx format:check
+      - run: yarn nx format:check
 
   test-build:
     docker:
@@ -86,9 +86,9 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - dependencies-{{ checksum "package.json" }}
+            - dependencies-{{ checksum "yarn.lock" }}
             - dependencies-
-      - run: npm run nx affected:build -- --all --prod
+      - run: yarn affected:build --all --prod
       - save_cache:
           paths:
             - dist
@@ -104,10 +104,10 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - dependencies-{{ checksum "package.json" }}
+            - dependencies-{{ checksum "yarn.lock" }}
             - dependencies-
       - run: ./node_modules/.bin/cypress install
-      - run: npm run nx affected:e2e -- --all --prod --headless
+      - run: yarn nx affected:e2e --all --prod --headless
 
   test-test:
     docker:
@@ -119,9 +119,9 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - dependencies-{{ checksum "package.json" }}
+            - dependencies-{{ checksum "yarn.lock" }}
             - dependencies-
-      - run: npm run affected:test -- --all
+      - run: yarn affected:test --all
 
   deploy-frontend:
     machine:

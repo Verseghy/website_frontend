@@ -1,0 +1,10 @@
+<h2>Menza étlap</h2>
+<ng-container class="week" *ngFor="let week of [0, 1]">
+  <span class="menu-header">{{ week_prefixes[week] }}</span>
+  <div class="day" *ngFor="let day of [1, 2, 3, 4, 5]">
+    <span class="day-name">{{ weekdays[day - 1] }}</span>
+    <ng-container *ngIf="(canteen | async)[week][day] as thisDay">
+      <p *ngFor="let meal of thisDay.menus">{{ meal.menu }}</p>
+    </ng-container>
+  </div>
+</ng-container>
