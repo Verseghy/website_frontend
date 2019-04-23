@@ -63,7 +63,7 @@
     "jasmine-core": "3.4.0",
     "jasmine-marbles": "0.4.0",
     "parse-color": "1.0.0",
-    "rxjs": "6.4.0",
+    "rxjs": "6.5.1",
     "tslib": "1.9.3",
     "zone.js": "0.8.29"
   },
