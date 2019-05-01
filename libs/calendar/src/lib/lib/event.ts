@@ -6,7 +6,7 @@ export class Event {
     private _startDate: Date,
     private _endDate: Date = _startDate,
     private _color: string = '#3f51b5'
-  ) { }
+  ) {}
 
   get id() {
     return this._id

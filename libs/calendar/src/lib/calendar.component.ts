@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild, OnChanges } from '@angular/core'
+import { AfterViewInit, Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild } from '@angular/core'
 import { DisplayedEvent, Settings } from '@verseghy/calendar'
 import { Event } from './lib/event'
 import { Cell } from './lib/cell'
@@ -163,7 +163,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   @Input('events') public set events(events: Event[]) {
     if (!events) return
     if (events.length) {
-      let tempEvents = [];
+      let tempEvents = []
       for (const event of events) {
         if (!!tempEvents.length) {
           if (!this._isArrayContainsId(tempEvents, event.id)) {
