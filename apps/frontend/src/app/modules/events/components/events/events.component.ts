@@ -3,7 +3,7 @@ import { Event, Settings } from '@verseghy/calendar'
 import { EVENTS_FEATURE_KEY, EventsState } from '../../reducer/events.reducer'
 import { select, Store } from '@ngrx/store'
 import { MonthChange } from '../../reducer/events.actions'
-import { map } from 'rxjs/operators'
+import { map, delay } from 'rxjs/operators'
 import { Observable } from 'rxjs'
 
 @Component({

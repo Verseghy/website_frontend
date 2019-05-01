@@ -34,6 +34,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   private _displayedEvents: DisplayedEvent[] = []
   private _settings: Settings
   private _renderer = new Renderer()
+  private _ready = false
 
   public moreEventsPopupVisible = false
   public moreEventsPopupTop: number
@@ -66,6 +67,8 @@ export class CalendarComponent implements OnInit, AfterViewInit {
       this._renderer.HostElementRef = this._el
       this._renderer.settings = this.settings
       this._changeMonth()
+      this._ready = true
+      this._cells = this._renderer.renderEvents()
     })
   }
 
@@ -103,7 +106,6 @@ export class CalendarComponent implements OnInit, AfterViewInit {
 
   private _changeMonth(): void {
     this._renderer.changeMonth(this._date)
-    this._cells = this._renderer.getCells()
     this.monthChanged.emit({
       year: this.date.getFullYear(),
       month: this.date.getMonth(),
@@ -149,18 +151,32 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     this.date = new Date()
   }
 
-  public setEvents(events: Array<Event>) {
-    this._events = events
-    this._sortEventsArray()
-    this._generateEvents()
+  private _isArrayContainsId(array: Event[], id: Number): boolean {
+    for (const item of array) {
+      if (item.id === id) {
+        return true
+      }
+    }
+    return false
   }
 
   @Input('events') public set events(events: Event[]) {
+    if (!events) return
     if (events.length) {
-      this._events = events
+      let tempEvents = []
+      for (const event of events) {
+        if (!!tempEvents.length) {
+          if (!this._isArrayContainsId(tempEvents, event.id)) {
+            tempEvents = [...tempEvents, event]
+          }
+        } else {
+          tempEvents = [...tempEvents, event]
+        }
+      }
+      this._events = tempEvents
       this._sortEventsArray()
       this._generateEvents()
-      this._renderer.renderEvents()
+      if (this._ready) this._cells = this._renderer.renderEvents()
     }
   }
 
@@ -351,7 +367,8 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     })
   }
 
-  @HostListener('document:click', ['$event']) clickout(event) {
+  @HostListener('document:click', ['$event'])
+  clickout(event) {
     let eventDetails = false
     let moreEvents = false
     for (let i = 0; i < event.path.length; i++) {

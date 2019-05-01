@@ -28,7 +28,8 @@ export class Renderer {
   private _settings: Settings
   public HostElementRef: ElementRef
 
-  public renderEvents(): void {
+  public renderEvents(): Cell[] {
+    this._generateCells()
     const firstCellDate = this._getFirstCellDate()
     for (const i of Object.keys(this._events)) {
       const item = this._events[i]
@@ -73,6 +74,7 @@ export class Renderer {
         }
       }
     }
+    return this._cells
   }
 
   public changeMonth(date: Date): void {
@@ -84,11 +86,7 @@ export class Renderer {
     this._events = events
   }
 
-  public getCells(): Cell[] {
-    return this._cells
-  }
-
-  private _generateCells(): Cell[] {
+  private _generateCells(): void {
     this._clearCells()
     const rows = this._getRowsInMonth()
     const firstCellDate = this._getFirstCellDate()
@@ -96,7 +94,6 @@ export class Renderer {
       const cell = new Cell(i, isToday(addDays(firstCellDate, i)), addDays(firstCellDate, i), this._getMaxVisibleRows(), this._settings)
       this._cells.push(cell)
     }
-    return this._cells
   }
 
   private _getFirstCellDate(): Date {
