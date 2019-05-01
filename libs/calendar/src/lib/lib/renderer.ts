@@ -74,7 +74,6 @@ export class Renderer {
         }
       }
     }
-    console.timeEnd('asd')
     return this._cells
   }
 
