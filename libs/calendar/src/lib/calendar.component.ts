@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild } from '@angular/core'
+import { AfterViewInit, Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild, OnChanges } from '@angular/core'
 import { DisplayedEvent, Settings } from '@verseghy/calendar'
 import { Event } from './lib/event'
 import { Cell } from './lib/cell'
@@ -34,6 +34,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   private _displayedEvents: DisplayedEvent[] = []
   private _settings: Settings
   private _renderer = new Renderer()
+  private _ready = false
 
   public moreEventsPopupVisible = false
   public moreEventsPopupTop: number
@@ -59,16 +60,15 @@ export class CalendarComponent implements OnInit, AfterViewInit {
 
   constructor(private _el: ElementRef) {}
 
-  ngOnInit() {
-    console.log('b')
-  }
+  ngOnInit() {}
 
   ngAfterViewInit() {
-    console.log('a')
     setTimeout(() => {
       this._renderer.HostElementRef = this._el
       this._renderer.settings = this.settings
       this._changeMonth()
+      this._ready = true
+      this._cells = this._renderer.renderEvents()
     })
   }
 
@@ -106,7 +106,6 @@ export class CalendarComponent implements OnInit, AfterViewInit {
 
   private _changeMonth(): void {
     this._renderer.changeMonth(this._date)
-    this._cells = this._renderer.getCells()
     this.monthChanged.emit({
       year: this.date.getFullYear(),
       month: this.date.getMonth(),
@@ -162,6 +161,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   }
 
   @Input('events') public set events(events: Event[]) {
+    if (!events) return
     if (events.length) {
       let tempEvents = [];
       for (const event of events) {
@@ -176,7 +176,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
       this._events = tempEvents
       this._sortEventsArray()
       this._generateEvents()
-      this._renderer.renderEvents()
+      if (this._ready) this._cells = this._renderer.renderEvents()
     }
   }
 
