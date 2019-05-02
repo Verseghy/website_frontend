@@ -1,6 +1,5 @@
 import { AfterViewInit, Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild } from '@angular/core'
-import { DisplayedEvent, Settings } from '@verseghy/calendar'
-import { Event } from './lib/event'
+import { DisplayedEvent, Settings, CalendarEvent } from '@verseghy/calendar'
 import { Cell } from './lib/cell'
 import {
   addMonths,
@@ -30,7 +29,7 @@ import { Renderer } from './lib/renderer'
 export class CalendarComponent implements OnInit, AfterViewInit {
   private _cells: Cell[] = []
   private _date = new Date()
-  private _events: Event[] = []
+  private _events: CalendarEvent[] = []
   private _displayedEvents: DisplayedEvent[] = []
   private _settings: Settings
   private _renderer = new Renderer()
@@ -151,7 +150,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     this.date = new Date()
   }
 
-  private _isArrayContainsId(array: Event[], id: Number): boolean {
+  private _isArrayContainsId(array: CalendarEvent[], id: Number): boolean {
     for (const item of array) {
       if (item.id === id) {
         return true
@@ -160,7 +159,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     return false
   }
 
-  @Input('events') public set events(events: Event[]) {
+  @Input('events') public set events(events: CalendarEvent[]) {
     if (!events) return
     if (events.length) {
       let tempEvents = []
@@ -268,7 +267,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     return displayedEvents
   }
 
-  private _getEvent(id: number): Event {
+  private _getEvent(id: number): CalendarEvent {
     for (const item of this._events) {
       if (item.id === id) {
         return item
