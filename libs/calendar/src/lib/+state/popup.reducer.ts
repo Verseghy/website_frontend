@@ -1,23 +1,11 @@
 import { PopupAction, PopupActionTypes } from './popup.actions'
+import { PopupSettings } from '../calendar.interfaces';
 
-export const POPUP_FEATURE_KEY = 'popup'
-
-/**
- * Interface for the 'Popup' data used in
- *  - PopupState, and
- *  - popupReducer
- *
- *  Note: replace if already defined in another module
- */
-
-/* tslint:disable:no-empty-interface */
-export interface Entity {}
+export const POPUP_FEATURE_KEY = 'ui-calendar-popup'
 
 export interface PopupState {
-  list: Entity[] // list of Popup; analogous to a sql normalized table
-  selectedId?: string | number // which Popup record has been selected
-  loaded: boolean // has the Popup list been loaded
-  error?: any // last none error (if any)
+  eventDetailsPopup: PopupSettings,
+  moreEventsPopup: PopupSettings
 }
 
 export interface PopupPartialState {
@@ -25,17 +13,66 @@ export interface PopupPartialState {
 }
 
 export const initialState: PopupState = {
-  list: [],
-  loaded: false,
+  eventDetailsPopup: {
+    visible: false,
+    top: 0,
+    left: 0,
+    date: '',
+    title: '',
+    description: '',
+    color: '',
+  },
+  moreEventsPopup: {
+    visible: false,
+    top: 0,
+    left: 0,
+    date: '',
+    events: []
+  }
 }
 
 export function popupReducer(state: PopupState = initialState, action: PopupAction): PopupState {
   switch (action.type) {
-    case PopupActionTypes.PopupLoaded: {
+    case PopupActionTypes.HideEventDetailsPopup: {
       state = {
         ...state,
-        list: action.payload,
-        loaded: true,
+        eventDetailsPopup: {
+          ...state.eventDetailsPopup,
+          visible: false
+        }
+      }
+      break
+    }
+
+    case PopupActionTypes.SetEventDetailsPopup: {
+      state = {
+        ...state,
+        eventDetailsPopup: {
+          ...state.eventDetailsPopup,
+          ...action.payload
+        }
+      }
+      break
+    }
+
+    case PopupActionTypes.HideMoreEventsPopup: {
+      state = {
+        ...state,
+        moreEventsPopup: {
+          ...state.moreEventsPopup,
+          visible: false
+        }
+      }
+      break
+    }
+
+    case PopupActionTypes.SetMoreEventsPopup: {
+      state = {
+        ...state,
+        eventDetailsPopup: {
+          ...state.moreEventsPopup,
+          ...action.payload
+        }
       }
       break
     }

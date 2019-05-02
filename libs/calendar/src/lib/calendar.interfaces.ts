@@ -23,12 +23,16 @@ export interface CalendarEvent {
   color: string
 }
 
-export interface EventDetailsPopUpSettings {
+export interface PopupSettings {
   visible: boolean,
   top: number,
   left: number,
   date: string,
-  title: string,
-  description: string,
-  color: string
+  title?: string,
+  description?: string,
+  color?: string,
+  events?: {
+    title: string,
+    color: string
+  }[]
 }

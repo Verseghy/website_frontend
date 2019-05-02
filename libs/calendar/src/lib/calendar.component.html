@@ -57,18 +57,18 @@
     </div>
   </div>
 </div>
-<div class="popup">
+<div class="popup" *ngIf="(eventDetailsPopup | async) as details">
   <div
     class="eventDetails"
-    [ngStyle]="{ 'margin-top': eventDetailsPopupTop + 'px', 'margin-left': eventDetailsPopupLeft + 'px' }"
-    *ngIf="eventDetailsPopupVisible"
+    [ngStyle]="{ 'margin-top': details.top + 'px', 'margin-left': details.left + 'px' }"
+    *ngIf="details.visible"
     #eventDetails
   >
-    <div class="header" [ngStyle]="{ 'background-color': eventDetailsPopupColor }">
-      <h2 class="title">{{ eventDetailsPopupTitle }}</h2>
+    <div class="header" [ngStyle]="{ 'background-color': details.color }">
+      <h2 class="title">{{ details.title }}</h2>
       <span class="close" (click)="closeEventDetailsPopup()">x</span>
     </div>
-    <span class="date">{{ eventDetailsPopupDate }}</span>
-    <p class="description">{{ eventDetailsPopupDescription }}</p>
+    <span class="date">{{ details.date }}</span>
+    <p class="description">{{ details.description }}</p>
   </div>
 </div>

@@ -1,7 +1,6 @@
 import { AfterViewInit, Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild } from '@angular/core'
 import { DisplayedEvent, Settings, CalendarEvent } from '@verseghy/calendar'
 import { Cell } from './lib/cell'
-import { popUpHandler } from './lib/popup'
 import {
   addMonths,
   differenceInDays,
@@ -21,6 +20,11 @@ import {
   subMonths,
 } from 'date-fns'
 import { Renderer } from './lib/renderer'
+import { PopupHandlerService } from './services/popup-handler.service';
+import { map } from 'rxjs/operators'
+import { Store, select } from '@ngrx/store';
+import { POPUP_FEATURE_KEY, PopupState } from './+state/popup.reducer';
+import { fromPopupActions } from './+state/popup.actions';
 
 @Component({
   selector: 'verseghy-calendar',
@@ -35,7 +39,6 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   private _settings: Settings
   private _renderer = new Renderer()
   private _ready = false
-  private _popUpHandler = new popUpHandler()
 
   public moreEventsPopupVisible = false
   public moreEventsPopupTop: number
@@ -45,13 +48,6 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   public moreEventsPopupEvents
   @ViewChild('moreEvents') moreEventsPopupElement: ElementRef
 
-  public eventDetailsPopupVisible = false
-  public eventDetailsPopupTop = 0
-  public eventDetailsPopupLeft = 0
-  public eventDetailsPopupDate: string
-  public eventDetailsPopupTitle: string
-  public eventDetailsPopupDescription: string
-  public eventDetailsPopupColor: string
   @ViewChild('eventDetails') eventDetailsPopupElement: ElementRef
 
   @Output() monthChanged = new EventEmitter<{
@@ -59,7 +55,21 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     month: number
   }>()
 
-  constructor(private _el: ElementRef) {}
+  public eventDetailsPopup = this.store.pipe(
+    select(POPUP_FEATURE_KEY),
+    map((state: PopupState) => {
+      return state.eventDetailsPopup
+    })
+  )
+
+  public moreEventsPopup = this.store.pipe(
+    select(POPUP_FEATURE_KEY),
+    map((state: PopupState) => {
+      return state.moreEventsPopup
+    })
+  )
+
+  constructor(private _el: ElementRef, private popupHandler: PopupHandlerService, private store: Store<any>) {}
 
   ngOnInit() {}
 
@@ -239,6 +249,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   @Input('settings')
   set settings(settings: Settings) {
     this._settings = settings
+    this.popupHandler.settings = settings
   }
 
   private _sortEventsInDay(events: DisplayedEvent[]): DisplayedEvent[] {
@@ -339,38 +350,17 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     }
   }
 
-  public setEventDetailsPopup(id: number, click): void {
-    setTimeout(() => {
-      const event = this._getEvent(id)
-      const boundingRect = click.target.getBoundingClientRect()
-      const calendarBoundingRect = this._el.nativeElement.getBoundingClientRect()
-      this.eventDetailsPopupVisible = true
-      this.eventDetailsPopupTitle = event.title
-      this.eventDetailsPopupDate = this._formatTwoDays(event.startDate, event.endDate)
-      this.eventDetailsPopupDescription = event.description
-      this.eventDetailsPopupColor = event.color
-      this.eventDetailsPopupTop = boundingRect.y - calendarBoundingRect.y
-      if (document.body.clientWidth - boundingRect.right < 320) {
-        if (boundingRect.x < 320) {
-          this.eventDetailsPopupLeft = calendarBoundingRect.width / 2 - 150
-        } else {
-          this.eventDetailsPopupLeft = boundingRect.x - 310 - calendarBoundingRect.x
-        }
-      } else {
-        this.eventDetailsPopupLeft = boundingRect.right + 10 - calendarBoundingRect.x
-      }
-    })
+  public setEventDetailsPopup(id: number, click: Event): void {
+    this.popupHandler.setEventDetailsPopup(this._getEvent(id), click.target as HTMLElement, this._el.nativeElement)
   }
 
   public closeEventDetailsPopup(): void {
-    setTimeout(() => {
-      this.eventDetailsPopupVisible = false
-    })
+    this.store.dispatch(new fromPopupActions.HideMoreEventsPopup())
   }
 
   @HostListener('document:click', ['$event'])
   clickout(event) {
-    let eventDetails = false
+    /*let eventDetails = false
     let moreEvents = false
     for (let i = 0; i < event.path.length; i++) {
       const element = event.path[i]
@@ -412,6 +402,6 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     }
     if (!moreEvents) {
       this.moreEventsPopupVisible = false
-    }
+    }*/
   }
 }

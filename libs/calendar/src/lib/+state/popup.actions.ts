@@ -1,30 +1,40 @@
 import { Action } from '@ngrx/store'
-import { Entity } from './popup.reducer'
+import { CalendarEvent, PopupSettings } from '../calendar.interfaces';
 
 export enum PopupActionTypes {
-  LoadPopup = '[Popup] Load Popup',
-  PopupLoaded = '[Popup] Popup Loaded',
-  PopupLoadError = '[Popup] Popup Load Error',
+  HideEventDetailsPopup = '[Popup] Hide Event Details Popup ',
+  SetEventDetailsPopup = '[Popup] Set Event Details Popup',
+  HideMoreEventsPopup = '[Popup] Hide More Events Popup',
+  SetMoreEventsPopup = '[Popup] Set More Events Popup',
 }
 
-export class LoadPopup implements Action {
-  readonly type = PopupActionTypes.LoadPopup
+export class HideEventDetailsPopup implements Action {
+  readonly type = PopupActionTypes.HideEventDetailsPopup
 }
 
-export class PopupLoadError implements Action {
-  readonly type = PopupActionTypes.PopupLoadError
-  constructor(public payload: any) {}
+export class SetEventDetailsPopup implements Action {
+  readonly type = PopupActionTypes.SetEventDetailsPopup
+  constructor(public payload: PopupSettings) {}
 }
 
-export class PopupLoaded implements Action {
-  readonly type = PopupActionTypes.PopupLoaded
-  constructor(public payload: Entity[]) {}
+export class HideMoreEventsPopup implements Action {
+  readonly type = PopupActionTypes.HideMoreEventsPopup
 }
 
-export type PopupAction = LoadPopup | PopupLoaded | PopupLoadError
+export class SetMoreEventsPopup implements Action {
+  readonly type = PopupActionTypes.SetMoreEventsPopup
+  constructor(public payload: PopupSettings) {}
+}
 
 export const fromPopupActions = {
-  LoadPopup,
-  PopupLoaded,
-  PopupLoadError,
+  HideEventDetailsPopup,
+  SetEventDetailsPopup,
+  HideMoreEventsPopup,
+  SetMoreEventsPopup
 }
+
+export type PopupAction
+  = HideEventDetailsPopup
+  | SetEventDetailsPopup
+  | HideMoreEventsPopup
+  | SetMoreEventsPopup
