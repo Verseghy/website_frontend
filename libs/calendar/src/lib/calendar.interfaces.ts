@@ -22,3 +22,13 @@ export interface CalendarEvent {
   endDate: Date,
   color: string
 }
+
+export interface EventDetailsPopUpSettings {
+  visible: boolean,
+  top: number,
+  left: number,
+  date: string,
+  title: string,
+  description: string,
+  color: string
+}

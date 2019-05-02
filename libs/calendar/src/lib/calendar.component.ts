@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild } from '@angular/core'
 import { DisplayedEvent, Settings, CalendarEvent } from '@verseghy/calendar'
 import { Cell } from './lib/cell'
+import { popUpHandler } from './lib/popup'
 import {
   addMonths,
   differenceInDays,
@@ -34,6 +35,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   private _settings: Settings
   private _renderer = new Renderer()
   private _ready = false
+  private _popUpHandler = new popUpHandler()
 
   public moreEventsPopupVisible = false
   public moreEventsPopupTop: number

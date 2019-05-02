@@ -2,7 +2,6 @@ import { format, getDate, getMonth } from 'date-fns'
 import { Settings } from '../calendar.interfaces'
 
 export class Cell {
-  private _id: number
   private _rows: {
     id: number
     row: number
@@ -12,21 +11,17 @@ export class Cell {
     color: string
     placeholder: boolean
   }[] = []
-  private _date: Date
-  private _today: boolean
-  private _maxRows: number
   private _moreEventsTop: string
   private _moreEventsCount = 0
-  private _settings: Settings
   private _moreEventsVisible: boolean
 
-  constructor(id: number, today: boolean, date: Date, maxRows: number, settings: Settings) {
-    this._id = id
-    this._today = today
-    this._date = date
-    this._maxRows = maxRows
-    this._settings = settings
-  }
+  constructor(
+    private _id: number,
+    private _today: boolean,
+    private _date: Date,
+    private _maxRows: number, 
+    private _settings: Settings
+  ) {}
 
   public getRow(width: number): number {
     for (const item of Object.keys(this._rows)) {
