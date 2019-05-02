@@ -355,7 +355,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   }
 
   public closeEventDetailsPopup(): void {
-    this.store.dispatch(new fromPopupActions.HideMoreEventsPopup())
+    this.store.dispatch(new fromPopupActions.HideEventDetailsPopup())
   }
 
   @HostListener('document:click', ['$event'])

@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store'
-import { CalendarEvent, PopupSettings } from '../calendar.interfaces';
+import { PopupSettings } from '../calendar.interfaces';
 
 export enum PopupActionTypes {
   HideEventDetailsPopup = '[Popup] Hide Event Details Popup ',
