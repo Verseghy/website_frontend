@@ -69,7 +69,7 @@ export function popupReducer(state: PopupState = initialState, action: PopupActi
     case PopupActionTypes.SetMoreEventsPopup: {
       state = {
         ...state,
-        eventDetailsPopup: {
+        moreEventsPopup: {
           ...state.moreEventsPopup,
           ...action.payload
         }

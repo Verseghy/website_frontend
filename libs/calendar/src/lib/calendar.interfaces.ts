@@ -31,7 +31,9 @@ export interface PopupSettings {
   title?: string,
   description?: string,
   color?: string,
+  day?: string,
   events?: {
+    id: number
     title: string,
     color: string
   }[]

@@ -56,11 +56,11 @@ export class Cell {
     return this._date
   }
 
-  get getEvents(): number[] {
-    const events = []
+  get getEvents(): {id: number, order:number}[] {
+    let events = []
     for (const item of this._rows) {
       if (!item.free) {
-        events.push({ id: item.id, order: item.row })
+        events = [...events, {id: item.id, order: item.row}]
       }
     }
     return events

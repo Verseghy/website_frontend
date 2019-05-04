@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CalendarEvent, PopupSettings, Settings } from '../calendar.interfaces';
-import { isEqual, getYear, format, getMonth } from 'date-fns';
+import { isEqual, getYear, format, getMonth, getDate, getISOWeek, startOfMonth, getDay, isSunday, isSaturday, getDaysInMonth } from 'date-fns';
 import { Store } from '@ngrx/store';
 import { fromPopupActions } from '../+state/popup.actions';
 
@@ -10,12 +10,14 @@ import { fromPopupActions } from '../+state/popup.actions';
 export class PopupHandlerService {
 
   public settings: Settings
+  public hostElement: HTMLElement
+  public date: Date
 
   constructor(private store: Store<any>) { }
 
-  setEventDetailsPopup(event: CalendarEvent, clickedElement: HTMLElement, hostElement: HTMLElement) {
+  public setEventDetailsPopup(event: CalendarEvent, clickedElement: HTMLElement) {
     const boundingRect = clickedElement.getBoundingClientRect() as DOMRect
-    const calendarBoundingRect = hostElement.getBoundingClientRect() as DOMRect
+    const calendarBoundingRect = this.hostElement.getBoundingClientRect() as DOMRect
 
     let top = 0
     let left = 0
@@ -36,7 +38,7 @@ export class PopupHandlerService {
       title: event.title,
       top,
       left,
-      date: this.formatTwoDays(event.startDate, event.endDate),
+      date: this._formatTwoDays(event.startDate, event.endDate),
       description: event.description,
       color: event.color,
     }
@@ -44,7 +46,40 @@ export class PopupHandlerService {
     this.store.dispatch(new fromPopupActions.SetEventDetailsPopup(popupSettings))
   }
 
-  public formatTwoDays(date1: Date, date2: Date): string {
+  public setMoreEventsPopup(date: Date, events: CalendarEvent[]) {
+    const height = (this.hostElement.offsetHeight - 68) / this._getRowsInMonth()
+    const row = this._getWeekOfMonth(date)
+    let column = getDay(date)
+    if (column === 0) {
+      column = 7
+    }
+
+    const top = row * height - 50 + 69
+    const left = (column - 1) * (this.hostElement.offsetWidth / 7) - 24
+
+    let eventsArray = []
+
+    for (const item of events) {
+      eventsArray = [...eventsArray,{
+        id: item.id,
+        title: item.title,
+        color: item.color
+      }]
+    }
+
+    const popupSettings: PopupSettings = {
+      visible: true,
+      top,
+      left,
+      date: String(getDate(date)),
+      day: this.settings.shortDayNames[column - 1],
+      events: eventsArray
+    }
+
+    this.store.dispatch(new fromPopupActions.SetMoreEventsPopup(popupSettings))
+  }
+
+  private _formatTwoDays(date1: Date, date2: Date): string {
     if (!isEqual(date1, date2)) {
       let year = ''
       let month = ''
@@ -60,5 +95,19 @@ export class PopupHandlerService {
     } else {
       return format(date1, 'YYYY. ') + this.settings.monthNames[getMonth(date1)] + format(date1, ' D')
     }
+  }
+
+  private _getWeekOfMonth(date: Date): number {
+    return getISOWeek(date) - getISOWeek(startOfMonth(this.date))
+  }
+
+  private _getRowsInMonth(): number {
+    if (
+      (isSunday(startOfMonth(this.date)) && getDaysInMonth(this.date) >= 30) ||
+      (isSaturday(startOfMonth(this.date)) && getDaysInMonth(this.date) === 31)
+    ) {
+      return 6
+    }
+    return 5
   }
 }

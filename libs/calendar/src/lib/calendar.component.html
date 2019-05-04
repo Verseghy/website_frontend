@@ -32,23 +32,23 @@
     </div>
   </div>
 </div>
-<div class="popup">
+<div class="popup" *ngIf="(moreEventsPopup | async) as details">
   <div
     class="more-events"
     #moreEventsPopup
-    [ngStyle]="{ 'margin-top': moreEventsPopupTop + 'px', 'margin-left': moreEventsPopupLeft + 'px' }"
-    *ngIf="moreEventsPopupVisible"
+    [ngStyle]="{ 'margin-top.px': details.top, 'margin-left.px': details.left }"
+    *ngIf="details.visible"
     #moreEvents
   >
     <div class="header">
-      <span class="day">{{ moreEventsPopupDay }}</span>
-      <h2 class="date">{{ moreEventsPopupDate }}</h2>
+      <span class="day">{{ details.day }}</span>
+      <h2 class="date">{{ details.date }}</h2>
       <span class="close" (click)="closeMoreEventsPopup()">x</span>
     </div>
     <div class="events">
       <div
         class="event popup-event"
-        *ngFor="let event of moreEventsPopupEvents"
+        *ngFor="let event of details.events"
         [ngStyle]="{ 'background-color': event.color }"
         (click)="setEventDetailsPopup(event.id, $event)"
       >

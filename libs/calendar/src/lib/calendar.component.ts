@@ -1,24 +1,7 @@
 import { AfterViewInit, Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild } from '@angular/core'
 import { DisplayedEvent, Settings, CalendarEvent } from '@verseghy/calendar'
 import { Cell } from './lib/cell'
-import {
-  addMonths,
-  differenceInDays,
-  format,
-  getDate,
-  getDay,
-  getDaysInMonth,
-  getISOWeek,
-  getMonth,
-  getYear,
-  isAfter,
-  isBefore,
-  isEqual,
-  isSaturday,
-  isSunday,
-  startOfMonth,
-  subMonths,
-} from 'date-fns'
+import { addMonths, differenceInDays, format, getMonth, isAfter, isBefore, isEqual, subMonths } from 'date-fns'
 import { Renderer } from './lib/renderer'
 import { PopupHandlerService } from './services/popup-handler.service';
 import { map } from 'rxjs/operators'
@@ -40,14 +23,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   private _renderer = new Renderer()
   private _ready = false
 
-  public moreEventsPopupVisible = false
-  public moreEventsPopupTop: number
-  public moreEventsPopupLeft: number
-  public moreEventsPopupDay: string
-  public moreEventsPopupDate: number
-  public moreEventsPopupEvents
   @ViewChild('moreEvents') moreEventsPopupElement: ElementRef
-
   @ViewChild('eventDetails') eventDetailsPopupElement: ElementRef
 
   @Output() monthChanged = new EventEmitter<{
@@ -80,6 +56,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
       this._changeMonth()
       this._ready = true
       this._cells = this._renderer.renderEvents()
+      this.popupHandler.hostElement = this._el.nativeElement
     })
   }
 
@@ -121,6 +98,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
       year: this.date.getFullYear(),
       month: this.date.getMonth(),
     })
+    this.popupHandler.date = this._date
     this.closeMoreEventsPopup()
     this.closeEventDetailsPopup()
   }
@@ -297,61 +275,20 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     return item.id
   }
 
-  private _getRowsInMonth(): number {
-    if (
-      (isSunday(startOfMonth(this._date)) && getDaysInMonth(this._date) >= 30) ||
-      (isSaturday(startOfMonth(this._date)) && getDaysInMonth(this._date) === 31)
-    ) {
-      return 6
+  public setMoreEventsPopup(date: Date, events: {id: number, order:number}[]): void {
+    let eventsArray = []
+    for (const item of events) {
+      eventsArray = [...eventsArray, this._getEvent(item.id)]
     }
-    return 5
-  }
-
-  private _getWeekOfMonth(date: Date): number {
-    return getISOWeek(date) - getISOWeek(startOfMonth(this.date))
-  }
-
-  public setMoreEventsPopup(date: Date, events: number[]): void {
-    setTimeout(() => {
-      const height = (this._el.nativeElement.offsetHeight - 68) / this._getRowsInMonth()
-      const row = this._getWeekOfMonth(date)
-      let column = getDay(date)
-      if (column === 0) {
-        column = 7
-      }
-      this.moreEventsPopupVisible = true
-      this.moreEventsPopupTop = row * height - 50 + 69
-      this.moreEventsPopupLeft = (column - 1) * (this._el.nativeElement.offsetWidth / 7) - 24
-      this.moreEventsPopupDay = this.settings.shortDayNames[column - 1]
-      this.moreEventsPopupDate = getDate(date)
-      this.moreEventsPopupEvents = this._getDisplayedEvents(events)
-    })
+    this.popupHandler.setMoreEventsPopup(date, eventsArray)
   }
 
   public closeMoreEventsPopup(): void {
-    this.moreEventsPopupVisible = false
-  }
-
-  private _formatTwoDays(date1: Date, date2: Date): string {
-    if (!isEqual(date1, date2)) {
-      let year = ''
-      let month = ''
-      if (getYear(date1) !== getYear(date2)) {
-        year = format(date2, ' YYYY.')
-      }
-      if (getMonth(date1) !== getMonth(date2) || year !== '') {
-        month = ' ' + this.settings.monthNames[getMonth(date2)]
-      }
-      return (
-        format(date1, 'YYYY. ') + this.settings.monthNames[getMonth(date1)] + format(date1, ' D -') + year + month + format(date2, ' D')
-      )
-    } else {
-      return format(date1, 'YYYY. ') + this.settings.monthNames[getMonth(date1)] + format(date1, ' D')
-    }
+    this.store.dispatch(new fromPopupActions.HideMoreEventsPopup())
   }
 
   public setEventDetailsPopup(id: number, click: Event): void {
-    this.popupHandler.setEventDetailsPopup(this._getEvent(id), click.target as HTMLElement, this._el.nativeElement)
+    this.popupHandler.setEventDetailsPopup(this._getEvent(id), click.target as HTMLElement)
   }
 
   public closeEventDetailsPopup(): void {
