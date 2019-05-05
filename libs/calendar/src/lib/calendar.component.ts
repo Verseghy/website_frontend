@@ -267,20 +267,18 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     return
   }
 
-  public trackBy1(index, item) {
-    return item.id
-  }
-
-  public trackBy2(index, item) {
+  public trackByFn(index, item) {
     return item.id
   }
 
   public setMoreEventsPopup(date: Date, events: {id: number, order:number}[]): void {
-    let eventsArray = []
-    for (const item of events) {
-      eventsArray = [...eventsArray, this._getEvent(item.id)]
-    }
-    this.popupHandler.setMoreEventsPopup(date, eventsArray)
+    setTimeout(() => {
+      let eventsArray = []
+      for (const item of events) {
+        eventsArray = [...eventsArray, this._getEvent(item.id)]
+      }
+      this.popupHandler.setMoreEventsPopup(date, eventsArray)
+    })
   }
 
   public closeMoreEventsPopup(): void {
@@ -288,7 +286,9 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   }
 
   public setEventDetailsPopup(id: number, click: Event): void {
-    this.popupHandler.setEventDetailsPopup(this._getEvent(id), click.target as HTMLElement)
+    setTimeout(() => {
+      this.popupHandler.setEventDetailsPopup(this._getEvent(id), click.target as HTMLElement)
+    });    
   }
 
   public closeEventDetailsPopup(): void {
@@ -296,49 +296,25 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   }
 
   @HostListener('document:click', ['$event'])
-  clickout(event) {
-    /*let eventDetails = false
-    let moreEvents = false
-    for (let i = 0; i < event.path.length; i++) {
-      const element = event.path[i]
-      if (this.eventDetailsPopupVisible && element === this.eventDetailsPopupElement.nativeElement) {
-        if (this.moreEventsPopupVisible) {
-          moreEvents = true
-        }
-        eventDetails = true
+  clickout(event: Event) {
+    let outsideEvetDetailsPopup = false
+    if (
+      this.eventDetailsPopupElement
+      && !this.eventDetailsPopupElement.nativeElement.contains(event.target)
+    ) {
+      outsideEvetDetailsPopup = true
+      this.closeEventDetailsPopup()
+    }
+    if (
+      this.moreEventsPopupElement
+      && !this.moreEventsPopupElement.nativeElement.contains(event.target)
+    ) {
+      if (outsideEvetDetailsPopup) {
+        this.closeMoreEventsPopup()
       }
-      if (this.moreEventsPopupVisible && element === this.moreEventsPopupElement.nativeElement) {
-        moreEvents = true
-      }
-
-      if (element.parentElement) {
-        if (
-          element.parentElement.classList.contains('event') &&
-          !element.parentElement.classList.contains('more') &&
-          !element.parentElement.classList.contains('popup-event')
-        ) {
-          eventDetails = true
-          moreEvents = false
-        }
-        if (element.parentElement.classList.contains('event') && element.parentElement.classList.contains('more')) {
-          eventDetails = false
-          moreEvents = true
-        }
-        if (
-          element.parentElement.classList.contains('event') &&
-          !element.parentElement.classList.contains('more') &&
-          element.parentElement.classList.contains('popup-event')
-        ) {
-          eventDetails = true
-          moreEvents = true
-        }
+      if (!this.eventDetailsPopupElement) {
+        this.closeMoreEventsPopup()
       }
     }
-    if (!eventDetails) {
-      this.eventDetailsPopupVisible = false
-    }
-    if (!moreEvents) {
-      this.moreEventsPopupVisible = false
-    }*/
   }
 }

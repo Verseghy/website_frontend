@@ -9,12 +9,12 @@
   <div class="cellElement header" *ngFor="let item of shortDayNames">
     <span>{{ item }}</span>
   </div>
-  <div #cellElement *ngFor="let cell of cells; trackBy: trackBy1" class="cellElement" [ngClass]="{ today: cell.today }">
+  <div #cellElement *ngFor="let cell of cells; trackBy: trackByFn" class="cellElement" [ngClass]="{ today: cell.today }">
     <span class="date">{{ cell.day }}</span>
     <div class="events">
       <div
         class="event"
-        *ngFor="let event of cell.renderedEvents; trackBy: trackBy2"
+        *ngFor="let event of cell.renderedEvents; trackBy: trackByFn"
         [ngStyle]="{ top: event.top, width: event.width, 'background-color': event.color }"
         [ngClass]="{ more: event.more }"
         (click)="setEventDetailsPopup(event.id, $event)"

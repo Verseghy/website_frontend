@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, HostListener } from '@angular/core';
 import { CalendarEvent, PopupSettings, Settings } from '../calendar.interfaces';
 import { isEqual, getYear, format, getMonth, getDate, getISOWeek, startOfMonth, getDay, isSunday, isSaturday, getDaysInMonth } from 'date-fns';
 import { Store } from '@ngrx/store';

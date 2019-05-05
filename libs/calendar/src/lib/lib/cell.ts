@@ -32,6 +32,10 @@ export class Cell {
     return this._rows.length + 1
   }
 
+  get id() {
+    return this._id
+  }
+
   get firstFreeRow(): number {
     for (const item of this._rows) {
       if (item.free) {
