@@ -8,6 +8,8 @@ import { map } from 'rxjs/operators'
 import { Store, select } from '@ngrx/store';
 import { POPUP_FEATURE_KEY, PopupState } from './+state/popup.reducer';
 import { fromPopupActions } from './+state/popup.actions';
+import { cellsQuery } from './+state/cells.selectors';
+import { fromCellsActions } from './+state/cells.actions';
 
 @Component({
   selector: 'verseghy-calendar',
@@ -22,6 +24,10 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   private _settings: Settings
   private _renderer = new Renderer()
   private _ready = false
+
+  public asdasd = this.store.pipe(
+    select(cellsQuery.selectCells)
+  )
 
   @ViewChild('moreEvents') moreEventsPopupElement: ElementRef
   @ViewChild('eventDetails') eventDetailsPopupElement: ElementRef
@@ -93,6 +99,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   }
 
   private _changeMonth(): void {
+    this.store.dispatch(new fromCellsActions.SetMonth(this._date))
     this._renderer.changeMonth(this._date)
     this.monthChanged.emit({
       year: this.date.getFullYear(),
@@ -119,9 +126,9 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     return this.settings.today
   }
 
-  get cells() {
+  /*get cells() {
     return this._cells
-  }
+  }*/
 
   set date(date: Date) {
     this._date = date
@@ -228,6 +235,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   set settings(settings: Settings) {
     this._settings = settings
     this.popupHandler.settings = settings
+    Cell.settings = settings
   }
 
   private _sortEventsInDay(events: DisplayedEvent[]): DisplayedEvent[] {

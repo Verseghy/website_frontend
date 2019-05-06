@@ -2,6 +2,7 @@ import { format, getDate, getMonth } from 'date-fns'
 import { Settings } from '../calendar.interfaces'
 
 export class Cell {
+  static settings: Settings
   private _rows: {
     id: number
     row: number
@@ -19,8 +20,7 @@ export class Cell {
     private _id: number,
     private _today: boolean,
     private _date: Date,
-    private _maxRows: number, 
-    private _settings: Settings
+    private _maxRows: number
   ) {}
 
   public getRow(width: number): number {
@@ -47,7 +47,7 @@ export class Cell {
 
   get day(): string {
     if (getDate(this._date) === 1) {
-      return this._settings.shortMonthNames[getMonth(this._date)] + format(this._date, '. D')
+      return Cell.settings.shortMonthNames[getMonth(this._date)] + format(this._date, '. D')
     }
     return format(this._date, 'D')
   }
@@ -79,7 +79,7 @@ export class Cell {
   }
 
   get moreEventsText(): string {
-    const text = this._settings.moreEvent
+    const text = Cell.settings.moreEvent
     return text.replace('{count}', String(this._moreEventsCount))
   }
 

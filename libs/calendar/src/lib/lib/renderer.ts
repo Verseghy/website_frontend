@@ -91,7 +91,7 @@ export class Renderer {
     const rows = this._getRowsInMonth()
     const firstCellDate = this._getFirstCellDate()
     for (let i = 0; i < 7 * rows; i++) {
-      const cell = new Cell(i, isToday(addDays(firstCellDate, i)), addDays(firstCellDate, i), this._getMaxVisibleRows(), this._settings)
+      const cell = new Cell(i, isToday(addDays(firstCellDate, i)), addDays(firstCellDate, i), this._getMaxVisibleRows())
       this._cells.push(cell)
     }
   }
