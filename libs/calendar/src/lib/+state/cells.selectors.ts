@@ -1,20 +1,28 @@
-import { CellsState } from './cells.reducer';
+import { CellsState, CELLS_FEATURE_KEY } from './cells.reducer';
 import { createSelector } from '@ngrx/store';
 import { CalendarEvent, DisplayedEvent } from '../calendar.interfaces';
 import { Cell } from '../lib/cell';
 import { getMonth, getYear, isSunday, startOfMonth, isSaturday, getDaysInMonth, lastDayOfMonth, subMonths, startOfWeek, addDays, isToday, isEqual, isBefore, differenceInDays, isFirstDayOfMonth } from 'date-fns';
 
-const selectEvents = (state: CellsState) => {
-  return state.events
+
+export const selectFeature = (state: any) => {
+  return state[CELLS_FEATURE_KEY]
 }
 
-export const selectMonth = (state: CellsState) => {
-  return state.month
-}
+const selectEvents = createSelector(
+  selectFeature,
+  (state: CellsState) => state.events
+)
 
-const selectHeight = (state: CellsState) => {
-  return state.height
-}
+export const selectMonth = createSelector(
+  selectFeature,
+  (state: CellsState) => state.month
+)
+
+const selectHeight = createSelector(
+  selectFeature,
+  (state: CellsState) => state.height
+)
 
 const selectRowsInMonth = createSelector(
   selectMonth,
@@ -63,13 +71,12 @@ const selectGeneratedCells = createSelector(
   (rows: number, firstCellDate: Date, hostHeight: number, month: Date): Cell[] => {
     let cellsInMonth: Cell[] = []
     for (let i = 0; i < 7 * rows; i++) {
-      let id = 0
-      const date = addDays(firstCellDate, id)
+      const date = addDays(firstCellDate, i)
       const today = isToday(date)
       const cellHeight = (hostHeight - 68) / rows - 32
       const maxRows = Math.floor(cellHeight / 24)
       const cell = new Cell(
-        id++,
+        i,
         today,
         date,
         maxRows

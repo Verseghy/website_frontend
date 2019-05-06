@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild } from '@angular/core'
 import { DisplayedEvent, Settings, CalendarEvent } from '@verseghy/calendar'
 import { Cell } from './lib/cell'
-import { addMonths, differenceInDays, format, getMonth, isAfter, isBefore, isEqual, subMonths } from 'date-fns'
+import { addMonths, differenceInDays, format, getMonth, isAfter, isBefore, isEqual, subMonths, startOfWeek, addDays } from 'date-fns'
 import { Renderer } from './lib/renderer'
 import { PopupHandlerService } from './services/popup-handler.service';
 import { map } from 'rxjs/operators'
@@ -119,16 +119,19 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   }
 
   get shortDayNames() {
-    return this.settings.shortDayNames
+    const locale = require(`date-fns/locale/${this.settings.locale}`)
+    const firstDate = startOfWeek(new Date, {weekStartsOn: 1})
+    let dayNames = []
+    for (let i = 0; i < 7; i++) {
+      const dayName = format(addDays(firstDate, i), 'dd', {locale: locale})
+      dayNames = [...dayNames, dayName]
+    }
+    return dayNames
   }
 
   get today() {
     return this.settings.today
   }
-
-  /*get cells() {
-    return this._cells
-  }*/
 
   set date(date: Date) {
     this._date = date
@@ -197,6 +200,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
 
   get settings(): Settings {
     this._settings = this._settings || {}
+    this._settings.locale = this._settings.locale || 'en'
     this._settings.shortDayNames = this._settings.shortDayNames || ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']
     this._settings.shortMonthNames = this._settings.shortMonthNames || [
       'Jan',

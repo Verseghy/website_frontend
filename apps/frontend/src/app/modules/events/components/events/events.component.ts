@@ -13,6 +13,7 @@ import { Observable } from 'rxjs'
 })
 export class EventsComponent implements OnInit {
   calendarSettings: Settings = {
+    locale: 'hu',
     shortDayNames: ['Hé', 'Ke', 'Sze', 'Csüt', 'Pé', 'Szo', 'Vas'],
     shortMonthNames: ['Jan', 'Febr', 'Márc', 'Ápr', 'Máj', 'Jún', 'Júl', 'Aug', 'Szept', 'Okt', 'Nov', 'Dec'],
     monthNames: [

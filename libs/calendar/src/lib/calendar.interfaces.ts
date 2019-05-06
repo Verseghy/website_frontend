@@ -7,6 +7,7 @@ export interface DisplayedEvent {
 }
 
 export interface Settings {
+  locale?: string
   shortDayNames?: string[]
   shortMonthNames?: string[]
   monthNames?: string[]
