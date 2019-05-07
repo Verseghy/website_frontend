@@ -1,8 +1,8 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild } from '@angular/core'
+ import { AfterViewInit, Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild } from '@angular/core'
 import { DisplayedEvent, Settings, CalendarEvent } from '@verseghy/calendar'
 import { Cell } from './lib/cell'
-import { addMonths, differenceInDays, format, getMonth, isAfter, isBefore, isEqual, subMonths, startOfWeek, addDays } from 'date-fns'
-import { Renderer } from './lib/renderer'
+import { addMonths, differenceInDays, format, subMonths, startOfWeek, addDays } from 'date-fns'
+import { hu } from 'date-fns/locale'
 import { PopupHandlerService } from './services/popup-handler.service';
 import { map } from 'rxjs/operators'
 import { Store, select } from '@ngrx/store';
@@ -17,15 +17,11 @@ import { fromCellsActions } from './+state/cells.actions';
   styleUrls: ['./calendar.component.css'],
 })
 export class CalendarComponent implements OnInit, AfterViewInit {
-  private _cells: Cell[] = []
   private _date = new Date()
   private _events: CalendarEvent[] = []
-  private _displayedEvents: DisplayedEvent[] = []
   private _settings: Settings
-  private _renderer = new Renderer()
-  private _ready = false
 
-  public asdasd = this.store.pipe(
+  public cells = this.store.pipe(
     select(cellsQuery.selectCells)
   )
 
@@ -57,50 +53,14 @@ export class CalendarComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     setTimeout(() => {
-      this._renderer.HostElementRef = this._el
-      this._renderer.settings = this.settings
       this._changeMonth()
-      this._ready = true
-      this._cells = this._renderer.renderEvents()
       this.popupHandler.hostElement = this._el.nativeElement
+      this.store.dispatch(new fromCellsActions.SetHostHeight(this._el.nativeElement.offsetHeight))
     })
-  }
-
-  private _generateEvents(): void {
-    this._clearDisplayedEvents()
-    for (const item of this._events) {
-      this._displayedEvents.push({
-        id: item.id,
-        title: item.title,
-        startDate: item.startDate,
-        endDate: item.endDate,
-        color: item.color,
-      })
-    }
-    this._sortDisplayedEvents()
-    this._renderer.setEvents(this._displayedEvents)
-  }
-
-  private _sortDisplayedEvents() {
-    let lastDay = this._displayedEvents[0].startDate
-    let eventsInDay = []
-    const sortedDisplayedEvents = []
-    for (const item of this._displayedEvents) {
-      if (isAfter(item.startDate, lastDay)) {
-        lastDay = item.startDate
-        sortedDisplayedEvents.push(...this._sortEventsInDay(eventsInDay))
-        eventsInDay = [item]
-      } else if (isEqual(item.startDate, lastDay)) {
-        eventsInDay.push(item)
-      }
-    }
-    sortedDisplayedEvents.push(...this._sortEventsInDay(eventsInDay))
-    this._displayedEvents = sortedDisplayedEvents
   }
 
   private _changeMonth(): void {
     this.store.dispatch(new fromCellsActions.SetMonth(this._date))
-    this._renderer.changeMonth(this._date)
     this.monthChanged.emit({
       year: this.date.getFullYear(),
       month: this.date.getMonth(),
@@ -115,15 +75,14 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   }
 
   get formatedDate() {
-    return format(this.date, 'YYYY. ') + this.settings.monthNames[getMonth(this.date)]
+    return format(this.date, 'yyyy. LLLL', {locale: hu})
   }
 
   get shortDayNames() {
-    const locale = require(`date-fns/locale/${this.settings.locale}`)
     const firstDate = startOfWeek(new Date, {weekStartsOn: 1})
     let dayNames = []
     for (let i = 0; i < 7; i++) {
-      const dayName = format(addDays(firstDate, i), 'dd', {locale: locale})
+      const dayName = format(addDays(firstDate, i), 'EEEEEE', {locale: hu})
       dayNames = [...dayNames, dayName]
     }
     return dayNames
@@ -172,26 +131,9 @@ export class CalendarComponent implements OnInit, AfterViewInit {
           tempEvents = [...tempEvents, event]
         }
       }
+      this.store.dispatch(new fromCellsActions.SetEvents(tempEvents))
       this._events = tempEvents
-      this._sortEventsArray()
-      this._generateEvents()
-      if (this._ready) this._cells = this._renderer.renderEvents()
     }
-  }
-
-  private _sortEventsArray(): void {
-    this._events.sort((a, b) => {
-      if (isAfter(a.startDate, b.startDate)) {
-        return 1
-      }
-      if (isBefore(a.startDate, b.startDate)) {
-        return -1
-      }
-      return 0
-    })
-  }
-  private _clearDisplayedEvents(): void {
-    this._displayedEvents = []
   }
 
   private _eventLenght(item: DisplayedEvent): number {
@@ -200,7 +142,6 @@ export class CalendarComponent implements OnInit, AfterViewInit {
 
   get settings(): Settings {
     this._settings = this._settings || {}
-    this._settings.locale = this._settings.locale || 'en'
     this._settings.shortDayNames = this._settings.shortDayNames || ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']
     this._settings.shortMonthNames = this._settings.shortMonthNames || [
       'Jan',
@@ -242,32 +183,10 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     Cell.settings = settings
   }
 
-  private _sortEventsInDay(events: DisplayedEvent[]): DisplayedEvent[] {
-    return events.sort((a, b) => {
-      return (this._eventLenght(a) - this._eventLenght(b)) * -1
-    })
-  }
-
   @HostListener('window:resize')
   public resize(): void {
     this.closeMoreEventsPopup()
     this.closeEventDetailsPopup()
-    this._renderer.resize()
-  }
-
-  private _getDisplayedEvents(events) {
-    const displayedEvents = []
-    for (const item of this._events) {
-      for (const event of events) {
-        if (item.id === event.id) {
-          displayedEvents.push({ id: item.id, title: item.title, color: item.color, order: event.order })
-        }
-      }
-    }
-    displayedEvents.sort((a, b) => {
-      return a.order - b.order
-    })
-    return displayedEvents
   }
 
   private _getEvent(id: number): CalendarEvent {
@@ -280,7 +199,11 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   }
 
   public trackByFn(index, item) {
-    return item.id
+    return item.trackBy
+  }
+
+  public cellsTrackByFn(index, item) {
+    return item.date
   }
 
   public setMoreEventsPopup(date: Date, events: {id: number, order:number}[]): void {

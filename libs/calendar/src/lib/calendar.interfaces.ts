@@ -4,10 +4,10 @@ export interface DisplayedEvent {
   startDate: Date
   endDate?: Date
   color?: string
+  trackBy: string
 }
 
 export interface Settings {
-  locale?: string
   shortDayNames?: string[]
   shortMonthNames?: string[]
   monthNames?: string[]

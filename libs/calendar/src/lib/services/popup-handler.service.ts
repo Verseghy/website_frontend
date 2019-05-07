@@ -1,6 +1,7 @@
-import { Injectable, HostListener } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { CalendarEvent, PopupSettings, Settings } from '../calendar.interfaces';
-import { isEqual, getYear, format, getMonth, getDate, getISOWeek, startOfMonth, getDay, isSunday, isSaturday, getDaysInMonth } from 'date-fns';
+import { getYear, format, getMonth, getDate, getISOWeek, startOfMonth, getDay, isSunday, isSaturday, getDaysInMonth, isSameDay } from 'date-fns';
+import { hu } from 'date-fns/locale'
 import { Store } from '@ngrx/store';
 import { fromPopupActions } from '../+state/popup.actions';
 
@@ -80,20 +81,20 @@ export class PopupHandlerService {
   }
 
   private _formatTwoDays(date1: Date, date2: Date): string {
-    if (!isEqual(date1, date2)) {
+    if (!isSameDay(date1, date2)) {
       let year = ''
       let month = ''
       if (getYear(date1) !== getYear(date2)) {
-        year = format(date2, ' YYYY.')
+        year = format(date2, ' yyyy.')
       }
       if (getMonth(date1) !== getMonth(date2) || year !== '') {
-        month = ' ' + this.settings.monthNames[getMonth(date2)]
+        month = format(date2, ' MMMM', { locale: hu })
       }
       return (
-        format(date1, 'YYYY. ') + this.settings.monthNames[getMonth(date1)] + format(date1, ' D -') + year + month + format(date2, ' D')
+        format(date1, 'yyyy. MMMM dd -', { locale: hu }) + year + month + format(date2, ' dd')
       )
     } else {
-      return format(date1, 'YYYY. ') + this.settings.monthNames[getMonth(date1)] + format(date1, ' D')
+      return format(date1, 'yyyy. MMMM dd', { locale: hu })
     }
   }
 

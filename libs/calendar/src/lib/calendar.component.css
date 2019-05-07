@@ -245,3 +245,7 @@ button:focus {
   display: block;
   font-size: 14px;
 }
+
+.anotherMonth {
+  color: #70757a
+}

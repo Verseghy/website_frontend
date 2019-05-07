@@ -20,7 +20,8 @@ export class Cell {
     private _id: number,
     private _today: boolean,
     private _date: Date,
-    private _maxRows: number
+    private _maxRows: number,
+    private _anotherMonth: boolean,
   ) {}
 
   public getRow(width: number): number {
@@ -36,6 +37,10 @@ export class Cell {
     return this._id
   }
 
+  get anotherMonth() {
+    return this._anotherMonth
+  }
+
   get firstFreeRow(): number {
     for (const item of this._rows) {
       if (item.free) {
@@ -47,9 +52,9 @@ export class Cell {
 
   get day(): string {
     if (getDate(this._date) === 1) {
-      return Cell.settings.shortMonthNames[getMonth(this._date)] + format(this._date, '. D')
+      return Cell.settings.shortMonthNames[getMonth(this._date)] + format(this._date, '. d')
     }
-    return format(this._date, 'D')
+    return format(this._date, 'd')
   }
 
   get today(): boolean {
@@ -160,5 +165,9 @@ export class Cell {
 
   public getLastRow(): number {
     return this._rows.length
+  }
+
+  public clearEvents(): void {
+    this._rows = []
   }
 }
