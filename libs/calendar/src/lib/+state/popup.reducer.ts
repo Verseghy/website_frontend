@@ -4,7 +4,6 @@ import { PopupSettings } from '../calendar.interfaces';
 export const POPUP_FEATURE_KEY = 'ui-calendar-popup'
 
 export interface PopupState {
-  eventDetailsPopup: PopupSettings,
   moreEventsPopup: PopupSettings
 }
 
@@ -13,15 +12,6 @@ export interface PopupPartialState {
 }
 
 export const initialState: PopupState = {
-  eventDetailsPopup: {
-    visible: false,
-    top: 0,
-    left: 0,
-    date: '',
-    title: '',
-    description: '',
-    color: '',
-  },
   moreEventsPopup: {
     visible: false,
     top: 0,
@@ -33,28 +23,6 @@ export const initialState: PopupState = {
 
 export function popupReducer(state: PopupState = initialState, action: PopupAction): PopupState {
   switch (action.type) {
-    case PopupActionTypes.HideEventDetailsPopup: {
-      state = {
-        ...state,
-        eventDetailsPopup: {
-          ...state.eventDetailsPopup,
-          visible: false
-        }
-      }
-      break
-    }
-
-    case PopupActionTypes.SetEventDetailsPopup: {
-      state = {
-        ...state,
-        eventDetailsPopup: {
-          ...state.eventDetailsPopup,
-          ...action.payload
-        }
-      }
-      break
-    }
-
     case PopupActionTypes.HideMoreEventsPopup: {
       state = {
         ...state,

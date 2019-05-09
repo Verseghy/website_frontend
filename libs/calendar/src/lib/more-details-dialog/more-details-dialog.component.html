@@ -1,0 +1,7 @@
+<div class="top-border"></div>
+<h2 class="dialog-title">{{ data.title }}</h2>
+<span class="dialog-time">{{ formatedTime }}</span>
+<div *ngIf="data.description" class="dialog-description">{{ data.description }}</div>
+<div class="dialog-actions">
+  <button mat-raised-button primary mat-dialog-close (click)="closeDialog()">Mégse</button>
+</div>

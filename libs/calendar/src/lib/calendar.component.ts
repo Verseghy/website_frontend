@@ -1,44 +1,40 @@
- import { AfterViewInit, Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild } from '@angular/core'
+import { AfterViewInit, Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild } from '@angular/core'
 import { DisplayedEvent, Settings, CalendarEvent } from '@verseghy/calendar'
 import { Cell } from './lib/cell'
 import { addMonths, differenceInDays, format, subMonths, startOfWeek, addDays } from 'date-fns'
 import { hu } from 'date-fns/locale'
-import { PopupHandlerService } from './services/popup-handler.service';
+import { PopupHandlerService } from './services/popup-handler.service'
 import { map } from 'rxjs/operators'
-import { Store, select } from '@ngrx/store';
-import { POPUP_FEATURE_KEY, PopupState } from './+state/popup.reducer';
-import { fromPopupActions } from './+state/popup.actions';
-import { cellsQuery } from './+state/cells.selectors';
-import { fromCellsActions } from './+state/cells.actions';
+import { Store, select } from '@ngrx/store'
+import { POPUP_FEATURE_KEY, PopupState } from './+state/popup.reducer'
+import { fromPopupActions } from './+state/popup.actions'
+import { cellsQuery } from './+state/cells.selectors'
+import { fromCellsActions } from './+state/cells.actions'
+import { MatDialog } from '@angular/material/dialog'
+import { MoreDetailsDialogComponent } from './more-details-dialog/more-details-dialog.component';
 
 @Component({
   selector: 'verseghy-calendar',
   templateUrl: './calendar.component.html',
-  styleUrls: ['./calendar.component.css'],
+  styleUrls: ['./calendar.component.scss'],
 })
 export class CalendarComponent implements OnInit, AfterViewInit {
   private _date = new Date()
   private _events: CalendarEvent[] = []
   private _settings: Settings
+  private _isDialogOpen = false
 
+  public panelColor = ''
   public cells = this.store.pipe(
     select(cellsQuery.selectCells)
   )
 
   @ViewChild('moreEvents') moreEventsPopupElement: ElementRef
-  @ViewChild('eventDetails') eventDetailsPopupElement: ElementRef
 
   @Output() monthChanged = new EventEmitter<{
     year: number
     month: number
   }>()
-
-  public eventDetailsPopup = this.store.pipe(
-    select(POPUP_FEATURE_KEY),
-    map((state: PopupState) => {
-      return state.eventDetailsPopup
-    })
-  )
 
   public moreEventsPopup = this.store.pipe(
     select(POPUP_FEATURE_KEY),
@@ -47,7 +43,12 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     })
   )
 
-  constructor(private _el: ElementRef, private popupHandler: PopupHandlerService, private store: Store<any>) {}
+  constructor(
+    private _el: ElementRef,
+    private popupHandler: PopupHandlerService,
+    private store: Store<any>,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit() {}
 
@@ -67,7 +68,6 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     })
     this.popupHandler.date = this._date
     this.closeMoreEventsPopup()
-    this.closeEventDetailsPopup()
   }
 
   get date() {
@@ -186,7 +186,6 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   @HostListener('window:resize')
   public resize(): void {
     this.closeMoreEventsPopup()
-    this.closeEventDetailsPopup()
   }
 
   private _getEvent(id: number): CalendarEvent {
@@ -221,35 +220,30 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   }
 
   public setEventDetailsPopup(id: number, click: Event): void {
-    setTimeout(() => {
-      this.popupHandler.setEventDetailsPopup(this._getEvent(id), click.target as HTMLElement)
-    });    
-  }
+    const event = this._getEvent(id)
+    const dialog = this.dialog.open(MoreDetailsDialogComponent, {
+      width: '350px',
+      data: event,
+    })
+    this.panelColor = event.color
 
-  public closeEventDetailsPopup(): void {
-    this.store.dispatch(new fromPopupActions.HideEventDetailsPopup())
+    dialog.afterOpened().subscribe(result => {
+      this._isDialogOpen = true
+    })
+
+    dialog.afterClosed().subscribe(result => {
+      this._isDialogOpen = false
+    })
   }
 
   @HostListener('document:click', ['$event'])
   clickout(event: Event) {
-    let outsideEvetDetailsPopup = false
-    if (
-      this.eventDetailsPopupElement
-      && !this.eventDetailsPopupElement.nativeElement.contains(event.target)
-    ) {
-      outsideEvetDetailsPopup = true
-      this.closeEventDetailsPopup()
-    }
     if (
       this.moreEventsPopupElement
       && !this.moreEventsPopupElement.nativeElement.contains(event.target)
+      && !this._isDialogOpen
     ) {
-      if (outsideEvetDetailsPopup) {
-        this.closeMoreEventsPopup()
-      }
-      if (!this.eventDetailsPopupElement) {
-        this.closeMoreEventsPopup()
-      }
+      this.closeMoreEventsPopup()
     }
   }
 }
