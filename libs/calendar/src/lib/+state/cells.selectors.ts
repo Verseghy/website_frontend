@@ -3,10 +3,10 @@ import { createSelector } from '@ngrx/store';
 import { CalendarEvent, DisplayedEvent } from '../calendar.interfaces';
 import { Cell } from '../lib/cell';
 import { getMonth, getYear, isSunday, startOfMonth, isSaturday, getDaysInMonth, startOfWeek, addDays, differenceInDays, lastDayOfWeek, isSameDay, isSameMonth, isSameYear, getOverlappingDaysInIntervals, parseISO, areIntervalsOverlapping, format } from 'date-fns';
-import { endOfWeek, endOfMonth, eachDayOfInterval } from 'date-fns/esm';
+import { endOfWeek, endOfMonth, eachDayOfInterval, startOfDay, endOfDay } from 'date-fns/esm';
 
 
-export const selectFeature = (state: any) => {
+const selectFeature = (state: any) => {
   return state[CELLS_FEATURE_KEY]
 }
 
@@ -15,9 +15,19 @@ const selectEvents = createSelector(
   (state: CellsState) => state.events
 )
 
-export const selectMonth = createSelector(
+const selectMonth = createSelector(
   selectFeature,
   (state: CellsState) => state.month
+)
+
+const selectSelectedEvent = createSelector(
+  selectFeature,
+  (state: CellsState) => state.selectedEvent
+)
+
+const selectSelectedMoreEvent = createSelector(
+  selectFeature,
+  (state: CellsState) => state.selectedMoreEvents
 )
 
 const selectHeight = createSelector(
@@ -148,7 +158,7 @@ const selectClearedCells = createSelector(
   }
 )
 
-export const selectCells = createSelector(
+const selectCells = createSelector(
   selectClearedCells,
   selectDisplayEvents,
   selectFirstCellDate,
@@ -166,7 +176,41 @@ export const selectCells = createSelector(
   }
 )
 
+const selectedEvent = createSelector(
+  selectSelectedEvent,
+  selectEvents,
+  (eventId: number, events: CalendarEvent[]): CalendarEvent => {
+    for (const event of events) {
+      if (event.id === eventId) {
+        return event
+      }
+    }
+    return null
+  }
+)
+
+const selectedMoreEvents = createSelector(
+  selectSelectedMoreEvent,
+  selectEvents,
+  (day: Date, events: CalendarEvent[]): CalendarEvent[] => {
+    let eventsInDay = []
+    for (const event of events) {
+      if (
+        areIntervalsOverlapping(
+          { start: event.startDate, end: event.endDate },
+          { start: startOfDay(day), end: endOfDay(day) }
+        )
+      ){
+        eventsInDay = [...eventsInDay, event]
+      }
+    }
+    return eventsInDay
+  }
+)
+
 export const cellsQuery = {
+  selectCells,
+  selectedEvent,
+  selectedMoreEvents,
   selectMonth,
-  selectCells
 }

@@ -1,6 +1,6 @@
 <div class="controls">
   <div class="middle">
-    <button class="next" (click)="prevMonth()">&lt;</button> <span class="month">{{ formatedDate }}</span>
+    <button class="next" (click)="prevMonth()">&lt;</button> <span class="month">{{ formatedDate | async }}</span>
     <button class="prev" (click)="nextMonth()">&gt;</button>
   </div>
   <button class="now" (click)="now()">{{ today }}</button>
@@ -48,7 +48,7 @@
     <div class="events">
       <div
         class="event popup-event"
-        *ngFor="let event of details.events"
+        *ngFor="let event of (moreEventsPopupEvents | async)"
         [ngStyle]="{ 'background-color': event.color }"
         (click)="setEventDetailsPopup(event.id, $event)"
       >

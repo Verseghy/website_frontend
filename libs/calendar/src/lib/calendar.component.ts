@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild } from '@angular/core'
-import { DisplayedEvent, Settings, CalendarEvent } from '@verseghy/calendar'
+import { Settings, CalendarEvent } from '@verseghy/calendar'
 import { Cell } from './lib/cell'
-import { addMonths, differenceInDays, format, subMonths, startOfWeek, addDays } from 'date-fns'
+import { format, startOfWeek, addDays } from 'date-fns'
 import { hu } from 'date-fns/locale'
 import { PopupHandlerService } from './services/popup-handler.service'
 import { map } from 'rxjs/operators'
@@ -19,14 +19,34 @@ import { MoreDetailsDialogComponent } from './more-details-dialog/more-details-d
   styleUrls: ['./calendar.component.scss'],
 })
 export class CalendarComponent implements OnInit, AfterViewInit {
-  private _date = new Date()
-  private _events: CalendarEvent[] = []
   private _settings: Settings
   private _isDialogOpen = false
+  private _eventsIds = []
 
-  public panelColor = ''
+  public today = this.settings.today
   public cells = this.store.pipe(
     select(cellsQuery.selectCells)
+  )
+  public formatedDate = this.store.pipe(
+    select(cellsQuery.selectMonth),
+    map((date: Date) => {
+      this.closeMoreEventsPopup()
+      this.monthChanged.emit({
+        year: date.getFullYear(),
+        month: date.getMonth(),
+      })
+      return format(date, 'yyyy. LLLL', { locale: hu })
+    })
+  )
+  public moreEventsPopup = this.store.pipe(
+    select(POPUP_FEATURE_KEY),
+    map((state: PopupState) => {
+      return state.moreEventsPopup
+    })
+  )
+  public moreEventsPopupEvents = this.store.pipe(
+    select(cellsQuery.selectedMoreEvents),
+    map(events => events)
   )
 
   @ViewChild('moreEvents') moreEventsPopupElement: ElementRef
@@ -35,13 +55,6 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     year: number
     month: number
   }>()
-
-  public moreEventsPopup = this.store.pipe(
-    select(POPUP_FEATURE_KEY),
-    map((state: PopupState) => {
-      return state.moreEventsPopup
-    })
-  )
 
   constructor(
     private _el: ElementRef,
@@ -54,123 +67,35 @@ export class CalendarComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     setTimeout(() => {
-      this._changeMonth()
       this.popupHandler.hostElement = this._el.nativeElement
       this.store.dispatch(new fromCellsActions.SetHostHeight(this._el.nativeElement.offsetHeight))
     })
-  }
-
-  private _changeMonth(): void {
-    this.store.dispatch(new fromCellsActions.SetMonth(this._date))
-    this.monthChanged.emit({
-      year: this.date.getFullYear(),
-      month: this.date.getMonth(),
-    })
-    this.popupHandler.date = this._date
-    this.closeMoreEventsPopup()
-  }
-
-  get date() {
-    return this._date
-  }
-
-  get formatedDate() {
-    return format(this.date, 'yyyy. LLLL', {locale: hu})
   }
 
   get shortDayNames() {
     const firstDate = startOfWeek(new Date, {weekStartsOn: 1})
     let dayNames = []
     for (let i = 0; i < 7; i++) {
-      const dayName = format(addDays(firstDate, i), 'EEEEEE', {locale: hu})
+      const dayName = format(addDays(firstDate, i), 'EEEEEE', { locale: hu })
       dayNames = [...dayNames, dayName]
     }
     return dayNames
   }
 
-  get today() {
-    return this.settings.today
-  }
-
-  set date(date: Date) {
-    this._date = date
-    this._changeMonth()
-  }
-
   public nextMonth(): void {
-    this.date = addMonths(this.date, 1)
+    this.store.dispatch(new fromCellsActions.NextMonth())
   }
 
   public prevMonth(): void {
-    this.date = subMonths(this.date, 1)
+    this.store.dispatch(new fromCellsActions.PreviousMonth())
   }
 
   public now(): void {
-    this.date = new Date()
-  }
-
-  private _isArrayContainsId(array: CalendarEvent[], id: Number): boolean {
-    for (const item of array) {
-      if (item.id === id) {
-        return true
-      }
-    }
-    return false
-  }
-
-  @Input('events') public set events(events: CalendarEvent[]) {
-    if (!events) return
-    if (events.length) {
-      let tempEvents = []
-      for (const event of events) {
-        if (!!tempEvents.length) {
-          if (!this._isArrayContainsId(tempEvents, event.id)) {
-            tempEvents = [...tempEvents, event]
-          }
-        } else {
-          tempEvents = [...tempEvents, event]
-        }
-      }
-      this.store.dispatch(new fromCellsActions.SetEvents(tempEvents))
-      this._events = tempEvents
-    }
-  }
-
-  private _eventLenght(item: DisplayedEvent): number {
-    return Math.abs(differenceInDays(item.startDate, item.endDate))
+    this.store.dispatch(new fromCellsActions.Today())
   }
 
   get settings(): Settings {
     this._settings = this._settings || {}
-    this._settings.shortDayNames = this._settings.shortDayNames || ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']
-    this._settings.shortMonthNames = this._settings.shortMonthNames || [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec',
-    ]
-    this._settings.monthNames = this._settings.monthNames || [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December',
-    ]
     this._settings.today = this._settings.today || 'Today'
     this._settings.moreEvent = this._settings.moreEvent || '{count} more'
     return this._settings
@@ -183,18 +108,16 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     Cell.settings = settings
   }
 
-  @HostListener('window:resize')
-  public resize(): void {
-    this.closeMoreEventsPopup()
-  }
-
-  private _getEvent(id: number): CalendarEvent {
-    for (const item of this._events) {
-      if (item.id === id) {
-        return item
-      }
+  @Input('events') public set events(events: CalendarEvent[]) {
+    if (!events) return
+    if (events.length) {
+      const tempEvents = events.filter(item => {
+        if (this._eventsIds.includes(item.id)) return false
+        this._eventsIds = [...this._eventsIds, item.id]
+        return true
+      })
+      this.store.dispatch(new fromCellsActions.SetEvents(tempEvents))
     }
-    return
   }
 
   public trackByFn(index, item) {
@@ -205,13 +128,10 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     return item.date
   }
 
-  public setMoreEventsPopup(date: Date, events: {id: number, order:number}[]): void {
+  public setMoreEventsPopup(date: Date): void {
+    this.store.dispatch(new fromCellsActions.SetSelectedMoreEvent(date))
     setTimeout(() => {
-      let eventsArray = []
-      for (const item of events) {
-        eventsArray = [...eventsArray, this._getEvent(item.id)]
-      }
-      this.popupHandler.setMoreEventsPopup(date, eventsArray)
+      this.popupHandler.setMoreEventsPopup(date)
     })
   }
 
@@ -220,12 +140,10 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   }
 
   public setEventDetailsPopup(id: number, click: Event): void {
-    const event = this._getEvent(id)
+    this.store.dispatch(new fromCellsActions.SetSelectedEvent(id))
     const dialog = this.dialog.open(MoreDetailsDialogComponent, {
-      width: '350px',
-      data: event,
+      width: '350px'
     })
-    this.panelColor = event.color
 
     dialog.afterOpened().subscribe(result => {
       this._isDialogOpen = true
@@ -245,5 +163,11 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     ) {
       this.closeMoreEventsPopup()
     }
+  }
+
+  @HostListener('window:resize')
+  resize(): void {
+    this.store.dispatch(new fromCellsActions.SetHostHeight(this._el.nativeElement.offsetHeight))
+    this.closeMoreEventsPopup()
   }
 }

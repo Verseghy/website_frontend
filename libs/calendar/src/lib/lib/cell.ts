@@ -1,4 +1,5 @@
-import { format, getDate, getMonth } from 'date-fns'
+import { format, getDate } from 'date-fns'
+import { hu } from 'date-fns/locale'
 import { Settings } from '../calendar.interfaces'
 
 export class Cell {
@@ -52,7 +53,7 @@ export class Cell {
 
   get day(): string {
     if (getDate(this._date) === 1) {
-      return Cell.settings.shortMonthNames[getMonth(this._date)] + format(this._date, '. d')
+      return format(this._date, 'LLL d', { locale: hu })
     }
     return format(this._date, 'd')
   }

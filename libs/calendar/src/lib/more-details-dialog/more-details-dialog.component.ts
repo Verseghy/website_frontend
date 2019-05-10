@@ -1,9 +1,13 @@
-import { Component, OnInit, Inject } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { CalendarComponent } from '../calendar.component'
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
-import { CalendarEvent } from '../calendar.interfaces'
+import { MatDialogRef } from '@angular/material/dialog'
 import { format, isSameDay, isSameMonth, isSameYear } from 'date-fns'
 import { hu } from 'date-fns/locale'
+import { CalendarEvent } from '../calendar.interfaces';
+import { Store, select } from '@ngrx/store';
+import { CELLS_FEATURE_KEY } from '../+state/cells.reducer';
+import { map, filter } from 'rxjs/operators';
+import { cellsQuery } from '../+state/cells.selectors';
 
 @Component({
   selector: 'verseghy-more-details-dialog',
@@ -12,9 +16,32 @@ import { hu } from 'date-fns/locale'
 })
 export class MoreDetailsDialogComponent implements OnInit {
 
+  public data = this.store.pipe(
+    select(cellsQuery.selectedEvent),
+    filter(event => !!event)
+  )
+
+  public formatedTime = this.store.pipe(
+    select(cellsQuery.selectedEvent),
+    filter(event => !!event),
+    map((event: CalendarEvent) => {
+      let second = ""
+      let startDate = format(event.startDate, 'Y. MMMM dd.', { locale: hu })
+      if (!isSameYear(event.startDate, event.endDate)) {
+        second = `- ${format(event.endDate, 'Y. MMMM dd.', { locale: hu })}`
+      } else if (!isSameMonth(event.startDate, event.endDate)) {
+        second = `- ${format(event.endDate, 'MMMM dd.', { locale: hu })}`
+      } else if (!isSameDay(event.startDate, event.endDate)) {
+        second = `- ${format(event.endDate, 'dd.', { locale: hu })}`
+        startDate = startDate.slice(0, -1);
+      }
+      return `${startDate} ${second}`
+    })
+  )
+
   constructor(
     private thisDialogRef: MatDialogRef<CalendarComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: CalendarEvent  
+    private store: Store<any>
   ) { }
 
   ngOnInit() {
@@ -22,19 +49,5 @@ export class MoreDetailsDialogComponent implements OnInit {
 
   closeDialog() {
     this.thisDialogRef.close()
-  }
-
-  get formatedTime(): string {
-    let second = ""
-    let startDate = format(this.data.startDate, 'Y. MMMM dd.', { locale: hu })
-    if (!isSameYear(this.data.startDate, this.data.endDate)) {
-      second = `- ${format(this.data.endDate, 'Y. MMMM dd.', { locale: hu })}`
-    } else if (!isSameMonth(this.data.startDate, this.data.endDate)) {
-      second = `- ${format(this.data.endDate, 'MMMM dd.', { locale: hu })}`
-    } else if (!isSameDay(this.data.startDate, this.data.endDate)) {
-      second = `- ${format(this.data.endDate, 'dd.', { locale: hu })}`
-      startDate = startDate.slice(0, -1);
-    }
-    return `${startDate} ${second}`
   }
 }
