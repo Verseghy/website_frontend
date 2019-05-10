@@ -58,7 +58,9 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(private _el: ElementRef, private popupHandler: PopupHandlerService, private store: Store<any>, private dialog: MatDialog) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.store.dispatch(new fromCellsActions.SetMonth(new Date()))
+  }
 
   ngOnDestroy() {
     this.destroy.next(true)
@@ -120,7 +122,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input('events') public set events(events: CalendarEvent[]) {
     if (!events) return
     if (events.length) {
-      let eventIds
+      let eventIds = []
       const tempEvents = events.filter(item => {
         if (eventIds.includes(item.id)) return false
         eventIds = [...eventIds, item.id]

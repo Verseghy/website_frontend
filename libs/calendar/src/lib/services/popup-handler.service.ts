@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { PopupSettings, Settings } from '../calendar.interfaces'
-import { getDate, getISOWeek, startOfMonth, getDay, isSunday, isSaturday, getDaysInMonth, format } from 'date-fns'
+import { getDate, startOfMonth, getDay, isSunday, isSaturday, getDaysInMonth, format, getWeek } from 'date-fns'
 import { Store } from '@ngrx/store'
 import { fromPopupActions } from '../+state/popup.actions'
 import { hu } from 'date-fns/locale'
@@ -11,13 +11,13 @@ import { hu } from 'date-fns/locale'
 export class PopupHandlerService {
   public settings: Settings
   public hostElement: HTMLElement
-  public date: Date
 
   constructor(private store: Store<any>) {}
 
   public setMoreEventsPopup(date: Date) {
-    const height = (this.hostElement.offsetHeight - 68) / this._getRowsInMonth()
+    const height = (this.hostElement.offsetHeight - 68) / this._getRowsInMonth(date)
     const row = this._getWeekOfMonth(date)
+    console.log(date)
     let column = getDay(date)
     if (column === 0) {
       column = 7
@@ -38,13 +38,13 @@ export class PopupHandlerService {
   }
 
   private _getWeekOfMonth(date: Date): number {
-    return getISOWeek(date) - getISOWeek(startOfMonth(this.date))
+    return getWeek(date) - getWeek(startOfMonth(date))
   }
 
-  private _getRowsInMonth(): number {
+  private _getRowsInMonth(date): number {
     if (
-      (isSunday(startOfMonth(this.date)) && getDaysInMonth(this.date) >= 30) ||
-      (isSaturday(startOfMonth(this.date)) && getDaysInMonth(this.date) === 31)
+      (isSunday(startOfMonth(date)) && getDaysInMonth(date) >= 30) ||
+      (isSaturday(startOfMonth(date)) && getDaysInMonth(date) === 31)
     ) {
       return 6
     }

@@ -18,10 +18,10 @@ export interface CellsPartialState {
 
 export const initialState: CellsState = {
   events: [],
-  month: new Date(),
+  month: null,
   height: 0,
   selectedEvent: -1,
-  selectedMoreEvents: new Date(),
+  selectedMoreEvents: null,
 }
 
 export function cellsReducer(state: CellsState = initialState, action: CellsAction): CellsState {
