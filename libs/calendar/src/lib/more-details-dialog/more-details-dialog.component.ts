@@ -1,26 +1,29 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, OnDestroy } from '@angular/core'
 import { CalendarComponent } from '../calendar.component'
 import { MatDialogRef } from '@angular/material/dialog'
 import { format, isSameDay, isSameMonth, isSameYear } from 'date-fns'
 import { hu } from 'date-fns/locale'
 import { CalendarEvent } from '../calendar.interfaces'
 import { Store, select } from '@ngrx/store'
-import { CELLS_FEATURE_KEY } from '../+state/cells.reducer'
-import { map, filter } from 'rxjs/operators'
+import { map, filter, takeUntil } from 'rxjs/operators'
 import { cellsQuery } from '../+state/cells.selectors'
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'verseghy-more-details-dialog',
   templateUrl: './more-details-dialog.component.html',
   styleUrls: ['./more-details-dialog.component.css'],
 })
-export class MoreDetailsDialogComponent implements OnInit {
+export class MoreDetailsDialogComponent implements OnInit, OnDestroy {
+  public destroy: Subject<boolean> = new Subject()
   public data = this.store.pipe(
+    takeUntil(this.destroy),
     select(cellsQuery.selectedEvent),
     filter(event => !!event)
   )
 
   public formatedTime = this.store.pipe(
+    takeUntil(this.destroy),
     select(cellsQuery.selectedEvent),
     filter(event => !!event),
     map((event: CalendarEvent) => {
@@ -41,6 +44,10 @@ export class MoreDetailsDialogComponent implements OnInit {
   constructor(private thisDialogRef: MatDialogRef<CalendarComponent>, private store: Store<any>) {}
 
   ngOnInit() {}
+
+  ngOnDestroy() {
+    this.destroy.next(true)
+  }
 
   closeDialog() {
     this.thisDialogRef.close()

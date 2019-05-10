@@ -3,8 +3,6 @@ import { createSelector } from '@ngrx/store'
 import { CalendarEvent, DisplayedEvent } from '../calendar.interfaces'
 import { Cell } from '../lib/cell'
 import {
-  getMonth,
-  getYear,
   isSunday,
   startOfMonth,
   isSaturday,
@@ -12,16 +10,16 @@ import {
   startOfWeek,
   addDays,
   differenceInDays,
-  lastDayOfWeek,
   isSameDay,
   isSameMonth,
-  isSameYear,
-  getOverlappingDaysInIntervals,
-  parseISO,
   areIntervalsOverlapping,
   format,
+  endOfWeek,
+  endOfMonth,
+  eachDayOfInterval,
+  startOfDay,
+  endOfDay
 } from 'date-fns'
-import { endOfWeek, endOfMonth, eachDayOfInterval, startOfDay, endOfDay } from 'date-fns/esm'
 
 const selectFeature = (state: any) => {
   return state[CELLS_FEATURE_KEY]

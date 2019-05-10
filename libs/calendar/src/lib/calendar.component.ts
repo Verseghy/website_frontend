@@ -1,10 +1,10 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild } from '@angular/core'
+import { AfterViewInit, Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild, OnDestroy } from '@angular/core'
 import { Settings, CalendarEvent } from '@verseghy/calendar'
 import { Cell } from './lib/cell'
 import { format, startOfWeek, addDays } from 'date-fns'
 import { hu } from 'date-fns/locale'
 import { PopupHandlerService } from './services/popup-handler.service'
-import { map } from 'rxjs/operators'
+import { map, takeUntil } from 'rxjs/operators'
 import { Store, select } from '@ngrx/store'
 import { POPUP_FEATURE_KEY, PopupState } from './+state/popup.reducer'
 import { fromPopupActions } from './+state/popup.actions'
@@ -12,37 +12,39 @@ import { cellsQuery } from './+state/cells.selectors'
 import { fromCellsActions } from './+state/cells.actions'
 import { MatDialog } from '@angular/material/dialog'
 import { MoreDetailsDialogComponent } from './more-details-dialog/more-details-dialog.component'
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'verseghy-calendar',
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.scss'],
 })
-export class CalendarComponent implements OnInit, AfterViewInit {
+export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
   private _settings: Settings
   private _isDialogOpen = false
-  private _eventsIds = []
 
+  public destroy: Subject<boolean> = new Subject()
   public today = this.settings.today
-  public cells = this.store.pipe(select(cellsQuery.selectCells))
+  public cells = this.store.pipe(
+    takeUntil(this.destroy),
+    select(cellsQuery.selectCells)
+  )
   public formatedDate = this.store.pipe(
+    takeUntil(this.destroy),
     select(cellsQuery.selectMonth),
     map((date: Date) => {
-      this.closeMoreEventsPopup()
-      this.monthChanged.emit({
-        year: date.getFullYear(),
-        month: date.getMonth(),
-      })
       return format(date, 'yyyy. LLLL', { locale: hu })
     })
   )
   public moreEventsPopup = this.store.pipe(
+    takeUntil(this.destroy),
     select(POPUP_FEATURE_KEY),
     map((state: PopupState) => {
       return state.moreEventsPopup
     })
   )
   public moreEventsPopupEvents = this.store.pipe(
+    takeUntil(this.destroy),
     select(cellsQuery.selectedMoreEvents),
     map(events => events)
   )
@@ -58,10 +60,24 @@ export class CalendarComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {}
 
+  ngOnDestroy() {
+    this.destroy.next(true)
+  }
+
   ngAfterViewInit() {
     setTimeout(() => {
       this.popupHandler.hostElement = this._el.nativeElement
       this.store.dispatch(new fromCellsActions.SetHostHeight(this._el.nativeElement.offsetHeight))
+      this.store.pipe(
+        takeUntil(this.destroy),
+        select(cellsQuery.selectMonth)
+      ).subscribe(date => {
+        this.closeMoreEventsPopup()
+        this.monthChanged.emit({
+          year: date.getFullYear(),
+          month: date.getMonth(),
+        })
+      })
     })
   }
 
@@ -104,9 +120,10 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   @Input('events') public set events(events: CalendarEvent[]) {
     if (!events) return
     if (events.length) {
+      let eventIds
       const tempEvents = events.filter(item => {
-        if (this._eventsIds.includes(item.id)) return false
-        this._eventsIds = [...this._eventsIds, item.id]
+        if (eventIds.includes(item.id)) return false
+        eventIds = [...eventIds, item.id]
         return true
       })
       this.store.dispatch(new fromCellsActions.SetEvents(tempEvents))
