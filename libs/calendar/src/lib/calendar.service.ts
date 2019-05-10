@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
-import { BehaviorSubject } from 'rxjs';
-import { EventDetailsPopUpSettings } from './calendar.interfaces';
+import { BehaviorSubject } from 'rxjs'
+import { EventDetailsPopUpSettings } from './calendar.interfaces'
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +13,7 @@ export class NgxCalendarLibService {
     date: '',
     title: '',
     description: '',
-    color: ''
+    color: '',
   }
   eventDetailsPopUp$: BehaviorSubject<EventDetailsPopUpSettings> = new BehaviorSubject(this.eventDetailsPopUpSettings)
 

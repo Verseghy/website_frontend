@@ -11,7 +11,7 @@ import { fromPopupActions } from './+state/popup.actions'
 import { cellsQuery } from './+state/cells.selectors'
 import { fromCellsActions } from './+state/cells.actions'
 import { MatDialog } from '@angular/material/dialog'
-import { MoreDetailsDialogComponent } from './more-details-dialog/more-details-dialog.component';
+import { MoreDetailsDialogComponent } from './more-details-dialog/more-details-dialog.component'
 
 @Component({
   selector: 'verseghy-calendar',
@@ -24,9 +24,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   private _eventsIds = []
 
   public today = this.settings.today
-  public cells = this.store.pipe(
-    select(cellsQuery.selectCells)
-  )
+  public cells = this.store.pipe(select(cellsQuery.selectCells))
   public formatedDate = this.store.pipe(
     select(cellsQuery.selectMonth),
     map((date: Date) => {
@@ -56,12 +54,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     month: number
   }>()
 
-  constructor(
-    private _el: ElementRef,
-    private popupHandler: PopupHandlerService,
-    private store: Store<any>,
-    private dialog: MatDialog
-  ) {}
+  constructor(private _el: ElementRef, private popupHandler: PopupHandlerService, private store: Store<any>, private dialog: MatDialog) {}
 
   ngOnInit() {}
 
@@ -73,7 +66,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   }
 
   get shortDayNames() {
-    const firstDate = startOfWeek(new Date, {weekStartsOn: 1})
+    const firstDate = startOfWeek(new Date(), { weekStartsOn: 1 })
     let dayNames = []
     for (let i = 0; i < 7; i++) {
       const dayName = format(addDays(firstDate, i), 'EEEEEE', { locale: hu })
@@ -142,7 +135,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   public setEventDetailsPopup(id: number, click: Event): void {
     this.store.dispatch(new fromCellsActions.SetSelectedEvent(id))
     const dialog = this.dialog.open(MoreDetailsDialogComponent, {
-      width: '350px'
+      width: '350px',
     })
 
     dialog.afterOpened().subscribe(result => {
@@ -156,11 +149,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
 
   @HostListener('document:click', ['$event'])
   clickout(event: Event) {
-    if (
-      this.moreEventsPopupElement
-      && !this.moreEventsPopupElement.nativeElement.contains(event.target)
-      && !this._isDialogOpen
-    ) {
+    if (this.moreEventsPopupElement && !this.moreEventsPopupElement.nativeElement.contains(event.target) && !this._isDialogOpen) {
       this.closeMoreEventsPopup()
     }
   }

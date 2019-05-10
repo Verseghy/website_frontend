@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store'
-import { CalendarEvent } from '../calendar.interfaces';
+import { CalendarEvent } from '../calendar.interfaces'
 
 export enum CellsActionTypes {
   SetEvents = '[Cells] Set Events',
@@ -49,15 +49,7 @@ export class Today implements Action {
   readonly type = CellsActionTypes.Today
 }
 
-export type CellsAction
-  = SetEvents
-  | SetMonth
-  | SetHostHeight
-  | SetSelectedEvent
-  | SetSelectedMoreEvent
-  | NextMonth
-  | PreviousMonth
-  | Today
+export type CellsAction = SetEvents | SetMonth | SetHostHeight | SetSelectedEvent | SetSelectedMoreEvent | NextMonth | PreviousMonth | Today
 
 export const fromCellsActions = {
   SetEvents,

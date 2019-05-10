@@ -6,15 +6,14 @@ import { fromPopupActions } from '../+state/popup.actions'
 import { hu } from 'date-fns/locale'
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PopupHandlerService {
-
   public settings: Settings
   public hostElement: HTMLElement
   public date: Date
 
-  constructor(private store: Store<any>) { }
+  constructor(private store: Store<any>) {}
 
   public setMoreEventsPopup(date: Date) {
     const height = (this.hostElement.offsetHeight - 68) / this._getRowsInMonth()

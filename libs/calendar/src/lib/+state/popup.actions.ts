@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store'
-import { PopupSettings } from '../calendar.interfaces';
+import { PopupSettings } from '../calendar.interfaces'
 
 export enum PopupActionTypes {
   HideMoreEventsPopup = '[Popup] Hide More Events Popup',
@@ -17,9 +17,7 @@ export class SetMoreEventsPopup implements Action {
 
 export const fromPopupActions = {
   HideMoreEventsPopup,
-  SetMoreEventsPopup
+  SetMoreEventsPopup,
 }
 
-export type PopupAction
-  = HideMoreEventsPopup
-  | SetMoreEventsPopup
+export type PopupAction = HideMoreEventsPopup | SetMoreEventsPopup

@@ -1,5 +1,5 @@
 import { PopupAction, PopupActionTypes } from './popup.actions'
-import { PopupSettings } from '../calendar.interfaces';
+import { PopupSettings } from '../calendar.interfaces'
 
 export const POPUP_FEATURE_KEY = 'ui-calendar-popup'
 
@@ -17,8 +17,8 @@ export const initialState: PopupState = {
     top: 0,
     left: 0,
     date: '',
-    events: []
-  }
+    events: [],
+  },
 }
 
 export function popupReducer(state: PopupState = initialState, action: PopupAction): PopupState {
@@ -28,8 +28,8 @@ export function popupReducer(state: PopupState = initialState, action: PopupActi
         ...state,
         moreEventsPopup: {
           ...state.moreEventsPopup,
-          visible: false
-        }
+          visible: false,
+        },
       }
       break
     }
@@ -39,8 +39,8 @@ export function popupReducer(state: PopupState = initialState, action: PopupActi
         ...state,
         moreEventsPopup: {
           ...state.moreEventsPopup,
-          ...action.payload
-        }
+          ...action.payload,
+        },
       }
       break
     }

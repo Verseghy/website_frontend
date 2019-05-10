@@ -6,9 +6,9 @@ import { EffectsModule } from '@ngrx/effects'
 import { POPUP_FEATURE_KEY, initialState as popupInitialState, popupReducer } from './+state/popup.reducer'
 import { PopupEffects } from './+state/popup.effects'
 import { CELLS_FEATURE_KEY, initialState as cellsInitialState, cellsReducer } from './+state/cells.reducer'
-import { CellsEffects } from './+state/cells.effects';
+import { CellsEffects } from './+state/cells.effects'
 import { MoreDetailsDialogComponent } from './more-details-dialog/more-details-dialog.component'
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog'
 import { MatButtonModule } from '@angular/material/button'
 
 @NgModule({

@@ -5,11 +5,16 @@
   </div>
   <button class="now" (click)="now()">{{ today }}</button>
 </div>
-<div class="grid" *ngIf="cells | async as cells">
+<div class="grid" *ngIf="(cells | async) as cells">
   <div class="cellElement header" *ngFor="let item of shortDayNames">
     <span>{{ item }}</span>
   </div>
-  <div #cellElement *ngFor="let cell of cells; trackBy: cellsTrackByFn" class="cellElement" [ngClass]="{ 'today': cell.today, 'anotherMonth': cell.anotherMonth }">
+  <div
+    #cellElement
+    *ngFor="let cell of cells; trackBy: cellsTrackByFn"
+    class="cellElement"
+    [ngClass]="{ today: cell.today, anotherMonth: cell.anotherMonth }"
+  >
     <span class="date">{{ cell.day }}</span>
     <div class="events">
       <div

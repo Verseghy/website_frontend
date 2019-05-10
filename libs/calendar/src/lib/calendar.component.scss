@@ -69,9 +69,9 @@
   display: block;
   padding: 0 8px;
   transition: background-color 100ms;
-  background-color: rgba(0,0,0,0);
+  background-color: rgba(0, 0, 0, 0);
   &:hover {
-    background-color: rgba(0,0,0,0.1);
+    background-color: rgba(0, 0, 0, 0.1);
   }
 }
 
@@ -191,5 +191,5 @@ button:focus {
 }
 
 .anotherMonth {
-  color: #70757a
+  color: #70757a;
 }

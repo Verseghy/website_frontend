@@ -22,7 +22,7 @@ export class Cell {
     private _today: boolean,
     private _date: Date,
     private _maxRows: number,
-    private _anotherMonth: boolean,
+    private _anotherMonth: boolean
   ) {}
 
   public getRow(width: number): number {
@@ -66,11 +66,11 @@ export class Cell {
     return this._date
   }
 
-  get getEvents(): {id: number, order:number}[] {
+  get getEvents(): { id: number; order: number }[] {
     let events = []
     for (const item of this._rows) {
       if (!item.free) {
-        events = [...events, {id: item.id, order: item.row}]
+        events = [...events, { id: item.id, order: item.row }]
       }
     }
     return events

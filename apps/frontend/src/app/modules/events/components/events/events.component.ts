@@ -26,7 +26,17 @@ export class EventsComponent implements OnInit {
       map((data: EventsState) => {
         let calendarEvents: CalendarEvent[] = []
         for (const item of data.list) {
-          calendarEvents = [...calendarEvents, {id: item.id, title: item.title, description: item.description, startDate: new Date(item.date_from), endDate: new Date(item.date_to), color: item.color}]
+          calendarEvents = [
+            ...calendarEvents,
+            {
+              id: item.id,
+              title: item.title,
+              description: item.description,
+              startDate: new Date(item.date_from),
+              endDate: new Date(item.date_to),
+              color: item.color,
+            },
+          ]
         }
         return calendarEvents
       })
