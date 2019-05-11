@@ -35,7 +35,7 @@ library.add(faCheck)
     StoreDevtoolsModule.instrument({
       maxAge: 25,
     }),
-    AngularFireModule.initializeApp(environment.firebase)
+    AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [],
   bootstrap: [AppComponent],
