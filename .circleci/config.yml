@@ -23,12 +23,6 @@ workflows:
             - test-format
             - test-build
             - test-test
-      - deploy-frontend:
-          requires:
-            - test-e2e
-          filters:
-            branches:
-             only: master
 jobs:
   dependencies:
     docker:
@@ -122,20 +116,3 @@ jobs:
             - dependencies-{{ checksum "yarn.lock" }}
             - dependencies-
       - run: yarn affected:test --all
-
-  deploy-frontend:
-    machine:
-      enabled: true
-
-    working_directory: ~/repo
-
-    steps:
-      - checkout
-      - add_ssh_keys:
-            fingerprints:
-              - "c0:27:a5:27:4d:c1:62:42:af:c8:2d:b1:90:c2:65:d1"
-      - restore_cache:
-          keys:
-            - dist-{{ .Revision }}
-      - run: shopt -s dotglob
-      - run: rsync -avz --delete ./dist/apps/frontend/ sowpch@verseghy-gimnazium.net:/home/sowpch/beta.verseghy-gimnazium.net/

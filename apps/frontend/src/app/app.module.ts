@@ -15,6 +15,8 @@ import { NxModule } from '@nrwl/nx'
 import { StoreModule } from '@ngrx/store'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 import { EffectsModule } from '@ngrx/effects'
+import { AngularFireModule } from '@angular/fire'
+import { environment } from '../environments/environment'
 
 library.add(faCheck)
 
@@ -33,6 +35,7 @@ library.add(faCheck)
     StoreDevtoolsModule.instrument({
       maxAge: 25,
     }),
+    AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [],
   bootstrap: [AppComponent],
