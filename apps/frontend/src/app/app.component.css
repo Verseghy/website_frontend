@@ -13,6 +13,6 @@
 }
 
 .pacman-middle {
-  margin: auto;
-  min-height: 300px;
+  margin: 50px auto;
+  min-height: 50px;
 }

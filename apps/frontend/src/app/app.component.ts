@@ -61,7 +61,7 @@ export class AppComponent implements AfterViewInit {
         event instanceof NavigationEnd ||
         event instanceof NavigationCancel
       ) {
-        this.loaded = false
+        this.loaded = true
       }
     })
   }
