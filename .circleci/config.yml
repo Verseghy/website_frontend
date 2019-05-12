@@ -16,15 +16,13 @@ workflows:
       - test-test:
           requires:
             - dependencies
-      - deploy-frontend:
+      - test-e2e:
           requires:
+            - dependencies
             - test-lint
             - test-format
             - test-build
             - test-test
-          filters:
-            branches:
-             only: master
 jobs:
   dependencies:
     docker:
@@ -36,13 +34,13 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - dependencies-{{ checksum "package.json" }}
+            - dependencies-{{ checksum "yarn.lock" }}
             - dependencies-
-      - run: npm install
+      - run: CYPRESS_INSTALL_BINARY=0 yarn
       - save_cache:
           paths:
             - node_modules
-          key: dependencies-{{ checksum "package.json" }}
+          key: dependencies-{{ checksum "yarn.lock" }}
 
   test-lint:
     docker:
@@ -54,9 +52,9 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - dependencies-{{ checksum "package.json" }}
+            - dependencies-{{ checksum "yarn.lock" }}
             - dependencies-
-      - run: npm run nx affected:test -- --all
+      - run: yarn nx affected:lint --all
 
   test-format:
     docker:
@@ -68,9 +66,9 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - dependencies-{{ checksum "package.json" }}
+            - dependencies-{{ checksum "yarn.lock" }}
             - dependencies-
-      - run: npm run nx format:check
+      - run: yarn nx format:check
 
   test-build:
     docker:
@@ -82,13 +80,28 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - dependencies-{{ checksum "package.json" }}
+            - dependencies-{{ checksum "yarn.lock" }}
             - dependencies-
-      - run: npm run nx affected:build -- --all --prod
+      - run: yarn affected:build --all --prod
       - save_cache:
           paths:
             - dist
           key: dist-{{ .Revision }}
+
+  test-e2e:
+    docker:
+      - image: circleci/node:10-browsers
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - dependencies-{{ checksum "yarn.lock" }}
+            - dependencies-
+      - run: ./node_modules/.bin/cypress install
+      - run: yarn nx affected:e2e --all --prod --headless
 
   test-test:
     docker:
@@ -100,23 +113,6 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - dependencies-{{ checksum "package.json" }}
+            - dependencies-{{ checksum "yarn.lock" }}
             - dependencies-
-      - run: npm run affected:test -- --all
-
-  deploy-frontend:
-    machine:
-      enabled: true
-
-    working_directory: ~/repo
-
-    steps:
-      - checkout
-      - add_ssh_keys:
-            fingerprints:
-              - "c0:27:a5:27:4d:c1:62:42:af:c8:2d:b1:90:c2:65:d1"
-      - restore_cache:
-          keys:
-            - dist-{{ .Revision }}
-      - run: shopt -s dotglob
-      - run: rsync -avz --delete ./dist/apps/frontend/ sowpch@verseghy-gimnazium.net:/home/sowpch/beta.verseghy-gimnazium.net/
+      - run: yarn affected:test --all

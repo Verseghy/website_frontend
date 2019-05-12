@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/apps/frontend",
+            "outputPath": "apps/frontend/dist",
             "index": "apps/frontend/src/index.html",
             "main": "apps/frontend/src/main.ts",
             "polyfills": "apps/frontend/src/polyfills.ts",
@@ -107,9 +107,10 @@
       "prefix": "",
       "architect": {
         "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
+          "builder": "@nrwl/builders:cypress",
           "options": {
-            "protractorConfig": "apps/frontend-e2e/protractor.conf.js",
+            "cypressConfig": "apps/frontend-e2e/cypress.json",
+            "tsConfig": "apps/frontend-e2e/tsconfig.e2e.json",
             "devServerTarget": "frontend:serve"
           },
           "configurations": {
@@ -231,9 +232,10 @@
       "prefix": "",
       "architect": {
         "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
+          "builder": "@nrwl/builders:cypress",
           "options": {
-            "protractorConfig": "apps/math-competition-e2e/protractor.conf.js",
+            "cypressConfig": "apps/math-competition-e2e/cypress.json",
+            "tsConfig": "apps/math-competition-e2e/tsconfig.e2e.json",
             "devServerTarget": "math-competition:serve"
           },
           "configurations": {
@@ -288,7 +290,20 @@
       "versionMismatch": false
     },
     "defaultCollection": "@nrwl/schematics",
-    "packageManager": "npm"
+    "packageManager": "yarn"
   },
-  "defaultProject": "frontend"
+  "defaultProject": "frontend",
+  "schematics": {
+    "@nrwl/schematics:library": {
+      "unitTestRunner": "jest",
+      "framework": "angular"
+    },
+    "@nrwl/schematics:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "protractor"
+    },
+    "@nrwl/schematics:node-application": {
+      "framework": "express"
+    }
+  }
 }
