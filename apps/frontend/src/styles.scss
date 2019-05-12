@@ -1,4 +1,4 @@
-@import "node_modules/loaders.css/src/loaders";
+@import '~loaders.css/src/loaders';
 
 * {
   margin: 0;
@@ -20,14 +20,14 @@ body {
 
 .pacman > div:nth-child(1),
 .pacman > div:nth-child(2) {
-  border-top: 25px solid #E0E0E0;
-  border-left: 25px solid #E0E0E0;
-  border-bottom: 25px solid #E0E0E0;
+  border-top: 25px solid #e0e0e0;
+  border-left: 25px solid #e0e0e0;
+  border-bottom: 25px solid #e0e0e0;
 }
 
 .pacman > div:nth-child(3),
 .pacman > div:nth-child(4),
 .pacman > div:nth-child(5),
 .pacman > div:nth-child(6) {
-  background-color: #E0E0E0;
+  background-color: #e0e0e0;
 }

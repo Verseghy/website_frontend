@@ -48,22 +48,16 @@ import { NavigationCancel, NavigationEnd, NavigationStart, Router } from '@angul
   ],
 })
 export class AppComponent implements AfterViewInit {
-
-  loaded = false;
-  constructor(private router: Router) {
-  }
+  loaded = false
+  constructor(private router: Router) {}
 
   ngAfterViewInit(): void {
-    this.router.events.subscribe((event) => {
+    this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
         this.loaded = false
-      } else if (
-        event instanceof NavigationEnd ||
-        event instanceof NavigationCancel
-      ) {
+      } else if (event instanceof NavigationEnd || event instanceof NavigationCancel) {
         this.loaded = true
       }
     })
   }
-
 }
