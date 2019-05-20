@@ -57,6 +57,7 @@ export class AppComponent implements AfterViewInit {
         this.loaded = false
       } else if (event instanceof NavigationEnd || event instanceof NavigationCancel) {
         this.loaded = true
+        ;(window as any).ga('tracker.send', 'pageview', location.pathname)
       }
     })
   }
