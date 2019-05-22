@@ -24,9 +24,17 @@
         <a (click)="drawer = !drawer" href="" routerLink="/misc/authors">Fejlesztők</a>
       </div>
     </div>
-    <a class="ekreta" href="https://klik035992001.e-kreta.hu/Adminisztracio/Login" target="_blank">
-      <img alt="" src="assets/icons/kreta2.png" />
-    </a>
+    <div (click)="kretaSubmenu = !kretaSubmenu" [ngClass]="{ open: kretaSubmenu }" class="menu ekreta">
+      <span><img alt="" src="assets/icons/kreta2.png" /></span> <i class="material-icons arrow">expand_more</i>
+      <div class="submenu">
+        <a class="ekreta" href="https://klik035992001.e-kreta.hu/Adminisztracio/Login" target="_blank" (click)="drawer = !drawer">
+          E-Napló
+        </a>
+        <a class="ekreta" href="https://eugyintezes.e-kreta.hu/" target="_blank" (click)="drawer = !drawer">
+          E-Ügyintézés
+        </a>
+      </div>
+    </div>
   </div>
   <div class="left"><i class="material-icons">search</i> <i (click)="drawer = !drawer" class="material-icons menu-toggle">menu</i></div>
 </div>
