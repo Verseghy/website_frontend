@@ -1,7 +1,7 @@
 <div class="container">
   <div class="content-container">
     <div class="content">
-      <div #header class="card" *ngFor="let categoryId of [0, 1, 2, 3, 4, 5, 6]">
+      <div #header class="card" *ngFor="let categoryId of [0, 1, 2, 3, 4, 5]">
         <h2 class="card-title">{{ categories[categoryId] }}</h2>
         <div *ngFor="let colleague of (colleagues | async)[categoryId]" class="item">
           <img alt="" [src]="colleague.image" /> <span class="name">{{ colleague.name }}</span>
@@ -22,8 +22,8 @@
         >Gazdasági-, adminisztratív- és technikai dolgozóink</span
       >
       <span (click)="clickHandler(4)" [ngClass]="{ active: currentScrollPosition === 4 }">Konyhai dolgozók</span>
-      <span (click)="clickHandler(5)" [ngClass]="{ active: currentScrollPosition === 5 }">Takarítók</span>
-      <span (click)="clickHandler(6)" [ngClass]="{ active: currentScrollPosition === 6 }">Karbantartók</span>
+      <span (click)="clickHandler(5)" [ngClass]="{ active: currentScrollPosition === 5 }">Karbantartók, Takarítók</span>
+      <!--span (click)="clickHandler(6)" [ngClass]="{ active: currentScrollPosition === 6 }">Karbantartók</span-->
     </div>
   </div>
 </div>

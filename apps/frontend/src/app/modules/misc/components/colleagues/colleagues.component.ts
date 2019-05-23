@@ -21,8 +21,7 @@ export class ColleaguesComponent implements OnInit, OnDestroy, AfterViewInit {
     'Óraadók',
     'Gazdasági-, adminisztratív- és technikai dolgozóink',
     'Konyhai dolgozók',
-    'Takarítók',
-    'Karbantartók',
+    'Karbantartók, Takarítók',
   ]
   colleagues: Observable<Entity[][]>
 
