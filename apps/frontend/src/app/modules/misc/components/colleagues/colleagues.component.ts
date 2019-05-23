@@ -54,7 +54,7 @@ export class ColleaguesComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   clickHandler(n: number): void {
-    window.scrollTo(0, this.header.toArray()[n].nativeElement.getBoundingClientRect().top + window.scrollY)
+    this.header.toArray()[n].nativeElement.scrollIntoView({behavior: 'smooth', block: 'start'})
   }
 
   private _scrollHandler(): void {
