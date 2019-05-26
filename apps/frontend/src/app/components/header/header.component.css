@@ -59,6 +59,7 @@
   height: 25px;
   margin: 7.5px 0;
   padding: 0 15px;
+  display: block;
 }
 
 .menu-header {

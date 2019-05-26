@@ -32,32 +32,34 @@
       </li>
     </ul>
   </div>
-  <!-- div class="footerblock subscribe">
-    <h4>Hírlevél</h4>
-    <p>Iratkozz fel hírlevelünkre, hogy értesítést kapj a téged érdeklő cikkekről!</p>
-    <input
-      #emailInput
-      [(ngModel)]="email"
-      class="emailInput"
-      name="EMAIL"
-      pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
-      placeholder="email@email.com"
-      type="email"
-      value=""
-    />
-    <button
-      (click)="subscribeToNewsletter()"
-      [disabled]="subscribeButtonDisabled"
-      [ngClass]="{ done: subscribeButtonDone }"
-      class="subscribeButton"
-    >
-      <span *ngIf="buttonTextVisible" class="buttonText">Feliratkozás</span>
-      <fa-icon *ngIf="checkMarkVisible" [icon]="['fas', 'check']"></fa-icon>
-      <div *ngIf="spinnerVisible" class="spinner">
-        <div class="bounce1"></div>
-        <div class="bounce2"></div>
-        <div class="bounce3"></div>
-      </div>
-    </button>
-  </div-->
+  <!--
+    <div class="footerblock subscribe">
+      <h4>Hírlevél</h4>
+      <p>Iratkozz fel hírlevelünkre, hogy értesítést kapj a téged érdeklő cikkekről!</p>
+      <input
+        #emailInput
+        [(ngModel)]="email"
+        class="emailInput"
+        name="EMAIL"
+        pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
+        placeholder="email@email.com"
+        type="email"
+        value=""
+      />
+      <button
+        (click)="subscribeToNewsletter()"
+        [disabled]="subscribeButtonDisabled"
+        [ngClass]="{ done: subscribeButtonDone }"
+        class="subscribeButton"
+      >
+        <span *ngIf="buttonTextVisible" class="buttonText">Feliratkozás</span>
+        <fa-icon *ngIf="checkMarkVisible" [icon]="['fas', 'check']"></fa-icon>
+        <div *ngIf="spinnerVisible" class="spinner">
+          <div class="bounce1"></div>
+          <div class="bounce2"></div>
+          <div class="bounce3"></div>
+        </div>
+      </button>
+    </div>
+  -->
 </div>
