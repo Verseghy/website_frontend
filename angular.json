@@ -276,6 +276,7 @@
           "options": {
             "tsConfig": [
               "libs/calendar/tsconfig.lib.json",
+              "libs/calendar/tsconfig.spec.json",
               "libs/calendar/tsconfig.spec.json"
             ],
             "exclude": [
@@ -284,11 +285,11 @@
           }
         },
         "test": {
-          "builder": "@nrwl/builders:jest",
+          "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "jestConfig": "libs/calendar/jest.config.js",
+            "main": "libs/calendar/src/test.ts",
             "tsConfig": "libs/calendar/tsconfig.spec.json",
-            "setupFile": "libs/calendar/src/test-setup.ts"
+            "karmaConfig": "libs/calendar/karma.conf.js"
           }
         }
       }
