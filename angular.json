@@ -84,6 +84,7 @@
             "tsConfig": [
               "apps/frontend/tsconfig.app.json",
               "apps/frontend/tsconfig.spec.json",
+              "apps/frontend/tsconfig.spec.json",
               "apps/frontend/tsconfig.spec.json"
             ],
             "exclude": [
@@ -92,11 +93,15 @@
           }
         },
         "test": {
-          "builder": "@nrwl/builders:jest",
+          "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "jestConfig": "apps/frontend/jest.config.js",
+            "main": "apps/frontend/src/test.ts",
             "tsConfig": "apps/frontend/tsconfig.spec.json",
-            "setupFile": "apps/frontend/src/test-setup.ts"
+            "karmaConfig": "apps/frontend/karma.conf.js",
+            "polyfills": "apps/frontend/src/polyfills.ts",
+            "styles": [],
+            "scripts": [],
+            "assets": []
           }
         }
       }
