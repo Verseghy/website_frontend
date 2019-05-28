@@ -306,11 +306,11 @@
   "defaultProject": "frontend",
   "schematics": {
     "@nrwl/schematics:library": {
-      "unitTestRunner": "jest",
+      "unitTestRunner": "karma",
       "framework": "angular"
     },
     "@nrwl/schematics:application": {
-      "unitTestRunner": "jest",
+      "unitTestRunner": "karma",
       "e2eTestRunner": "protractor"
     },
     "@nrwl/schematics:node-application": {
