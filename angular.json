@@ -214,6 +214,7 @@
             "tsConfig": [
               "apps/math-competition/tsconfig.app.json",
               "apps/math-competition/tsconfig.spec.json",
+              "apps/math-competition/tsconfig.spec.json",
               "apps/math-competition/tsconfig.spec.json"
             ],
             "exclude": [
@@ -222,11 +223,15 @@
           }
         },
         "test": {
-          "builder": "@nrwl/builders:jest",
+          "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "jestConfig": "apps/math-competition/jest.config.js",
+            "main": "apps/math-competition/src/test.ts",
             "tsConfig": "apps/math-competition/tsconfig.spec.json",
-            "setupFile": "apps/math-competition/src/test-setup.ts"
+            "karmaConfig": "apps/math-competition/karma.conf.js",
+            "polyfills": "apps/math-competition/src/polyfills.ts",
+            "styles": [],
+            "scripts": [],
+            "assets": []
           }
         }
       }
