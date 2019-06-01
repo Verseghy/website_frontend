@@ -100,7 +100,7 @@ jobs:
           keys:
             - dependencies-{{ checksum "yarn.lock" }}
             - dependencies-
-      - run: yarn nx affected:e2e --all --prod --headless
+      - run: yarn nx affected:e2e --all --prod
 
   test-test:
     docker:
