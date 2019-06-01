@@ -52,7 +52,9 @@ export class AppComponent implements AfterViewInit {
   constructor(private router: Router, private appref: ApplicationRef) {}
 
   ngAfterViewInit(): void {
-    this.appref.isStable.subscribe(x => {console.log(x)})
+    this.appref.isStable.subscribe(x => {
+      console.log(x)
+    })
 
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {

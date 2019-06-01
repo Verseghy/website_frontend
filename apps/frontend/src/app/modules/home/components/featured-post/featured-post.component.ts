@@ -1,13 +1,4 @@
-import {
-  AfterViewInit,
-  ApplicationRef,
-  Component,
-  ElementRef,
-  OnDestroy,
-  OnInit,
-  QueryList,
-  ViewChildren,
-} from '@angular/core'
+import { AfterViewInit, ApplicationRef, Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core'
 import { interval, Observable } from 'rxjs'
 import { RequestService } from '../../services/request.service'
 import { Post } from '../../../../models/Post'
@@ -20,7 +11,7 @@ import { SubSink } from 'subsink'
   styleUrls: ['./featured-post.component.css'],
 })
 export class FeaturedPostComponent implements OnInit, AfterViewInit, OnDestroy {
-  private subs = new SubSink();
+  private subs = new SubSink()
 
   @ViewChildren('content') content: QueryList<any>
 
@@ -32,10 +23,7 @@ export class FeaturedPostComponent implements OnInit, AfterViewInit, OnDestroy {
   isHovered = false
   posts: Observable<Post[]>
 
-  constructor(
-    private requestService: RequestService,
-    private appRef: ApplicationRef,
-  ) {}
+  constructor(private requestService: RequestService, private appRef: ApplicationRef) {}
 
   ngOnInit() {
     this.posts = this.requestService.listFeaturedPosts()
@@ -50,18 +38,21 @@ export class FeaturedPostComponent implements OnInit, AfterViewInit, OnDestroy {
       }
       this._transformLeft(this.items[this.itemsLength - 1])
     }
-    this.subs.add(this.appRef.isStable.pipe(
-      filter(stable => stable),
-      switchMap(() => interval(this.autoplaySpeed))
-    ).subscribe(() => {
-      if (!this.isHovered) {
-        this.next()
-      }
-    }))
-
+    this.subs.add(
+      this.appRef.isStable
+        .pipe(
+          filter(stable => stable),
+          switchMap(() => interval(this.autoplaySpeed))
+        )
+        .subscribe(() => {
+          if (!this.isHovered) {
+            this.next()
+          }
+        })
+    )
   }
 
-  ngOnDestroy () {
+  ngOnDestroy() {
     this.subs.unsubscribe()
   }
 
