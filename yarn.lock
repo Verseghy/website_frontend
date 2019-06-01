@@ -8371,6 +8371,11 @@ stylus@0.54.5:
     sax "0.5.x"
     source-map "0.1.x"
 
+subsink@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/subsink/-/subsink-1.0.0.tgz#48ca96dbc4fd57ed0ceaf9fdd302ace37c864eaf"
+  integrity sha512-HDzahJaoR9x1PAhFOMUB/Q3IUjNML6wY1bZ2m6bXAo74+PUm4k6Yb68XUyp/kpchOHegN6ickwMLIWYKIp6NEg==
+
 supports-color@5.5.0, supports-color@^5.1.0, supports-color@^5.3.0:
   version "5.5.0"
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-5.5.0.tgz#e2e69a44ac8772f78a1ec0b35b689df6530efc8f"

@@ -1,14 +1,27 @@
-import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core'
+import {
+  AfterViewInit,
+  ApplicationRef,
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  QueryList,
+  ViewChildren,
+} from '@angular/core'
 import { interval, Observable } from 'rxjs'
 import { RequestService } from '../../services/request.service'
 import { Post } from '../../../../models/Post'
+import { filter, switchMap } from 'rxjs/operators'
+import { SubSink } from 'subsink'
 
 @Component({
   selector: 'verseghy-featured-post',
   templateUrl: './featured-post.component.html',
   styleUrls: ['./featured-post.component.css'],
 })
-export class FeaturedPostComponent implements OnInit, AfterViewInit {
+export class FeaturedPostComponent implements OnInit, AfterViewInit, OnDestroy {
+  private subs = new SubSink();
+
   @ViewChildren('content') content: QueryList<any>
 
   speed = 300
@@ -19,7 +32,11 @@ export class FeaturedPostComponent implements OnInit, AfterViewInit {
   isHovered = false
   posts: Observable<Post[]>
 
-  constructor(private requestService: RequestService) {}
+  constructor(
+    private requestService: RequestService,
+    private appRef: ApplicationRef,
+  ) {}
+
   ngOnInit() {
     this.posts = this.requestService.listFeaturedPosts()
   }
@@ -33,11 +50,19 @@ export class FeaturedPostComponent implements OnInit, AfterViewInit {
       }
       this._transformLeft(this.items[this.itemsLength - 1])
     }
-    interval(this.autoplaySpeed).subscribe(() => {
+    this.subs.add(this.appRef.isStable.pipe(
+      filter(stable => stable),
+      switchMap(() => interval(this.autoplaySpeed))
+    ).subscribe(() => {
       if (!this.isHovered) {
         this.next()
       }
-    })
+    }))
+
+  }
+
+  ngOnDestroy () {
+    this.subs.unsubscribe()
   }
 
   next(): void {
