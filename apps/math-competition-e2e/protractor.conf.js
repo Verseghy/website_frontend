@@ -8,16 +8,17 @@ exports.config = {
   specs: ['./src/**/*.e2e-spec.ts'],
   multiCapabilities: [
     {
-      'browserName': 'firefox',
+      browserName: 'firefox',
       'moz:firefoxOptions': {
-        args: [ "--headless" ]
-      }
-    }, {
-      'browserName': 'chrome',
-      'chromeOptions': {
-        args: [ "--headless", "--disable-gpu", "--window-size=1920,1080" ]
-      }
-    }
+        args: ['--headless'],
+      },
+    },
+    {
+      browserName: 'chrome',
+      chromeOptions: {
+        args: ['--headless', '--disable-gpu', '--window-size=1920,1080'],
+      },
+    },
   ],
   directConnect: true,
   baseUrl: 'http://localhost:4200/',
