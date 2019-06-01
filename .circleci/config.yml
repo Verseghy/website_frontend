@@ -36,7 +36,7 @@ jobs:
           keys:
             - dependencies-{{ checksum "yarn.lock" }}
             - dependencies-
-      - run: CYPRESS_INSTALL_BINARY=0 yarn
+      - run: yarn
       - save_cache:
           paths:
             - node_modules
@@ -100,7 +100,6 @@ jobs:
           keys:
             - dependencies-{{ checksum "yarn.lock" }}
             - dependencies-
-      - run: ./node_modules/.bin/cypress install
       - run: yarn nx affected:e2e --all --prod --headless
 
   test-test:
