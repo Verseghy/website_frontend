@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
-import { TimeGuard } from './guards/time.guard'
 import { AuthGuard } from './guards/auth.guard'
 
 const routes: Routes = [
@@ -12,22 +11,22 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: './modules/login/login.module#LoginModule',
-    canActivate: [TimeGuard, AuthGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: 'home',
     loadChildren: './modules/home/home.module#HomeModule',
-    canActivate: [TimeGuard],
+    canActivate: [],
   },
   {
     path: 'after',
     loadChildren: './modules/after/after.module#AfterModule',
-    canActivate: [TimeGuard],
+    canActivate: [],
   },
   {
     path: 'competition',
     loadChildren: './modules/competition/competition.module#CompetitionModule',
-    canActivate: [TimeGuard, AuthGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: '**',

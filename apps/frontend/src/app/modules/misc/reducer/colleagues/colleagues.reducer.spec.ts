@@ -2,7 +2,7 @@ import { ColleaguesLoaded } from './colleagues.actions'
 import { colleaguesReducer, ColleaguesState, Entity, initialState } from './colleagues.reducer'
 
 describe('Colleagues Reducer', () => {
-  const getColleaguesId = it => it['id']
+  const getColleaguesId = it => it.id
   let createColleagues
 
   beforeEach(() => {
@@ -18,7 +18,7 @@ describe('Colleagues Reducer', () => {
       const colleaguess = [createColleagues(1, 'PRODUCT-AAA', 0), createColleagues(2, 'PRODUCT-zzz', 1)]
       const action = new ColleaguesLoaded(colleaguess)
       const result: ColleaguesState = colleaguesReducer(initialState, action)
-      const selId: string = getColleaguesId(result.categories[0][0])
+      const selId: number = getColleaguesId(result.categories[0][0])
 
       expect(result.loaded).toBe(true)
       expect(result.categories[0].length).toBe(1)

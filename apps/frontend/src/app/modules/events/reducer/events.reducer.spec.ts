@@ -2,7 +2,7 @@ import { EventsLoaded } from './events.actions'
 import { Entity, eventsReducer, EventsState, initialState } from './events.reducer'
 
 describe('Events Reducer', () => {
-  const getEventsId = it => it['id']
+  const getEventsId = it => it.id
   let createEvents
 
   beforeEach(() => {
@@ -21,7 +21,7 @@ describe('Events Reducer', () => {
       const eventss = [createEvents(0), createEvents(123)]
       const action = new EventsLoaded(eventss)
       const result: EventsState = eventsReducer(initialState, action)
-      const selId: string = getEventsId(result.list[1])
+      const selId: number = getEventsId(result.list[1])
 
       expect(result.loaded).toBe(true)
       expect(result.list.length).toBe(2)
