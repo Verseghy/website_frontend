@@ -6,6 +6,7 @@ import { filter, map, switchMap } from 'rxjs/operators'
 import * as timeActions from '../reducers/time/time.actions'
 import { TimeState } from '../reducers/time/time.reducer'
 
+// TODO: Change this so AppRef doesn't go unstable
 @Injectable({
   providedIn: 'root',
 })

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component } from '@angular/core'
+import { AfterViewInit, ApplicationRef, Component } from '@angular/core'
 import { animate, group, query, style, transition, trigger } from '@angular/animations'
 import { NavigationCancel, NavigationEnd, NavigationStart, Router } from '@angular/router'
 
@@ -49,9 +49,13 @@ import { NavigationCancel, NavigationEnd, NavigationStart, Router } from '@angul
 })
 export class AppComponent implements AfterViewInit {
   loaded = false
-  constructor(private router: Router) {}
+  constructor(private router: Router, private appref: ApplicationRef) {}
 
   ngAfterViewInit(): void {
+    this.appref.isStable.subscribe(x => {
+      console.log(x)
+    })
+
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
         this.loaded = false
