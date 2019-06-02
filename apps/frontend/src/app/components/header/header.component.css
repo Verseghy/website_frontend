@@ -59,6 +59,7 @@
   height: 25px;
   margin: 7.5px 0;
   padding: 0 15px;
+  display: block;
 }
 
 .menu-header {
@@ -197,7 +198,8 @@ i {
   }
 
   .ekreta img {
-    padding: 0;
+    padding: 11.5px 0 11.5px 32px;
+    margin: 0;
   }
 
   .menu-header {
