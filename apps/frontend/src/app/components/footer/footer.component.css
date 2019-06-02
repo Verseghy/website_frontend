@@ -21,6 +21,8 @@
 
 .ekreta img {
   filter: grayscale(1);
+  height: 20px;
+  width: auto;
 }
 
 ul li {
