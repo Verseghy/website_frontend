@@ -12,5 +12,12 @@ export class HeaderComponent implements OnInit {
   kretaSubmenu: boolean
   constructor() {}
 
+  kretaLink(event: MouseEvent, url: string)
+  {
+    window.open(url, "_blank")
+    this.drawer = !this.drawer
+    event.preventDefault()
+  }
+
   ngOnInit() {}
 }
