@@ -15,7 +15,7 @@ import { NxModule } from '@nrwl/nx'
 import { StoreModule } from '@ngrx/store'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 import { EffectsModule } from '@ngrx/effects'
-import { LoadersCssModule } from 'angular2-loaders-css'
+// import { LoadersCssModule } from 'angular2-loaders-css'
 import { AngularFireModule } from '@angular/fire'
 import { environment } from '../environments/environment'
 
@@ -37,7 +37,7 @@ library.add(faCheck)
       maxAge: 25,
     }),
     AngularFireModule.initializeApp(environment.firebase),
-    LoadersCssModule,
+    // LoadersCssModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
