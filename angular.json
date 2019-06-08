@@ -29,7 +29,8 @@
               "apps/frontend/src/.htaccess"
             ],
             "styles": ["apps/frontend/src/styles.scss"],
-            "scripts": []
+            "scripts": [],
+            "aot": true
           },
           "configurations": {
             "production": {
