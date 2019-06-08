@@ -17,7 +17,7 @@ import { Problem } from '../../reducers/problem/problem.reducer'
   `,
 })
 class TestComponent {
-  @ViewChild(ProblemComponent) public problemComponent: ProblemComponent
+  @ViewChild(ProblemComponent, { static: true }) public problemComponent: ProblemComponent
   problem: Problem = {
     image: false,
     id: '0',

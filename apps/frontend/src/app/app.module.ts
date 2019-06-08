@@ -11,12 +11,12 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import { FormsModule } from '@angular/forms'
-import { NxModule } from '@nrwl/nx'
+import { NxModule } from '@nrwl/angular'
 import { StoreModule } from '@ngrx/store'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 import { EffectsModule } from '@ngrx/effects'
-import { LoadersCssModule } from 'angular2-loaders-css'
 import { AngularFireModule } from '@angular/fire'
+import { LoadersModule } from '@verseghy/ui'
 import { environment } from '../environments/environment'
 
 library.add(faCheck)
@@ -30,6 +30,7 @@ library.add(faCheck)
     HttpClientModule,
     FontAwesomeModule,
     FormsModule,
+    LoadersModule,
     NxModule.forRoot(),
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
@@ -37,7 +38,6 @@ library.add(faCheck)
       maxAge: 25,
     }),
     AngularFireModule.initializeApp(environment.firebase),
-    LoadersCssModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
