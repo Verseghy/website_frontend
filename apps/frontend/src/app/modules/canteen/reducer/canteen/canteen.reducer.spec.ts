@@ -3,17 +3,17 @@ import { canteenReducer, CanteenState, Entity, initialState, Menu } from './cant
 import { setDay } from 'date-fns'
 
 describe('Canteen Reducer', () => {
-  const getCanteenId = it => it['id']
+  const getCanteenId = it => it.id
   let createCanteen
 
   beforeEach(() => {
     createCanteen = (
       id: number,
       date,
-      menu: [Menu, Menu, Menu?] = [{ id: 0, menu: 'meal1', type: 0 }, { id: 0, menu: 'meal1', type: 0 }]
+      menus: [Menu, Menu, Menu?] = [{ id: 0, menu: 'meal1', type: 0 }, { id: 0, menu: 'meal1', type: 0 }]
     ): Entity => ({
       id,
-      menu: menu,
+      menus: menus,
       date: date,
     })
   })
@@ -27,7 +27,7 @@ describe('Canteen Reducer', () => {
       const canteens = [[createCanteen(1, friday.toDateString()), createCanteen(2, monday.toDateString())], []]
       const action = new CanteenLoaded(canteens)
       const result: CanteenState = canteenReducer(initialState, action)
-      const selId: string = getCanteenId(result.thisWeek[1])
+      const selId: number = getCanteenId(result.thisWeek[1])
 
       expect(result.loaded).toBe(true)
       expect(result.thisWeek[1]).toBeTruthy()

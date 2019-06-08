@@ -5,8 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing'
 import { Component, Input } from '@angular/core'
 import { AngularFireAuth } from '@angular/fire/auth'
 import { AngularFirestore } from '@angular/fire/firestore'
-import { StoreModule } from '@ngrx/store'
-import { EffectsModule } from '@ngrx/effects'
+import { provideMockStore } from '@ngrx/store/testing'
 
 @Component({ selector: 'verseghy-problem', template: '', styles: [] })
 class ProblemComponent {
@@ -22,16 +21,25 @@ describe('CompetitionscreenComponent', () => {
   let component: CompetitionscreenComponent
   let fixture: ComponentFixture<CompetitionscreenComponent>
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [RouterTestingModule, StoreModule.forRoot({}), EffectsModule.forRoot([])],
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [RouterTestingModule],
       declarations: [CompetitionscreenComponent, ProblemComponent],
       providers: [
         { provide: AngularFireAuth, useValue: AngularFireAuthStub },
         { provide: AngularFirestore, useValue: AngularFirestoreStub },
+        provideMockStore({
+          initialState: {
+            competition: {
+              problem: {
+                ids: [],
+              },
+            },
+          },
+        }),
       ],
     }).compileComponents()
-  }))
+  })
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CompetitionscreenComponent)

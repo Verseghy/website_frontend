@@ -24,7 +24,7 @@ export class RequestService {
       {
         index_image: {
           id: 0,
-          url: 'https://images.pexels.com/photos/160107/pexels-photo-160107.jpeg',
+          url: 'https://i.imgur.com/e5a8Uv3.jpg',
         },
         author: {
           id: 0,
@@ -46,7 +46,7 @@ export class RequestService {
       {
         index_image: {
           id: 0,
-          url: 'https://images.pexels.com/photos/160107/pexels-photo-160107.jpeg',
+          url: 'https://i.imgur.com/e5a8Uv3.jpg',
         },
         author: {
           id: 0,
@@ -68,7 +68,7 @@ export class RequestService {
       {
         index_image: {
           id: 0,
-          url: 'https://images.pexels.com/photos/160107/pexels-photo-160107.jpeg',
+          url: 'https://i.imgur.com/e5a8Uv3.jpg',
         },
         author: {
           id: 0,

@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/apps/frontend",
+            "outputPath": "apps/frontend/dist",
             "index": "apps/frontend/src/index.html",
             "main": "apps/frontend/src/main.ts",
             "polyfills": "apps/frontend/src/polyfills.ts",
@@ -84,6 +84,7 @@
             "tsConfig": [
               "apps/frontend/tsconfig.app.json",
               "apps/frontend/tsconfig.spec.json",
+              "apps/frontend/tsconfig.spec.json",
               "apps/frontend/tsconfig.spec.json"
             ],
             "exclude": [
@@ -92,11 +93,15 @@
           }
         },
         "test": {
-          "builder": "@nrwl/builders:jest",
+          "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "jestConfig": "apps/frontend/jest.config.js",
+            "main": "apps/frontend/src/test.ts",
             "tsConfig": "apps/frontend/tsconfig.spec.json",
-            "setupFile": "apps/frontend/src/test-setup.ts"
+            "karmaConfig": "apps/frontend/karma.conf.js",
+            "polyfills": "apps/frontend/src/polyfills.ts",
+            "styles": [],
+            "scripts": [],
+            "assets": []
           }
         }
       }
@@ -107,10 +112,9 @@
       "prefix": "",
       "architect": {
         "e2e": {
-          "builder": "@nrwl/builders:cypress",
+          "builder": "@angular-devkit/build-angular:protractor",
           "options": {
-            "cypressConfig": "apps/frontend-e2e/cypress.json",
-            "tsConfig": "apps/frontend-e2e/tsconfig.e2e.json",
+            "protractorConfig": "apps/frontend-e2e/protractor.conf.js",
             "devServerTarget": "frontend:serve"
           },
           "configurations": {
@@ -209,6 +213,7 @@
             "tsConfig": [
               "apps/math-competition/tsconfig.app.json",
               "apps/math-competition/tsconfig.spec.json",
+              "apps/math-competition/tsconfig.spec.json",
               "apps/math-competition/tsconfig.spec.json"
             ],
             "exclude": [
@@ -217,11 +222,15 @@
           }
         },
         "test": {
-          "builder": "@nrwl/builders:jest",
+          "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "jestConfig": "apps/math-competition/jest.config.js",
+            "main": "apps/math-competition/src/test.ts",
             "tsConfig": "apps/math-competition/tsconfig.spec.json",
-            "setupFile": "apps/math-competition/src/test-setup.ts"
+            "karmaConfig": "apps/math-competition/karma.conf.js",
+            "polyfills": "apps/math-competition/src/polyfills.ts",
+            "styles": [],
+            "scripts": [],
+            "assets": []
           }
         }
       }
@@ -232,10 +241,9 @@
       "prefix": "",
       "architect": {
         "e2e": {
-          "builder": "@nrwl/builders:cypress",
+          "builder": "@angular-devkit/build-angular:protractor",
           "options": {
-            "cypressConfig": "apps/math-competition-e2e/cypress.json",
-            "tsConfig": "apps/math-competition-e2e/tsconfig.e2e.json",
+            "protractorConfig": "apps/math-competition-e2e/protractor.conf.js",
             "devServerTarget": "math-competition:serve"
           },
           "configurations": {
@@ -266,6 +274,7 @@
           "options": {
             "tsConfig": [
               "libs/calendar/tsconfig.lib.json",
+              "libs/calendar/tsconfig.spec.json",
               "libs/calendar/tsconfig.spec.json"
             ],
             "exclude": [
@@ -274,11 +283,11 @@
           }
         },
         "test": {
-          "builder": "@nrwl/builders:jest",
+          "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "jestConfig": "libs/calendar/jest.config.js",
+            "main": "libs/calendar/src/test.ts",
             "tsConfig": "libs/calendar/tsconfig.spec.json",
-            "setupFile": "libs/calendar/src/test-setup.ts"
+            "karmaConfig": "libs/calendar/karma.conf.js"
           }
         }
       }
@@ -295,11 +304,11 @@
   "defaultProject": "frontend",
   "schematics": {
     "@nrwl/schematics:library": {
-      "unitTestRunner": "jest",
+      "unitTestRunner": "karma",
       "framework": "angular"
     },
     "@nrwl/schematics:application": {
-      "unitTestRunner": "jest",
+      "unitTestRunner": "karma",
       "e2eTestRunner": "protractor"
     },
     "@nrwl/schematics:node-application": {
