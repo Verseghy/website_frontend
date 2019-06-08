@@ -42,7 +42,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   public moreEventsPopupDay: string
   public moreEventsPopupDate: number
   public moreEventsPopupEvents
-  @ViewChild('moreEvents') moreEventsPopupElement: ElementRef
+  @ViewChild('moreEvents', { static: false }) moreEventsPopupElement: ElementRef
 
   public eventDetailsPopupVisible = false
   public eventDetailsPopupTop = 0
@@ -51,7 +51,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   public eventDetailsPopupTitle: string
   public eventDetailsPopupDescription: string
   public eventDetailsPopupColor: string
-  @ViewChild('eventDetails') eventDetailsPopupElement: ElementRef
+  @ViewChild('eventDetails', { static: false }) eventDetailsPopupElement: ElementRef
 
   @Output() monthChanged = new EventEmitter<{
     year: number

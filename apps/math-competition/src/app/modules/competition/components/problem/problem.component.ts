@@ -12,7 +12,7 @@ import { AngularFireStorage } from '@angular/fire/storage'
 })
 export class ProblemComponent implements OnInit {
   @Input() problem: Problem
-  @ViewChild('solution') solution
+  @ViewChild('solution', { static: true }) solution
   imagesrc
 
   constructor(private store: Store<any>, private afstore: AngularFireStorage) {}

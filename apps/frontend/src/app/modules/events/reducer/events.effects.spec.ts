@@ -6,7 +6,7 @@ import { EffectsModule } from '@ngrx/effects'
 import { StoreModule } from '@ngrx/store'
 import { provideMockActions } from '@ngrx/effects/testing'
 
-import { DataPersistence, NxModule } from '@nrwl/nx'
+import { DataPersistence, NxModule } from '@nrwl/angular'
 
 import { EventsEffects } from './events.effects'
 import { HttpClient } from '@angular/common/http'

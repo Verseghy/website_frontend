@@ -5,23 +5,23 @@ import { RouterModule, Routes } from '@angular/router'
 const routes: Routes = [
   {
     path: '',
-    loadChildren: './modules/home/home.module#HomeModule',
+    loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule),
   },
   {
     path: 'posts',
-    loadChildren: './modules/posts/posts.module#PostsModule',
+    loadChildren: () => import('./modules/posts/posts.module').then(m => m.PostsModule),
   },
   {
     path: 'misc',
-    loadChildren: './modules/misc/misc.module#MiscModule',
+    loadChildren: () => import('./modules/misc/misc.module').then(m => m.MiscModule),
   },
   {
     path: 'events',
-    loadChildren: './modules/events/events.module#EventsModule',
+    loadChildren: () => import('./modules/events/events.module').then(m => m.EventsModule),
   },
   {
     path: 'canteen',
-    loadChildren: './modules/canteen/canteen.module#CanteenModule',
+    loadChildren: () => import('./modules/canteen/canteen.module').then(m => m.CanteenModule),
   },
 ]
 

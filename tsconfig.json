@@ -7,7 +7,7 @@
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "es5",
+    "target": "es2015",
     "typeRoots": ["node_modules/@types"],
     "lib": ["es2017", "dom"],
     "baseUrl": ".",
@@ -15,7 +15,8 @@
       "@verseghy/calendar": ["libs/calendar/src/index.ts"],
       "@verseghy/ui": ["libs/ui/src/index.ts"]
     },
-    "module": "es2015"
+    "module": "esnext",
+    "rootDir": "."
   },
   "exclude": ["node_modules", "tmp"]
 }
