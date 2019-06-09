@@ -15,17 +15,16 @@
     class="cellElement"
     [ngClass]="{ today: cell.today, anotherMonth: cell.anotherMonth }"
   >
-    <span class="date">{{ cell.day }}</span>
+    <span class="date">{{ cell.date }}</span>
     <div class="events">
-      <div
+      <!--<div
         class="event"
-        *ngFor="let event of cell.renderedEvents; trackBy: trackByFn"
-        [ngStyle]="{ top: event.top, width: event.width, 'background-color': event.color }"
-        [ngClass]="{ more: event.more }"
-        (click)="setEventDetailsPopup(event.id, $event)"
+        *ngFor="let row of cell.rows | keyvalue; trackBy: trackByFn"
+        [ngStyle]="{ 'top.px': row.value.event.top, 'width': row.value.event.width, 'background-color': row.value.event.color }"
+        (click)="setEventDetailsPopup(row.value.event.id, $event)"
       >
-        <span>{{ event.title }}</span>
-      </div>
+        <span>{{ row.value.event.title }}</span>
+      </div>-->
       <div
         class="event more"
         *ngIf="cell.moreEventsVisible"

@@ -1,7 +1,6 @@
 import { CellsState, CELLS_FEATURE_KEY } from './cells.reducer'
 import { createSelector } from '@ngrx/store'
-import { CalendarEvent, DisplayedEvent } from '../calendar.interfaces'
-import { Cell } from '../lib/cell'
+import { CalendarEvent, DisplayedEvent, Cell } from '../calendar.interfaces'
 import {
   isSunday,
   startOfMonth,
@@ -18,8 +17,10 @@ import {
   endOfMonth,
   eachDayOfInterval,
   startOfDay,
-  endOfDay
+  endOfDay,
+  getDate
 } from 'date-fns'
+import { hu } from 'date-fns/locale'
 
 const selectFeature = (state: any) => {
   return state[CELLS_FEATURE_KEY]
@@ -95,24 +96,30 @@ const selectCalendarEventsInMonth = createSelector(
 const selectGeneratedCells = createSelector(
   selectRowsInMonth,
   selectFirstCellDate,
-  selectHeight,
   selectMonth,
-  (rows: number, firstCellDate: Date, hostHeight: number, month: Date): Cell[] => {
+  (rows: number, firstCellDate: Date, month: Date): Cell[] => {
     let cellsInMonth: Cell[] = []
     for (let i = 0; i < 7 * rows; i++) {
       const date = addDays(firstCellDate, i)
+      let formatedDate = format(date, 'd')
+      if (getDate(date) === 1) formatedDate = format(date, 'LLL d', { locale: hu })
       const today = isSameDay(date, new Date())
-      const cellHeight = (hostHeight - 68) / rows - 32
-      const maxRows = Math.floor(cellHeight / 24)
       const anotherMonth = !isSameMonth(date, month)
-      const cell = new Cell(i, today, date, maxRows, anotherMonth)
+      /*const cellHeight = (hostHeight - 68) / rows - 32
+      const maxRows = Math.floor(cellHeight / 24)*/
+      const cell: Cell = {
+        date: formatedDate,
+        today,
+        anotherMonth,
+        rows: new Map()
+      } 
       cellsInMonth = [...cellsInMonth, cell]
     }
     return cellsInMonth
   }
 )
 
-const selectDisplayEvents = createSelector(
+const selectDisplayedEvents = createSelector(
   selectCalendarEventsInMonth,
   selectFirstCellDate,
   selectLastCellDate,
@@ -145,23 +152,76 @@ const selectDisplayEvents = createSelector(
   }
 )
 
-const selectClearedCells = createSelector(
+const selectCellsWithEvents = createSelector(
   selectGeneratedCells,
-  selectEvents,
-  (cells: Cell[]): Cell[] => {
-    for (const cell of cells) {
-      cell.clearEvents()
+  selectDisplayedEvents,
+  selectFirstCellDate,
+  (cells: Cell[], events: DisplayedEvent[], firstCellDate: Date): Cell[] => {
+    for (const event of events) {
+      const firstCell = cells[Math.abs(differenceInDays(event.startDate, firstCellDate))]
+      let row = 0
+      for (let i = 0; i < Math.max(...Array.from(firstCell.rows.keys())) + 1; i++) {
+        if (!firstCell.rows.has(i)) {
+          row = i
+          break
+        }
+      }
+      let isPlaceholder = false
+      for (const day of eachDayOfInterval({start: event.startDate, end: event.endDate})) {
+        const cell = cells[Math.abs(differenceInDays(day, firstCellDate))]
+        let rowObject = {}
+        if (!isPlaceholder) {
+          const eventLength = Math.abs(differenceInDays(event.startDate, event.endDate))
+          const formatedEventLength = `calc(${eventLength + 1}00% - 4px + ${eventLength}px`
+          const top = row * 24
+          rowObject = {
+            placeholder: false,
+            event: {
+              title: event.title,
+              color: event.color,
+              id: 1,
+              width: formatedEventLength,
+              top
+            }
+          }
+        } else {
+          rowObject = {
+            placeholder: true
+          }
+        }
+        cell.rows.set(row, rowObject)
+        isPlaceholder = true
+      }
     }
     return cells
   }
 )
 
+const selectFilteredCells = createSelector(
+  selectCellsWithEvents,
+  (cells: Cell[]): Cell[] => {
+    for (const cell of cells) {
+      console.log(cells)
+      cell.rows.forEach((value,index,z) => {
+        console.log(index, value)
+      })
+    }
+    
+    return cells
+    /*return cells.map(cell => {
+      console.log(cell.rows)
+      //console.log(cell.rows.filter(item => !item.placeholder))
+      return cell
+    })*/
+  }
+)
+
 const selectCells = createSelector(
-  selectClearedCells,
-  selectDisplayEvents,
+  selectFilteredCells,
+  selectDisplayedEvents,
   selectFirstCellDate,
   (cells: Cell[], events: DisplayedEvent[], firstCellDate: Date): Cell[] => {
-    for (const event of events) {
+    /*for (const event of events) {
       const row = cells[Math.abs(differenceInDays(event.startDate, firstCellDate))].firstFreeRow
       const eventLength = eachDayOfInterval({ start: event.startDate, end: event.endDate }).length
       for (let i = 0; i < eventLength; i++) {
@@ -170,6 +230,8 @@ const selectCells = createSelector(
         cell.push(event.id, row, event.title, eventLength, event.color, placeholder)
       }
     }
+    return cells*/
+    //console.log(cells)
     return cells
   }
 )
