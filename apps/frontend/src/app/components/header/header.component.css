@@ -3,6 +3,9 @@
   background: #fff;
   box-shadow: 0 3px 5px 0 rgba(0, 1, 1, 0.1);
   z-index: 11;
+  position: fixed;
+  left: 0;
+  right: 0;
 }
 
 .container {
