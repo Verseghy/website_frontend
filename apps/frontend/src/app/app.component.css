@@ -1,18 +1,21 @@
 :host {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: 64px 1fr min-content;
   height: 100%;
 }
 
-.content {
-  overflow-y: scroll;
-  flex: 1;
-  position: relative;
-  display: flex;
-  flex-direction: column;
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  grid-row: 1;
 }
 
-.pacman-middle {
-  margin: 50px auto;
-  min-height: 50px;
+.footer {
+  grid-row: 3;
+}
+
+.content {
+  grid-row: 2;
 }
