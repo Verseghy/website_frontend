@@ -101,7 +101,7 @@ jobs:
             - dependencies-{{ checksum "yarn.lock" }}
             - dependencies-
       - run: ./node_modules/.bin/webdriver-manager update
-      - run: yarn nx affected:e2e --all --prod --no-progress
+      - run: yarn nx affected:e2e --all --prod
 
   test-test:
     docker:
