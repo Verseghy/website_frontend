@@ -19,8 +19,3 @@
 .content {
   grid-row: 2;
 }
-
-.pacman-middle {
-  margin: 50px auto;
-  min-height: 50px;
-}

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { Observable } from 'rxjs'
-import { map, tap } from 'rxjs/operators'
+import { map } from 'rxjs/operators'
 import { select, Store } from '@ngrx/store'
 import { COLLEAGUES_FEATURE_KEY, ColleaguesState, Entity } from '../../reducer/colleagues/colleagues.reducer'
 import { fromColleaguesActions, LoadColleagues } from '../../reducer/colleagues/colleagues.actions'
