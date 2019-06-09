@@ -82,7 +82,7 @@ jobs:
           keys:
             - dependencies-{{ checksum "yarn.lock" }}
             - dependencies-
-      - run: yarn affected:build --all --prod
+      - run: yarn affected:build --all --prod --no-progress
       - save_cache:
           paths:
             - dist
@@ -101,7 +101,7 @@ jobs:
             - dependencies-{{ checksum "yarn.lock" }}
             - dependencies-
       - run: ./node_modules/.bin/webdriver-manager update
-      - run: yarn nx affected:e2e --all --prod
+      - run: yarn nx affected:e2e --all --prod --no-progress
 
   test-test:
     docker:
@@ -115,4 +115,4 @@ jobs:
           keys:
             - dependencies-{{ checksum "yarn.lock" }}
             - dependencies-
-      - run: yarn affected:test --all
+      - run: yarn affected:test --all --no-progress
