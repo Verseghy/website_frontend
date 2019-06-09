@@ -15,6 +15,7 @@ import { StoreModule } from '@ngrx/store'
 import { EffectsModule } from '@ngrx/effects'
 import { COLLEAGUES_FEATURE_KEY, colleaguesReducer, initialState as colleaguesInitialState } from './reducer/colleagues/colleagues.reducer'
 import { ColleaguesEffects } from './reducer/colleagues/colleagues.effects'
+import { InViewportModule } from 'ng-in-viewport'
 
 library.add(faGithub, faLinkedin, faFileAlt, faEnvelope)
 
@@ -55,6 +56,7 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     FontAwesomeModule,
+    InViewportModule,
     StoreModule.forFeature(COLLEAGUES_FEATURE_KEY, colleaguesReducer, { initialState: colleaguesInitialState }),
     EffectsModule.forFeature([ColleaguesEffects]),
   ],

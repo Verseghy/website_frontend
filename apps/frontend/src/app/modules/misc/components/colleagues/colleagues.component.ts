@@ -1,20 +1,17 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core'
-import { fromEvent, interval, Observable, Subscription } from 'rxjs'
-import { debounce, map } from 'rxjs/operators'
+import { Component, OnInit } from '@angular/core'
+import { Observable } from 'rxjs'
+import { map, tap } from 'rxjs/operators'
 import { select, Store } from '@ngrx/store'
 import { COLLEAGUES_FEATURE_KEY, ColleaguesState, Entity } from '../../reducer/colleagues/colleagues.reducer'
-import { LoadColleagues } from '../../reducer/colleagues/colleagues.actions'
+import { fromColleaguesActions, LoadColleagues } from '../../reducer/colleagues/colleagues.actions'
+import { selectVisible } from '../../reducer/colleagues/colleagues.selectors'
 
 @Component({
   selector: 'verseghy-colleagues',
   templateUrl: './colleagues.component.html',
-  styleUrls: ['./colleagues.component.css'],
+  styleUrls: ['./colleagues.component.scss'],
 })
-export class ColleaguesComponent implements OnInit, OnDestroy, AfterViewInit {
-  @ViewChildren('header') header: QueryList<ElementRef>
-  currentScrollPosition: number | null
-  private _scrollSubscriber: Subscription
-  private _visibleCards: Array<boolean> = []
+export class ColleaguesComponent implements OnInit {
   categories: string[] = [
     'Vezetőség',
     'Tanárok',
@@ -25,6 +22,8 @@ export class ColleaguesComponent implements OnInit, OnDestroy, AfterViewInit {
     'Karbantartók',
   ]
   colleagues: Observable<Entity[][]>
+
+  visible = this.store.pipe(select(selectVisible))
 
   constructor(private store: Store<ColleaguesState>) {}
 
@@ -38,40 +37,7 @@ export class ColleaguesComponent implements OnInit, OnDestroy, AfterViewInit {
     )
   }
 
-  ngAfterViewInit() {
-    setTimeout(() => {
-      this._scrollSubscriber = fromEvent(window, 'scroll')
-        .pipe(debounce(() => interval(50)))
-        .subscribe(() => {
-          this._scrollHandler()
-        })
-      this._scrollHandler()
-    })
-  }
-
-  ngOnDestroy() {
-    this._scrollSubscriber.unsubscribe()
-  }
-
-  clickHandler(n: number): void {
-    window.scrollTo(0, this.header.toArray()[n].nativeElement.getBoundingClientRect().top + window.scrollY)
-  }
-
-  private _scrollHandler(): void {
-    this.header.forEach((item, index) => {
-      const rect = item.nativeElement.getBoundingClientRect()
-      this._visibleCards[index] = rect.top < window.innerHeight && rect.bottom >= 0
-    })
-
-    this.currentScrollPosition = this._findFirstTrue(this._visibleCards)
-  }
-
-  private _findFirstTrue(array: Array<boolean>): number | null {
-    for (const index of Object.keys(array)) {
-      if (array[index]) {
-        return Number(index)
-      }
-    }
-    return null
+  setVisible(number: number, boolean: boolean) {
+    this.store.dispatch(new fromColleaguesActions.CategoryInViewport([number, boolean]))
   }
 }

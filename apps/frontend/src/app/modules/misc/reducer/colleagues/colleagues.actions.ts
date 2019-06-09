@@ -5,6 +5,8 @@ export enum ColleaguesActionTypes {
   LoadColleagues = '[Colleagues] Load Colleagues',
   ColleaguesLoaded = '[Colleagues] Colleagues Loaded',
   ColleaguesLoadError = '[Colleagues] Colleagues Load Error',
+
+  CategoryInViewport = '[Colleauges] Category In Viewport',
 }
 
 export class LoadColleagues implements Action {
@@ -21,10 +23,16 @@ export class ColleaguesLoaded implements Action {
   constructor(public payload: Entity[]) {}
 }
 
-export type ColleaguesAction = LoadColleagues | ColleaguesLoaded | ColleaguesLoadError
+export class CategoryInViewport implements Action {
+  readonly type = ColleaguesActionTypes.CategoryInViewport
+  constructor(public payload: [number, boolean]) {}
+}
+
+export type ColleaguesAction = LoadColleagues | ColleaguesLoaded | ColleaguesLoadError | CategoryInViewport
 
 export const fromColleaguesActions = {
   LoadColleagues,
   ColleaguesLoaded,
   ColleaguesLoadError,
+  CategoryInViewport,
 }

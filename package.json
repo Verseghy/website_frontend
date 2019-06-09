@@ -33,7 +33,6 @@
   },
   "private": true,
   "dependencies": {
-    "@nrwl/angular": "8.0.0",
     "@angular-mdc/web": "1.0.3",
     "@angular/animations": "8.0.0",
     "@angular/common": "8.0.0",
@@ -56,6 +55,7 @@
     "@ngx-loading-bar/core": "4.2.0",
     "@ngx-loading-bar/http-client": "4.2.0",
     "@ngx-loading-bar/router": "4.2.0",
+    "@nrwl/angular": "8.0.0",
     "core-js": "2.6.5",
     "date-fns": "1.30.1",
     "firebase": "6.1.1",
@@ -67,13 +67,13 @@
     "zone.js": "0.9.1"
   },
   "devDependencies": {
-    "@nrwl/workspace": "8.0.0",
     "@angular-devkit/build-angular": "0.800.2",
     "@angular/cli": "8.0.1",
     "@angular/compiler-cli": "8.0.0",
     "@angular/language-service": "8.0.0",
     "@ngrx/schematics": "8.0.0",
     "@ngrx/store-devtools": "8.0.0",
+    "@nrwl/workspace": "8.0.0",
     "@types/jasmine": "2.8.16",
     "@types/jasminewd2": "2.0.6",
     "@types/node": "12.0.0",
@@ -88,6 +88,7 @@
     "karma-jasmine": "1.1.2",
     "karma-jasmine-html-reporter": "0.2.2",
     "loaders.css": "0.1.2",
+    "ng-in-viewport": "^6.0.3",
     "prettier": "1.17.0",
     "protractor": "5.4.2",
     "ts-node": "8.0.3",
