@@ -49,13 +49,9 @@ import { NavigationCancel, NavigationEnd, NavigationStart, Router } from '@angul
 })
 export class AppComponent implements AfterViewInit {
   loaded = false
-  constructor(private router: Router, private appref: ApplicationRef) {}
+  constructor(private router: Router) {}
 
   ngAfterViewInit(): void {
-    this.appref.isStable.subscribe(x => {
-      console.log(x)
-    })
-
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
         this.loaded = false
