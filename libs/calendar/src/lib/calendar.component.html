@@ -17,14 +17,14 @@
   >
     <span class="date">{{ cell.date }}</span>
     <div class="events">
-      <!--<div
+      <div
         class="event"
-        *ngFor="let row of cell.rows | keyvalue; trackBy: trackByFn"
-        [ngStyle]="{ 'top.px': row.value.event.top, 'width': row.value.event.width, 'background-color': row.value.event.color }"
-        (click)="setEventDetailsPopup(row.value.event.id, $event)"
+        *ngFor="let row of cell.rows; trackBy: trackByFn"
+        [ngStyle]="{ 'top.px': row.event.top, 'width': row.event.width, 'background-color': row.event.color }"
+        (click)="setEventDetailsPopup(row.event.id, $event)"
       >
-        <span>{{ row.value.event.title }}</span>
-      </div>-->
+        <span>{{ row.event.title }}</span>
+      </div>
       <div
         class="event more"
         *ngIf="cell.moreEventsVisible"

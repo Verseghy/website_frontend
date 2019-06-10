@@ -41,14 +41,17 @@ export interface Cell {
   date: string
   today: boolean
   anotherMonth: boolean
-  rows: Map<number, {
-    placeholder?: boolean
-    event?: {
-      id: number
-      title: string
-      color: string
-      width: string
-      top: number
-    }
-  }>
+  rows: CellRow[]
+}
+
+export interface CellRow {
+  row: number
+  placeholder?: boolean
+  event?: {
+    id: number
+    title: string
+    color: string
+    width: string
+    top: number
+  }
 }

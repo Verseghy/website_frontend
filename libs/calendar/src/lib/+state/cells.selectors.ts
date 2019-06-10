@@ -1,6 +1,6 @@
 import { CellsState, CELLS_FEATURE_KEY } from './cells.reducer'
 import { createSelector } from '@ngrx/store'
-import { CalendarEvent, DisplayedEvent, Cell } from '../calendar.interfaces'
+import { CalendarEvent, DisplayedEvent, Cell, CellRow } from '../calendar.interfaces'
 import {
   isSunday,
   startOfMonth,
@@ -111,7 +111,7 @@ const selectGeneratedCells = createSelector(
         date: formatedDate,
         today,
         anotherMonth,
-        rows: new Map()
+        rows: []
       } 
       cellsInMonth = [...cellsInMonth, cell]
     }
@@ -160,8 +160,13 @@ const selectCellsWithEvents = createSelector(
     for (const event of events) {
       const firstCell = cells[Math.abs(differenceInDays(event.startDate, firstCellDate))]
       let row = 0
-      for (let i = 0; i < Math.max(...Array.from(firstCell.rows.keys())) + 1; i++) {
-        if (!firstCell.rows.has(i)) {
+      let rows = []
+      firstCell.rows.sort((a, b) => a.row - b.row)
+      for (const cellRow of firstCell.rows) {
+        rows = [...rows, cellRow.row]
+      }
+      for (let i = 0; i <= Math.max(...rows) + 1; i++) {
+        if (!rows.includes(i)) {
           row = i
           break
         }
@@ -169,12 +174,13 @@ const selectCellsWithEvents = createSelector(
       let isPlaceholder = false
       for (const day of eachDayOfInterval({start: event.startDate, end: event.endDate})) {
         const cell = cells[Math.abs(differenceInDays(day, firstCellDate))]
-        let rowObject = {}
+        let rowObject: CellRow = { row }
         if (!isPlaceholder) {
           const eventLength = Math.abs(differenceInDays(event.startDate, event.endDate))
           const formatedEventLength = `calc(${eventLength + 1}00% - 4px + ${eventLength}px`
           const top = row * 24
           rowObject = {
+            ...rowObject,
             placeholder: false,
             event: {
               title: event.title,
@@ -186,32 +192,29 @@ const selectCellsWithEvents = createSelector(
           }
         } else {
           rowObject = {
+            ...rowObject,
             placeholder: true
           }
         }
-        cell.rows.set(row, rowObject)
+        cell.rows = [...cell.rows, rowObject]
         isPlaceholder = true
       }
     }
+    console.log(cells)
     return cells
   }
 )
 
 const selectFilteredCells = createSelector(
   selectCellsWithEvents,
-  (cells: Cell[]): Cell[] => {
-    for (const cell of cells) {
-      cell.rows.forEach((value,index,z) => {
-        console.log(index, value)
-      })
-    }
-    
-    return cells
-    /*return cells.map(cell => {
-      console.log(cell.rows)
-      //console.log(cell.rows.filter(item => !item.placeholder))
+  selectEvents,
+  (cells: Cell[], events: CalendarEvent[]): Cell[] => {
+    //console.log('filter', cells)
+    cells.map(cell => {
+      cell.rows = cell.rows.filter(row => !row.placeholder)
       return cell
-    })*/
+    })
+    return cells
   }
 )
 
@@ -230,7 +233,7 @@ const selectCells = createSelector(
       }
     }
     return cells*/
-    console.log(cells)
+    //console.log(cells)
     return cells
   }
 )
