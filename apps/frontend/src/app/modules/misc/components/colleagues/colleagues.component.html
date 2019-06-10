@@ -1,7 +1,14 @@
 <div class="container">
   <div class="content-container">
     <div class="content">
-      <div #header class="card" *ngFor="let categoryId of [0, 1, 2, 3, 4, 5]">
+      <div
+        class="card"
+        *ngFor="let categoryId of [0, 1, 2, 3, 4, 5, 6]"
+        [id]="'category-' + categoryId"
+        inViewport
+        [inViewportOptions]="{ threshold: [0], rootMargin: '-70px 0px 0px 0px' }"
+        (inViewportAction)="$event.visible ? setVisible(categoryId, true) : setVisible(categoryId, false)"
+      >
         <h2 class="card-title">{{ categories[categoryId] }}</h2>
         <div *ngFor="let colleague of (colleagues | async)[categoryId]" class="item">
           <img alt="" [src]="colleague.image" /> <span class="name">{{ colleague.name }}</span>
@@ -15,15 +22,15 @@
   </div>
   <div class="sidebar-container">
     <div class="sidebar">
-      <span (click)="clickHandler(0)" [ngClass]="{ active: currentScrollPosition === 0 }">Vezetőség</span>
-      <span (click)="clickHandler(1)" [ngClass]="{ active: currentScrollPosition === 1 }">Tanárok</span>
-      <span (click)="clickHandler(2)" [ngClass]="{ active: currentScrollPosition === 2 }">Óraadók</span>
-      <span (click)="clickHandler(3)" [ngClass]="{ active: currentScrollPosition === 3 }"
-        >Gazdasági-, adminisztratív- és technikai dolgozóink</span
+      <a [routerLink]="" fragment="category-0"><span [ngClass]="{ active: (visible | async) === 0 }">Vezetőség</span></a>
+      <a [routerLink]="" fragment="category-1"><span [ngClass]="{ active: (visible | async) === 1 }">Tanárok</span></a>
+      <a [routerLink]="" fragment="category-2"><span [ngClass]="{ active: (visible | async) === 2 }">Óraadók</span></a>
+      <a [routerLink]="" fragment="category-3"
+        ><span [ngClass]="{ active: (visible | async) === 3 }">Gazdasági-, adminisztratív- és technikai dolgozóink</span></a
       >
-      <span (click)="clickHandler(4)" [ngClass]="{ active: currentScrollPosition === 4 }">Konyhai dolgozók</span>
-      <span (click)="clickHandler(5)" [ngClass]="{ active: currentScrollPosition === 5 }">Takarítók</span>
-      <span (click)="clickHandler(6)" [ngClass]="{ active: currentScrollPosition === 6 }">Karbantartók</span>
+      <a [routerLink]="" fragment="category-4"><span [ngClass]="{ active: (visible | async) === 4 }">Konyhai dolgozók</span></a>
+      <a [routerLink]="" fragment="category-5"><span [ngClass]="{ active: (visible | async) === 5 }">Takarítók</span></a>
+      <a [routerLink]="" fragment="category-6"><span [ngClass]="{ active: (visible | async) === 6 }">Karbantartók</span></a>
     </div>
   </div>
 </div>

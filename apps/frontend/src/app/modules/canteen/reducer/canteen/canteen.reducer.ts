@@ -11,7 +11,7 @@ export class Menu {
 
 export interface Entity {
   id: number
-  menu: [Menu, Menu, Menu?]
+  menus: [Menu, Menu, Menu?]
   date: string
 }
 

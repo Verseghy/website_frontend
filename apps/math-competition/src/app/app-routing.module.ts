@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
-import { TimeGuard } from './guards/time.guard'
 import { AuthGuard } from './guards/auth.guard'
 
 const routes: Routes = [
@@ -11,27 +10,27 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: './modules/login/login.module#LoginModule',
-    canActivate: [TimeGuard, AuthGuard],
+    loadChildren: () => import('./modules/login/login.module').then(m => m.LoginModule),
+    canActivate: [AuthGuard],
   },
   {
     path: 'home',
-    loadChildren: './modules/home/home.module#HomeModule',
-    canActivate: [TimeGuard],
+    loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule),
+    canActivate: [],
   },
   {
     path: 'after',
-    loadChildren: './modules/after/after.module#AfterModule',
-    canActivate: [TimeGuard],
+    loadChildren: () => import('./modules/after/after.module').then(m => m.AfterModule),
+    canActivate: [],
   },
   {
     path: 'competition',
-    loadChildren: './modules/competition/competition.module#CompetitionModule',
-    canActivate: [TimeGuard, AuthGuard],
+    loadChildren: () => import('./modules/competition/competition.module').then(m => m.CompetitionModule),
+    canActivate: [AuthGuard],
   },
   {
     path: '**',
-    loadChildren: './modules/notfound/notfound.module#NotfoundModule',
+    loadChildren: () => import('./modules/notfound/notfound.module').then(m => m.NotfoundModule),
   },
 ]
 

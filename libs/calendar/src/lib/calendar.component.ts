@@ -49,7 +49,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     map(events => events)
   )
 
-  @ViewChild('moreEvents') moreEventsPopupElement: ElementRef
+  @ViewChild('moreEvents', {static: false}) moreEventsPopupElement: ElementRef
 
   @Output() monthChanged = new EventEmitter<{
     year: number

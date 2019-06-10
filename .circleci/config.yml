@@ -23,12 +23,6 @@ workflows:
             - test-format
             - test-build
             - test-test
-      - deploy-frontend:
-          requires:
-            - test-e2e
-          filters:
-            branches:
-             only: master
 jobs:
   dependencies:
     docker:
@@ -42,7 +36,7 @@ jobs:
           keys:
             - dependencies-{{ checksum "yarn.lock" }}
             - dependencies-
-      - run: CYPRESS_INSTALL_BINARY=0 yarn
+      - run: yarn
       - save_cache:
           paths:
             - node_modules
@@ -88,7 +82,7 @@ jobs:
           keys:
             - dependencies-{{ checksum "yarn.lock" }}
             - dependencies-
-      - run: yarn affected:build --all --prod
+      - run: yarn affected:build --all --prod --no-progress
       - save_cache:
           paths:
             - dist
@@ -106,8 +100,8 @@ jobs:
           keys:
             - dependencies-{{ checksum "yarn.lock" }}
             - dependencies-
-      - run: ./node_modules/.bin/cypress install
-      - run: yarn nx affected:e2e --all --prod --headless
+      - run: ./node_modules/.bin/webdriver-manager update
+      - run: yarn nx affected:e2e --all --prod
 
   test-test:
     docker:
@@ -121,21 +115,4 @@ jobs:
           keys:
             - dependencies-{{ checksum "yarn.lock" }}
             - dependencies-
-      - run: yarn affected:test --all
-
-  deploy-frontend:
-    machine:
-      enabled: true
-
-    working_directory: ~/repo
-
-    steps:
-      - checkout
-      - add_ssh_keys:
-            fingerprints:
-              - "c0:27:a5:27:4d:c1:62:42:af:c8:2d:b1:90:c2:65:d1"
-      - restore_cache:
-          keys:
-            - dist-{{ .Revision }}
-      - run: shopt -s dotglob
-      - run: rsync -avz --delete ./dist/apps/frontend/ sowpch@verseghy-gimnazium.net:/home/sowpch/beta.verseghy-gimnazium.net/
+      - run: yarn affected:test --all --no-progress

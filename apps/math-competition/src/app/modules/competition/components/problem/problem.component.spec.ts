@@ -17,7 +17,7 @@ import { Problem } from '../../reducers/problem/problem.reducer'
   `,
 })
 class TestComponent {
-  @ViewChild(ProblemComponent) public problemComponent: ProblemComponent
+  @ViewChild(ProblemComponent, { static: true }) public problemComponent: ProblemComponent
   problem: Problem = {
     image: false,
     id: '0',
@@ -34,8 +34,8 @@ const AngularFirestorageStub = {}
 describe('ProblemComponent', () => {
   let component: ProblemComponent
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       declarations: [TestComponent, ProblemComponent],
       imports: [MdcButtonModule, MdcTextFieldModule, StoreModule.forRoot({}), EffectsModule.forRoot([])],
       providers: [
@@ -44,9 +44,9 @@ describe('ProblemComponent', () => {
         { provide: AngularFireStorage, useValue: AngularFirestorageStub },
       ],
     }).compileComponents()
-  }))
+  })
 
-  beforeEach(() => {
+  beforeEach(async () => {
     const testfixture = TestBed.createComponent(TestComponent)
     const testcomponent = testfixture.componentInstance
     component = testcomponent.problemComponent

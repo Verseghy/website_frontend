@@ -1,10 +1,9 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../dist/out-tsc/apps/frontend/",
-    "module": "commonjs",
-    "types": ["jest", "node"]
+    "outDir": "../../dist/out-tsc",
+    "types": ["jasmine", "node"]
   },
-  "files": ["src/test-setup.ts"],
+  "files": ["src/test.ts", "src/polyfills.ts"],
   "include": ["**/*.spec.ts", "**/*.d.ts"]
 }
