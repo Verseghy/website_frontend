@@ -5,7 +5,7 @@ import { NavigationCancel, NavigationEnd, NavigationStart, Router } from '@angul
 @Component({
   selector: 'verseghy-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  styleUrls: ['./app.component.scss'],
   animations: [
     trigger('routerAnimation', [
       transition('* => *', [
@@ -54,6 +54,7 @@ export class AppComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
+        window.scrollTo(0, 0)
         this.loaded = false
       } else if (event instanceof NavigationEnd || event instanceof NavigationCancel) {
         this.loaded = true
