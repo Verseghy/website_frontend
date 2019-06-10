@@ -2,6 +2,10 @@
   display: grid;
   grid-template-rows: 64px 1fr min-content;
   height: 100%;
+
+  @media screen and (max-width: 992px) {
+    grid-template-rows: 56px 1fr min-content;
+  }
 }
 
 .header {

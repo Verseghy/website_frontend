@@ -5,7 +5,7 @@ import { NavigationCancel, NavigationEnd, NavigationStart, Router } from '@angul
 @Component({
   selector: 'verseghy-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  styleUrls: ['./app.component.scss'],
   animations: [
     trigger('routerAnimation', [
       transition('* => *', [
