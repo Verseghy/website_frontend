@@ -201,7 +201,6 @@ const selectFilteredCells = createSelector(
   selectCellsWithEvents,
   (cells: Cell[]): Cell[] => {
     for (const cell of cells) {
-      console.log(cells)
       cell.rows.forEach((value,index,z) => {
         console.log(index, value)
       })
@@ -231,7 +230,7 @@ const selectCells = createSelector(
       }
     }
     return cells*/
-    //console.log(cells)
+    console.log(cells)
     return cells
   }
 )
