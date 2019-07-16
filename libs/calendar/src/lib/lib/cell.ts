@@ -1,8 +1,9 @@
-import { format, getDate, getMonth } from 'date-fns'
+import { format, getDate } from 'date-fns'
+import { hu } from 'date-fns/locale'
 import { Settings } from '../calendar.interfaces'
 
 export class Cell {
-  private _id: number
+  static settings: Settings
   private _rows: {
     id: number
     row: number
@@ -12,21 +13,17 @@ export class Cell {
     color: string
     placeholder: boolean
   }[] = []
-  private _date: Date
-  private _today: boolean
-  private _maxRows: number
   private _moreEventsTop: string
   private _moreEventsCount = 0
-  private _settings: Settings
   private _moreEventsVisible: boolean
 
-  constructor(id: number, today: boolean, date: Date, maxRows: number, settings: Settings) {
-    this._id = id
-    this._today = today
-    this._date = date
-    this._maxRows = maxRows
-    this._settings = settings
-  }
+  constructor(
+    private _id: number,
+    private _today: boolean,
+    private _date: Date,
+    private _maxRows: number,
+    private _anotherMonth: boolean
+  ) {}
 
   public getRow(width: number): number {
     for (const item of Object.keys(this._rows)) {
@@ -35,6 +32,14 @@ export class Cell {
       }
     }
     return this._rows.length + 1
+  }
+
+  get id() {
+    return this._id
+  }
+
+  get anotherMonth() {
+    return this._anotherMonth
   }
 
   get firstFreeRow(): number {
@@ -48,9 +53,9 @@ export class Cell {
 
   get day(): string {
     if (getDate(this._date) === 1) {
-      return this._settings.shortMonthNames[getMonth(this._date)] + format(this._date, '. D')
+      return format(this._date, 'LLL d', { locale: hu })
     }
-    return format(this._date, 'D')
+    return format(this._date, 'd')
   }
 
   get today(): boolean {
@@ -61,11 +66,11 @@ export class Cell {
     return this._date
   }
 
-  get getEvents(): number[] {
-    const events = []
+  get getEvents(): { id: number; order: number }[] {
+    let events = []
     for (const item of this._rows) {
       if (!item.free) {
-        events.push({ id: item.id, order: item.row })
+        events = [...events, { id: item.id, order: item.row }]
       }
     }
     return events
@@ -80,7 +85,7 @@ export class Cell {
   }
 
   get moreEventsText(): string {
-    const text = this._settings.moreEvent
+    const text = Cell.settings.moreEvent
     return text.replace('{count}', String(this._moreEventsCount))
   }
 
@@ -161,5 +166,9 @@ export class Cell {
 
   public getLastRow(): number {
     return this._rows.length
+  }
+
+  public clearEvents(): void {
+    this._rows = []
   }
 }

@@ -1,0 +1,7 @@
+<div class="top-border"></div>
+<h2 class="dialog-title">{{ (data | async).title }}</h2>
+<span class="dialog-time">{{ formatedTime | async }}</span>
+<div *ngIf="(data | async).description" class="dialog-description">{{ (data | async).description }}</div>
+<div class="dialog-actions">
+  <button mat-raised-button primary mat-dialog-close (click)="closeDialog()">Bezárás</button>
+</div>

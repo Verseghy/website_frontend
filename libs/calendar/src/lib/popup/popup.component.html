@@ -1,4 +1,0 @@
-<div *ngIf="moreEvents && show" class="moreEvents">
-  <span *ngFor="let item of event" [ngStyle]="{ 'background-color': item.color }" class="event">{{ item.title }}</span>
-</div>
-<div class="event" *ngIf="!moreEvents && show"><!-- <h2 class="title">{{ event.title }}</h2> --></div>

@@ -1,235 +1,112 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild } from '@angular/core'
-import { DisplayedEvent, Settings } from '@verseghy/calendar'
-import { Event } from './lib/event'
+import { AfterViewInit, Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild, OnDestroy } from '@angular/core'
+import { Settings, CalendarEvent } from '@verseghy/calendar'
 import { Cell } from './lib/cell'
-import {
-  addMonths,
-  differenceInDays,
-  format,
-  getDate,
-  getDay,
-  getDaysInMonth,
-  getISOWeek,
-  getMonth,
-  getYear,
-  isAfter,
-  isBefore,
-  isEqual,
-  isSaturday,
-  isSunday,
-  startOfMonth,
-  subMonths,
-} from 'date-fns'
-import { Renderer } from './lib/renderer'
+import { format, startOfWeek, addDays } from 'date-fns'
+import { hu } from 'date-fns/locale'
+import { PopupHandlerService } from './services/popup-handler.service'
+import { map, takeUntil } from 'rxjs/operators'
+import { Store, select } from '@ngrx/store'
+import { POPUP_FEATURE_KEY, PopupState } from './+state/popup.reducer'
+import { fromPopupActions } from './+state/popup.actions'
+import { cellsQuery } from './+state/cells.selectors'
+import { fromCellsActions } from './+state/cells.actions'
+import { MatDialog } from '@angular/material/dialog'
+import { MoreDetailsDialogComponent } from './more-details-dialog/more-details-dialog.component'
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'verseghy-calendar',
   templateUrl: './calendar.component.html',
-  styleUrls: ['./calendar.component.css'],
+  styleUrls: ['./calendar.component.scss'],
 })
-export class CalendarComponent implements OnInit, AfterViewInit {
-  private _cells: Cell[] = []
-  private _date = new Date()
-  private _events: Event[] = []
-  private _displayedEvents: DisplayedEvent[] = []
+export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
   private _settings: Settings
-  private _renderer = new Renderer()
-  private _ready = false
+  private _isDialogOpen = false
 
-  public moreEventsPopupVisible = false
-  public moreEventsPopupTop: number
-  public moreEventsPopupLeft: number
-  public moreEventsPopupDay: string
-  public moreEventsPopupDate: number
-  public moreEventsPopupEvents
-  @ViewChild('moreEvents', { static: false }) moreEventsPopupElement: ElementRef
+  public destroy: Subject<boolean> = new Subject()
+  public today = this.settings.today
+  public cells = this.store.pipe(
+    takeUntil(this.destroy),
+    select(cellsQuery.selectCells)
+  )
+  public formatedDate = this.store.pipe(
+    takeUntil(this.destroy),
+    select(cellsQuery.selectMonth),
+    map((date: Date) => {
+      return format(date, 'yyyy. LLLL', { locale: hu })
+    })
+  )
+  public moreEventsPopup = this.store.pipe(
+    takeUntil(this.destroy),
+    select(POPUP_FEATURE_KEY),
+    map((state: PopupState) => {
+      return state.moreEventsPopup
+    })
+  )
+  public moreEventsPopupEvents = this.store.pipe(
+    takeUntil(this.destroy),
+    select(cellsQuery.selectedMoreEvents),
+    map(events => events)
+  )
 
-  public eventDetailsPopupVisible = false
-  public eventDetailsPopupTop = 0
-  public eventDetailsPopupLeft = 0
-  public eventDetailsPopupDate: string
-  public eventDetailsPopupTitle: string
-  public eventDetailsPopupDescription: string
-  public eventDetailsPopupColor: string
-  @ViewChild('eventDetails', { static: false }) eventDetailsPopupElement: ElementRef
+  @ViewChild('moreEvents', {static: false}) moreEventsPopupElement: ElementRef
 
   @Output() monthChanged = new EventEmitter<{
     year: number
     month: number
   }>()
 
-  constructor(private _el: ElementRef) {}
+  constructor(private _el: ElementRef, private popupHandler: PopupHandlerService, private store: Store<any>, private dialog: MatDialog) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.store.dispatch(new fromCellsActions.SetMonth(new Date()))
+  }
+
+  ngOnDestroy() {
+    this.destroy.next(true)
+  }
 
   ngAfterViewInit() {
     setTimeout(() => {
-      this._renderer.HostElementRef = this._el
-      this._renderer.settings = this.settings
-      this._changeMonth()
-      this._ready = true
-      this._cells = this._renderer.renderEvents()
-    })
-  }
-
-  private _generateEvents(): void {
-    this._clearDisplayedEvents()
-    for (const item of this._events) {
-      this._displayedEvents.push({
-        id: item.id,
-        title: item.title,
-        startDate: item.startDate,
-        endDate: item.endDate,
-        color: item.color,
+      this.popupHandler.hostElement = this._el.nativeElement
+      this.store.dispatch(new fromCellsActions.SetHostHeight(this._el.nativeElement.offsetHeight))
+      this.store.pipe(
+        takeUntil(this.destroy),
+        select(cellsQuery.selectMonth)
+      ).subscribe(date => {
+        this.closeMoreEventsPopup()
+        this.monthChanged.emit({
+          year: date.getFullYear(),
+          month: date.getMonth(),
+        })
       })
-    }
-    this._sortDisplayedEvents()
-    this._renderer.setEvents(this._displayedEvents)
-  }
-
-  private _sortDisplayedEvents() {
-    let lastDay = this._displayedEvents[0].startDate
-    let eventsInDay = []
-    const sortedDisplayedEvents = []
-    for (const item of this._displayedEvents) {
-      if (isAfter(item.startDate, lastDay)) {
-        lastDay = item.startDate
-        sortedDisplayedEvents.push(...this._sortEventsInDay(eventsInDay))
-        eventsInDay = [item]
-      } else if (isEqual(item.startDate, lastDay)) {
-        eventsInDay.push(item)
-      }
-    }
-    sortedDisplayedEvents.push(...this._sortEventsInDay(eventsInDay))
-    this._displayedEvents = sortedDisplayedEvents
-  }
-
-  private _changeMonth(): void {
-    this._renderer.changeMonth(this._date)
-    this.monthChanged.emit({
-      year: this.date.getFullYear(),
-      month: this.date.getMonth(),
     })
-    this.closeMoreEventsPopup()
-    this.closeEventDetailsPopup()
-  }
-
-  get date() {
-    return this._date
-  }
-
-  get formatedDate() {
-    return format(this.date, 'YYYY. ') + this.settings.monthNames[getMonth(this.date)]
   }
 
   get shortDayNames() {
-    return this.settings.shortDayNames
-  }
-
-  get today() {
-    return this.settings.today
-  }
-
-  get cells() {
-    return this._cells
-  }
-
-  set date(date: Date) {
-    this._date = date
-    this._changeMonth()
+    const firstDate = startOfWeek(new Date(), { weekStartsOn: 1 })
+    let dayNames = []
+    for (let i = 0; i < 7; i++) {
+      const dayName = format(addDays(firstDate, i), 'EEEEEE', { locale: hu })
+      dayNames = [...dayNames, dayName]
+    }
+    return dayNames
   }
 
   public nextMonth(): void {
-    this.date = addMonths(this.date, 1)
+    this.store.dispatch(new fromCellsActions.NextMonth())
   }
 
   public prevMonth(): void {
-    this.date = subMonths(this.date, 1)
+    this.store.dispatch(new fromCellsActions.PreviousMonth())
   }
 
   public now(): void {
-    this.date = new Date()
-  }
-
-  private _isArrayContainsId(array: Event[], id: Number): boolean {
-    for (const item of array) {
-      if (item.id === id) {
-        return true
-      }
-    }
-    return false
-  }
-
-  @Input('events') public set events(events: Event[]) {
-    if (!events) return
-    if (events.length) {
-      let tempEvents = []
-      for (const event of events) {
-        if (!!tempEvents.length) {
-          if (!this._isArrayContainsId(tempEvents, event.id)) {
-            tempEvents = [...tempEvents, event]
-          }
-        } else {
-          tempEvents = [...tempEvents, event]
-        }
-      }
-      this._events = tempEvents
-      this._sortEventsArray()
-      this._generateEvents()
-      if (this._ready) this._cells = this._renderer.renderEvents()
-    }
-  }
-
-  private _sortEventsArray(): void {
-    this._events.sort((a, b) => {
-      if (isAfter(a.startDate, b.startDate)) {
-        return 1
-      }
-      if (isBefore(a.startDate, b.startDate)) {
-        return -1
-      }
-      return 0
-    })
-  }
-  private _clearDisplayedEvents(): void {
-    this._displayedEvents = []
-  }
-
-  private _eventLenght(item: DisplayedEvent): number {
-    return Math.abs(differenceInDays(item.startDate, item.endDate))
+    this.store.dispatch(new fromCellsActions.Today())
   }
 
   get settings(): Settings {
     this._settings = this._settings || {}
-    this._settings.shortDayNames = this._settings.shortDayNames || ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']
-    this._settings.shortMonthNames = this._settings.shortMonthNames || [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec',
-    ]
-    this._settings.monthNames = this._settings.monthNames || [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December',
-    ]
     this._settings.today = this._settings.today || 'Today'
     this._settings.moreEvent = this._settings.moreEvent || '{count} more'
     return this._settings
@@ -238,179 +115,67 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   @Input('settings')
   set settings(settings: Settings) {
     this._settings = settings
+    this.popupHandler.settings = settings
+    Cell.settings = settings
   }
 
-  private _sortEventsInDay(events: DisplayedEvent[]): DisplayedEvent[] {
-    return events.sort((a, b) => {
-      return (this._eventLenght(a) - this._eventLenght(b)) * -1
-    })
-  }
-
-  @HostListener('window:resize')
-  public resize(): void {
-    this.closeMoreEventsPopup()
-    this.closeEventDetailsPopup()
-    this._renderer.resize()
-  }
-
-  private _getDisplayedEvents(events) {
-    const displayedEvents = []
-    for (const item of this._events) {
-      for (const event of events) {
-        if (item.id === event.id) {
-          displayedEvents.push({ id: item.id, title: item.title, color: item.color, order: event.order })
-        }
-      }
+  @Input('events') public set events(events: CalendarEvent[]) {
+    if (!events) return
+    if (events.length) {
+      let eventIds = []
+      const tempEvents = events.filter(item => {
+        if (eventIds.includes(item.id)) return false
+        eventIds = [...eventIds, item.id]
+        return true
+      })
+      this.store.dispatch(new fromCellsActions.SetEvents(tempEvents))
     }
-    displayedEvents.sort((a, b) => {
-      return a.order - b.order
-    })
-    return displayedEvents
   }
 
-  private _getEvent(id: number): Event {
-    for (const item of this._events) {
-      if (item.id === id) {
-        return item
-      }
-    }
-    return
+  public trackByFn(index, item) {
+    return item.trackBy
   }
 
-  public trackBy1(index, item) {
-    return item.id
+  public cellsTrackByFn(index, item) {
+    return item.date
   }
 
-  public trackBy2(index, item) {
-    return item.id
-  }
-
-  private _getRowsInMonth(): number {
-    if (
-      (isSunday(startOfMonth(this._date)) && getDaysInMonth(this._date) >= 30) ||
-      (isSaturday(startOfMonth(this._date)) && getDaysInMonth(this._date) === 31)
-    ) {
-      return 6
-    }
-    return 5
-  }
-
-  private _getWeekOfMonth(date: Date): number {
-    return getISOWeek(date) - getISOWeek(startOfMonth(this.date))
-  }
-
-  public setMoreEventsPopup(date: Date, events: number[]): void {
+  public setMoreEventsPopup(date: Date): void {
+    this.store.dispatch(new fromCellsActions.SetSelectedMoreEvent(date))
     setTimeout(() => {
-      const height = (this._el.nativeElement.offsetHeight - 68) / this._getRowsInMonth()
-      const row = this._getWeekOfMonth(date)
-      let column = getDay(date)
-      if (column === 0) {
-        column = 7
-      }
-      this.moreEventsPopupVisible = true
-      this.moreEventsPopupTop = row * height - 50 + 69
-      this.moreEventsPopupLeft = (column - 1) * (this._el.nativeElement.offsetWidth / 7) - 24
-      this.moreEventsPopupDay = this.settings.shortDayNames[column - 1]
-      this.moreEventsPopupDate = getDate(date)
-      this.moreEventsPopupEvents = this._getDisplayedEvents(events)
+      this.popupHandler.setMoreEventsPopup(date)
     })
   }
 
   public closeMoreEventsPopup(): void {
-    this.moreEventsPopupVisible = false
+    this.store.dispatch(new fromPopupActions.HideMoreEventsPopup())
   }
 
-  private _formatTwoDays(date1: Date, date2: Date): string {
-    if (!isEqual(date1, date2)) {
-      let year = ''
-      let month = ''
-      if (getYear(date1) !== getYear(date2)) {
-        year = format(date2, ' YYYY.')
-      }
-      if (getMonth(date1) !== getMonth(date2) || year !== '') {
-        month = ' ' + this.settings.monthNames[getMonth(date2)]
-      }
-      return (
-        format(date1, 'YYYY. ') + this.settings.monthNames[getMonth(date1)] + format(date1, ' D -') + year + month + format(date2, ' D')
-      )
-    } else {
-      return format(date1, 'YYYY. ') + this.settings.monthNames[getMonth(date1)] + format(date1, ' D')
-    }
-  }
-
-  public setEventDetailsPopup(id: number, click): void {
-    setTimeout(() => {
-      const event = this._getEvent(id)
-      const boundingRect = click.target.getBoundingClientRect()
-      const calendarBoundingRect = this._el.nativeElement.getBoundingClientRect()
-      this.eventDetailsPopupVisible = true
-      this.eventDetailsPopupTitle = event.title
-      this.eventDetailsPopupDate = this._formatTwoDays(event.startDate, event.endDate)
-      this.eventDetailsPopupDescription = event.description
-      this.eventDetailsPopupColor = event.color
-      this.eventDetailsPopupTop = boundingRect.y - calendarBoundingRect.y
-      if (document.body.clientWidth - boundingRect.right < 320) {
-        if (boundingRect.x < 320) {
-          this.eventDetailsPopupLeft = calendarBoundingRect.width / 2 - 150
-        } else {
-          this.eventDetailsPopupLeft = boundingRect.x - 310 - calendarBoundingRect.x
-        }
-      } else {
-        this.eventDetailsPopupLeft = boundingRect.right + 10 - calendarBoundingRect.x
-      }
+  public setEventDetailsPopup(id: number, click: Event): void {
+    this.store.dispatch(new fromCellsActions.SetSelectedEvent(id))
+    const dialog = this.dialog.open(MoreDetailsDialogComponent, {
+      width: '350px',
     })
-  }
 
-  public closeEventDetailsPopup(): void {
-    setTimeout(() => {
-      this.eventDetailsPopupVisible = false
+    dialog.afterOpened().subscribe(result => {
+      this._isDialogOpen = true
+    })
+
+    dialog.afterClosed().subscribe(result => {
+      this._isDialogOpen = false
     })
   }
 
   @HostListener('document:click', ['$event'])
-  clickout(event) {
-    let eventDetails = false
-    let moreEvents = false
-    for (let i = 0; i < event.path.length; i++) {
-      const element = event.path[i]
-      if (this.eventDetailsPopupVisible && element === this.eventDetailsPopupElement.nativeElement) {
-        if (this.moreEventsPopupVisible) {
-          moreEvents = true
-        }
-        eventDetails = true
-      }
-      if (this.moreEventsPopupVisible && element === this.moreEventsPopupElement.nativeElement) {
-        moreEvents = true
-      }
+  clickout(event: Event) {
+    if (this.moreEventsPopupElement && !this.moreEventsPopupElement.nativeElement.contains(event.target) && !this._isDialogOpen) {
+      this.closeMoreEventsPopup()
+    }
+  }
 
-      if (element.parentElement) {
-        if (
-          element.parentElement.classList.contains('event') &&
-          !element.parentElement.classList.contains('more') &&
-          !element.parentElement.classList.contains('popup-event')
-        ) {
-          eventDetails = true
-          moreEvents = false
-        }
-        if (element.parentElement.classList.contains('event') && element.parentElement.classList.contains('more')) {
-          eventDetails = false
-          moreEvents = true
-        }
-        if (
-          element.parentElement.classList.contains('event') &&
-          !element.parentElement.classList.contains('more') &&
-          element.parentElement.classList.contains('popup-event')
-        ) {
-          eventDetails = true
-          moreEvents = true
-        }
-      }
-    }
-    if (!eventDetails) {
-      this.eventDetailsPopupVisible = false
-    }
-    if (!moreEvents) {
-      this.moreEventsPopupVisible = false
-    }
+  @HostListener('window:resize')
+  resize(): void {
+    this.store.dispatch(new fromCellsActions.SetHostHeight(this._el.nativeElement.offsetHeight))
+    this.closeMoreEventsPopup()
   }
 }
