@@ -1,0 +1,25 @@
+:host {
+  display: grid;
+  grid-template-rows: 64px 1fr min-content;
+  height: 100%;
+
+  @media screen and (max-width: 992px) {
+    grid-template-rows: 56px 1fr min-content;
+  }
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  grid-row: 1;
+}
+
+.footer {
+  grid-row: 3;
+}
+
+.content {
+  grid-row: 2;
+}
