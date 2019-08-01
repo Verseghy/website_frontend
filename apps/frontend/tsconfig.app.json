@@ -5,6 +5,9 @@
     "outDir": "../../dist/out-tsc",
     "types": []
   },
+  "angularCompilerOptions": {
+    "enableIvy": true
+  },
   "exclude": ["src/test-setup.ts", "**/*.spec.ts"],
   "include": ["**/*.ts", "../../node_modules/@types/node/index.d.ts"]
 }
