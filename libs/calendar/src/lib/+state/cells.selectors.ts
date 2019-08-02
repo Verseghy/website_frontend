@@ -64,6 +64,12 @@ const selectRowsInMonth = createSelector(
   }
 )
 
+const selectMaxVisibleRows = createSelector(
+  selectHeight,
+  selectRowsInMonth,
+  (height: number, rows: number) => Math.floor(((height - 68) / rows - 32) / 24)
+)
+
 const selectFirstCellDate = createSelector(
   selectMonth,
   (month: Date): Date => {
@@ -208,10 +214,10 @@ const selectCellsWithEvents = createSelector(
 const selectFilteredCells = createSelector(
   selectCellsWithEvents,
   selectEvents,
-  (cells: Cell[], events: CalendarEvent[]): Cell[] => {
-    //console.log('filter', cells)
+  selectMaxVisibleRows,
+  (cells: Cell[], events: CalendarEvent[], maxVisibleRows: number): Cell[] => {
     cells.map(cell => {
-      cell.rows = cell.rows.filter(row => !row.placeholder)
+      cell.rows = cell.rows.filter(row => !row.placeholder || row.row > maxVisibleRows - 1)
       return cell
     })
     return cells
