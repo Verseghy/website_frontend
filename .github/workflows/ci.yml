@@ -2,8 +2,8 @@ name: Verseghy CI
 on: [push]
 
 jobs:
-  dependencies:
-    name: Install Dependencies
+  testall:
+    name: Lint, Build, Test, E2E
     strategy:
       matrix:
         node: [12]
