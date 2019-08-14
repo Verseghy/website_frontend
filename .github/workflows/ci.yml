@@ -2,15 +2,35 @@ name: Verseghy CI
 on: [push]
 
 jobs:
-  lint:
-    name: Test Linting
+  dependencies:
+    name: Install Dependencies
+    strategy:
+      matrix:
+        node: [12]
+        os: [macOS-latest, windows-latest, ubuntu-latest]
     steps:
-      - name: "Checkout repository"
+      - name: Checkout repository
         uses: actions/checkout@v1
-      - name: "Run yarn install"
-        run: yarn nx affected:lint --all
 
-strategy:
-  matrix:
-    node: [12]
-    os: [macOS-latest, windows-latest, ubuntu-latest]
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Setup dependencies
+        run: yarn
+
+      - name: Lint
+        run: yarn nx affected:lint
+
+      - name: Format
+        run: yarn nx format:check
+
+      - name: Build
+        run: yarn affected:build --prod --no-progress
+
+      - name: Test
+        run: yarn affected:test --no-progress
+
+      - name: E2E
+        run: yarn nx affected:e2e --prod
