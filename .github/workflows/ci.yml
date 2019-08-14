@@ -1,0 +1,40 @@
+name: Verseghy CI
+on: [push]
+
+jobs:
+  testall:
+    name: Lint, Build, Test, E2E
+    strategy:
+      matrix:
+        node: [12]
+        os: [ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v1
+
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Setup dependencies
+        run: yarn
+
+      - name: Lint
+        run: yarn nx affected:lint --base=remotes/origin/master
+
+      - name: Format
+        run: yarn nx format:check --base=remotes/origin/master
+
+      - name: Build
+        run: yarn affected:build --prod --no-progress --base=remotes/origin/master
+
+      - name: Test
+        run: yarn affected:test --no-progress --base=remotes/origin/master
+
+
+      - name: Webdriver Manager Update
+        run: ./node_modules/.bin/webdriver-manager update
+      - name: E2E
+        run: yarn nx affected:e2e --prod --base=remotes/origin/master
