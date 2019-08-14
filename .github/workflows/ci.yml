@@ -8,6 +8,7 @@ jobs:
       matrix:
         node: [12]
         os: [macOS-latest, windows-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v1
