@@ -7,7 +7,7 @@ jobs:
     strategy:
       matrix:
         node: [12]
-        os: [windows-latest, ubuntu-latest]
+        os: [ubuntu-latest]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout repository
@@ -36,7 +36,5 @@ jobs:
 
       - name: Webdriver Manager Update
         run: ./node_modules/.bin/webdriver-manager update
-      - name: Chrome version
-        run: google-chrome --version
       - name: E2E
         run: yarn nx affected:e2e --prod --base=remotes/origin/master
