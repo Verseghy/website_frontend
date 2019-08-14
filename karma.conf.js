@@ -29,6 +29,9 @@ module.exports = () => {
     logLevel: constants.LOG_INFO,
     autoWatch: true,
     browsers: ['ChromeHeadless'],
+    flags: [
+      '--no-sandbox'
+    ],
     singleRun: true,
   }
 }
