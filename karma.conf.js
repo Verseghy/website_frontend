@@ -26,7 +26,7 @@ module.exports = () => {
     reporters: ['progress', 'kjhtml'],
     port: 9876,
     colors: true,
-    logLevel: constants.LOG_DEBUG,
+    logLevel: constants.LOG_INFO,
     autoWatch: true,
     browsers: ['ChromeHeadless'],
     flags: ['--no-sandbox', '--disable-gpu', '--disable-web-security'],
