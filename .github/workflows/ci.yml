@@ -25,7 +25,7 @@ jobs:
         run: yarn nx affected:lint --base=remotes/origin/master
 
       - name: Format
-        run: yarn nx format:check
+        run: yarn nx format:check --base=remotes/origin/master
 
       - name: Build
         run: yarn affected:build --prod --no-progress --base=remotes/origin/master
