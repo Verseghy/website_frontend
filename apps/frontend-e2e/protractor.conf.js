@@ -6,8 +6,8 @@ const { SpecReporter } = require('jasmine-spec-reporter')
 exports.config = {
   allScriptsTimeout: 11000,
   specs: ['./src/**/*.e2e-spec.ts'],
-  chromeDriver: `${process.env.ChromeWebDriver}${process.platform === 'win32' ? '\\chromedriver.exe' : '/chromedriver'}`,
-  geckoDriver: `${process.env.GeckoWebDriver}${process.platform === 'win32' ? '\\geckodriver.exe' : '/geckodriver'}`,
+  chromeDriver: process.env.ChromeWebDriver + process.platform === 'win32' ? '\\chromedriver.exe' : '/chromedriver',
+  geckoDriver: process.env.GeckoWebDriver + process.platform === 'win32' ? '\\geckodriver.exe' : '/geckodriver',
   multiCapabilities: [
     {
       browserName: 'firefox',
