@@ -22,16 +22,16 @@ jobs:
         run: yarn
 
       - name: Lint
-        run: yarn nx affected:lint
+        run: yarn nx affected:lint --base=remotes/origin/master
 
       - name: Format
         run: yarn nx format:check
 
       - name: Build
-        run: yarn affected:build --prod --no-progress
+        run: yarn affected:build --prod --no-progress --base=remotes/origin/master
 
       - name: Test
-        run: yarn affected:test --no-progress
+        run: yarn affected:test --no-progress --base=remotes/origin/master
 
       - name: E2E
-        run: yarn nx affected:e2e --prod
+        run: yarn nx affected:e2e --prod --base=remotes/origin/master
