@@ -1,17 +1,14 @@
-name: Verseghy CI
+name: Verseghy CD
 on:
   push:
     branches:
-      - !master
+      - master
+      - 2019-matverseny # TODO(zoltanszepesi): remove this later
 
 jobs:
-  testall:
-    name: Lint, Build, Test, E2E
-    strategy:
-      matrix:
-        node: [12]
-        os: [ubuntu-latest]
-    runs-on: ${{ matrix.os }}
+  runCI:
+    name: Deploy To Firebase
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v1
@@ -19,7 +16,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v1
         with:
-          node-version: ${{ matrix.node }}
+          node-version: 12
 
       - name: Setup dependencies
         run: yarn
@@ -41,3 +38,6 @@ jobs:
         run: ./node_modules/.bin/webdriver-manager update
       - name: E2E
         run: yarn nx affected:e2e --prod --base=remotes/origin/master
+
+      - name: Deploy To Firebase
+        run: yarn nx affected --target deploy --base=remotes/origin/master
