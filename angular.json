@@ -143,7 +143,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/apps/math-competition",
+            "outputPath": "apps/math-competition/dist",
             "index": "apps/math-competition/src/index.html",
             "main": "apps/math-competition/src/main.ts",
             "polyfills": "apps/math-competition/src/polyfills.ts",
