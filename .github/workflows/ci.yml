@@ -1,5 +1,8 @@
 name: Verseghy CI
-on: [push]
+on:
+  push:
+    branches:
+      - ci
 
 jobs:
   testall:
