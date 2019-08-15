@@ -14,7 +14,14 @@
         "source": "**",
         "destination": "/index.html"
       }
-    ]
+    ],
+    "headers": [{
+      "source" : "**",
+      "headers" : [{
+        "key" : "Cache-Control",
+        "value" : "max-age=31536000"
+      }]
+    }]
   },
   "storage": {
     "rules": "storage.rules"
