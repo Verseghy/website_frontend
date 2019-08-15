@@ -6,7 +6,7 @@ on:
       - 2019-matverseny # TODO(zoltanszepesi): remove this later
 
 jobs:
-  runCI:
+  runci:
     name: Deploy To Firebase
     runs-on: ubuntu-latest
     steps:
