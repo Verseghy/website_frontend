@@ -2,7 +2,7 @@ name: Verseghy CI
 on:
   push:
     branches:
-      - "!master"
+    - "!refs/heads/master"
 
 jobs:
   testall:
