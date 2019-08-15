@@ -1,5 +1,5 @@
 {
-  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "$schema": "node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "",
   "projects": {
@@ -154,6 +154,11 @@
               "apps/math-competition/src/manifest.json"
             ],
             "styles": ["apps/math-competition/src/styles.scss"],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "apps/math-competition/src/scss"
+              ]
+            },
             "scripts": []
           },
           "configurations": {

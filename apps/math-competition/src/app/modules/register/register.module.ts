@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common'
 import { RegisterteamComponent } from './components/registerteam/registerteam.component'
 import { RouterModule, Routes } from '@angular/router'
 import { ReactiveFormsModule } from '@angular/forms'
-import { MdcButtonModule, MdcFormFieldModule, MdcTextFieldModule } from '@angular-mdc/web'
 import { AngularFireAuthModule } from '@angular/fire/auth'
 import { AngularFirestoreModule } from '@angular/fire/firestore'
 
@@ -20,9 +19,6 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     ReactiveFormsModule,
-    MdcTextFieldModule,
-    MdcFormFieldModule,
-    MdcButtonModule,
     AngularFireAuthModule,
     AngularFirestoreModule,
   ],

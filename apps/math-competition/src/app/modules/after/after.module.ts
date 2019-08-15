@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { AfterscreenComponent } from './components/afterscreen/afterscreen.component'
 import { RouterModule, Routes } from '@angular/router'
-import { MdcTypographyModule } from '@angular-mdc/web'
 
 const routes: Routes = [
   {
@@ -13,6 +12,6 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [AfterscreenComponent],
-  imports: [CommonModule, RouterModule.forChild(routes), MdcTypographyModule],
+  imports: [CommonModule, RouterModule.forChild(routes)],
 })
 export class AfterModule {}

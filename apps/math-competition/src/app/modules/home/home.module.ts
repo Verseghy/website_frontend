@@ -4,8 +4,6 @@ import { CommonModule } from '@angular/common'
 import { HomescreenComponent } from './components/homescreen/homescreen.component'
 import { RouterModule, Routes } from '@angular/router'
 
-import { MdcButtonModule, MdcTypographyModule } from '@angular-mdc/web'
-
 const routes: Routes = [
   {
     path: '',
@@ -15,6 +13,6 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [HomescreenComponent],
-  imports: [CommonModule, RouterModule.forChild(routes), MdcTypographyModule, AngularFirestoreModule, MdcButtonModule],
+  imports: [CommonModule, RouterModule.forChild(routes), AngularFirestoreModule],
 })
 export class HomeModule {}

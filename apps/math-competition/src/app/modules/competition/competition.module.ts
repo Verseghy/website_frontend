@@ -9,7 +9,6 @@ import { StoreModule } from '@ngrx/store'
 import { EffectsModule } from '@ngrx/effects'
 import { ProblemEffects } from './reducers/problem/problem.effects'
 import { competitionReducers } from './reducers'
-import { MdcButtonModule, MdcTextFieldModule } from '@angular-mdc/web'
 import { SolutionEffects } from './reducers/solution/solution.effects'
 import { AngularFireStorageModule } from '@angular/fire/storage'
 
@@ -30,8 +29,6 @@ const routes: Routes = [
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireStorageModule,
-    MdcButtonModule,
-    MdcTextFieldModule,
   ],
 })
 export class CompetitionModule {}
