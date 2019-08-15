@@ -17,9 +17,13 @@ import { AuthEffects } from './reducers/auth/auth.effects'
 import { AngularFireAuthModule } from '@angular/fire/auth'
 import { TimeEffects } from './reducers/time/time.effects'
 import { AngularFirestoreModule } from '@angular/fire/firestore'
+import { LandingComponent } from './components/landing/landing.component'
+
+import { MatButtonModule } from '@angular/material/button';
+
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, LandingComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -34,6 +38,8 @@ import { AngularFirestoreModule } from '@angular/fire/firestore'
     }),
     EffectsModule.forRoot([AuthEffects, TimeEffects]),
     ServiceWorkerModule.register('safety-worker.js', { enabled: environment.production }),
+
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
