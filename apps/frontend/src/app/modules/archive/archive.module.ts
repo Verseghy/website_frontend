@@ -7,6 +7,7 @@ import * as fromArchive from './state/archive.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { ArchiveEffects } from './state/archive.effects'
 import { CommonModule } from '@angular/common'
+import { LoadersModule } from '@verseghy/ui';
 
 @NgModule({
   declarations: [ArchiveScreenComponent],
@@ -16,6 +17,7 @@ import { CommonModule } from '@angular/common'
     MatExpansionModule,
     StoreModule.forFeature(fromArchive.archiveFeatureKey, fromArchive.reducer),
     EffectsModule.forFeature([ArchiveEffects]),
+    LoadersModule
   ]
 })
 export class ArchiveModule { }

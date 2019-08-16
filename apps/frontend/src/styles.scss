@@ -1,3 +1,5 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
 * {
   margin: 0;
   padding: 0;
@@ -27,4 +29,8 @@ body {
 .pacman > div:nth-child(5),
 .pacman > div:nth-child(6) {
   background-color: #e0e0e0 !important;
+}
+
+.ball-scale-ripple-multiple > div {
+  border-color: #e0e0e0 !important;
 }

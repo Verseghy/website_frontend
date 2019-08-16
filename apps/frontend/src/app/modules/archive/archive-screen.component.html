@@ -1,11 +1,19 @@
-{{ (loading$ | async) }}
-{{ error$ | async }}
-<div *ngFor="let month of (archives$ | async) | keyvalue">
-    {{ month.key }}
-    <div *ngFor="let post of month.value | keyvalue">
-        {{ post.value.title }}
-        {{ post.value.description }}
-        {{ post.value.date }}
-        {{ post.value.id }}
-    </div>
+<!--{{ loading$ | async }}
+{{ error$ | async }} -->
+<div class="container">
+  <h1>Archívum</h1>
+  <p *ngIf="error$ | async" class="error">{{ error$ | async }}</p>
+  <verseghy-loaders [loader]="'ball-scale-ripple-multiple'" *ngIf="loading$ | async" [loaderClass]="'ball-loader'"></verseghy-loaders>
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let month of archives$ | async | keyvalue">
+      <mat-expansion-panel-header>
+        <mat-panel-title>{{ month.key }}</mat-panel-title>
+      </mat-expansion-panel-header>
+      <a *ngFor="let post of month.value | keyvalue" class="row" [routerLink]="['/posts', post.value.id]">
+        <p class="title">{{ post.value.title }}</p>
+        <p>{{ post.value.date }}</p>
+        <p class="description">{{ post.value.description }}</p>
+      </a>
+    </mat-expansion-panel>
+  </mat-accordion>
 </div>

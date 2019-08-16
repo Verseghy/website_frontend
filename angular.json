@@ -30,7 +30,7 @@
             ],
             "styles": ["apps/frontend/src/styles.scss"],
             "scripts": [],
-            "aot": true
+            "aot": false
           },
           "configurations": {
             "production": {
