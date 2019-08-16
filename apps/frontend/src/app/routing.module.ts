@@ -23,6 +23,10 @@ const routes: Routes = [
     path: 'canteen',
     loadChildren: () => import('./modules/canteen/canteen.module').then(m => m.CanteenModule),
   },
+  {
+    path: 'archive',
+    loadChildren: () => import('./modules/archive/archive.module').then(m => m.ArchiveModule),
+  }
 ]
 
 @NgModule({
