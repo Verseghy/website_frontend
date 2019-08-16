@@ -9,6 +9,8 @@ import { ArchiveFacade } from './state/archive.facade'
 export class ArchiveScreenComponent implements OnInit {
 
   archives$ = this.archiveFacade.archives$
+  error$ = this.archiveFacade.error$
+  loading$ = this.archiveFacade.loading$
 
   constructor(private archiveFacade: ArchiveFacade) { }
 

@@ -7,3 +7,13 @@ export const selectArchives = createSelector(
   selectState,
   (state) => state.archives
 )
+
+export const selectError = createSelector(
+  selectState,
+  (state) => state.error
+)
+
+export const selectLoading = createSelector(
+  selectState,
+  (state) => state.loading
+)

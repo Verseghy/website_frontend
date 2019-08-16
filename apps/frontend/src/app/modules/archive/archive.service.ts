@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs'
+import { delay } from 'rxjs/operators'
 
 @Injectable({
   providedIn: 'root'
@@ -43,7 +44,7 @@ export class ArchiveService {
         {id: 24, title: "Test4", description: "Test4", date: "2019-06-06 15:15:15"},
         {id: 24, title: "Test5", description: "Test5", date: "2019-06-06 15:15:15"},
       ]
-    })
+    }).pipe(delay(400))
   }
 
   constructor() { }

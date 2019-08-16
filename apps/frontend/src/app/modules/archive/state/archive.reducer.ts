@@ -7,20 +7,22 @@ export interface State {
   archives: {
     [key: string]: {id: number, title: string, description: string, date: string}[]
   }
-  error: any
+  error: any,
+  loading: boolean
 }
 
 export const initialState: State = {
   archives: {},
-  error: null
+  error: null,
+  loading: true
 };
 
 const archiveReducer = createReducer(
   initialState,
 
   on(ArchiveActions.loadArchives, state => state),
-  on(ArchiveActions.loadArchivesSuccess, (state, action) => ({...state, archives: action.data})),
-  on(ArchiveActions.loadArchivesFailure, (state, action) => ({...state, error: action.error})),
+  on(ArchiveActions.loadArchivesSuccess, (state, action) => ({...state, archives: action.data, loading: false})),
+  on(ArchiveActions.loadArchivesFailure, (state, action) => ({...state, error: action.error, loading: false})),
 
 );
 

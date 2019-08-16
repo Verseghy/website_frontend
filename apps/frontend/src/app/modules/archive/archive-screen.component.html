@@ -1,3 +1,5 @@
+{{ (loading$ | async) }}
+{{ error$ | async }}
 <div *ngFor="let month of (archives$ | async) | keyvalue">
     {{ month.key }}
     <div *ngFor="let post of month.value | keyvalue">
