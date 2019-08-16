@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ArchiveFacade } from './state/archive.facade'
 
 @Component({
   selector: 'verseghy-archive-screen',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ArchiveScreenComponent implements OnInit {
 
-  constructor() { }
+  archives$ = this.archiveFacade.archives$
+
+  constructor(private archiveFacade: ArchiveFacade) { }
 
   ngOnInit() {
+    this.archiveFacade.loadArchives()
   }
 
 }

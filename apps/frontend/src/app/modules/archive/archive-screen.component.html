@@ -1,1 +1,9 @@
-<p>archive-screen works!</p>
+<div *ngFor="let month of (archives$ | async) | keyvalue">
+    {{ month.key }}
+    <div *ngFor="let post of month.value | keyvalue">
+        {{ post.value.title }}
+        {{ post.value.description }}
+        {{ post.value.date }}
+        {{ post.value.id }}
+    </div>
+</div>
