@@ -8,6 +8,11 @@ export const selectArchives = createSelector(
   (state) => state.archives
 )
 
+export const selectArchivesList = createSelector(
+  selectState,
+  (state) => state.archivesList
+)
+
 export const selectError = createSelector(
   selectState,
   (state) => state.error

@@ -20,7 +20,14 @@ export class ArchiveEffects {
     )
   ));
 
-
+  loadArchivesDetailed$ = createEffect(() => this.actions$.pipe(
+    ofType(ArchiveActions.loadArchivesDetail),
+    concatMap(({year, month}: {year: number, month: number}) =>
+      this.archiveService.getDetailedArchives({year, month}).pipe(
+        map(data => ArchiveActions.loadArchivesDetailSuccess({ data })),
+        catchError(error => of(ArchiveActions.loadArchivesDetailFailure({ error }))))
+    )
+  ));
 
   constructor(private actions$: Actions, private archiveService: ArchiveService) {}
 
