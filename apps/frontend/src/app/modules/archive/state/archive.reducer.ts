@@ -23,7 +23,7 @@ const archiveReducer = createReducer(
   on(ArchiveActions.loadArchives, state => state),
   on(ArchiveActions.loadArchivesSuccess, (state, action) => ({...state, archivesList: action.data, loading: false})),
   on(ArchiveActions.loadArchivesFailure, (state, action) => ({...state, error: action.error, loading: false})),
-  on(ArchiveActions.loadArchives, (state) => ({...state, archives: []})),
+  on(ArchiveActions.loadArchivesDetail, (state) => ({...state, archives: []})),
   on(ArchiveActions.loadArchivesDetailSuccess, (state, action) => ({...state, archives: action.data}))
 
 );
