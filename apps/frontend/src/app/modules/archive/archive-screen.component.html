@@ -2,14 +2,14 @@
 {{ error$ | async }} -->
 <div class="container">
   <h1>Archívum</h1>
-  <p *ngIf="error$ | async" class="error">{{ error$ | async }}</p>
-  <verseghy-loaders [loader]="'ball-scale-ripple-multiple'" *ngIf="loading$ | async" [loaderClass]="'ball-loader'"></verseghy-loaders>
+  <p *ngIf="(error$ | async)" class="error">{{ error$ | async }}</p>
+  <verseghy-loaders [loader]="'ball-scale-ripple-multiple'" *ngIf="(loading$ | async)" [loaderClass]="'ball-loader'"></verseghy-loaders>
   <mat-accordion>
-    <mat-expansion-panel *ngFor="let month of archivesList$ | async" (opened)="archiveExpanded({year: month.year, month: month.month})">
+    <mat-expansion-panel *ngFor="let month of (archivesList$ | async)" (opened)="archiveExpanded({ year: month.year, month: month.month })">
       <mat-expansion-panel-header>
-        <mat-panel-title>{{ month.year + "-" + month.month.toString().padStart(2, "0") }}</mat-panel-title>
+        <mat-panel-title>{{ month.year + '-' + month.month.toString().padStart(2, '0') }}</mat-panel-title>
       </mat-expansion-panel-header>
-      <a *ngFor="let post of archives$ | async" class="row" [routerLink]="['/posts', post.id]">
+      <a *ngFor="let post of (archives$ | async)" class="row" [routerLink]="['/posts', post.id]">
         <p class="title">{{ post.title }}</p>
         <p>{{ post.date }}</p>
         <p class="description">{{ post.description }}</p>

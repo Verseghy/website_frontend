@@ -26,7 +26,7 @@ const routes: Routes = [
   {
     path: 'archive',
     loadChildren: () => import('./modules/archive/archive.module').then(m => m.ArchiveModule),
-  }
+  },
 ]
 
 @NgModule({
