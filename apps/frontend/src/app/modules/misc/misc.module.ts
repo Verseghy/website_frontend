@@ -7,7 +7,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import { faEnvelope, faFileAlt } from '@fortawesome/free-solid-svg-icons'
-import { ArchiveComponent } from './components/archive/archive.component'
 import { HistoryComponent } from './components/history/history.component'
 import { ClassesComponent } from './components/classes/classes.component'
 import { ColleaguesComponent } from './components/colleagues/colleagues.component'
@@ -34,10 +33,6 @@ const routes: Routes = [
     component: DocumentsComponent,
   },
   {
-    path: 'archive',
-    component: ArchiveComponent,
-  },
-  {
     path: 'history',
     component: HistoryComponent,
   },
@@ -60,6 +55,6 @@ const routes: Routes = [
     StoreModule.forFeature(COLLEAGUES_FEATURE_KEY, colleaguesReducer, { initialState: colleaguesInitialState }),
     EffectsModule.forFeature([ColleaguesEffects]),
   ],
-  declarations: [AuthorsComponent, DocumentsComponent, ArchiveComponent, HistoryComponent, ClassesComponent, ColleaguesComponent],
+  declarations: [AuthorsComponent, DocumentsComponent, HistoryComponent, ClassesComponent, ColleaguesComponent],
 })
 export class MiscModule {}
