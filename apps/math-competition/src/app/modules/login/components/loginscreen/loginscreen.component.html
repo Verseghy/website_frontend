@@ -1,37 +1,29 @@
-<!--<div class="login">
-  <img alt="" class="image" src="assets/images/logo.svg" /> <span class="logintext">Bejelentkezés</span>
-  <form (ngSubmit)="onSubmit()" [formGroup]="loginForm" class="form">
-    <mdc-form-field class="loginInput">
-      <mdc-text-field
-        [helperText]="formHelperUsername"
-        formControlName="username"
-        label="Felhasználónév"
-        minlength="3"
-        outlined
-        required
-      ></mdc-text-field>
-      <mdc-text-field-helper-text #formHelperUsername="mdcHelperText" validation>
-        <span *ngIf="loginForm.controls['username'].hasError('required')">Felhasználónév kötelező</span>
-        <span *ngIf="loginForm.controls['username'].hasError('minlength')">Felhasználónév nem elég hosszú</span>
-      </mdc-text-field-helper-text>
+<div class="container" mdcTypography>
+    <img class="header-image" src="assets/images/logo.svg" alt="" />
+    <h1 class="login-text" mdcHeadline5>Bejelentkezés</h1>
+    <h3 class="subheader" mdcSubtitle1>A 189 matematikaverseny oldalára</h3>
 
-      <mdc-text-field
-        [helperText]="formHelperPassword"
-        formControlName="password"
-        label="Jelszó"
-        minlength="3"
-        outlined
-        required
-        type="password"
-      ></mdc-text-field>
-      <mdc-text-field-helper-text #formHelperPassword="mdcHelperText" validation>
-        <span *ngIf="loginForm.controls['password'].hasError('required')">Jelszó kötelező</span>
-        <span *ngIf="loginForm.controls['password'].hasError('minlength')">Jelszó nem elég hosszú</span>
-      </mdc-text-field-helper-text>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <mdc-form-field>
+            <mdc-text-field label="Email" outlined [formControlName]="'username'"></mdc-text-field>
+            <mdc-helper-text validation>
+                <span *ngIf="form.controls['username'].hasError('required')">Email cím megadása kötelező</span>
+                <span *ngIf="form.controls['username'].hasError('email')">Email cím formátuma nem megfelelő</span>
+            </mdc-helper-text>
+        </mdc-form-field>
 
-      <button [disabled]="!loginForm.valid" class="button" mdc-button outlined primary type="submit">Bejelentkezés</button>
-    </mdc-form-field>
-  </form>
+        <mdc-form-field>
+            <mdc-text-field type="password" label="Jelszó" outlined [formControlName]="'password'"></mdc-text-field>
+            <mdc-helper-text validation>
+                <span *ngIf="form.controls['password'].hasError('required')">Jelszó megadása kötelező</span>
+            </mdc-helper-text>
+        </mdc-form-field>
+
+        <button mdc-button primary>Bejelentkezés</button>
+        <div class="texts">
+            <a routerLink="">Elfelejtetted a jelszavad?</a>
+            <a routerLink="">Még nem regisztráltatok?</a>
+        </div>
+
+    </form>
 </div>
--->
-loginscreen works

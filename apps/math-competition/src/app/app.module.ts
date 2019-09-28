@@ -19,8 +19,12 @@ import { TimeEffects } from './reducers/time/time.effects'
 import { AngularFirestoreModule } from '@angular/fire/firestore'
 import { LandingComponent } from './components/landing/landing.component'
 
-import { MatButtonModule } from '@angular/material/button';
+import { MdcButtonModule, MdcTypographyModule } from '@angular-mdc/web'
 
+const material = [
+  MdcTypographyModule,
+  MdcButtonModule
+]
 
 @NgModule({
   declarations: [AppComponent, LandingComponent],
@@ -38,8 +42,7 @@ import { MatButtonModule } from '@angular/material/button';
     }),
     EffectsModule.forRoot([AuthEffects, TimeEffects]),
     ServiceWorkerModule.register('safety-worker.js', { enabled: environment.production }),
-
-    MatButtonModule,
+    ...material
   ],
   providers: [],
   bootstrap: [AppComponent],

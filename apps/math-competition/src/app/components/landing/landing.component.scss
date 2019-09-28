@@ -2,6 +2,7 @@
 
 :host {
   display: grid;
+  min-height: 100vh;
   grid-template-rows: minmax(64px, 1fr) max-content minmax(64px, 1fr);
 
   @include respond-below(xs) {
@@ -26,8 +27,13 @@
   }
 }
 
+p {
+  margin-bottom: 16px
+}
+
 ul {
   list-style-position: inside;
+  margin-bottom: 16px;
 
   li {
     margin-bottom: 6px;
@@ -40,4 +46,5 @@ button {
 
 h3 {
   text-align: center;
+  margin-bottom: 16px
 }
