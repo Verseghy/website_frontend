@@ -15,4 +15,10 @@ export class RequestService {
       params: new HttpParams().set('id', id),
     })
   }
+
+  getPostByIdPreview(id: string, token: string): Observable<Post> {
+    return this.http.get<Post>(environment.baseURL + '/posts/getPreview', {
+      params: { id, token },
+    })
+  }
 }
