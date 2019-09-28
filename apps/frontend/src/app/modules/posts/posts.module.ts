@@ -18,8 +18,8 @@ const routes: Routes = [
   },
   {
     path: 'preview/:id',
-    component: PostsComponent
-  }
+    component: PostsComponent,
+  },
 ]
 
 @NgModule({
