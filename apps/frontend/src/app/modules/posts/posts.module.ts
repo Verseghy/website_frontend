@@ -16,6 +16,10 @@ const routes: Routes = [
     path: ':id',
     component: PostsComponent,
   },
+  {
+    path: 'preview/:id',
+    component: PostsComponent
+  }
 ]
 
 @NgModule({

@@ -10,9 +10,15 @@ import { environment } from '../../../../environments/environment.prod'
 export class RequestService {
   constructor(private http: HttpClient) {}
 
-  getPostById(id: string): Observable<Post> {
+  getPostById (id: string): Observable<Post> {
     return this.http.get<Post>(environment.baseURL + '/posts/getPost', {
       params: new HttpParams().set('id', id),
+    })
+  }
+
+  getPostByIdPreview (id: string, token: string): Observable<Post> {
+    return this.http.get<Post>(environment.baseURL + '/posts/getPreview', {
+      params: {id, token}
     })
   }
 }

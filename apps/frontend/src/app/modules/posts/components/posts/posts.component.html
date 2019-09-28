@@ -1,46 +1,48 @@
-<div class="background-image">
-  <div class="background"><img [src]="post?.index_image" alt="" /></div>
-</div>
-<div class="container">
-  <div class="share-container">
-    <!--<div class="share">
-      <div class="share-facebook"><img src="/assets/svg/facebook.svg" alt="" /></div>
-      <div class="share-twitter"><img src="/assets/svg/twitter.svg" alt="" /></div>
-      <div class="share-reddit"><img src="/assets/svg/reddit.svg" alt="" /></div>
-      <div class="share-pinterest"><img src="/assets/svg/pinterest.svg" alt="" /></div>
-      <div class="share-mail"><img src="/assets/svg/mail.svg" alt="" /></div>
-    </div>-->
+<ng-container *ngIf="post$ | async as post">
+  <div class="background-image">
+    <div class="background"><img [src]="post?.index_image" alt="" /></div>
   </div>
-  <div class="content-container">
-    <div class="content">
-      <div class="post-header">
-        <div class="label-container">
-          <verseghy-label
-            *ngFor="let label of post?.labels"
-            [ngStyle]="{ 'background-color': label.color }"
-            [ngClass]="{ dark: label.isDark }"
-            [label]="label"
-          ></verseghy-label>
-        </div>
-        <h1>{{ post?.title }}</h1>
-        <div class="meta">
-          <div class="author">
-            <img class="author-image" [src]="post?.author.image" alt="" /> <span>{{ post?.author.name }}</span>
+  <div class="container">
+    <div class="share-container">
+      <!--<div class="share">
+        <div class="share-facebook"><img src="/assets/svg/facebook.svg" alt="" /></div>
+        <div class="share-twitter"><img src="/assets/svg/twitter.svg" alt="" /></div>
+        <div class="share-reddit"><img src="/assets/svg/reddit.svg" alt="" /></div>
+        <div class="share-pinterest"><img src="/assets/svg/pinterest.svg" alt="" /></div>
+        <div class="share-mail"><img src="/assets/svg/mail.svg" alt="" /></div>
+      </div>-->
+    </div>
+    <div class="content-container">
+      <div class="content">
+        <div class="post-header">
+          <div class="label-container">
+            <verseghy-label
+              *ngFor="let label of post?.labels"
+              [ngStyle]="{ 'background-color': label.color }"
+              [ngClass]="{ dark: label.isDark }"
+              [label]="label"
+            ></verseghy-label>
           </div>
-          <div class="date">
-            <i class="material-icons">date_range</i> <span>{{ post?.date }}</span>
+          <h1>{{ post?.title }}</h1>
+          <div class="meta">
+            <div class="author">
+              <img class="author-image" [src]="post?.author.image" alt="" /> <span>{{ post?.author.name }}</span>
+            </div>
+            <div class="date">
+              <i class="material-icons">date_range</i> <span>{{ post?.date }}</span>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="post-content" [innerHTML]="post?.content"></div>
-      <div class="post-author">
-        <div class="left"><img class="post-author-image" [src]="post?.author.image" alt="" /></div>
-        <div class="right">
-          <h4>{{ post?.author.name }}</h4>
-          <p class="post-author-description">{{ post?.author.description }}</p>
+        <div class="post-content" [innerHTML]="post?.content"></div>
+        <div class="post-author">
+          <div class="left"><img class="post-author-image" [src]="post?.author.image" alt="" /></div>
+          <div class="right">
+            <h4>{{ post?.author.name }}</h4>
+            <p class="post-author-description">{{ post?.author.description }}</p>
+          </div>
         </div>
       </div>
     </div>
+    <div class="sidebar"><div class="recent-posts"></div></div>
   </div>
-  <div class="sidebar"><div class="recent-posts"></div></div>
-</div>
+</ng-container>
