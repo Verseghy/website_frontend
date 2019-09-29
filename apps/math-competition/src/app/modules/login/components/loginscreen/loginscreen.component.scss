@@ -52,6 +52,12 @@ mdc-text-field {
   margin-top: 16px
 }
 
+.error {
+  padding: 0 0 0 16px;
+  font-size: 12px;
+  color: var(--mdc-theme-error)
+}
+
 button {
   display: block;
   margin: 32px 0 16px auto;

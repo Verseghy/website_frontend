@@ -1,14 +1,14 @@
 <div class="container" mdcTypography>
-    <img class="header-image" src="assets/images/logo.svg" alt="" />
+    <img class="header-image" src="/assets/images/logo.svg" alt="" />
     <h1 class="login-text" mdcHeadline5>Bejelentkezés</h1>
     <h3 class="subheader" mdcSubtitle1>A 189 matematikaverseny oldalára</h3>
 
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <mdc-form-field>
-            <mdc-text-field label="Email" outlined [formControlName]="'username'"></mdc-text-field>
+            <mdc-text-field label="Email" outlined [formControlName]="'email'"></mdc-text-field>
             <mdc-helper-text validation>
-                <span *ngIf="form.controls['username'].hasError('required')">Email cím megadása kötelező</span>
-                <span *ngIf="form.controls['username'].hasError('email')">Email cím formátuma nem megfelelő</span>
+                <span *ngIf="form.controls['email'].hasError('required')">Email cím megadása kötelező</span>
+                <span *ngIf="form.controls['email'].hasError('email')">Email cím formátuma nem megfelelő</span>
             </mdc-helper-text>
         </mdc-form-field>
 
@@ -18,8 +18,12 @@
                 <span *ngIf="form.controls['password'].hasError('required')">Jelszó megadása kötelező</span>
             </mdc-helper-text>
         </mdc-form-field>
+        <div class="error" *ngIf="(loginError$ | async)?.code">
+            {{ localizeLoginError(loginError$ | async) }}
+        </div>
 
-        <button mdc-button primary>Bejelentkezés</button>
+
+        <button mdc-button primary [disabled]="loading$ | async">Bejelentkezés</button>
         <div class="texts">
             <a routerLink="">Elfelejtetted a jelszavad?</a>
             <a routerLink="">Még nem regisztráltatok?</a>

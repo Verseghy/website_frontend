@@ -12,14 +12,13 @@ import { ServiceWorkerModule } from '@angular/service-worker'
 import { StoreModule } from '@ngrx/store'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 import { EffectsModule } from '@ngrx/effects'
-import { reducers } from './reducers'
-import { AuthEffects } from './reducers/auth/auth.effects'
+import { AuthEffects } from './state/auth/auth.effects'
 import { AngularFireAuthModule } from '@angular/fire/auth'
-import { TimeEffects } from './reducers/time/time.effects'
 import { AngularFirestoreModule } from '@angular/fire/firestore'
 import { LandingComponent } from './components/landing/landing.component'
 
 import { MdcButtonModule, MdcTypographyModule } from '@angular-mdc/web'
+import { authKey, reducer } from './state/auth/auth.reducer'
 
 const material = [
   MdcTypographyModule,
@@ -36,11 +35,12 @@ const material = [
     AngularFirestoreModule,
     LoadingBarHttpClientModule,
     LoadingBarRouterModule,
-    StoreModule.forRoot(reducers),
+    StoreModule.forRoot({}),
+    StoreModule.forFeature(authKey, reducer),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
     }),
-    EffectsModule.forRoot([AuthEffects, TimeEffects]),
+    EffectsModule.forRoot([AuthEffects]),
     ServiceWorkerModule.register('safety-worker.js', { enabled: environment.production }),
     ...material
   ],

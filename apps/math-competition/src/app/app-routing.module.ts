@@ -14,23 +14,8 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'home',
-    loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule),
-    canActivate: [],
-  },
-  {
-    path: 'after',
-    loadChildren: () => import('./modules/after/after.module').then(m => m.AfterModule),
-    canActivate: [],
-  },
-  {
-    path: 'competition',
-    loadChildren: () => import('./modules/competition/competition.module').then(m => m.CompetitionModule),
-    canActivate: [AuthGuard],
-  },
-  {
     path: '**',
-    loadChildren: () => import('./modules/notfound/notfound.module').then(m => m.NotfoundModule),
+    component: LandingComponent, // TODO(TwoDCube): create not-found page
   },
 ]
 
