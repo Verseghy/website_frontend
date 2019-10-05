@@ -16,6 +16,64 @@
       "resources": {
         "files": ["/assets/**", "/*.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani)"]
       }
+    },
+    {
+      "name": "fonts",
+      "installMode": "lazy",
+      "updateMode": "lazy",
+      "resources": {
+        "urls": ["https://fonts.googleapis.com/**"]
+      }
+    },
+    {
+      "name": "images",
+      "installMode": "lazy",
+      "updateMode": "lazy",
+      "resources": {
+        "urls": ["https://backend.verseghy-gimnazium.net/storage/**", "https://i.imgur.com/**"]
+      }
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "Posts",
+      "urls": ["https://backend.verseghy-gimnazium.net/api/posts/**"],
+      "version": 1,
+      "cacheConfig": {
+        "maxSize": 100,
+        "maxAge": "3d",
+        "strategy": "freshness"
+      }
+    },
+    {
+      "name": "Canteen",
+      "urls": ["https://backend.verseghy-gimnazium.net/api/canteen/**"],
+      "version": 1,
+      "cacheConfig": {
+        "maxSize": 100,
+        "maxAge": "2d",
+        "strategy": "performance"
+      }
+    },
+    {
+      "name": "Events",
+      "urls": ["https://backend.verseghy-gimnazium.net/api/events/**"],
+      "version": 1,
+      "cacheConfig": {
+        "maxSize": 100,
+        "maxAge": "7d",
+        "strategy": "performance"
+      }
+    },
+    {
+      "name": "Colleagues",
+      "urls": ["https://backend.verseghy-gimnazium.net/api/colleagues/**"],
+      "version": 1,
+      "cacheConfig": {
+        "maxSize": 100,
+        "maxAge": "30d",
+        "strategy": "performance"
+      }
     }
   ]
 }
