@@ -11,11 +11,7 @@ import { Post } from '../../../../models/Post'
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  constructor(
-    private router: Router,
-    private requestService: RequestService,
-    private requestService2: RequestService2
-  ) {}
+  constructor(private router: Router, private requestService: RequestService, private requestService2: RequestService2) {}
 
   static init = true
   posts: Observable<Post[]>
