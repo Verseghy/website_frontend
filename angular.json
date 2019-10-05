@@ -25,8 +25,8 @@
             "assets": [
               "apps/frontend/src/favicon.ico",
               "apps/frontend/src/assets",
-              "apps/frontend/src/manifest.json",
-              "apps/frontend/src/.htaccess"
+              "apps/frontend/src/.htaccess",
+              "apps/frontend/src/manifest.webmanifest"
             ],
             "styles": ["apps/frontend/src/styles.scss"],
             "scripts": [],
@@ -49,7 +49,7 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "serviceWorker": false,
+              "serviceWorker": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -98,7 +98,7 @@
             "polyfills": "apps/frontend/src/polyfills.ts",
             "styles": [],
             "scripts": [],
-            "assets": []
+            "assets": [ "apps/frontend/src/manifest.webmanifest"]
           }
         }
       }
