@@ -98,7 +98,7 @@
             "polyfills": "apps/frontend/src/polyfills.ts",
             "styles": [],
             "scripts": [],
-            "assets": [ "apps/frontend/src/manifest.webmanifest"]
+            "assets": ["apps/frontend/src/manifest.webmanifest"]
           }
         }
       }
