@@ -1,6 +1,6 @@
 # Verseghy Frontend
 
-Browser testing is provided by <a href="https://www.browserstack.com"><img src="https://beta.verseghy-gimnazium.net/assets/svg/Browserstack-logo.svg" alt=""/></a>
+Browser testing is provided by <a href="https://www.browserstack.com"><img width="200px" src="https://beta.verseghy-gimnazium.net/assets/svg/Browserstack-logo.svg" alt=""/></a>
 
 ## Generate a new application
 
