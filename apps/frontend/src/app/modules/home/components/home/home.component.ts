@@ -18,14 +18,14 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.posts = this.requestService.listPosts(0)
-    if (HomeComponent.init) {
+    /*if (HomeComponent.init) {
       this.posts.subscribe(posts => {
         for (const post of posts) {
           this.requestService2.getPostById(post.id.toString(10)).subscribe()
         }
         HomeComponent.init = false
       })
-    }
+    }*/
   }
 
   trackByFn(item) {
