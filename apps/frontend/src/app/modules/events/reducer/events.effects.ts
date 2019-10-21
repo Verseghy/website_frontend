@@ -5,7 +5,7 @@ import { Entity, EVENTS_FEATURE_KEY, EventsState } from './events.reducer'
 import { AddLoadedMonth, EventsActionTypes, EventsLoaded, MonthChange } from './events.actions'
 import { Observable, of } from 'rxjs'
 import { Action, select, Store } from '@ngrx/store'
-import { map, switchMap, withLatestFrom } from 'rxjs/operators'
+import { catchError, map, switchMap, withLatestFrom } from 'rxjs/operators'
 import { RequestService } from '../services/request.service'
 
 @Injectable()
@@ -17,7 +17,9 @@ export class EventsEffects {
     map(([action, storeState]) => {
       if (!storeState.loadedMonths.includes(JSON.stringify(action.payload))) {
         this.store.dispatch(new AddLoadedMonth(JSON.stringify(action.payload)))
-        return this.request.getEvents(action.payload)
+        return this.request.getEvents(action.payload).pipe(
+          catchError(() => of([]))
+        )
       } else {
         const empty: Entity[] = []
         return of(empty)

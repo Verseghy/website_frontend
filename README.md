@@ -1,5 +1,11 @@
 # Verseghy Frontend
 
+## Status
+
+Project Frontend: [![BrowserStack Status](https://automate.browserstack.com/badge.svg?badge_key=UUd3SW5kUFpEbW9ya1NRZGRwRm1aL3p2L1UxSHdMN3RmUUkwRkZYdzU1cz0tLWxNVk9jVHdSbUdTQ0dPZEFJeW5hU0E9PQ==--d6ba13a5cfc0832253f3bf00402fda1b38f98c66)](https://automate.browserstack.com/public-build/UUd3SW5kUFpEbW9ya1NRZGRwRm1aL3p2L1UxSHdMN3RmUUkwRkZYdzU1cz0tLWxNVk9jVHdSbUdTQ0dPZEFJeW5hU0E9PQ==--d6ba13a5cfc0832253f3bf00402fda1b38f98c66)
+
+Project Math Competition: [![BrowserStack Status](https://automate.browserstack.com/badge.svg?badge_key=N3hiT08xL2xzUW5KYmxyaXp5SFlZSVpOYnVEQi9FUjJKTHRDOEk0bHZtQT0tLTVPdWJsUzIwSjJFd1prRWxydFI2ZFE9PQ==--b0235580637c9ad5227650e8bcf944ae74256f43)](https://automate.browserstack.com/public-build/N3hiT08xL2xzUW5KYmxyaXp5SFlZSVpOYnVEQi9FUjJKTHRDOEk0bHZtQT0tLTVPdWJsUzIwSjJFd1prRWxydFI2ZFE9PQ==--b0235580637c9ad5227650e8bcf944ae74256f43)
+
 Browser testing is provided by <a href="https://www.browserstack.com"><img width="200px" src="https://beta.verseghy-gimnazium.net/assets/svg/Browserstack-logo.svg" alt=""/></a>
 
 ## Generate a new application
