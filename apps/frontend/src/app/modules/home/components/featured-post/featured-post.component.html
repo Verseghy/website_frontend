@@ -1,8 +1,8 @@
 <div (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()" class="container" (swipeleft)="next()" (swiperight)="previous()">
   <div *ngFor="let post of (posts | async)" class="post">
     <div #content class="content">
-      <div class="background"><img [src]="post.index_image.url" alt="" /></div>
-      <div class="post-content">
+      <div class="background"><img [src]="post.index_image" alt="" /></div>
+      <a class="post-content" [routerLink]="['/posts/' + post.id]">
         <div class="text">
           <div class="label-container">
             <verseghy-label
@@ -15,12 +15,12 @@
           <h2>{{ post.title }}</h2>
           <p class="description">{{ post.description }}</p>
           <div class="bottom">
-            <img [src]="post.author.image.url" alt="" />
+            <img [src]="post.author.image" alt="" />
             <p>{{ post.author.name }}</p>
             <p>{{ post.date }}</p>
           </div>
         </div>
-      </div>
+      </a>
       <div class="hover"></div>
     </div>
   </div>
