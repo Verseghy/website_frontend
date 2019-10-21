@@ -1,4 +1,4 @@
-<ng-container *ngIf="(post$ | async) as post">
+<ng-container *ngIf="post$ | async as post">
   <div class="background-image">
     <div class="background"><img [src]="post?.index_image" alt="" /></div>
   </div>
@@ -34,6 +34,20 @@
           </div>
         </div>
         <div class="post-content" [innerHTML]="post?.content"></div>
+        <slideshow
+          #slideshow
+          class="post-content"
+          [height]="'400px'"
+          [imageUrls]="post?.images"
+          [autoPlay]="post?.images?.length > 1"
+          [autoPlayWaitForLazyLoad]="true"
+          [lazyLoad]="post?.images?.length > 1"
+          [hideOnNoSlides]="false"
+          [backgroundSize]="'contain'"
+          [showArrows]="false"
+          [showDots]="false"
+          [disableSwiping]="post?.images?.length < 2"
+        ></slideshow>
         <div class="post-author">
           <div class="left"><img class="post-author-image" [src]="post?.author.image" alt="" /></div>
           <div class="right">

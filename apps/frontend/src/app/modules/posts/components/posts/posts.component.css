@@ -161,6 +161,7 @@ h1 {
   font-weight: 300;
   max-width: 650px;
   margin: 0 auto;
+  display: block;
 }
 
 .post-content >>> p {
