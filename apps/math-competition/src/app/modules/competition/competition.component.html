@@ -1,1 +1,21 @@
-<p>competition works!</p>
+<div class="container" mdcTypography>
+    <div class="header">
+        <span class="remaining-time" mdcHeadline5>Hátralévő idő: {{ remainingTime }}</span>
+        <button mdc-button>Kilépés</button>
+    </div>
+    <div class="problems" [hidden]="!loaded">
+        <div class="problem-card" *ngFor="let a of TEMParr">
+            <div class="problem-header">{{ a }}. feladat</div>
+            <div class="problem-description">
+                {{ TEMPdescription }}
+            </div>
+            <label>
+                Megoldás:
+                <input/>
+            </label>
+        </div>
+    </div>
+    <div class="loader" *ngIf="!loaded">
+        Feladatok betöltése...
+    </div>
+</div>

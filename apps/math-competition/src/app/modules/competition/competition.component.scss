@@ -1,0 +1,59 @@
+@import "breakpoints";
+
+:host {
+  display: grid;
+  min-height: 100vh;
+  grid-template-rows: minmax(64px, 1fr) max-content minmax(64px, 1fr);
+
+  @include respond-below(xs) {
+    grid-template-rows: 1fr;
+  }
+}
+
+.container {
+  grid-row: 2;
+  height: min-content;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 8px;
+  overflow: hidden;
+
+  @include respond-below(xs) {
+    grid-row: 1;
+    width: 100%;
+    border: none;
+    border-radius: unset;
+  }
+}
+
+.remaining-time {
+  display: block;
+}
+
+.header {
+  margin-bottom: 24px;
+}
+
+.problems {
+  width: 100%;
+
+  .problem-card {
+    width: 100%;
+    margin: 24px 0 24px 0;
+    padding: 24px;
+    border: 1px solid #DADCE0;
+    border-radius: 8px;
+
+    .problem-header {
+      border-bottom: 1px solid #DADCE0;
+      font-weight: bold;
+      margin-bottom: 24px;
+    }
+
+    .problem-description {
+      overflow: auto;
+      margin-bottom: 24px;
+    }
+  }
+}

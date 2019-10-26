@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <title>189 - Verseghy Matematika Verseny</title>
     <base href="/" />
-    <meta content="initial-scale=1.0" name="viewport" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta name="description" content="Verseghy 189 matematikaverseny weboldala">
     <link href="favicon.ico" rel="icon" type="image/x-icon" />
     <meta content="#1976d2" name="theme-color" />
@@ -12,14 +12,24 @@
   </head>
   <body>
     <verseghy-root></verseghy-root>
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        svg: {
+          fontCache: 'global'
+        },
+        options: {
+          renderActions: {
+            addMenu: [0, '', '']
+          }
+        }
+      };
     </script>
-    <script
-      defer
-      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML"
-      type="text/javascript"
-    ></script>
+    <script type="text/javascript" id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+    </script>
     <noscript>Please enable JavaScript to continue using this application.</noscript>
   </body>
 </html>

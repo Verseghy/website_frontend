@@ -24,3 +24,7 @@ html {
 *, *:before, *:after {
   box-sizing: inherit;
 }
+
+mjx-container:focus {
+  outline: 0;
+}
