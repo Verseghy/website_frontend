@@ -13,6 +13,9 @@ const routes: Routes = [
     loadChildren: () => import('./modules/login/login.module').then(m => m.LoginModule),
     canActivate: [AuthGuard],
   },
+  { path: 'competition',
+    loadChildren: () => import('./modules/competition/competition.module').then(m => m.CompetitionModule)
+  },
   {
     path: '**',
     component: LandingComponent, // TODO(TwoDCube): create not-found page
