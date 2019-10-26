@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { CompetitionRoutingModule } from './competition-routing.module';
 import { CompetitionComponent } from './competition.component';
-import { MdcButtonModule, MdcTypographyModule } from '@angular-mdc/web'
+import { MdcButtonModule, MdcTextFieldModule, MdcTypographyModule } from '@angular-mdc/web'
 import { ScrollingModule } from '@angular/cdk/scrolling'
 
 
@@ -13,7 +13,8 @@ import { ScrollingModule } from '@angular/cdk/scrolling'
     CommonModule,
     CompetitionRoutingModule,
     MdcTypographyModule,
-    MdcButtonModule
+    MdcButtonModule,
+    MdcTextFieldModule,
   ],
 })
 export class CompetitionModule { }

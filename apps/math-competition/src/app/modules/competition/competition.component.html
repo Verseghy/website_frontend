@@ -3,19 +3,27 @@
         <span class="remaining-time" mdcHeadline5>Hátralévő idő: {{ remainingTime }}</span>
         <button mdc-button>Kilépés</button>
     </div>
+    <div class="pagination-numbers">
+        <button mdc-button (click)="prevPage()">Előző</button>
+        <button mdc-button (click)="nextPage()">Következő</button>
+    </div>
     <div class="problems" [hidden]="!loaded">
-        <div class="problem-card" *ngFor="let a of TEMParr">
-            <div class="problem-header">{{ a }}. feladat</div>
+        <div class="problem-card" *ngFor="let a of $TEMPPaginated | async; index as i">
+            <div class="problem-header">{{ i + 1 }}. feladat</div>
             <div class="problem-description">
                 {{ TEMPdescription }}
             </div>
             <label>
                 Megoldás:
-                <input/>
+                <mdc-text-field></mdc-text-field>
             </label>
         </div>
     </div>
     <div class="loader" *ngIf="!loaded">
         Feladatok betöltése...
+    </div>
+    <div class="pagination-numbers">
+        <button mdc-button (click)="prevPage()">Előző</button>
+        <button mdc-button (click)="nextPage()">Következő</button>
     </div>
 </div>
