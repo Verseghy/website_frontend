@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
 import { AuthGuard } from './guards/auth.guard'
-import { LandingComponent } from './components/landing/landing.component';
+import { LandingComponent } from './components/landing/landing.component'
 
 const routes: Routes = [
   {
@@ -15,7 +15,7 @@ const routes: Routes = [
   },
   {
     path: 'competition',
-    loadChildren: () => import('./modules/competition/competition.module').then(m => m.CompetitionModule)
+    loadChildren: () => import('./modules/competition/competition.module').then(m => m.CompetitionModule),
   },
   {
     path: '**',
@@ -24,7 +24,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {scrollPositionRestoration: 'top'})],
+  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'top' })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

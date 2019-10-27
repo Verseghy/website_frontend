@@ -3,7 +3,7 @@
 $mdc-theme-primary: #1a73e8; // primary color example
 $mdc-theme-secondary: #388e3c; // secondary color example
 
-@import "~@angular-mdc/theme/material";
+@import '~@angular-mdc/theme/material';
 
 * {
   margin: 0;
@@ -21,7 +21,9 @@ html {
   box-sizing: border-box;
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: inherit;
 }
 

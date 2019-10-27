@@ -1,4 +1,4 @@
-@import "breakpoints";
+@import 'breakpoints';
 
 :host {
   display: grid;
@@ -47,11 +47,11 @@
     width: 100%;
     margin: 24px 0 24px 0;
     padding: 24px;
-    border: 1px solid #DADCE0;
+    border: 1px solid #dadce0;
     border-radius: 8px;
 
     .problem-header {
-      border-bottom: 1px solid #DADCE0;
+      border-bottom: 1px solid #dadce0;
       font-weight: bold;
       margin-bottom: 24px;
     }
@@ -62,7 +62,7 @@
     }
 
     mdc-text-field {
-      width: 100%
+      width: 100%;
     }
   }
 }

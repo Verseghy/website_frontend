@@ -12,7 +12,7 @@ export interface State {
 const initialState: State = {
   uid: '',
   loading: true,
-  loginError: {}
+  loginError: {},
 }
 
 const authReducer = createReducer(
@@ -20,11 +20,11 @@ const authReducer = createReducer(
 
   on(initAuth, state => state),
 
-  on(authenticated, (state, {uid}) => ({...state, uid: uid, loading: false})),
-  on(notAuthenticated, state => ({...state, uid: '', loading: false})),
+  on(authenticated, (state, { uid }) => ({ ...state, uid: uid, loading: false })),
+  on(notAuthenticated, state => ({ ...state, uid: '', loading: false })),
 
-  on(login, state => ({...state, loading: true, loginError: ''})),
-  on(loginError, (state, {error}) => ({...state, loading: false, loginError: error}))
+  on(login, state => ({ ...state, loading: true, loginError: '' })),
+  on(loginError, (state, { error }) => ({ ...state, loading: false, loginError: error }))
 )
 
 export function reducer(state: State | undefined, action: Action) {

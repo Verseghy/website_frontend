@@ -20,10 +20,7 @@ import { LandingComponent } from './components/landing/landing.component'
 import { MdcButtonModule, MdcTypographyModule } from '@angular-mdc/web'
 import { authKey, reducer } from './state/auth/auth.reducer'
 
-const material = [
-  MdcTypographyModule,
-  MdcButtonModule
-]
+const material = [MdcTypographyModule, MdcButtonModule]
 
 @NgModule({
   declarations: [AppComponent, LandingComponent],
@@ -42,7 +39,7 @@ const material = [
     }),
     EffectsModule.forRoot([AuthEffects]),
     ServiceWorkerModule.register('safety-worker.js', { enabled: environment.production }),
-    ...material
+    ...material,
   ],
   providers: [],
   bootstrap: [AppComponent],

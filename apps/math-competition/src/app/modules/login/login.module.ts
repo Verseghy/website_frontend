@@ -6,11 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
 import { MdcButtonModule, MdcTextFieldModule, MdcTypographyModule } from '@angular-mdc/web'
 
-const material = [
-  MdcTextFieldModule,
-  MdcTypographyModule,
-  MdcButtonModule
-]
+const material = [MdcTextFieldModule, MdcTypographyModule, MdcButtonModule]
 
 const routes: Routes = [
   {
@@ -21,12 +17,6 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [LoginscreenComponent],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    FormsModule,
-    ReactiveFormsModule,
-    ...material
-  ],
+  imports: [CommonModule, RouterModule.forChild(routes), FormsModule, ReactiveFormsModule, ...material],
 })
 export class LoginModule {}

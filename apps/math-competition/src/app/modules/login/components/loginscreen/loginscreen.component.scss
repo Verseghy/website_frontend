@@ -1,4 +1,4 @@
-@import "breakpoints";
+@import 'breakpoints';
 
 :host {
   display: grid;
@@ -15,7 +15,7 @@
   width: 448px;
   height: min-content;
   margin: 0 auto;
-  border: 1px solid #DADCE0;
+  border: 1px solid #dadce0;
   border-radius: 8px;
   padding: 40px;
 
@@ -49,13 +49,13 @@ h3 {
 
 mdc-text-field {
   width: 100%;
-  margin-top: 16px
+  margin-top: 16px;
 }
 
 .error {
   padding: 0 0 0 16px;
   font-size: 12px;
-  color: var(--mdc-theme-error)
+  color: var(--mdc-theme-error);
 }
 
 button {

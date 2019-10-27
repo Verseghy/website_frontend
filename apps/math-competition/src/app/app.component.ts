@@ -7,11 +7,9 @@ import { AuthFacade } from './state/auth/auth.facade'
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  constructor (
-    private authFacade: AuthFacade
-  ) {}
+  constructor(private authFacade: AuthFacade) {}
 
-  ngOnInit () {
+  ngOnInit() {
     this.authFacade.init()
   }
 }

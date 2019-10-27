@@ -8,30 +8,25 @@ import { AuthFacade } from '../../../../state/auth/auth.facade'
   styleUrls: ['./loginscreen.component.scss'],
 })
 export class LoginscreenComponent implements OnInit {
-
   loginError$ = this.authFacade.loginError$
   loading$ = this.authFacade.loading$
 
   form = this.fb.group({
     email: this.fb.control('', [Validators.required, Validators.email]),
-    password: this.fb.control('', [Validators.required])
+    password: this.fb.control('', [Validators.required]),
   })
 
-  constructor(
-    private fb: FormBuilder,
-    private authFacade: AuthFacade
-  ) {}
+  constructor(private fb: FormBuilder, private authFacade: AuthFacade) {}
 
-  ngOnInit () {
-  }
+  ngOnInit() {}
 
-  onSubmit () {
+  onSubmit() {
     if (this.form.valid) {
-      this.authFacade.login({email: this.form.get('email').value, password: this.form.get('password').value})
+      this.authFacade.login({ email: this.form.get('email').value, password: this.form.get('password').value })
     }
   }
 
-  localizeLoginError (error) {
+  localizeLoginError(error) {
     switch (error.code) {
       case 'auth/user-not-found':
         return 'Az email címmel még nemtörtént regisztráció'

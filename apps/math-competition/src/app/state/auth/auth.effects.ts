@@ -14,7 +14,7 @@ export class AuthEffects {
       exhaustMap(() => this.afAuth.authState),
       map(x => {
         if (x) {
-          return authenticated({uid: x.uid})
+          return authenticated({ uid: x.uid })
         } else {
           return notAuthenticated()
         }
@@ -25,29 +25,32 @@ export class AuthEffects {
   login$ = createEffect(() =>
     this.actions$.pipe(
       ofType(login),
-      exhaustMap(({email, password}) =>
+      exhaustMap(({ email, password }) =>
         from(this.afAuth.auth.signInWithEmailAndPassword(email, password)).pipe(
           map(() => {
             this.router.navigate(['/competition']) // TODO(zoltanszepesi): redirect to next page
             return noop()
           }),
-          catchError(error => of(loginError({error})))
+          catchError(error => of(loginError({ error })))
         )
       )
     )
   )
 
-  logout$ = createEffect(() =>
-    this.actions$.pipe(ofType(logout),
-      exhaustMap(() => {
-        return from(this.afAuth.auth.signOut())
-      }),
-      tap(() => {
-        return this.router.navigate(['/login'])
-      })
-    ), {dispatch: false}
+  logout$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(logout),
+        exhaustMap(() => {
+          return from(this.afAuth.auth.signOut())
+        }),
+        tap(() => {
+          return this.router.navigate(['/login'])
+        })
+      ),
+    { dispatch: false }
   )
- /**
+  /**
   @Effect()
   login: Observable<Action> = this.actions$.pipe(
     ofType(authActions.LOGIN),
@@ -77,8 +80,5 @@ export class AuthEffects {
     })
   )*/
 
-  constructor(
-    private actions$: Actions,
-    private afAuth: AngularFireAuth,
-    private router: Router) {}
+  constructor(private actions$: Actions, private afAuth: AngularFireAuth, private router: Router) {}
 }

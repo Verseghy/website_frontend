@@ -7,24 +7,31 @@ import { differenceInHours, differenceInMinutes, differenceInSeconds } from 'dat
 @Component({
   selector: 'verseghy-competition',
   templateUrl: './competition.component.html',
-  styleUrls: ['./competition.component.scss']
+  styleUrls: ['./competition.component.scss'],
 })
 export class CompetitionComponent implements OnInit {
-
   TEMPendline = new Date().setMinutes(new Date().getMinutes() + 25)
   remainingTime = interval(1000).pipe(
-    map(() => {
-      return `${(differenceInHours(this.TEMPendline, new Date()) - 1).toString().padStart(2, "0")}:${(differenceInMinutes(this.TEMPendline, new Date()) % 3600 % 60).toString().padStart(2, "0")}:${(differenceInSeconds(this.TEMPendline, new Date()) % 60).toString().padStart(2, "0")}`
-    })
+    map(
+      () =>
+        differenceInHours(this.TEMPendline, new Date())
+          .toString()
+          .padStart(2, '0') +
+        ':' +
+        ((differenceInMinutes(this.TEMPendline, new Date()) % 3600) % 60).toString().padStart(2, '0') +
+        ':' +
+        (differenceInSeconds(this.TEMPendline, new Date()) % 60).toString().padStart(2, '0')
+    )
   )
   loaded = false
   page$ = new BehaviorSubject<number>(0)
   page = 0
-  TEMPdescription = 'Mennyi a következő összeg pontos értéke? $\\left( ctg \\left ( \\frac{\\pi}{4} + \\pi \\right) + tg \\left ( \\frac{\\pi}{4} + \\pi \\right ) )^2 + (ctg \\left ( \\frac{\\pi}{4} + 2\\pi \\right) + tg \\left ( \\frac{\\pi}{4} +2 \\pi \\right ) )^2 + … + (ctg \\left ( \\frac{\\pi}{4} +188 \\pi \\right) + tg \\left ( \\frac{\\pi}{4} + 188 \\pi \\right ) \\right)^2$'
+  TEMPdescription =
+    'Mennyi a következő összeg pontos értéke? $\\left( ctg \\left ( \\frac{\\pi}{4} + \\pi \\right) + tg \\left ( \\frac{\\pi}{4} + \\pi \\right ) )^2 + (ctg \\left ( \\frac{\\pi}{4} + 2\\pi \\right) + tg \\left ( \\frac{\\pi}{4} +2 \\pi \\right ) )^2 + … + (ctg \\left ( \\frac{\\pi}{4} +188 \\pi \\right) + tg \\left ( \\frac{\\pi}{4} + 188 \\pi \\right ) \\right)^2$'
   TEMParr$ = new BehaviorSubject<any[]>([])
   paginated$ = combineLatest([this.TEMParr$, this.page$]).pipe(
     map(([arr, page]) => {
-      return arr.slice(page*10, (page+1)*10)
+      return arr.slice(page * 10, (page + 1) * 10)
     })
   )
   disableNextPage$ = combineLatest([this.TEMParr$, this.page$]).pipe(
@@ -38,9 +45,7 @@ export class CompetitionComponent implements OnInit {
     })
   )
 
-  constructor(
-    private authFacade: AuthFacade
-  ) { }
+  constructor(private authFacade: AuthFacade) {}
 
   ngOnInit() {
     setTimeout(() => {
@@ -48,36 +53,35 @@ export class CompetitionComponent implements OnInit {
       for (let i = 0; i < 189; i++) {
         arr.push({
           id: i,
-          description: this.TEMPdescription
+          description: this.TEMPdescription,
         })
       }
       this.TEMParr$.next(arr)
-      setTimeout(() => {(window as any).MathJax.typesetPromise().then(() => {
-        this.loaded = true
-      })})
+      setTimeout(() => {
+        ;(window as any).MathJax.typesetPromise().then(() => {
+          this.loaded = true
+        })
+      })
     }, 0)
   }
 
-  logout () {
+  logout() {
     this.authFacade.logout()
   }
 
-  blurField (event: KeyboardEvent) {
+  blurField(event: KeyboardEvent) {
     if (event.key === 'Enter') (event.target as HTMLInputElement).blur()
   }
 
-  prevPage () {
-    this.page$.next(--this.page);
+  prevPage() {
+    this.page$.next(--this.page)
     setTimeout(() => (window as any).MathJax.typesetPromise())
     window.scrollTo(0, 0)
   }
 
-  nextPage () {
-    this.page$.next(++this.page);
+  nextPage() {
+    this.page$.next(++this.page)
     setTimeout(() => (window as any).MathJax.typesetPromise())
     window.scrollTo(0, 0)
   }
-
-
-
 }

@@ -10,7 +10,10 @@ import { filter, map } from 'rxjs/operators'
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+  canActivate(
+    next: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     return this.store.pipe(
       select(authKey),
       filter(auth => !auth.loading),
@@ -27,9 +30,5 @@ export class AuthGuard implements CanActivate {
     )
   }
 
-  constructor(
-    private store: Store<any>,
-    private authFacade: AuthFacade,
-    private router: Router
-  ) {}
+  constructor(private store: Store<any>, private authFacade: AuthFacade, private router: Router) {}
 }

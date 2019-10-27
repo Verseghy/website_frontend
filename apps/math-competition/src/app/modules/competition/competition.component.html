@@ -1,28 +1,31 @@
 <div class="container" mdcTypography>
-    <div class="header">
-        <span class="remaining-time" mdcHeadline5>Hátralévő idő: {{ remainingTime | async }}</span>
-        <button mdc-button (click)="logout()">Kilépés</button>
-    </div>
-    <ng-container *ngTemplateOutlet="paginationNumbers"></ng-container>
-    <div class="problems" [hidden]="!loaded">
-        <div class="problem-card" *ngFor="let a of paginated$ | async">
-            <div class="problem-header">{{ a.id + 1 }}. feladat</div>
-            <div class="problem-description">
-                {{ TEMPdescription }}
-            </div>
-            <mdc-text-field outlined placeholder="Megoldás" type="number" (keyup)="blurField($event)" autocomplete="off"></mdc-text-field>
-        </div>
-    </div>
-    <div class="loader" *ngIf="!loaded">
-        Feladatok betöltése...
-    </div>
-    <ng-container *ngTemplateOutlet="paginationNumbers"></ng-container>
+  <div class="header">
+    <span class="remaining-time" mdcHeadline5>Hátralévő idő: {{ remainingTime | async }}</span>
+    <button mdc-button (click)="logout()">Kilépés</button>
+  </div>
 
+  <ng-container *ngTemplateOutlet="paginationNumbers"></ng-container>
+
+  <div class="problems" [hidden]="!loaded">
+    <div class="problem-card" *ngFor="let a of paginated$ | async">
+      <div class="problem-header">{{ a.id + 1 }}. feladat</div>
+      <div class="problem-description">
+        {{ TEMPdescription }}
+      </div>
+      <mdc-text-field outlined placeholder="Megoldás" type="number" (keyup)="blurField($event)" autocomplete="off"></mdc-text-field>
+    </div>
+  </div>
+
+  <div class="loader" *ngIf="!loaded">
+    Feladatok betöltése...
+  </div>
+
+  <ng-container *ngTemplateOutlet="paginationNumbers"></ng-container>
 </div>
 
 <ng-template #paginationNumbers>
-    <div class="pagination-numbers">
-        <button mdc-button [disabled]="disablePrevPage$ | async" (click)="prevPage()">Előző</button>
-        <button mdc-button [disabled]="disableNextPage$ | async" (click)="nextPage()">Következő</button>
-    </div>
+  <div class="pagination-numbers">
+    <button mdc-button [disabled]="disablePrevPage$ | async" (click)="prevPage()">Előző</button>
+    <button mdc-button [disabled]="disableNextPage$ | async" (click)="nextPage()">Következő</button>
+  </div>
 </ng-template>

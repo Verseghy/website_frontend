@@ -1,4 +1,4 @@
-@import "breakpoints";
+@import 'breakpoints';
 
 :host {
   display: grid;
@@ -15,7 +15,7 @@
   width: 512px;
   height: min-content;
   margin: 0 auto;
-  border: 1px solid #DADCE0;
+  border: 1px solid #dadce0;
   border-radius: 8px;
   padding: 40px;
 
@@ -28,7 +28,7 @@
 }
 
 p {
-  margin-bottom: 16px
+  margin-bottom: 16px;
 }
 
 ul {
@@ -41,10 +41,10 @@ ul {
 }
 
 button {
-  margin-top: 6px
+  margin-top: 6px;
 }
 
 h3 {
   text-align: center;
-  margin-bottom: 16px
+  margin-bottom: 16px;
 }

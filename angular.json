@@ -155,9 +155,7 @@
             ],
             "styles": ["apps/math-competition/src/styles.scss"],
             "stylePreprocessorOptions": {
-              "includePaths": [
-                "apps/math-competition/src/scss"
-              ]
+              "includePaths": ["apps/math-competition/src/scss"]
             },
             "scripts": []
           },
