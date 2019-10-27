@@ -49,6 +49,10 @@ export class CompetitionComponent implements OnInit {
     this.authFacade.logout()
   }
 
+  blurField (event: KeyboardEvent) {
+    if (event.key === 'Enter') (event.target as HTMLInputElement).blur()
+  }
+
   prevPage () {
     this.page$.next(--this.page)
   }
