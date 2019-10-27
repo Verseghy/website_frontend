@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { BehaviorSubject, combineLatest, interval } from 'rxjs'
 import { map } from 'rxjs/operators'
 import { AuthFacade } from '../../state/auth/auth.facade'
-import { differenceInHours, differenceInMinutes, differenceInSeconds } from 'date-fns'
+import { addHours, differenceInHours, differenceInMinutes, differenceInSeconds } from 'date-fns'
 
 @Component({
   selector: 'verseghy-competition',
@@ -10,7 +10,7 @@ import { differenceInHours, differenceInMinutes, differenceInSeconds } from 'dat
   styleUrls: ['./competition.component.scss'],
 })
 export class CompetitionComponent implements OnInit {
-  TEMPendline = new Date().setMinutes(new Date().getMinutes() + 25)
+  TEMPendline = addHours(new Date(), 4)
   remainingTime = interval(1000).pipe(
     map(
       () =>
