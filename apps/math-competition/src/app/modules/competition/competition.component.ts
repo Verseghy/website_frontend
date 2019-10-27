@@ -44,7 +44,7 @@ export class CompetitionComponent implements OnInit {
 
   ngOnInit() {
     setTimeout(() => {
-      let arr = []
+      const arr = []
       for (let i = 0; i < 189; i++) {
         arr.push({
           id: i,
