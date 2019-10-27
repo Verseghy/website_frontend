@@ -10,5 +10,5 @@ export const notAuthenticated = createAction('[auth] not authenticated')
 export const login = createAction('[auth] login', props<{email: string, password: string}>())
 export const loginError = createAction('[auth] login error', props<{error: any}>())
 
-export const logout = () => {}
+export const logout = createAction('[auth] logout')
 export const register = () => {}

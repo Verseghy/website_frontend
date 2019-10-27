@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core'
 import { Actions, createEffect, ofType } from '@ngrx/effects'
-import { catchError, exhaustMap, map } from 'rxjs/operators'
+import { catchError, exhaustMap, map, tap } from 'rxjs/operators'
 import { AngularFireAuth } from '@angular/fire/auth'
-import { authenticated, initAuth, login, loginError, noop, notAuthenticated } from './auth.actions'
+import { authenticated, initAuth, login, loginError, logout, noop, notAuthenticated } from './auth.actions'
 import { from, of } from 'rxjs'
 import { Router } from '@angular/router'
 
@@ -35,6 +35,17 @@ export class AuthEffects {
         )
       )
     )
+  )
+
+  logout$ = createEffect(() =>
+    this.actions$.pipe(ofType(logout),
+      exhaustMap(() => {
+        return from(this.afAuth.auth.signOut())
+      }),
+      tap(() => {
+        return this.router.navigate(['/login'])
+      })
+    ), {dispatch: false}
   )
  /**
   @Effect()

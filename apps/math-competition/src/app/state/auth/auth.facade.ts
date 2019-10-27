@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { select, Store } from '@ngrx/store'
-import { initAuth, login } from './auth.actions'
+import { initAuth, login, logout } from './auth.actions'
 import { selectLoading, selectLoginError } from './auth.selectors'
 
 @Injectable({
@@ -21,4 +21,8 @@ export class AuthFacade {
   constructor (
     private store$: Store<any>
   ) {}
+
+  logout() {
+    this.store$.dispatch(logout())
+  }
 }
