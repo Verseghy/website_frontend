@@ -10,10 +10,7 @@
             <div class="problem-description">
                 {{ TEMPdescription }}
             </div>
-            <label>
-                Megoldás:
-                <mdc-text-field type="number" (keyup)="blurField($event)"></mdc-text-field>
-            </label>
+            <mdc-text-field outlined placeholder="Megoldás" type="number" (keyup)="blurField($event)" autocomplete="off"></mdc-text-field>
         </div>
     </div>
     <div class="loader" *ngIf="!loaded">
