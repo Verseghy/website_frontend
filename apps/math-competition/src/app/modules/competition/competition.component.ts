@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core'
-import { BehaviorSubject, combineLatest } from 'rxjs'
+import { BehaviorSubject, combineLatest, interval } from 'rxjs'
 import { map } from 'rxjs/operators'
 import { AuthFacade } from '../../state/auth/auth.facade'
+import { differenceInHours, differenceInMinutes, differenceInSeconds } from 'date-fns'
 
 @Component({
   selector: 'verseghy-competition',
@@ -10,7 +11,12 @@ import { AuthFacade } from '../../state/auth/auth.facade'
 })
 export class CompetitionComponent implements OnInit {
 
-  remainingTime = '00:00:00'
+  TEMPendline = new Date().setMinutes(new Date().getMinutes() + 25)
+  remainingTime = interval(1000).pipe(
+    map(() => {
+      return `${(differenceInHours(this.TEMPendline, new Date()) - 1).toString().padStart(2, "0")}:${(differenceInMinutes(this.TEMPendline, new Date()) % 3600 % 60).toString().padStart(2, "0")}:${(differenceInSeconds(this.TEMPendline, new Date()) % 60).toString().padStart(2, "0")}`
+    })
+  )
   loaded = false
   page$ = new BehaviorSubject<number>(0)
   page = 0
@@ -38,7 +44,14 @@ export class CompetitionComponent implements OnInit {
 
   ngOnInit() {
     setTimeout(() => {
-      this.TEMParr$.next(Array(189))
+      let arr = []
+      for (let i = 0; i < 189; i++) {
+        arr.push({
+          id: i,
+          description: this.TEMPdescription
+        })
+      }
+      this.TEMParr$.next(arr)
       setTimeout(() => {(window as any).MathJax.typesetPromise().then(() => {
         this.loaded = true
       })})
@@ -54,11 +67,15 @@ export class CompetitionComponent implements OnInit {
   }
 
   prevPage () {
-    this.page$.next(--this.page)
+    this.page$.next(--this.page);
+    setTimeout(() => (window as any).MathJax.typesetPromise())
+    window.scrollTo(0, 0)
   }
 
   nextPage () {
-    this.page$.next(++this.page)
+    this.page$.next(++this.page);
+    setTimeout(() => (window as any).MathJax.typesetPromise())
+    window.scrollTo(0, 0)
   }
 
 

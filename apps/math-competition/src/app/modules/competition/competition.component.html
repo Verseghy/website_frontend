@@ -1,12 +1,12 @@
 <div class="container" mdcTypography>
     <div class="header">
-        <span class="remaining-time" mdcHeadline5>Hátralévő idő: {{ remainingTime }}</span>
+        <span class="remaining-time" mdcHeadline5>Hátralévő idő: {{ remainingTime | async }}</span>
         <button mdc-button (click)="logout()">Kilépés</button>
     </div>
     <ng-container *ngTemplateOutlet="paginationNumbers"></ng-container>
     <div class="problems" [hidden]="!loaded">
-        <div class="problem-card" *ngFor="let a of paginated$ | async; index as i">
-            <div class="problem-header">{{ i + 1 }}. feladat</div>
+        <div class="problem-card" *ngFor="let a of paginated$ | async">
+            <div class="problem-header">{{ a.id + 1 }}. feladat</div>
             <div class="problem-description">
                 {{ TEMPdescription }}
             </div>
