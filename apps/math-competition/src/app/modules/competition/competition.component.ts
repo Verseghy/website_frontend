@@ -23,12 +23,11 @@ export class CompetitionComponent implements OnInit {
   )
   disableNextPage$ = combineLatest([this.TEMParr$, this.page$]).pipe(
     map(([arr, page]) => {
-      console.log(arr.length / 10, page)
       return page + 1 > arr.length / 10
     })
   )
   disablePrevPage$ = combineLatest([this.TEMParr$, this.page$]).pipe(
-    map(([arr, page]) => {
+    map(([, page]) => {
       return page - 1 < 0
     })
   )
@@ -39,7 +38,7 @@ export class CompetitionComponent implements OnInit {
 
   ngOnInit() {
     setTimeout(() => {
-      this.TEMParr$.next(Array(189));
+      this.TEMParr$.next(Array(189))
       setTimeout(() => {(window as any).MathJax.typesetPromise().then(() => {
         this.loaded = true
       })})

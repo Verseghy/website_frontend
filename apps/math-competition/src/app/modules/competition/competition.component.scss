@@ -27,12 +27,18 @@
   }
 }
 
-.remaining-time {
-  display: block;
-}
-
 .header {
   margin-bottom: 24px;
+
+  button {
+    display: block;
+    margin-left: auto;
+  }
+
+  .remaining-time {
+    display: block;
+    text-align: center;
+  }
 }
 
 .problems {
@@ -56,4 +62,14 @@
       margin-bottom: 24px;
     }
   }
+}
+
+.loader {
+  margin: 24px 0 24px 0;
+  text-align: center;
+}
+
+.pagination-numbers {
+  display: flex;
+  justify-content: center;
 }
