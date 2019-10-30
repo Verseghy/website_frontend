@@ -3,6 +3,7 @@ import { BehaviorSubject, combineLatest, interval } from 'rxjs'
 import { map } from 'rxjs/operators'
 import { AuthFacade } from '../../state/auth/auth.facade'
 import { addHours, differenceInHours, differenceInMinutes, differenceInSeconds } from 'date-fns'
+import { CompetitionFacade } from '../../state/competition/competition.facade'
 
 @Component({
   selector: 'verseghy-competition',
@@ -45,24 +46,13 @@ export class CompetitionComponent implements OnInit {
     })
   )
 
-  constructor(private authFacade: AuthFacade) {}
+  constructor(
+    private authFacade: AuthFacade,
+    private competitionFacade: CompetitionFacade
+  ) {}
 
   ngOnInit() {
-    setTimeout(() => {
-      const arr = []
-      for (let i = 0; i < 189; i++) {
-        arr.push({
-          id: i,
-          description: this.TEMPdescription,
-        })
-      }
-      this.TEMParr$.next(arr)
-      setTimeout(() => {
-        ;(window as any).MathJax.typesetPromise().then(() => {
-          this.loaded = true
-        })
-      })
-    }, 0)
+    this.competitionFacade.loadProblems()
   }
 
   logout() {
