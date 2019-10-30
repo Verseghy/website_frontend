@@ -7,7 +7,7 @@ import { loadProblems } from './competition.actions'
 })
 export class CompetitionFacade {
   loadProblems () {
-    this.store$.dispatch(loadProblems)
+    this.store$.dispatch(loadProblems())
   }
 
   constructor (
