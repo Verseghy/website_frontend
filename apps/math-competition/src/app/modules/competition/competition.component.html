@@ -10,7 +10,7 @@
     <div class="problem-card" *ngFor="let a of (paginated$ | async)">
       <div class="problem-header">{{ a.id + 1 }}. feladat</div>
       <div class="problem-description">
-        {{ TEMPdescription }}
+        {{ a.text }}
       </div>
       <mdc-text-field outlined placeholder="Megoldás" type="number" (keyup)="blurField($event)" autocomplete="off"></mdc-text-field>
     </div>
