@@ -1,4 +1,4 @@
 export interface Solution {
   id: number
-  value: number
+  solution: number
 }
