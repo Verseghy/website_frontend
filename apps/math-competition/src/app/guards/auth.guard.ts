@@ -23,6 +23,11 @@ export class AuthGuard implements CanActivate {
             case '/login':
               return this.router.createUrlTree(['/competition']) // TODO(zoltanszepesi): to next page
           }
+        } else {
+          switch (state.url) {
+            case '/competition':
+              return this.router.createUrlTree(['/login'])
+          }
         }
 
         return true
