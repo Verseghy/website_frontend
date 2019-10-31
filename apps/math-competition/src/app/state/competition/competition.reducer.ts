@@ -20,6 +20,18 @@ const competitionReducer = createReducer(
 
   on(CompetitionActions.loadProblems, state => state),
 
+  on(CompetitionActions.problemAdded, (state, payload) => ({...state, problems: [...state.problems, payload]})),
+  on(CompetitionActions.problemModified, (state, payload) => ({
+    ...state,
+    problems: state.problems.map(e => {
+      if (e.id !== payload.id) return e
+      return payload
+    })
+  })),
+  on(CompetitionActions.problemRemoved, (state, payload) => ({
+    ...state,
+    problems: state.problems.filter(e => e.id !== payload.id)
+  })),
 );
 
 export function reducer(state: State | undefined, action: Action) {
