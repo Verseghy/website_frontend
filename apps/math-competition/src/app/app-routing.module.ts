@@ -16,6 +16,7 @@ const routes: Routes = [
   {
     path: 'competition',
     loadChildren: () => import('./modules/competition/competition.module').then(m => m.CompetitionModule),
+    canActivate: [AuthGuard]
   },
   {
     path: '**',
