@@ -49,5 +49,10 @@ export const solutionRemoved = createAction(
   props<Solution>()
 )
 
+export const setSolution = createAction(
+  '[Competition] Solution Set',
+  props<Solution>()
+)
+
 
 

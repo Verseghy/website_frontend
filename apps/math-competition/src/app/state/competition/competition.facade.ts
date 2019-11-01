@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core'
 import { select, Store } from '@ngrx/store'
-import { loadProblems, loadSolutions, loadTeam } from './competition.actions'
-import { selectMerged, selectProblems, selectTeam } from './competition.selectors'
-import { Problem } from '../../interfaces/problem.interface'
+import { loadProblems, loadSolutions, loadTeam, setSolution } from './competition.actions'
+import { selectMerged, selectTeam } from './competition.selectors'
 import { Observable } from 'rxjs'
 import { Merged } from '../../interfaces/merged.interface'
 
@@ -17,6 +16,10 @@ export class CompetitionFacade {
     this.store$.dispatch(loadProblems())
     this.store$.dispatch(loadTeam())
     this.store$.dispatch(loadSolutions())
+  }
+
+  sendSolution (id: number, solution: number) {
+    this.store$.dispatch(setSolution({id, solution}))
   }
 
   constructor (

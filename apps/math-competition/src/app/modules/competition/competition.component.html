@@ -12,7 +12,14 @@
       <div class="problem-description">
         {{ a.text }}
       </div>
-      <mdc-text-field [value]="a.solution" outlined placeholder="Megoldás" type="number" (keyup)="blurField($event)" autocomplete="off"></mdc-text-field>
+      <mdc-text-field
+              [value]="a.solution"
+              outlined
+              placeholder="Megoldás"
+              type="number"
+              (keyup)="blurField($event)"
+              (blur)="setSolution(a.id, $event)"
+              autocomplete="off"></mdc-text-field>
     </div>
   </div>
 

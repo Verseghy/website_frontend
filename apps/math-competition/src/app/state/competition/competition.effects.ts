@@ -85,6 +85,15 @@ export class CompetitionEffects {
     })
   ))
 
+  setSolution$ = createEffect(() => combineLatest([
+    this.actions$.pipe(ofType(CompetitionActions.setSolution)),
+    this.competitionFacade.teamID$
+  ]).pipe(
+    mergeMap(([e, teamID]) => {
+      if (teamID === '') return of()
+      return of(this.afs.collection(`teams/${teamID}/solutions`).doc(String(e.id)).set({id: e.id, solution: e.solution}))
+    })
+  ), {dispatch: false})
 
   constructor(
     private actions$: Actions,

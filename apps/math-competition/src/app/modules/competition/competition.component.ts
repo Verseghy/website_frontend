@@ -55,6 +55,10 @@ export class CompetitionComponent implements OnInit {
     this.competitionFacade.loadCompetition()
   }
 
+  setSolution(id: number, solution: number) {
+    this.competitionFacade.sendSolution(id, solution)
+  }
+
   logout() {
     this.authFacade.logout()
   }
