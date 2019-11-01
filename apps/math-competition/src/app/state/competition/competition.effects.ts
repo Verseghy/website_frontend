@@ -7,9 +7,18 @@ import * as CompetitionActions from './competition.actions'
 import { AngularFirestore } from '@angular/fire/firestore'
 import { Problem } from '../../interfaces/problem.interface'
 import { combineLatest, EMPTY, of } from 'rxjs'
-import { loadTeamSucceed, problemAdded, problemModified, problemRemoved } from './competition.actions'
+import {
+  loadTeamSucceed,
+  problemAdded,
+  problemModified,
+  problemRemoved, solutionAdded,
+  solutionModified,
+  solutionRemoved,
+} from './competition.actions'
 import { AuthFacade } from '../auth/auth.facade'
 import { Team } from '../../interfaces/team.interface'
+import { CompetitionFacade } from './competition.facade'
+import { Solution } from '../../interfaces/solution.interface'
 
 
 @Injectable()
@@ -52,11 +61,36 @@ export class CompetitionEffects {
     })
   ))
 
+  loadSolutions$ = createEffect(() => combineLatest([
+    this.actions$.pipe(ofType(CompetitionActions.loadSolutions)),
+    this.competitionFacade.teamID$
+  ]).pipe(
+    switchMap(([, teamID]) => {
+      if (teamID === '') return of([])
+      return this.afs.collection<Solution>(`teams/${teamID}/solutions`).stateChanges().pipe(
+        catchError(e => {console.error(e); return EMPTY})
+      )
+    }),
+    mergeMap(c => {
+      return c.map(e => {
+        switch (e.type) {
+          case 'added':
+            return solutionAdded(e.payload.doc.data())
+          case 'modified':
+            return solutionModified(e.payload.doc.data())
+          case 'removed':
+            return solutionRemoved(e.payload.doc.data())
+        }
+      })
+    })
+  ))
+
 
   constructor(
     private actions$: Actions,
     private afs: AngularFirestore,
-    private authFacade: AuthFacade
+    private authFacade: AuthFacade,
+    private competitionFacade: CompetitionFacade
   ) {}
 
 }

@@ -20,11 +20,10 @@ export const initialState: State = {
 const competitionReducer = createReducer(
   initialState,
 
-  on(CompetitionActions.loadProblems, state => state),
-
   on(CompetitionActions.loadTeam, state => state),
   on(CompetitionActions.loadTeamSucceed, (state, {id}) => ({...state, teamID: id})),
 
+  on(CompetitionActions.loadProblems, state => state),
   on(CompetitionActions.problemAdded, (state, payload) => ({...state, problems: [...state.problems, payload]})),
   on(CompetitionActions.problemModified, (state, payload) => ({
     ...state,
@@ -36,6 +35,20 @@ const competitionReducer = createReducer(
   on(CompetitionActions.problemRemoved, (state, payload) => ({
     ...state,
     problems: state.problems.filter(e => e.id !== payload.id)
+  })),
+
+  on(CompetitionActions.loadSolutions, state => state),
+  on(CompetitionActions.solutionAdded, (state, payload) => ({...state, solutions: [...state.solutions, payload]})),
+  on(CompetitionActions.solutionModified, (state, payload) => ({
+    ...state,
+    solutions: state.solutions.map(e => {
+      if (e.id !== payload.id) return e
+      return payload
+    })
+  })),
+  on(CompetitionActions.solutionRemoved, (state, payload) => ({
+    ...state,
+    solutions: state.solutions.filter(e => e.id !== payload.id)
   })),
 );
 

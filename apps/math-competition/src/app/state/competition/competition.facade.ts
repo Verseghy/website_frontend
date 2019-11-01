@@ -1,19 +1,22 @@
 import { Injectable } from '@angular/core'
 import { select, Store } from '@ngrx/store'
-import { loadProblems, loadTeam } from './competition.actions'
-import { selectProblems } from './competition.selectors'
+import { loadProblems, loadSolutions, loadTeam } from './competition.actions'
+import { selectMerged, selectProblems, selectTeam } from './competition.selectors'
 import { Problem } from '../../interfaces/problem.interface'
 import { Observable } from 'rxjs'
+import { Merged } from '../../interfaces/merged.interface'
 
 @Injectable({
   providedIn: 'root',
 })
 export class CompetitionFacade {
-  problems$: Observable<Problem[]> = this.store$.pipe(select(selectProblems))
+  problems$: Observable<Merged[]> = this.store$.pipe(select(selectMerged))
+  teamID$ = this.store$.pipe(select(selectTeam))
 
   loadCompetition () {
     this.store$.dispatch(loadProblems())
     this.store$.dispatch(loadTeam())
+    this.store$.dispatch(loadSolutions())
   }
 
   constructor (

@@ -4,6 +4,11 @@ import { Merged } from '../../interfaces/merged.interface'
 
 const selectCompetition = state => state[competitionFeatureKey]
 
+export const selectTeam = createSelector(
+  selectCompetition,
+  state => state.teamID
+)
+
 export const selectProblems = createSelector(
   selectCompetition,
   (competition: State) => competition.problems.sort((a, b) => a.id - b.id)
