@@ -35,7 +35,7 @@ export class CompetitionComponent implements OnInit {
   )
   disableNextPage$ = combineLatest([this.problems$, this.page$]).pipe(
     map(([arr, page]) => {
-      return page + 1 > arr.length / 10
+      return page + 1 >= arr.length / 10
     })
   )
   disablePrevPage$ = combineLatest([this.problems$, this.page$]).pipe(
