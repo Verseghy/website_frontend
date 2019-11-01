@@ -8,7 +8,6 @@ import { LoadingBarRouterModule } from '@ngx-loading-bar/router'
 
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
-import { ServiceWorkerModule } from '@angular/service-worker'
 import { StoreModule } from '@ngrx/store'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 import { EffectsModule } from '@ngrx/effects'
@@ -41,7 +40,6 @@ const material = [MdcTypographyModule, MdcButtonModule]
     StoreDevtoolsModule.instrument({
       maxAge: 25,
     }),
-    ServiceWorkerModule.register('safety-worker.js', { enabled: environment.production }),
     ...material,
   ],
   providers: [],
