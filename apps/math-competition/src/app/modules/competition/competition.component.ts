@@ -27,8 +27,6 @@ export class CompetitionComponent implements OnInit {
   loaded = true
   page$ = new BehaviorSubject<number>(0)
   page = 0
-  TEMPdescription =
-    'Mennyi a következő összeg pontos értéke? $\\left( ctg \\left ( \\frac{\\pi}{4} + \\pi \\right) + tg \\left ( \\frac{\\pi}{4} + \\pi \\right ) )^2 + (ctg \\left ( \\frac{\\pi}{4} + 2\\pi \\right) + tg \\left ( \\frac{\\pi}{4} +2 \\pi \\right ) )^2 + … + (ctg \\left ( \\frac{\\pi}{4} +188 \\pi \\right) + tg \\left ( \\frac{\\pi}{4} + 188 \\pi \\right ) \\right)^2$'
   problems$ = this.competitionFacade.problems$
   paginated$ = combineLatest([this.problems$, this.page$]).pipe(
     map(([arr, page]) => {
