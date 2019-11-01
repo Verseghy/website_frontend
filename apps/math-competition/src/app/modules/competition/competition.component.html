@@ -7,10 +7,10 @@
   <ng-container *ngTemplateOutlet="paginationNumbers"></ng-container>
 
   <div class="problems" [hidden]="!loaded">
-    <div class="problem-card" *ngFor="let a of (paginated$ | async)">
+    <div class="problem-card" *ngFor="let a of (paginated$ | async); trackBy: trackByFn">
       <div class="problem-header">{{ a.id + 1 }}. feladat</div>
-      <div class="problem-description">
-        {{ a.text }}
+      <div class="problem-description tex">
+        {{ a.text | tex }}
       </div>
       <mdc-text-field
         [value]="a.solution"

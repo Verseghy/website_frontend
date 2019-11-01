@@ -64,13 +64,15 @@ export class CompetitionComponent implements OnInit {
 
   prevPage() {
     this.page$.next(--this.page)
-    setTimeout(() => (window as any).MathJax.typesetPromise())
     window.scrollTo(0, 0)
   }
 
   nextPage() {
     this.page$.next(++this.page)
-    setTimeout(() => (window as any).MathJax.typesetPromise())
     window.scrollTo(0, 0)
+  }
+
+  trackByFn(index, item) {
+    return item.id
   }
 }
