@@ -8,17 +8,22 @@ export const competitionFeatureKey = 'competition';
 export interface State {
   problems: Problem[]
   solutions: Solution[]
+  teamID: string
 }
 
 export const initialState: State = {
   problems: [],
-  solutions: []
+  solutions: [],
+  teamID: ''
 };
 
 const competitionReducer = createReducer(
   initialState,
 
   on(CompetitionActions.loadProblems, state => state),
+
+  on(CompetitionActions.loadTeam, state => state),
+  on(CompetitionActions.loadTeamSucceed, (state, {id}) => ({...state, teamID: id})),
 
   on(CompetitionActions.problemAdded, (state, payload) => ({...state, problems: [...state.problems, payload]})),
   on(CompetitionActions.problemModified, (state, payload) => ({

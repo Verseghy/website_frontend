@@ -52,7 +52,7 @@ export class CompetitionComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.competitionFacade.loadProblems()
+    this.competitionFacade.loadCompetition()
   }
 
   logout() {

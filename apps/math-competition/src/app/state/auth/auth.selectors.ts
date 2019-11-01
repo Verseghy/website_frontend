@@ -12,3 +12,8 @@ export const selectLoading = createSelector(
   selectState,
   state => state.loading
 )
+
+export const selectUID = createSelector(
+  selectState,
+  state => state.uid
+)

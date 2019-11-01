@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { select, Store } from '@ngrx/store'
 import { initAuth, login, logout } from './auth.actions'
-import { selectLoading, selectLoginError } from './auth.selectors'
+import { selectLoading, selectLoginError, selectUID } from './auth.selectors'
 
 @Injectable({
   providedIn: 'root',
@@ -9,6 +9,7 @@ import { selectLoading, selectLoginError } from './auth.selectors'
 export class AuthFacade {
   loginError$ = this.store$.pipe(select(selectLoginError))
   loading$ = this.store$.pipe(select(selectLoading))
+  uid$ = this.store$.pipe(select(selectUID))
 
   init() {
     this.store$.dispatch(initAuth())

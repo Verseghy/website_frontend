@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { select, Store } from '@ngrx/store'
-import { loadProblems } from './competition.actions'
+import { loadProblems, loadTeam } from './competition.actions'
 import { selectProblems } from './competition.selectors'
 import { Problem } from '../../interfaces/problem.interface'
 import { Observable } from 'rxjs'
@@ -11,8 +11,9 @@ import { Observable } from 'rxjs'
 export class CompetitionFacade {
   problems$: Observable<Problem[]> = this.store$.pipe(select(selectProblems))
 
-  loadProblems () {
+  loadCompetition () {
     this.store$.dispatch(loadProblems())
+    this.store$.dispatch(loadTeam())
   }
 
   constructor (
