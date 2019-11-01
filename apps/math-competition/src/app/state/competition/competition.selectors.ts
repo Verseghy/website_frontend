@@ -27,7 +27,7 @@ export const selectMerged = createSelector(
       const solution = solutions.find(v => v.id === e.id)
       return {
         ...e,
-        solution: solution ? solution.solution : null
+        solution: solution ? solution.solution : null,
       }
     })
   }

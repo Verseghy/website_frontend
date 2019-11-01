@@ -12,17 +12,15 @@ export class CompetitionFacade {
   problems$: Observable<Merged[]> = this.store$.pipe(select(selectMerged))
   teamID$ = this.store$.pipe(select(selectTeam))
 
-  loadCompetition () {
+  loadCompetition() {
     this.store$.dispatch(loadProblems())
     this.store$.dispatch(loadTeam())
     this.store$.dispatch(loadSolutions())
   }
 
-  sendSolution (id: number, solution: number) {
-    this.store$.dispatch(setSolution({id, solution}))
+  sendSolution(id: number, solution: number) {
+    this.store$.dispatch(setSolution({ id, solution }))
   }
 
-  constructor (
-    private store$: Store<any>
-  ) {}
+  constructor(private store$: Store<any>) {}
 }

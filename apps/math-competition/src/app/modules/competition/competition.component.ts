@@ -44,10 +44,7 @@ export class CompetitionComponent implements OnInit {
     })
   )
 
-  constructor(
-    private authFacade: AuthFacade,
-    private competitionFacade: CompetitionFacade
-  ) {}
+  constructor(private authFacade: AuthFacade, private competitionFacade: CompetitionFacade) {}
 
   ngOnInit() {
     this.competitionFacade.loadCompetition()
