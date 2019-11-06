@@ -19,6 +19,7 @@ import { LandingComponent } from './components/landing/landing.component'
 import { MdcButtonModule, MdcTypographyModule } from '@angular-mdc/web'
 import { authKey, reducer as authReducer } from './state/auth/auth.reducer'
 import { competitionFeatureKey, reducer as competitionReducer } from './state/competition/competition.reducer'
+import { timeFeatureKey, reducer as timeReducer } from './state/time/time.reducer'
 import { CompetitionEffects } from './state/competition/competition.effects'
 import { TimeEffects } from './state/time/time.effects'
 
@@ -37,6 +38,7 @@ const material = [MdcTypographyModule, MdcButtonModule]
     StoreModule.forRoot({}),
     StoreModule.forFeature(authKey, authReducer),
     StoreModule.forFeature(competitionFeatureKey, competitionReducer),
+    StoreModule.forFeature(timeFeatureKey, timeReducer),
     EffectsModule.forRoot([AuthEffects, CompetitionEffects, TimeEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,

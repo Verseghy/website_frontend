@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core'
 import { BehaviorSubject, combineLatest, interval } from 'rxjs'
 import { map } from 'rxjs/operators'
 import { AuthFacade } from '../../state/auth/auth.facade'
-import { addHours, differenceInHours, differenceInMinutes, differenceInSeconds } from 'date-fns'
+import { differenceInHours, differenceInMinutes, differenceInSeconds } from 'date-fns'
 import { CompetitionFacade } from '../../state/competition/competition.facade'
+import { TimeFacade } from '../../state/time/time.facade'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'verseghy-competition',
@@ -11,17 +13,26 @@ import { CompetitionFacade } from '../../state/competition/competition.facade'
   styleUrls: ['./competition.component.scss'],
 })
 export class CompetitionComponent implements OnInit {
-  TEMPendline = addHours(new Date(), 4)
-  remainingTime = interval(1000).pipe(
+  remainingTime = combineLatest([interval(1000), this.timeFacade.endTime$]).pipe(
     map(
-      () =>
-        differenceInHours(this.TEMPendline, new Date())
-          .toString()
-          .padStart(2, '0') +
-        ':' +
-        ((differenceInMinutes(this.TEMPendline, new Date()) % 3600) % 60).toString().padStart(2, '0') +
-        ':' +
-        (differenceInSeconds(this.TEMPendline, new Date()) % 60).toString().padStart(2, '0')
+      ([, endline]) => {
+        if (differenceInSeconds(endline, new Date()) > 0) {
+          return differenceInHours(endline, new Date())
+              .toString()
+              .padStart(2, '0') +
+            ':' +
+            ((differenceInMinutes(endline, new Date()) % 3600) % 60).toString().padStart(2, '0') +
+            ':' +
+            (differenceInSeconds(endline, new Date()) % 60).toString().padStart(2, '0')
+        } else {
+          if (differenceInSeconds(endline, new Date()) === 0) {
+            this.router.navigate(['/'])
+            return '00:00:00'
+          } else {
+            throw new Error("Date difference is negative");
+          }
+        }
+      }
     )
   )
   loaded = true
@@ -44,7 +55,7 @@ export class CompetitionComponent implements OnInit {
     })
   )
 
-  constructor(private authFacade: AuthFacade, private competitionFacade: CompetitionFacade) {}
+  constructor(private authFacade: AuthFacade, private competitionFacade: CompetitionFacade, private timeFacade: TimeFacade, private router: Router) {}
 
   ngOnInit() {
     this.competitionFacade.loadCompetition()
