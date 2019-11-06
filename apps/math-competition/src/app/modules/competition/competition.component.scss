@@ -19,8 +19,8 @@
   padding: 8px;
   overflow: hidden;
 
-  @include respond-below(xs) {
-    width: 100%;
+  @media (max-width: 1200px) {
+    width: 100vw;
     border: none;
     border-radius: unset;
   }
