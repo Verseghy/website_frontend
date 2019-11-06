@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
 import { AuthGuard } from './guards/auth.guard'
 import { LandingComponent } from './components/landing/landing.component'
+import { TimeGuard } from './guards/time.guard'
 
 const routes: Routes = [
   {
@@ -11,16 +12,16 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./modules/login/login.module').then(m => m.LoginModule),
-    canActivate: [AuthGuard],
+    canActivate: [TimeGuard, AuthGuard],
   },
   {
     path: 'competition',
     loadChildren: () => import('./modules/competition/competition.module').then(m => m.CompetitionModule),
-    canActivate: [AuthGuard],
+    canActivate: [TimeGuard, AuthGuard],
   },
   {
     path: '**',
-    component: LandingComponent, // TODO(TwoDCube): create not-found page
+    component: LandingComponent, // TODO(zoltanszepesi): create not-found page
   },
 ]
 
