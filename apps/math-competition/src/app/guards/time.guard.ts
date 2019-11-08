@@ -19,12 +19,6 @@ export class TimeGuard implements CanActivate {
       filter((time: State) => time.loaded),
       map(time => {
         switch(state.url) {
-          case '/login':
-            if (new Date() > time.startTime && new Date() < time.endTime) {
-              return true
-            }
-            return this.router.createUrlTree(['/'])
-
           case '/competition':
             if (new Date() > time.startTime && new Date() < time.endTime) {
               return true
