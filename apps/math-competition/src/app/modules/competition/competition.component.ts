@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { BehaviorSubject, combineLatest, interval } from 'rxjs'
-import { map } from 'rxjs/operators'
+import { map, startWith } from 'rxjs/operators'
 import { AuthFacade } from '../../state/auth/auth.facade'
 import { differenceInHours, differenceInMinutes, differenceInSeconds } from 'date-fns'
 import { CompetitionFacade } from '../../state/competition/competition.facade'
@@ -14,8 +14,10 @@ import { Router } from '@angular/router'
 })
 export class CompetitionComponent implements OnInit {
   remainingTime = combineLatest([interval(1000), this.timeFacade.endTime$]).pipe(
+    startWith([null, 'loading']),
     map(
       ([, endline]) => {
+        if (endline === 'loading') return '--:--:--'
         if (differenceInSeconds(endline, new Date()) > 0) {
           return differenceInHours(endline, new Date())
               .toString()
@@ -26,7 +28,10 @@ export class CompetitionComponent implements OnInit {
             (differenceInSeconds(endline, new Date()) % 60).toString().padStart(2, '0')
         } else {
           if (differenceInSeconds(endline, new Date()) === 0) {
-            this.router.navigate(['/'])
+            return '00:00:00';
+          }
+          if (differenceInSeconds(endline, new Date()) < 0) {
+            this.router.navigate(['/']) // TODO(zoltanszepesi): endpage
             return '00:00:00'
           } else {
             throw new Error("Date difference is negative");

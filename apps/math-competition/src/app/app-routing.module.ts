@@ -20,6 +20,11 @@ const routes: Routes = [
     canActivate: [TimeGuard, AuthGuard],
   },
   {
+    path: 'waiting',
+    loadChildren: () => import('./modules/waiting/waiting.module').then(m => m.WaitingModule),
+    canActivate: [TimeGuard, AuthGuard]
+  },
+  {
     path: '**',
     component: LandingComponent, // TODO(zoltanszepesi): create not-found page
   },

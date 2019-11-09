@@ -1,0 +1,44 @@
+@import 'breakpoints';
+
+:host {
+  display: grid;
+  min-height: 100vh;
+  grid-template-rows: minmax(64px, 1fr) max-content minmax(64px, 1fr);
+
+  @include respond-below(xs) {
+    grid-template-rows: 1fr;
+  }
+}
+
+.container {
+  grid-row: 2;
+  width: 512px;
+  height: min-content;
+  margin: 0 auto;
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  padding: 40px;
+
+  @include respond-below(xs) {
+    grid-row: 1;
+    width: 100%;
+    border: none;
+    border-radius: unset;
+  }
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+span {
+  display: block;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.small {
+  color: gray;
+  font-size: 12px;
+}
