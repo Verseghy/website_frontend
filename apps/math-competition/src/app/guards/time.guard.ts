@@ -18,7 +18,7 @@ export class TimeGuard implements CanActivate {
       select(timeFeatureKey),
       filter((time: State) => time.loaded),
       map(time => {
-        switch(state.url) {
+        switch (state.url) {
           case '/competition':
             if (new Date() > time.startTime && new Date() < time.endTime) {
               return true

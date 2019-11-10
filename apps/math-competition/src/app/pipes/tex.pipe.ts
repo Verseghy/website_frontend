@@ -1,13 +1,11 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core'
 
 @Pipe({
-  name: 'tex'
+  name: 'tex',
 })
 export class TexPipe implements PipeTransform {
-
   transform(value: any, ...args: any[]): any {
     setTimeout(() => (window as any).MathJax.typesetPromise(['.tex']))
-    return value;
+    return value
   }
-
 }

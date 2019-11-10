@@ -22,7 +22,7 @@ const routes: Routes = [
   {
     path: 'waiting',
     loadChildren: () => import('./modules/waiting/waiting.module').then(m => m.WaitingModule),
-    canActivate: [TimeGuard, AuthGuard]
+    canActivate: [TimeGuard, AuthGuard],
   },
   {
     path: '**',

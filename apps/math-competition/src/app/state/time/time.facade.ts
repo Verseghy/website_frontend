@@ -10,7 +10,7 @@ export class TimeFacade {
   startTime$ = this.store$.pipe(select(selectStartTime))
   endTime$ = this.store$.pipe(select(selectEndTime))
 
-  init () {
+  init() {
     this.store$.dispatch(initTimes())
   }
 
