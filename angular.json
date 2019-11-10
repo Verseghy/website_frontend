@@ -224,6 +224,9 @@
             "polyfills": "apps/math-competition/src/polyfills.ts",
             "styles": [],
             "scripts": [],
+            "stylePreprocessorOptions": {
+              "includePaths": ["apps/math-competition/src/scss"]
+            },
             "assets": []
           }
         }
