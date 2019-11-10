@@ -1,20 +1,14 @@
-# Nrwl
+# Verseghy Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) using [Nrwl Nx](https://nrwl.io/nx).
+## Status
 
-## Nrwl Extensions for Angular (Nx)
+Project Frontend: [![BrowserStack Status](https://automate.browserstack.com/badge.svg?badge_key=UUd3SW5kUFpEbW9ya1NRZGRwRm1aL3p2L1UxSHdMN3RmUUkwRkZYdzU1cz0tLWxNVk9jVHdSbUdTQ0dPZEFJeW5hU0E9PQ==--d6ba13a5cfc0832253f3bf00402fda1b38f98c66)](https://automate.browserstack.com/public-build/UUd3SW5kUFpEbW9ya1NRZGRwRm1aL3p2L1UxSHdMN3RmUUkwRkZYdzU1cz0tLWxNVk9jVHdSbUdTQ0dPZEFJeW5hU0E9PQ==--d6ba13a5cfc0832253f3bf00402fda1b38f98c66)
 
-<a href="https://nrwl.io/nx"><img src="https://preview.ibb.co/mW6sdw/nx_logo.png"></a>
+Project Math Competition: [![BrowserStack Status](https://automate.browserstack.com/badge.svg?badge_key=N3hiT08xL2xzUW5KYmxyaXp5SFlZSVpOYnVEQi9FUjJKTHRDOEk0bHZtQT0tLTVPdWJsUzIwSjJFd1prRWxydFI2ZFE9PQ==--b0235580637c9ad5227650e8bcf944ae74256f43)](https://automate.browserstack.com/public-build/N3hiT08xL2xzUW5KYmxyaXp5SFlZSVpOYnVEQi9FUjJKTHRDOEk0bHZtQT0tLTVPdWJsUzIwSjJFd1prRWxydFI2ZFE9PQ==--b0235580637c9ad5227650e8bcf944ae74256f43)
 
-Nx is an open source toolkit for enterprise Angular applications.
+Browser testing is provided by <a href="https://www.browserstack.com"><img width="200px" src="https://beta.verseghy-gimnazium.net/assets/svg/Browserstack-logo.svg" alt=""/></a>
 
-Nx is designed to help you create and build enterprise grade Angular applications. It provides an opinionated approach to application project structure and patterns.
-
-## Quick Start & Documentation
-
-[Watch a 5-minute video on how to get started with Nx.](http://nrwl.io/nx)
-
-## Generate your first application
+## Generate a new application
 
 Run `ng generate app myapp` to generate an application. When using Nx, you can create multiple applications and libraries in the same CLI workspace. Read more [here](http://nrwl.io/nx).
 

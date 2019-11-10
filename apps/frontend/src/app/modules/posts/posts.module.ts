@@ -5,6 +5,7 @@ import { SharedModule } from '../shared/shared.module'
 
 import { PostsComponent } from './components/posts/posts.component'
 import { RequestService } from './services/request.service'
+import { SlideshowModule } from 'ng-simple-slideshow'
 
 const routes: Routes = [
   {
@@ -16,10 +17,14 @@ const routes: Routes = [
     path: ':id',
     component: PostsComponent,
   },
+  {
+    path: 'preview/:id',
+    component: PostsComponent,
+  },
 ]
 
 @NgModule({
-  imports: [CommonModule, RouterModule.forChild(routes), SharedModule],
+  imports: [CommonModule, RouterModule.forChild(routes), SharedModule, SlideshowModule],
   declarations: [PostsComponent],
   providers: [RequestService],
 })

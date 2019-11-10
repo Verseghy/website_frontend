@@ -1,8 +1,8 @@
-import { AfterViewInit, ApplicationRef, Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core'
+import { ApplicationRef, Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core'
 import { interval, Observable } from 'rxjs'
 import { RequestService } from '../../services/request.service'
 import { Post } from '../../../../models/Post'
-import { filter, switchMap } from 'rxjs/operators'
+import { filter, switchMap, tap } from 'rxjs/operators'
 import { SubSink } from 'subsink'
 
 @Component({
@@ -10,7 +10,7 @@ import { SubSink } from 'subsink'
   templateUrl: './featured-post.component.html',
   styleUrls: ['./featured-post.component.css'],
 })
-export class FeaturedPostComponent implements OnInit, AfterViewInit, OnDestroy {
+export class FeaturedPostComponent implements OnInit, OnDestroy {
   private subs = new SubSink()
 
   @ViewChildren('content') content: QueryList<any>
@@ -26,10 +26,13 @@ export class FeaturedPostComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(private requestService: RequestService, private appRef: ApplicationRef) {}
 
   ngOnInit() {
-    this.posts = this.requestService.listFeaturedPosts()
+    this.posts = this.requestService.listFeaturedPosts().pipe(
+      filter(value => value.length > 0),
+      tap(() => {setTimeout(() => {this.init()})})
+    )
   }
 
-  ngAfterViewInit() {
+  init() {
     this.items = this.content.toArray()
     this.itemsLength = this.items.length
     for (const i of Object.keys(this.items)) {

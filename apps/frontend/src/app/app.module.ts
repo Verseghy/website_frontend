@@ -18,6 +18,7 @@ import { EffectsModule } from '@ngrx/effects'
 import { AngularFireModule } from '@angular/fire'
 import { LoadersModule } from '@verseghy/ui'
 import { environment } from '../environments/environment'
+import { ServiceWorkerModule } from '@angular/service-worker'
 
 library.add(faCheck)
 
@@ -38,6 +39,7 @@ library.add(faCheck)
       maxAge: 25,
     }),
     AngularFireModule.initializeApp(environment.firebase),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [],
   bootstrap: [AppComponent],
