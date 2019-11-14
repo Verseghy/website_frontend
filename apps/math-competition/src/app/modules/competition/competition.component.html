@@ -1,6 +1,6 @@
 <div class="container" mdcTypography>
   <div class="header">
-    <span class="remaining-time" mdcHeadline5>Hátralévő idő: {{ remainingTime | async }}</span> <!-- TODO(zoltanszepesi): refactor this into a new component -->
+    <span class="remaining-time" mdcHeadline5>Hátralévő idő: {{ remainingTime | async }}</span>
     <button mdc-button (click)="logout()">Kilépés</button>
     <div class="problem-grid">
       <div class="problem-grid-elem" [class.done]="problem.solution !== null" *ngFor="let problem of paginated$ | async">
