@@ -3,7 +3,12 @@
     <span class="remaining-time" mdcHeadline5>Hátralévő idő: {{ remainingTime | async }}</span>
     <button mdc-button (click)="logout()">Kilépés</button>
     <div class="problem-grid">
-      <div class="problem-grid-elem" [class.done]="problem.solution !== null" *ngFor="let problem of paginated$ | async">
+      <div
+              class="problem-grid-elem"
+              *ngFor="let problem of paginated$ | async"
+              [class.done]="problem.solution !== null"
+              (click)="scrollTo(problem.id)"
+      >
         {{ problem.id + 1 }}
       </div>
     </div>
@@ -12,7 +17,7 @@
   <ng-container *ngTemplateOutlet="paginationNumbers"></ng-container>
 
   <div class="problems" [hidden]="!loaded">
-    <div class="problem-card" *ngFor="let a of paginated$ | async; trackBy: trackByFn">
+    <div class="problem-card" *ngFor="let a of paginated$ | async; trackBy: trackByFn" [id]="'problem-' + a.id">
       <div class="problem-header">{{ a.id + 1 }}. feladat</div>
       <div class="problem-description tex">
         {{ a.text | tex }}

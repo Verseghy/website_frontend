@@ -83,6 +83,10 @@ export class CompetitionComponent implements OnInit {
     if (event.key === 'Enter') (event.target as HTMLInputElement).blur()
   }
 
+  scrollTo(id: number) {
+    window.scrollTo({top: (document.querySelector('#problem-' + id) as HTMLDivElement).offsetTop - 24, behavior: 'smooth'})
+  }
+
   prevPage() {
     this.page$.next(--this.page)
     window.scrollTo(0, 0)
