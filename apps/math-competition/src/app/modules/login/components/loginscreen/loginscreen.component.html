@@ -22,7 +22,7 @@
       {{ localizeLoginError(loginError$ | async) }}
     </div>
 
-    <button mdc-button primary [disabled]="loading$ | async">Bejelentkezés</button>
+    <button mdc-button raised [disabled]="loading$ | async">Bejelentkezés</button>
     <div class="texts">
       <a routerLink="">Elfelejtetted a jelszavad?</a>
       <a routerLink="">Még nem regisztráltatok?</a>

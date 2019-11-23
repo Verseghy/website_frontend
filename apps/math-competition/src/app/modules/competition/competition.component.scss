@@ -103,7 +103,7 @@
     cursor: pointer;
 
     &.done {
-      background-color: #0F9D58;
+      background-color: var(--mdc-theme-secondary);
       border: none;
     }
   }
