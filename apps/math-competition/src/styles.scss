@@ -8,6 +8,7 @@ $mdc-button-disabled-ink-color: #868686; // TODO: fix this with material 4.0.0
 * {
   margin: 0;
   padding: 0;
+  transition: color, background-color 300ms;
 }
 
 html,
@@ -33,10 +34,11 @@ mjx-container:focus {
 
 body.dark-mode {
   background: #121212;
-  color: #fff;
+  color: rgba(255, 255, 255, 0.87);
   --mdc-theme-primary: #01579b;
   --mdc-theme-secondary: #33691e;
   --mdc-theme-error: #f44336;
+  --mdc-theme-text-primary-on-background: rgba(255, 255, 255, 0.87);
 
   .container, .problem-card, .problem-header {
     border-color: #424242 !important;
@@ -53,6 +55,12 @@ body.dark-mode {
 
     @include mdc-text-field-outline-color(#424242);
     @include mdc-text-field-hover-outline-color(#fff);
+  }
+
+  verseghy-landing {
+    h3 {
+      color: #fff;
+    }
   }
 }
 

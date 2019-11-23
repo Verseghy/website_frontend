@@ -16,14 +16,15 @@ import { AngularFireAuthModule } from '@angular/fire/auth'
 import { AngularFirestoreModule } from '@angular/fire/firestore'
 import { LandingComponent } from './components/landing/landing.component'
 
-import { MdcButtonModule, MdcTypographyModule } from '@angular-mdc/web'
+import { MdcButtonModule, MdcTypographyModule, MdcSwitchModule } from '@angular-mdc/web'
 import { authKey, reducer as authReducer } from './state/auth/auth.reducer'
 import { competitionFeatureKey, reducer as competitionReducer } from './state/competition/competition.reducer'
 import { timeFeatureKey, reducer as timeReducer } from './state/time/time.reducer'
 import { CompetitionEffects } from './state/competition/competition.effects'
 import { TimeEffects } from './state/time/time.effects'
+import { FormsModule } from '@angular/forms'
 
-const material = [MdcTypographyModule, MdcButtonModule]
+const material = [MdcTypographyModule, MdcButtonModule, MdcSwitchModule]
 
 @NgModule({
   declarations: [AppComponent, LandingComponent],
@@ -33,6 +34,7 @@ const material = [MdcTypographyModule, MdcButtonModule]
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
+    FormsModule,
     LoadingBarHttpClientModule,
     LoadingBarRouterModule,
     StoreModule.forRoot({}),

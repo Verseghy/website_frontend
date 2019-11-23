@@ -40,11 +40,17 @@ ul {
   }
 }
 
-button {
-  margin-top: 6px;
-}
-
 h3 {
   text-align: center;
   margin-bottom: 16px;
+}
+
+label {
+  margin-right: 16px;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
 }

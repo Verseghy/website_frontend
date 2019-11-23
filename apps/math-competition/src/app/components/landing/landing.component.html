@@ -32,5 +32,13 @@
     csökkenő kapcsolat áll fenn.
   </p>
   <p>A versenyhez jó szórakozást, az esetleges tortához jó étvágyat kíván gimnáziumunk matematika munkaközössége!</p>
-  <button mdc-button raised class="button" [routerLink]="['/login']">Tovább</button>
+
+  <div class="flex-container">
+    <mdc-form-field>
+      <label>Sötét téma</label>
+      <mdc-switch [(ngModel)]="darkValue"> </mdc-switch>
+    </mdc-form-field>
+
+    <button mdc-button raised class="button" [routerLink]="['/login']">Tovább</button>
+  </div>
 </div>
