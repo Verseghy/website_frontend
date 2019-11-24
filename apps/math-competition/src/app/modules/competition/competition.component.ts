@@ -31,12 +31,8 @@ export class CompetitionComponent implements OnInit {
         if (differenceInSeconds(endline, new Date()) === 0) {
           return '00:00:00'
         }
-        if (differenceInSeconds(endline, new Date()) < 0) {
-          this.router.navigate(['/']) // TODO(zoltanszepesi): endpage
-          return '00:00:00'
-        } else {
-          throw new Error('Date difference is negative')
-        }
+        this.router.navigate(['/']) // TODO(zoltanszepesi): endpage
+        return '00:00:00'
       }
     })
   )

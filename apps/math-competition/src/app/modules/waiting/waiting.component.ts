@@ -29,12 +29,8 @@ export class WaitingComponent implements OnInit {
         if (differenceInSeconds(start, new Date()) === 0) {
           return '00:00:00'
         }
-        if (differenceInSeconds(start, new Date()) < 0) {
-          this.router.navigate(['/competition'])
-          return '00:00:00'
-        } else {
-          throw new Error('Date difference is negative')
-        }
+        this.router.navigate(['/competition'])
+        return '00:00:00'
       }
     })
   )
