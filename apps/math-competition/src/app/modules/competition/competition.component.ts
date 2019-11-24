@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
-import { BehaviorSubject, combineLatest, interval } from 'rxjs'
-import { map, startWith } from 'rxjs/operators'
+import { BehaviorSubject, combineLatest, interval, timer } from 'rxjs'
+import { debounce, map, startWith } from 'rxjs/operators'
 import { AuthFacade } from '../../state/auth/auth.facade'
 import { differenceInHours, differenceInMinutes, differenceInSeconds } from 'date-fns'
 import { CompetitionFacade } from '../../state/competition/competition.facade'
@@ -44,6 +44,9 @@ export class CompetitionComponent implements OnInit {
     map(([arr, page]) => {
       return arr.slice(page * 10, (page + 1) * 10)
     })
+  )
+  debouncedPaginated$ = this.paginated$.pipe(
+    debounce(() => timer(1000))
   )
   disableNextPage$ = combineLatest([this.problems$, this.page$]).pipe(
     map(([arr, page]) => {

@@ -17,7 +17,7 @@
   <ng-container *ngTemplateOutlet="paginationNumbers"></ng-container>
 
   <div class="problems" [hidden]="!loaded">
-    <div class="problem-card" *ngFor="let a of paginated$ | async; trackBy: trackByFn" [id]="'problem-' + a.id">
+    <div class="problem-card" *ngFor="let a of debouncedPaginated$ | async; trackBy: trackByFn" [id]="'problem-' + a.id">
       <div class="problem-header">{{ a.id + 1 }}. feladat</div>
       <ng-katex-paragraph [paragraph]="a.text" class="problem-description tex"></ng-katex-paragraph>
       <mdc-text-field
