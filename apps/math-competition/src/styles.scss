@@ -8,7 +8,6 @@ $mdc-button-disabled-ink-color: #868686; // TODO: fix this with material 4.0.0
 * {
   margin: 0;
   padding: 0;
-  transition: color, background-color 300ms;
 }
 
 html,
@@ -20,6 +19,10 @@ body {
 
 html {
   box-sizing: border-box;
+}
+
+body {
+  transition: color, background-color 300ms;
 }
 
 *,
