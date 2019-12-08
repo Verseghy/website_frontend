@@ -1,6 +1,6 @@
 <div class="container" mdcTypography>
   <div class="header">
-    <span class="remaining-time" mdcHeadline5>Hátralévő idő: {{ remainingTime | async }}</span>
+    <verseghy-timer></verseghy-timer>
     <button mdc-button (click)="logout()">Kilépés</button>
     <div class="problem-grid">
       <div
@@ -19,7 +19,7 @@
   <div class="problems" [hidden]="!loaded">
     <div class="problem-card" *ngFor="let a of debouncedPaginated$ | async; trackBy: trackByFn" [id]="'problem-' + a.id">
       <div class="problem-header">{{ a.id + 1 }}. feladat</div>
-      <ng-katex-paragraph [paragraph]="a.text" class="problem-description tex"></ng-katex-paragraph>
+      <ng-katex-paragraph [paragraph]="a.text" class="problem-description"></ng-katex-paragraph>
       <mdc-text-field
         [value]="a.solution"
         outlined
