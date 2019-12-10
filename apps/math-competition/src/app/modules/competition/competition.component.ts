@@ -22,9 +22,6 @@ export class CompetitionComponent implements OnInit {
       return arr.slice(page * 10, (page + 1) * 10)
     })
   )
-  debouncedPaginated$ = this.paginated$.pipe(
-    debounce(() => timer(1000))
-  )
   disableNextPage$ = combineLatest([this.problems$, this.page$]).pipe(
     map(([arr, page]) => {
       return page + 1 >= arr.length / 10
