@@ -23,7 +23,7 @@
     </div>
 
     <button mdc-button raised [disabled]="loading$ | async">Bejelentkezés</button>
-    <div class="texts">
+    <div class="texts" *ngIf="false">
       <a routerLink="">Elfelejtetted a jelszavad?</a>
       <a routerLink="">Még nem regisztráltatok?</a>
     </div>
