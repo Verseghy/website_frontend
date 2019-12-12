@@ -19,6 +19,7 @@
   <div class="problems" [hidden]="!loaded">
     <div class="problem-card" *ngFor="let a of paginated$ | async; trackBy: trackByFn" [id]="'problem-' + a.id">
       <div class="problem-header">{{ a.id + 1 }}. feladat</div>
+      <img class="problem-image" *ngIf="a.hasImage" [src]="a.image" alt="">
       <ng-katex-paragraph [paragraph]="a.text" class="problem-description"></ng-katex-paragraph>
       <mdc-text-field
         [value]="a.solution"

@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core'
 import { BehaviorSubject, combineLatest, interval, timer } from 'rxjs'
-import { debounce, map, startWith } from 'rxjs/operators'
+import { map, switchMap } from 'rxjs/operators'
 import { AuthFacade } from '../../state/auth/auth.facade'
 import { differenceInHours, differenceInMinutes, differenceInSeconds } from 'date-fns'
 import { CompetitionFacade } from '../../state/competition/competition.facade'
 import { TimeFacade } from '../../state/time/time.facade'
 import { Router } from '@angular/router'
+import { AngularFireStorage } from '@angular/fire/storage'
 
 @Component({
   selector: 'verseghy-competition',
@@ -16,7 +17,16 @@ export class CompetitionComponent implements OnInit {
   loaded = true
   page$ = new BehaviorSubject<number>(0)
   page = 0
-  problems$ = this.competitionFacade.problems$
+  problems$ = this.competitionFacade.problems$.pipe(
+    switchMap( async arr => {
+      return Promise.all(arr.map(async problem => {
+        if (problem.hasImage) {
+          problem.image = await this.afstorage.ref(`images/${problem.id}.png`).getDownloadURL().toPromise()
+        }
+        return problem
+      }))
+    })
+  )
   paginated$ = combineLatest([this.problems$, this.page$]).pipe(
     map(([arr, page]) => {
       return arr.slice(page * 10, (page + 1) * 10)
@@ -37,7 +47,8 @@ export class CompetitionComponent implements OnInit {
     private authFacade: AuthFacade,
     private competitionFacade: CompetitionFacade,
     private timeFacade: TimeFacade,
-    private router: Router
+    private router: Router,
+    private afstorage: AngularFireStorage
   ) {}
 
   ngOnInit() {

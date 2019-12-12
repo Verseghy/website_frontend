@@ -23,7 +23,7 @@ import { Solution } from '../../interfaces/solution.interface'
 
 @Injectable()
 export class CompetitionEffects {
-  loadCompetitions$ = createEffect(() =>
+  loadProblems$ = createEffect(() =>
     this.actions$.pipe(
       ofType(CompetitionActions.loadProblems),
       exhaustMap(() =>
