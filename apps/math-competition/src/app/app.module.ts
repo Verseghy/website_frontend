@@ -23,6 +23,7 @@ import { timeFeatureKey, reducer as timeReducer } from './state/time/time.reduce
 import { CompetitionEffects } from './state/competition/competition.effects'
 import { TimeEffects } from './state/time/time.effects'
 import { FormsModule } from '@angular/forms'
+import { AngularFireStorageModule } from '@angular/fire/storage'
 
 const material = [MdcTypographyModule, MdcButtonModule, MdcSwitchModule]
 
@@ -34,6 +35,7 @@ const material = [MdcTypographyModule, MdcButtonModule, MdcSwitchModule]
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
+    AngularFireStorageModule,
     FormsModule,
     LoadingBarHttpClientModule,
     LoadingBarRouterModule,

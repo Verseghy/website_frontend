@@ -17,17 +17,7 @@ export class CompetitionComponent implements OnInit {
   loaded = true
   page$ = new BehaviorSubject<number>(0)
   page = 0
-  problems$ = this.competitionFacade.problems$.pipe(
-    // TODO(zoltanszepesi): refactor this so we don't have to re-get the image every time
-    switchMap( async arr => {
-      return Promise.all(arr.map(async problem => {
-        if (problem.hasImage) {
-          problem.image = await this.afstorage.ref(`images/${problem.id}.png`).getDownloadURL().toPromise()
-        }
-        return problem
-      }))
-    })
-  )
+  problems$ = this.competitionFacade.problems$
   paginated$ = combineLatest([this.problems$, this.page$]).pipe(
     map(([arr, page]) => {
       return arr.slice(page * 10, (page + 1) * 10)

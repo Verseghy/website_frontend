@@ -20,6 +20,7 @@ import { AuthFacade } from '../auth/auth.facade'
 import { Team } from '../../interfaces/team.interface'
 import { CompetitionFacade } from './competition.facade'
 import { Solution } from '../../interfaces/solution.interface'
+import { AngularFireStorage } from '@angular/fire/storage'
 
 @Injectable()
 export class CompetitionEffects {
@@ -38,17 +39,29 @@ export class CompetitionEffects {
           )
       ),
       mergeMap(c => {
-        return c.map(e => {
+        return Promise.all(c.map(async e => {
           switch (e.type) {
-            case 'added':
-              return problemAdded(e.payload.doc.data())
-            case 'modified':
-              return problemModified(e.payload.doc.data())
-            case 'removed':
+            case 'added': {
+              const problem = e.payload.doc.data()
+              if (problem.hasImage) {
+                problem.image = await this.afstorage.ref(`images/${problem.id}.png`).getDownloadURL().toPromise()
+              }
+              return problemAdded(problem)
+            }
+            case 'modified': {
+              const problem = e.payload.doc.data()
+              if (problem.hasImage) {
+                problem.image = await this.afstorage.ref(`images/${problem.id}.png`).getDownloadURL().toPromise()
+              }
+              return problemModified(problem)
+            }
+            case 'removed': {
               return problemRemoved(e.payload.doc.data())
+            }
           }
-        })
-      })
+        }))
+      }),
+      mergeMap(d => d)
     )
   )
 
@@ -116,6 +129,7 @@ export class CompetitionEffects {
   constructor(
     private actions$: Actions,
     private afs: AngularFirestore,
+    private afstorage: AngularFireStorage,
     private authFacade: AuthFacade,
     private competitionFacade: CompetitionFacade
   ) {}
