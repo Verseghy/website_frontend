@@ -23,7 +23,11 @@ export class TimeGuard implements CanActivate {
             if (new Date() > time.startTime && new Date() < time.endTime) {
               return true
             }
-            return this.router.createUrlTree(['/'])
+            if (new Date() < time.startTime) {
+              return this.router.createUrlTree(['/'])
+            }
+
+            return this.router.createUrlTree(['/end'])
 
           case '/waiting':
             if (new Date() > time.startTime) {

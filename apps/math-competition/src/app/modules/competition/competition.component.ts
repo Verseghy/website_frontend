@@ -18,6 +18,7 @@ export class CompetitionComponent implements OnInit {
   page$ = new BehaviorSubject<number>(0)
   page = 0
   problems$ = this.competitionFacade.problems$.pipe(
+    // TODO(zoltanszepesi): refactor this so we don't have to re-get the image every time
     switchMap( async arr => {
       return Promise.all(arr.map(async problem => {
         if (problem.hasImage) {

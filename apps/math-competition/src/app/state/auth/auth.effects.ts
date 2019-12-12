@@ -28,7 +28,7 @@ export class AuthEffects {
       exhaustMap(({ email, password }) =>
         from(this.afAuth.auth.signInWithEmailAndPassword(email, password)).pipe(
           map(() => {
-            this.router.navigate(['/competition']) // TODO(zoltanszepesi): redirect to next page
+            this.router.navigate(['/waiting'])
             return noop()
           }),
           catchError(error => of(loginError({ error })))

@@ -25,6 +25,10 @@ const routes: Routes = [
     canActivate: [TimeGuard, AuthGuard],
   },
   {
+    path: 'end',
+    loadChildren: () => import('./modules/end/end.module').then(m => m.EndModule)
+  },
+  {
     path: '**',
     component: LandingComponent, // TODO(zoltanszepesi): create not-found page
   },

@@ -30,7 +30,7 @@ export class TimerComponent implements OnInit {
         if (differenceInSeconds(endline, new Date()) === 0) {
           return '00:00:00'
         }
-        this.router.navigate(['/']) // TODO(zoltanszepesi): endpage
+        this.router.navigate(['/end'])
         return '00:00:00'
       }
     })
