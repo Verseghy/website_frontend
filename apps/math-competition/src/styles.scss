@@ -3,7 +3,7 @@
 @import '~katex/dist/katex.css';
 
 $mdc-theme-primary: #1a73e8; // primary color example
-$mdc-theme-secondary: #0F9D58; // secondary color example
+$mdc-theme-secondary: #0f9d58; // secondary color example
 $mdc-button-disabled-ink-color: #868686; // TODO: fix this with material 4.0.0
 @import '~@angular-mdc/theme/material';
 
@@ -45,7 +45,9 @@ body.dark-mode {
   --mdc-theme-error: #f44336;
   --mdc-theme-text-primary-on-background: rgba(255, 255, 255, 0.87);
 
-  .container, .problem-card, .problem-header {
+  .container,
+  .problem-card,
+  .problem-header {
     border-color: #424242 !important;
   }
 
@@ -90,4 +92,3 @@ body.dark-mode {
     margin-bottom: 2px;
   }
 }
-

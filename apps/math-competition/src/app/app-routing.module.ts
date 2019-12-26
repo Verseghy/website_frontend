@@ -26,7 +26,7 @@ const routes: Routes = [
   },
   {
     path: 'end',
-    loadChildren: () => import('./modules/end/end.module').then(m => m.EndModule)
+    loadChildren: () => import('./modules/end/end.module').then(m => m.EndModule),
   },
   {
     path: '**',

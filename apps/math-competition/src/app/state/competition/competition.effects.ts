@@ -39,27 +39,35 @@ export class CompetitionEffects {
           )
       ),
       mergeMap(c => {
-        return Promise.all(c.map(async e => {
-          switch (e.type) {
-            case 'added': {
-              const problem = e.payload.doc.data()
-              if (problem.hasImage) {
-                problem.image = await this.afstorage.ref(`images/${problem.id}.png`).getDownloadURL().toPromise()
+        return Promise.all(
+          c.map(async e => {
+            switch (e.type) {
+              case 'added': {
+                const problem = e.payload.doc.data()
+                if (problem.hasImage) {
+                  problem.image = await this.afstorage
+                    .ref(`images/${problem.id}.png`)
+                    .getDownloadURL()
+                    .toPromise()
+                }
+                return problemAdded(problem)
               }
-              return problemAdded(problem)
-            }
-            case 'modified': {
-              const problem = e.payload.doc.data()
-              if (problem.hasImage) {
-                problem.image = await this.afstorage.ref(`images/${problem.id}.png`).getDownloadURL().toPromise()
+              case 'modified': {
+                const problem = e.payload.doc.data()
+                if (problem.hasImage) {
+                  problem.image = await this.afstorage
+                    .ref(`images/${problem.id}.png`)
+                    .getDownloadURL()
+                    .toPromise()
+                }
+                return problemModified(problem)
               }
-              return problemModified(problem)
+              case 'removed': {
+                return problemRemoved(e.payload.doc.data())
+              }
             }
-            case 'removed': {
-              return problemRemoved(e.payload.doc.data())
-            }
-          }
-        }))
+          })
+        )
       }),
       mergeMap(d => d)
     )

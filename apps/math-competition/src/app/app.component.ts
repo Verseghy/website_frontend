@@ -9,11 +9,7 @@ import { DOCUMENT } from '@angular/common'
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  constructor(
-    private authFacade: AuthFacade,
-    private timeFacade: TimeFacade,
-    @Inject(DOCUMENT) private document
-  ) {}
+  constructor(private authFacade: AuthFacade, private timeFacade: TimeFacade, @Inject(DOCUMENT) private document) {}
 
   ngOnInit() {
     this.authFacade.init()

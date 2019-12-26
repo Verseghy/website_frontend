@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core'
-import { BehaviorSubject, combineLatest, interval, timer } from 'rxjs'
-import { map, switchMap } from 'rxjs/operators'
+import { BehaviorSubject, combineLatest } from 'rxjs'
+import { map } from 'rxjs/operators'
 import { AuthFacade } from '../../state/auth/auth.facade'
-import { differenceInHours, differenceInMinutes, differenceInSeconds } from 'date-fns'
 import { CompetitionFacade } from '../../state/competition/competition.facade'
 import { TimeFacade } from '../../state/time/time.facade'
 import { Router } from '@angular/router'
@@ -34,13 +33,7 @@ export class CompetitionComponent implements OnInit {
     })
   )
 
-  constructor(
-    private authFacade: AuthFacade,
-    private competitionFacade: CompetitionFacade,
-    private timeFacade: TimeFacade,
-    private router: Router,
-    private afstorage: AngularFireStorage
-  ) {}
+  constructor(private authFacade: AuthFacade, private competitionFacade: CompetitionFacade) {}
 
   ngOnInit() {
     this.competitionFacade.loadCompetition()
@@ -59,7 +52,7 @@ export class CompetitionComponent implements OnInit {
   }
 
   scrollTo(id: number) {
-    window.scrollTo({top: (document.querySelector('#problem-' + id) as HTMLDivElement).offsetTop - 24, behavior: 'smooth'})
+    window.scrollTo({ top: (document.querySelector('#problem-' + id) as HTMLDivElement).offsetTop - 24, behavior: 'smooth' })
   }
 
   prevPage() {

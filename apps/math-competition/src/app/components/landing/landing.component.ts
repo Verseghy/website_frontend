@@ -15,7 +15,7 @@ export class LandingComponent implements OnInit {
     }
   }
 
-  set darkValue (val) {
+  set darkValue(val) {
     if (val) {
       this.document.body.classList.add('dark-mode')
       localStorage.setItem('dark-mode', 'true')

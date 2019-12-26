@@ -8,7 +8,7 @@ const admin = firebaseAdmin.initializeApp()
 
 export const rate = functions
   .region('europe-west1')
-  .runWith({memory: '128MB'})
+  .runWith({ memory: '128MB' })
   .https.onRequest(async (request, response) => {
     interface RateRequest {
       problems?: number
@@ -29,7 +29,10 @@ export const rate = functions
       if (req.web) document.web = req.web
       if (req.feedback) document.feedback = req.feedback
 
-      await admin.firestore().collection('ratings').add(document)
+      await admin
+        .firestore()
+        .collection('ratings')
+        .add(document)
 
       res.ok = true
       response.status(200).send(res)
