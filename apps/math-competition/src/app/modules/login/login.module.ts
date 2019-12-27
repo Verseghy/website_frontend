@@ -1,12 +1,12 @@
-import { AngularFirestoreModule } from '@angular/fire/firestore'
-import { AngularFireAuthModule } from '@angular/fire/auth'
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { LoginscreenComponent } from './components/loginscreen/loginscreen.component'
 import { RouterModule, Routes } from '@angular/router'
-
-import { MdcButtonModule, MdcFormFieldModule, MdcTextFieldModule } from '@angular-mdc/web'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+
+import { MdcButtonModule, MdcTextFieldModule, MdcTypographyModule } from '@angular-mdc/web'
+
+const material = [MdcTextFieldModule, MdcTypographyModule, MdcButtonModule]
 
 const routes: Routes = [
   {
@@ -17,16 +17,6 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [LoginscreenComponent],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    MdcTextFieldModule,
-    MdcFormFieldModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MdcButtonModule,
-    AngularFireAuthModule,
-    AngularFirestoreModule,
-  ],
+  imports: [CommonModule, RouterModule.forChild(routes), FormsModule, ReactiveFormsModule, ...material],
 })
 export class LoginModule {}

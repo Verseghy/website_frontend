@@ -8,32 +8,46 @@ import { LoadingBarRouterModule } from '@ngx-loading-bar/router'
 
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
-import { ServiceWorkerModule } from '@angular/service-worker'
 import { StoreModule } from '@ngrx/store'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 import { EffectsModule } from '@ngrx/effects'
-import { reducers } from './reducers'
-import { AuthEffects } from './reducers/auth/auth.effects'
+import { AuthEffects } from './state/auth/auth.effects'
 import { AngularFireAuthModule } from '@angular/fire/auth'
-import { TimeEffects } from './reducers/time/time.effects'
 import { AngularFirestoreModule } from '@angular/fire/firestore'
+import { LandingComponent } from './components/landing/landing.component'
+
+import { MdcButtonModule, MdcTypographyModule, MdcSwitchModule } from '@angular-mdc/web'
+import { authKey, reducer as authReducer } from './state/auth/auth.reducer'
+import { competitionFeatureKey, reducer as competitionReducer } from './state/competition/competition.reducer'
+import { timeFeatureKey, reducer as timeReducer } from './state/time/time.reducer'
+import { CompetitionEffects } from './state/competition/competition.effects'
+import { TimeEffects } from './state/time/time.effects'
+import { FormsModule } from '@angular/forms'
+import { AngularFireStorageModule } from '@angular/fire/storage'
+
+const material = [MdcTypographyModule, MdcButtonModule, MdcSwitchModule]
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, LandingComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
+    AngularFireStorageModule,
+    FormsModule,
     LoadingBarHttpClientModule,
     LoadingBarRouterModule,
-    StoreModule.forRoot(reducers),
+    StoreModule.forRoot({}),
+    StoreModule.forFeature(authKey, authReducer),
+    StoreModule.forFeature(competitionFeatureKey, competitionReducer),
+    StoreModule.forFeature(timeFeatureKey, timeReducer),
+    EffectsModule.forRoot([AuthEffects, CompetitionEffects, TimeEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
     }),
-    EffectsModule.forRoot([AuthEffects, TimeEffects]),
-    ServiceWorkerModule.register('safety-worker.js', { enabled: environment.production }),
+    ...material,
   ],
   providers: [],
   bootstrap: [AppComponent],

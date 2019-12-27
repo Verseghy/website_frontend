@@ -1,0 +1,48 @@
+<div class="container" mdcTypography>
+  <div class="header">
+    <verseghy-timer></verseghy-timer>
+    <button mdc-button (click)="logout()">Kilépés</button>
+    <div class="problem-grid">
+      <div
+        class="problem-grid-elem"
+        *ngFor="let problem of paginated$ | async"
+        [class.done]="problem.solution !== null"
+        (click)="scrollTo(problem.id)"
+      >
+        {{ problem.id + 1 }}
+      </div>
+    </div>
+  </div>
+
+  <ng-container *ngTemplateOutlet="paginationNumbers"></ng-container>
+
+  <div class="problems" [hidden]="!loaded">
+    <div class="problem-card" *ngFor="let a of paginated$ | async; trackBy: trackByFn" [id]="'problem-' + a.id">
+      <div class="problem-header">{{ a.id + 1 }}. feladat</div>
+      <img class="problem-image" *ngIf="a.hasImage" [src]="a.image" alt="" />
+      <ng-katex-paragraph [paragraph]="a.text" class="problem-description"></ng-katex-paragraph>
+      <mdc-text-field
+        [value]="a.solution"
+        outlined
+        placeholder="Megoldás"
+        type="number"
+        (keyup)="blurField($event)"
+        (blur)="setSolution(a.id, $event)"
+        autocomplete="off"
+      ></mdc-text-field>
+    </div>
+  </div>
+
+  <div class="loader" *ngIf="!loaded">
+    Feladatok betöltése...
+  </div>
+
+  <ng-container *ngTemplateOutlet="paginationNumbers"></ng-container>
+</div>
+
+<ng-template #paginationNumbers>
+  <div class="pagination-numbers">
+    <button mdc-button [disabled]="disablePrevPage$ | async" (click)="prevPage()">Előző</button>
+    <button mdc-button [disabled]="disableNextPage$ | async" (click)="nextPage()">Következő</button>
+  </div>
+</ng-template>
