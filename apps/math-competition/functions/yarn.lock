@@ -718,7 +718,7 @@ finalhandler@~1.1.2:
     statuses "~1.5.0"
     unpipe "~1.0.0"
 
-firebase-admin@^8.6.0:
+firebase-admin@8.8.0:
   version "8.8.0"
   resolved "https://registry.yarnpkg.com/firebase-admin/-/firebase-admin-8.8.0.tgz#6fbe5a8353d13d61dee504a54e18b7ef82d0d8a8"
   integrity sha512-IKtyL7doZu3Sh3pCz+O7vFWc/UwxEfXe263X/bPbucu/qEsM+5UdljIklnInSMunO+A1BUXKtsKkQf91iZQ2Ew==
@@ -732,7 +732,7 @@ firebase-admin@^8.6.0:
     "@google-cloud/firestore" "^2.6.0"
     "@google-cloud/storage" "^4.1.2"
 
-firebase-functions-test@^0.1.6:
+firebase-functions-test@0.1.7:
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/firebase-functions-test/-/firebase-functions-test-0.1.7.tgz#c1f9b82157a1435e38c6707f0943447403ab1703"
   integrity sha512-/zVQhaUZ+M7z25aUaZSIah0MIDZIfnRfQxtHYTE8hgUgODmKdaMX20vh5Gv23hnCPauIHuYb7XFTUOZiWU1udA==
@@ -740,7 +740,7 @@ firebase-functions-test@^0.1.6:
     "@types/lodash" "^4.14.104"
     lodash "^4.17.5"
 
-firebase-functions@^3.3.0:
+firebase-functions@3.3.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/firebase-functions/-/firebase-functions-3.3.0.tgz#8c6d909eebfa4bce1b25a2e34edfc52cc786a020"
   integrity sha512-dP6PCG+OwR6RtFpOqwPsLnfiCr3CwXAm/SVGMbO53vDAk0nhUQ1WGAyHDYmIyMAkaLJkIKGwDnX7XmZ5+yAg7g==
@@ -1612,7 +1612,7 @@ tslib@1.10.0, tslib@^1.8.0, tslib@^1.8.1:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.10.0.tgz#c3c19f95973fb0a62973fb09d90d961ee43e5c8a"
   integrity sha512-qOebF53frne81cf0S9B41ByenJ3/IuH8yJKngAX35CmiZySA0khhkovshKK+jGCaMnVomla7gVlIcc3EvKPbTQ==
 
-tslint@^5.12.0:
+tslint@5.20.1:
   version "5.20.1"
   resolved "https://registry.yarnpkg.com/tslint/-/tslint-5.20.1.tgz#e401e8aeda0152bc44dd07e614034f3f80c67b7d"
   integrity sha512-EcMxhzCFt8k+/UP5r8waCf/lzmeSyVlqxqMEDQE7rWYiQky8KpIBz1JAoYXfROHrPZ1XXd43q8yQnULOLiBRQg==
@@ -1658,7 +1658,7 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@^3.2.2:
+typescript@3.7.3:
   version "3.7.3"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.7.3.tgz#b36840668a16458a7025b9eabfad11b66ab85c69"
   integrity sha512-Mcr/Qk7hXqFBXMN7p7Lusj1ktCBydylfQM/FZCk5glCNQJrCUKPkMHdo9R0MTFWsC/4kPFvDS0fDPvukfCkFsw==
