@@ -18,12 +18,12 @@ export class PostsFacade {
 
   loadInitPage() {
     if (this.page === 0) {
-      this.store.dispatch(loadPosts({page: this.page++}))
+      this.store.dispatch(loadPosts({ page: this.page++ }))
       this.store.dispatch(loadFeaturedPosts())
     }
   }
 
   loadNextPage() {
-    this.store.dispatch(loadPosts({page: ++this.page}))
+    this.store.dispatch(loadPosts({ page: ++this.page }))
   }
 }
