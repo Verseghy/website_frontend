@@ -4,6 +4,7 @@ import { RequestService } from '../../services/request.service'
 import { Post } from '../../../../models/Post'
 import { filter, switchMap, tap } from 'rxjs/operators'
 import { SubSink } from 'subsink'
+import { PostsFacade } from '../../state/posts/posts.facade'
 
 @Component({
   selector: 'verseghy-featured-post',
@@ -21,18 +22,11 @@ export class FeaturedPostComponent implements OnInit, OnDestroy {
   items: Array<ElementRef>
   itemsLength: number
   isHovered = false
-  posts: Observable<Post[]>
+  posts = this.postsFacade.featuredPosts$
 
-  constructor(private requestService: RequestService, private appRef: ApplicationRef) {}
+  constructor(private postsFacade: PostsFacade, private appRef: ApplicationRef) {}
 
   ngOnInit() {
-    this.posts = this.requestService.listFeaturedPosts().pipe(
-      filter(value => value.length > 0),
-      tap(() => {setTimeout(() => {this.init()})})
-    )
-  }
-
-  init() {
     this.items = this.content.toArray()
     this.itemsLength = this.items.length
     for (const i of Object.keys(this.items)) {
