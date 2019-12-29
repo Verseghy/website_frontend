@@ -1,5 +1,5 @@
 <div (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()" class="container" (swipeleft)="next()" (swiperight)="previous()">
-  <div class="content" [@animate]="animate" *ngFor="let post of (post$ | async)">
+  <div class="content" [@animate]="animate" *ngFor="let post of post$ | async">
     <div class="background">
       <img [src]="post.index_image" alt="" />
     </div>

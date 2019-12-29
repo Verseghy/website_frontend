@@ -13,38 +13,50 @@ import { trigger, transition, animate, style } from '@angular/animations'
   animations: [
     trigger('animate', [
       transition('left => void', [
-        animate('300ms', style({
-          transform: 'translate3d(calc(-100% - 10px), 0, 0)',
-          opacity: 0
-        })),
+        animate(
+          '300ms',
+          style({
+            transform: 'translate3d(calc(-100% - 10px), 0, 0)',
+            opacity: 0,
+          })
+        ),
       ]),
       transition('void => left', [
         style({
           transform: 'translate3d(calc(100% + 10px), 0, 0)',
-          opacity: 0
+          opacity: 0,
         }),
-        animate('300ms', style({
-          transform: 'translate3d(0, 0, 0)',
-          opacity: 1
-        }))
+        animate(
+          '300ms',
+          style({
+            transform: 'translate3d(0, 0, 0)',
+            opacity: 1,
+          })
+        ),
       ]),
       transition('right => void', [
-        animate('300ms', style({
-          transform: 'translate3d(calc(100% + 10px), 0, 0)',
-          opacity: 0
-        })),
+        animate(
+          '300ms',
+          style({
+            transform: 'translate3d(calc(100% + 10px), 0, 0)',
+            opacity: 0,
+          })
+        ),
       ]),
       transition('void => right', [
         style({
           transform: 'translate3d(calc(-100% - 10px), 0, 0)',
-          opacity: 0
+          opacity: 0,
         }),
-        animate('300ms', style({
-          transform: 'translate3d(0, 0, 0)',
-          opacity: 1
-        }))
-      ])
-    ])
+        animate(
+          '300ms',
+          style({
+            transform: 'translate3d(0, 0, 0)',
+            opacity: 1,
+          })
+        ),
+      ]),
+    ]),
   ],
 })
 export class FeaturedPostComponent implements OnDestroy {
