@@ -9,7 +9,8 @@
     <div (click)="submenu1 = !submenu1" [ngClass]="{ open: submenu1 }" class="menu">
       <span>Menza</span> <i class="material-icons arrow">expand_more</i>
       <div class="submenu">
-        <a (click)="drawer = !drawer" href="" routerLink="/canteen">Étlap</a> <a (click)="drawer = !drawer" href="">Befizetés</a>
+        <a (click)="drawer = !drawer" href="" routerLink="/canteen">Étlap</a>
+        <a (click)="drawer = !drawer" href="" class="TEMP-disabled-not-implemented-link">Befizetés</a>
       </div>
     </div>
     <div class="menu"><a (click)="drawer = !drawer" href="" routerLink="/events">Események</a></div>
@@ -36,6 +37,9 @@
       </div>
     </div>
   </div>
-  <div class="left"><i class="material-icons">search</i> <i (click)="drawer = !drawer" class="material-icons menu-toggle">menu</i></div>
+  <div class="left">
+    <i class="material-icons TEMP-disabled-not-implemented-link">search</i>
+    <i (click)="drawer = !drawer" class="material-icons menu-toggle">menu</i>
+  </div>
 </div>
 <div class="backdrop" (click)="drawer = !drawer" [ngClass]="{ open: drawer }"></div>

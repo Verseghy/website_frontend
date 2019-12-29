@@ -34,3 +34,8 @@ body {
 .ball-scale-ripple-multiple > div {
   border-color: #e0e0e0 !important;
 }
+
+.TEMP-disabled-not-implemented-link {
+  opacity: 0.2;
+  pointer-events: none;
+}
