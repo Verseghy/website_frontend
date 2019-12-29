@@ -51,7 +51,7 @@
   }
 
   img {
-    grid-row: span 3;
+    grid-row: span 4;
 
     @media screen and (max-width: 992px) {
       grid-row: unset;
