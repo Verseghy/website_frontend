@@ -9,9 +9,19 @@
   box-shadow: 0 3px 5px 0 rgba(0, 1, 1, 0.1);
   padding: 40px 40px 48px;
   margin-top: 20px;
+
+  @media screen and (max-width: 992px) {
+    padding: 20px;
+  }
 }
 
 .calendar {
   min-height: 700px;
   position: relative;
+}
+
+:host::ng-deep .now {
+  @media screen and (max-width: 992px) {
+    display: none;
+  }
 }

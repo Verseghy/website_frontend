@@ -9,7 +9,7 @@ import { Observable } from 'rxjs'
 @Component({
   selector: 'verseghy-events',
   templateUrl: './events.component.html',
-  styleUrls: ['./events.component.css'],
+  styleUrls: ['./events.component.scss'],
 })
 export class EventsComponent implements OnInit {
   calendarSettings: Settings = {
