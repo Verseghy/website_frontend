@@ -17,6 +17,23 @@ export class FooterComponent implements OnInit {
 
   ngOnInit() {}
 
+  devClickHandler() {
+    caches
+      .keys()
+      .then(a => Promise.all(a.map(n => caches.delete(n))))
+      .then(() => {
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.getRegistrations().then(async registrations => {
+            for (const registration of registrations) {
+              console.log('serviceWorker unregistered')
+              await registration.unregister()
+            }
+            location.reload()
+          })
+        }
+      })
+  }
+
   subscribeToNewsletter() {
     if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(this.email)) {
       this.spinnerVisible = true
