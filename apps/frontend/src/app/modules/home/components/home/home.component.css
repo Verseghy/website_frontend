@@ -22,3 +22,14 @@ h2 {
   font-weight: 500;
   margin-top: 20px;
 }
+
+.load-more-wrapper {
+  display: flex;
+}
+
+.load-more {
+  display: inline-block;
+  margin: 32px auto;
+  font-weight: bold;
+  text-transform: uppercase;
+}

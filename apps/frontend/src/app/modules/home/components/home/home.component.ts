@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
   constructor(private postsFacade: PostsFacade) {}
 
   posts = this.postsFacade.posts$
+  isLoading$ = this.postsFacade.isLoading$
 
   ngOnInit() {
     this.postsFacade.loadInitPage()
@@ -21,5 +22,9 @@ export class HomeComponent implements OnInit {
 
   trackByFn(item) {
     return item.id
+  }
+
+  nextPage() {
+    this.postsFacade.loadNextPage()
   }
 }

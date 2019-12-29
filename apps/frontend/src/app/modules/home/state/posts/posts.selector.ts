@@ -12,3 +12,8 @@ export const selectFeaturedPosts = createSelector(
   selectFeature,
   (state: State) => state.featuredPosts
 )
+
+export const selectLoading = createSelector(
+  selectFeature,
+  (state: State) => state.loading
+)

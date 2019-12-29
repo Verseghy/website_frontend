@@ -11,6 +11,7 @@ import { StoreModule } from '@ngrx/store'
 import * as fromPosts from './state/posts/posts.reducer'
 import { EffectsModule } from '@ngrx/effects'
 import { PostsEffects } from './state/posts/posts.effects'
+import { MatButtonModule } from '@angular/material'
 
 const routes: Routes = [
   {
@@ -27,6 +28,7 @@ const routes: Routes = [
     SharedModule,
     StoreModule.forFeature(fromPosts.postsFeatureKey, fromPosts.reducer),
     EffectsModule.forFeature([PostsEffects]),
+    MatButtonModule,
   ],
   declarations: [HomeComponent, CardComponent, FeaturedPostComponent],
 })
