@@ -7,6 +7,10 @@
   grid-template-columns: 1fr 200px;
   grid-gap: 20px;
   margin: 20px auto 0;
+
+  @media screen and (max-width: 992px) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .card,
@@ -22,78 +26,86 @@
   grid-column-gap: 10px;
   grid-row-gap: 30px;
   margin-bottom: 20px;
-}
 
-.sidebar {
-  position: sticky;
-  top: 84px;
-  padding: 30px 30px;
-}
+  @media screen and (max-width: 992px) {
+    grid-template-columns: 1fr;
+  }
 
-.card-title {
-  grid-column: span 2;
+  .card-title {
+    grid-column: span 2;
+
+    @media screen and (max-width: 992px) {
+      grid-column: span 1;
+    }
+  }
 }
 
 .item {
   display: grid;
   grid-template-columns: 100px 1fr;
   grid-gap: 10px;
-}
 
-.item img {
-  grid-row: span 3;
-}
-
-.item .name {
-  font-weight: 700;
-  font-size: 24px;
-  font-family: 'Open Sans', sans-serif;
-}
-
-.item .title {
-  font-style: italic;
-}
-
-.item .subject {
-  color: #999;
-}
-
-.item .description {
-  grid-column: span 2;
-}
-
-.item li {
-  list-style: none;
-  margin: 5px 0;
-  font-size: 14px;
-}
-
-.sidebar span {
-  display: block;
-  margin: 10px 0;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.sidebar span.active {
-  color: #009cff;
-}
-
-@media screen and (max-width: 992px) {
-  .card {
+  @media screen and (max-width: 992px) {
     grid-template-columns: 1fr;
+    text-align: center;
   }
 
-  .card-title {
-    grid-column: span 1;
+  img {
+    grid-row: span 3;
+
+    @media screen and (max-width: 992px) {
+      grid-row: unset;
+      margin: 0 auto;
+    }
   }
 
-  .sidebar {
+  .name {
+    font-weight: 700;
+    font-size: 24px;
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  .title {
+    font-style: italic;
+  }
+
+  .subject {
+    color: #999;
+  }
+
+  .description {
+    grid-column: span 2;
+
+    @media screen and (max-width: 992px) {
+      grid-column: unset;
+    }
+  }
+
+  li {
+    list-style: none;
+    margin: 5px 0;
+    font-size: 14px;
+  }
+}
+
+.sidebar {
+  position: sticky;
+  top: 84px;
+  padding: 30px 30px;
+
+  @media screen and (max-width: 992px) {
     display: none;
   }
 
-  .container {
-    grid-template-columns: 1fr;
+  span {
+    display: block;
+    margin: 10px 0;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+
+    &.active {
+      color: #009cff;
+    }
   }
 }
 
