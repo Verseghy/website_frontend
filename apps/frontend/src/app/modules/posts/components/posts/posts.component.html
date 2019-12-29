@@ -26,7 +26,7 @@
           <h1>{{ post?.title }}</h1>
           <div class="meta">
             <div class="author">
-              <img class="author-image" [src]="post?.author.image" alt="" /> <span>{{ post?.author.name }}</span>
+              <img *ngIf="post?.author.image" class="author-image" [src]="post?.author.image" alt="" /> <span>{{ post?.author.name }}</span>
             </div>
             <div class="date">
               <i class="material-icons">date_range</i> <span>{{ post?.date }}</span>
@@ -49,7 +49,7 @@
           [disableSwiping]="post?.images?.length < 2"
         ></slideshow>
         <div class="post-author">
-          <div class="left"><img class="post-author-image" [src]="post?.author.image" alt="" /></div>
+          <div class="left"><img *ngIf="post?.author.image" class="post-author-image" [src]="post?.author.image" alt="" /></div>
           <div class="right">
             <h4>{{ post?.author.name }}</h4>
             <p class="post-author-description">{{ post?.author.description }}</p>

@@ -75,6 +75,7 @@
   vertical-align: middle;
   z-index: 1;
   position: relative;
+  margin-right: 20px;
 }
 
 .postimg {
@@ -109,7 +110,7 @@
 .bottom p {
   display: inline-block;
   vertical-align: middle;
-  margin-left: 20px;
+  margin-right: 20px;
   font-size: 12px;
   color: #5e5e5e;
   z-index: 1;

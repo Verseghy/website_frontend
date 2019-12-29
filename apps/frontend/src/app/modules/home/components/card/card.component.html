@@ -17,7 +17,7 @@
   <p class="title">{{ post.title }}</p>
   <p class="description">{{ post.description }}</p>
   <div class="bottom">
-    <img [src]="post.author.image" alt="" class="authorimg" />
+    <img *ngIf="post.author.image" [src]="post.author.image" alt="" class="authorimg" />
     <p>{{ post.author.name }}</p>
     <p>{{ post.date }}</p>
   </div>
@@ -41,7 +41,7 @@
   </div>
   <p class="title">{{ post.title }}</p>
   <div class="bottom">
-    <img class="authorimg" [src]="post.author.image" alt="" />
+    <img *ngIf="post.author.image" class="authorimg" [src]="post.author.image" alt="" />
     <p>{{ post.author.name }}</p>
     <p>{{ post.date }}</p>
   </div>
@@ -60,7 +60,7 @@
   <p class="title">{{ post.title }}</p>
   <p class="description">{{ post.description }}</p>
   <div class="bottom">
-    <img class="authorimg" [src]="post.author.image" alt="" />
+    <img *ngIf="post.author.image" class="authorimg" [src]="post.author.image" alt="" />
     <p>{{ post.author.name }}</p>
     <p>{{ post.date }}</p>
   </div>
