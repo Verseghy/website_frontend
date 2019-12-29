@@ -19,7 +19,7 @@
   <div class="bottom">
     <img *ngIf="post.author.image" [src]="post.author.image" alt="" class="authorimg" />
     <p>{{ post.author.name }}</p>
-    <p>{{ post.date }}</p>
+    <p>{{ formatDate(post.date) }}</p>
   </div>
 </div>
 <div
@@ -43,7 +43,7 @@
   <div class="bottom">
     <img *ngIf="post.author.image" class="authorimg" [src]="post.author.image" alt="" />
     <p>{{ post.author.name }}</p>
-    <p>{{ post.date }}</p>
+    <p>{{ formatDate(post.date) }}</p>
   </div>
 </div>
 <div class="content type2" *ngIf="post.type === '1'" [routerLink]="['/posts/' + post.id]">
@@ -62,6 +62,6 @@
   <div class="bottom">
     <img *ngIf="post.author.image" class="authorimg" [src]="post.author.image" alt="" />
     <p>{{ post.author.name }}</p>
-    <p>{{ post.date }}</p>
+    <p>{{ formatDate(post.date) }}</p>
   </div>
 </div>

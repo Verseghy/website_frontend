@@ -29,7 +29,7 @@
               <img *ngIf="post?.author.image" class="author-image" [src]="post?.author.image" alt="" /> <span>{{ post?.author.name }}</span>
             </div>
             <div class="date">
-              <i class="material-icons">date_range</i> <span>{{ post?.date }}</span>
+              <i class="material-icons">date_range</i> <span>{{ formatDate(post?.date) }}</span>
             </div>
           </div>
         </div>

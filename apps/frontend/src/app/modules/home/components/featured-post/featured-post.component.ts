@@ -5,6 +5,7 @@ import { filter, switchMap, tap, map } from 'rxjs/operators'
 import { SubSink } from 'subsink'
 import { PostsFacade } from '../../state/posts/posts.facade'
 import { trigger, transition, animate, style } from '@angular/animations'
+import { format } from 'date-fns'
 
 @Component({
   selector: 'verseghy-featured-post',
@@ -116,5 +117,9 @@ export class FeaturedPostComponent implements OnDestroy {
 
   onMouseLeave(): void {
     this.isHovered = false
+  }
+
+  formatDate(date: string): string {
+    return format(new Date(date), 'YYYY-MM-DD')
   }
 }

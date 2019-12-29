@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core'
 import { ContrastService } from '../../../../services/contrast.service'
 import { Post } from '../../../../models/Post'
+import { format } from 'date-fns'
 
 @Component({
   selector: 'verseghy-card',
@@ -18,5 +19,9 @@ export class CardComponent implements OnInit {
     for (const i of Object.keys(this.post.labels)) {
       this.post.labels[i].backgroundDark = ContrastService.getConstrast(this.post.labels[i].color)
     }
+  }
+
+  formatDate(date: string): string {
+    return format(new Date(date), 'YYYY-MM-DD')
   }
 }

@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router'
 import { ContrastService } from '../../../../services/contrast.service'
 import { map, switchMap } from 'rxjs/operators'
 import { DomSanitizer } from '@angular/platform-browser'
+import { format } from 'date-fns'
 
 @Component({
   selector: 'verseghy-posts',
@@ -45,5 +46,9 @@ export class PostsComponent implements OnInit {
     } else if (event.code === 'ArrowLeft') {
       this.slideshow.onSlide(-1)
     }
+  }
+
+  formatDate(date: string): string {
+    return format(new Date(date), 'YYYY-MM-DD')
   }
 }
