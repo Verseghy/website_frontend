@@ -15,10 +15,6 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-.post {
-  display: inline;
-}
-
 .content {
   position: absolute;
   top: 0;

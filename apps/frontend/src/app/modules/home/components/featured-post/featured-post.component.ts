@@ -1,40 +1,71 @@
 import { ApplicationRef, Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core'
-import { interval, Observable } from 'rxjs'
-import { RequestService } from '../../services/request.service'
+import { interval, BehaviorSubject, combineLatest } from 'rxjs'
 import { Post } from '../../../../models/Post'
-import { filter, switchMap, tap } from 'rxjs/operators'
+import { filter, switchMap, tap, map } from 'rxjs/operators'
 import { SubSink } from 'subsink'
 import { PostsFacade } from '../../state/posts/posts.facade'
+import { trigger, transition, animate, style } from '@angular/animations'
 
 @Component({
   selector: 'verseghy-featured-post',
   templateUrl: './featured-post.component.html',
   styleUrls: ['./featured-post.component.css'],
+  animations: [
+    trigger('animate', [
+      transition('left => void', [
+        animate('300ms', style({
+          transform: 'translate3d(calc(-100% - 10px), 0, 0)',
+          opacity: 0
+        })),
+      ]),
+      transition('void => left', [
+        style({
+          transform: 'translate3d(calc(100% + 10px), 0, 0)',
+          opacity: 0
+        }),
+        animate('300ms', style({
+          transform: 'translate3d(0, 0, 0)',
+          opacity: 1
+        }))
+      ]),
+      transition('right => void', [
+        animate('300ms', style({
+          transform: 'translate3d(calc(100% + 10px), 0, 0)',
+          opacity: 0
+        })),
+      ]),
+      transition('void => right', [
+        style({
+          transform: 'translate3d(calc(-100% - 10px), 0, 0)',
+          opacity: 0
+        }),
+        animate('300ms', style({
+          transform: 'translate3d(0, 0, 0)',
+          opacity: 1
+        }))
+      ])
+    ])
+  ],
 })
-export class FeaturedPostComponent implements OnInit, OnDestroy {
+export class FeaturedPostComponent implements OnDestroy {
   private subs = new SubSink()
 
-  @ViewChildren('content') content: QueryList<any>
-
-  speed = 300
-  autoplaySpeed = 10000
-  current = 0
-  items: Array<ElementRef>
-  itemsLength: number
+  autoplaySpeed = 1000
   isHovered = false
-  posts = this.postsFacade.featuredPosts$
+  page$ = new BehaviorSubject(0)
+  post$ = combineLatest([this.postsFacade.featuredPosts$, this.page$]).pipe(
+    map(([posts, page]) => {
+      this.page = ((page % posts.length) + posts.length) % posts.length
+      if (posts.length) return [posts[this.page]]
+      return []
+    })
+  )
+  page = 0
+  animate = ''
 
   constructor(private postsFacade: PostsFacade, private appRef: ApplicationRef) {}
 
-  ngOnInit() {
-    this.items = this.content.toArray()
-    this.itemsLength = this.items.length
-    for (const i of Object.keys(this.items)) {
-      if (Number(i) !== 0) {
-        this._transformRight(this.items[i])
-      }
-      this._transformLeft(this.items[this.itemsLength - 1])
-    }
+  /*ngOnInit(): void {
     this.subs.add(
       this.appRef.isStable
         .pipe(
@@ -47,24 +78,24 @@ export class FeaturedPostComponent implements OnInit, OnDestroy {
           }
         })
     )
-  }
+  }*/
 
   ngOnDestroy() {
     this.subs.unsubscribe()
   }
 
   next(): void {
-    this._translateLeft(this.items[this.current])
-    this._translateMiddle(this.items[this._nextId()])
-    this._transformRight(this.items[this._previousId()])
-    this.current = this._nextId()
+    this.animate = 'left'
+    setTimeout(() => {
+      this.page$.next(++this.page)
+    })
   }
 
   previous(): void {
-    this._translateRight(this.items[this.current])
-    this._translateMiddle(this.items[this._previousId()])
-    this.current = this._previousId()
-    this._transformLeft(this.items[this._previousId()])
+    this.animate = 'right'
+    setTimeout(() => {
+      this.page$.next(--this.page)
+    })
   }
 
   onMouseEnter(): void {
@@ -73,51 +104,5 @@ export class FeaturedPostComponent implements OnInit, OnDestroy {
 
   onMouseLeave(): void {
     this.isHovered = false
-  }
-
-  private _nextId(): number {
-    let nextId = this.current + 1
-    if (nextId > this.itemsLength - 1) {
-      nextId = 0
-    }
-    return nextId
-  }
-
-  private _previousId(): number {
-    let nextId = this.current - 1
-    if (nextId < 0) {
-      nextId = this.itemsLength - 1
-    }
-    return nextId
-  }
-
-  private _translateMiddle(element: ElementRef): void {
-    element.nativeElement.style.opacity = 1
-    element.nativeElement.style.transitionDuration = this.speed + 'ms'
-    element.nativeElement.style.transform = 'translate3d(0, 0, 0)'
-  }
-
-  private _translateRight(element: ElementRef): void {
-    element.nativeElement.style.opacity = 0
-    element.nativeElement.style.transitionDuration = this.speed + 'ms'
-    element.nativeElement.style.transform = 'translate3d(calc(100% + 10px), 0, 0)'
-  }
-
-  private _translateLeft(element: ElementRef): void {
-    element.nativeElement.style.opacity = 0
-    element.nativeElement.style.transitionDuration = this.speed + 'ms'
-    element.nativeElement.style.transform = 'translate3d(calc(-100% - 10px), 0, 0)'
-  }
-
-  private _transformRight(element: ElementRef): void {
-    element.nativeElement.style.opacity = 0
-    element.nativeElement.style.transitionDuration = '0ms'
-    element.nativeElement.style.transform = 'translate3d(calc(100% + 10px), 0, 0)'
-  }
-
-  private _transformLeft(element: ElementRef): void {
-    element.nativeElement.style.opacity = 0
-    element.nativeElement.style.transitionDuration = '0ms'
-    element.nativeElement.style.transform = 'translate3d(calc(-100% - 10px), 0, 0)'
   }
 }
