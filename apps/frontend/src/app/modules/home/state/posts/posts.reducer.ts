@@ -6,20 +6,20 @@ export const postsFeatureKey = 'posts'
 
 export interface State {
   posts: Post[]
-  featuredPosts: Post[],
+  featuredPosts: Post[]
   loading: boolean
 }
 
 export const initialState: State = {
   posts: [],
   featuredPosts: [],
-  loading: true
+  loading: true,
 }
 
 const postsReducer = createReducer(
   initialState,
 
-  on(PostsActions.loadPosts, state => ({...state, loading: true})),
+  on(PostsActions.loadPosts, state => ({ ...state, loading: true })),
   on(PostsActions.loadPostsSuccess, (state, action) => ({ ...state, posts: [...state.posts, ...action.posts], loading: false })),
   on(PostsActions.loadPostsFailure, (state, action) => state),
 

@@ -17,9 +17,7 @@ export class EventsEffects {
     map(([action, storeState]) => {
       if (!storeState.loadedMonths.includes(JSON.stringify(action.payload))) {
         this.store.dispatch(new AddLoadedMonth(JSON.stringify(action.payload)))
-        return this.request.getEvents(action.payload).pipe(
-          catchError(() => of([]))
-        )
+        return this.request.getEvents(action.payload).pipe(catchError(() => of([])))
       } else {
         const empty: Entity[] = []
         return of(empty)
