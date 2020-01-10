@@ -15,18 +15,12 @@ import { NavigationCancel, NavigationEnd, NavigationStart, Router } from '@angul
             [
               style({
                 opacity: 0,
-                transform: 'translateY(50px)',
-                position: 'absolute',
-                top: '0',
-                left: '0',
-                right: '0',
                 zIndex: '8',
               }),
               animate(
                 '100ms ease-out',
                 style({
                   opacity: 1,
-                  transform: 'translateY(0)',
                 })
               ),
             ],

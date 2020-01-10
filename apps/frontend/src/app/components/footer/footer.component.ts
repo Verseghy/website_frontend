@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core'
+import { environment } from '../../../environments/environment'
 
 @Component({
   selector: 'verseghy-footer',
@@ -16,6 +17,10 @@ export class FooterComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
+
+  get appVersion() {
+    return environment.version
+  }
 
   devClickHandler() {
     caches

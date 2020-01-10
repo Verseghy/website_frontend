@@ -19,6 +19,7 @@ import { AngularFireModule } from '@angular/fire'
 import { LoadersModule } from '@verseghy/ui'
 import { environment } from '../environments/environment'
 import { ServiceWorkerModule } from '@angular/service-worker'
+import { AngularFireAnalyticsModule, APP_NAME, APP_VERSION, COLLECTION_ENABLED, ScreenTrackingService } from '@angular/fire/analytics'
 
 library.add(faCheck)
 
@@ -39,9 +40,15 @@ library.add(faCheck)
       maxAge: 25,
     }),
     AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAnalyticsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
-  providers: [],
+  providers: [
+    ScreenTrackingService,
+    { provide: APP_NAME, useValue: 'Verseghy Honlap' },
+    { provide: APP_VERSION, useValue: environment.version },
+    { provide: COLLECTION_ENABLED, useValue: environment.production },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

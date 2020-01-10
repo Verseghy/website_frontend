@@ -14,7 +14,9 @@ export const environment = {
     storageBucket: 'vfg-honlap.appspot.com',
     messagingSenderId: '616435986324',
     appId: '1:616435986324:web:b449b36b597fdb3d',
+    measurementId: 'G-HMG0GDHDR6',
   },
+  version: 'DEVELOPMENT',
 }
 
 /*
