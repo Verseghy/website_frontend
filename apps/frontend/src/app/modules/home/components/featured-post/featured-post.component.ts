@@ -6,6 +6,7 @@ import { SubSink } from 'subsink'
 import { PostsFacade } from '../../state/posts/posts.facade'
 import { trigger, transition, animate, style } from '@angular/animations'
 import { format } from 'date-fns'
+import { ContrastService } from '../../../../services/contrast.service'
 
 @Component({
   selector: 'verseghy-featured-post',
@@ -67,8 +68,20 @@ export class FeaturedPostComponent implements OnDestroy {
   isHovered = false
   page$ = new BehaviorSubject(0)
   post$ = combineLatest([this.postsFacade.featuredPosts$, this.page$]).pipe(
+    map(([posts, page]) => [
+      posts.map(post => ({
+        ...post,
+        labels: post.labels.map(label => ({
+          ...label,
+          backgroundDark: ContrastService.getConstrast(label.color),
+        })),
+      })),
+      page,
+    ]),
     map(([posts, page]) => {
+      // @ts-ignore TODO(zoltanszepesi): check this again after updating typescript
       this.page = ((page % posts.length) + posts.length) % posts.length
+      // @ts-ignore TODO(zoltanszepesi): check this again after updating typescript
       if (posts.length) return [posts[this.page]]
       return []
     })
