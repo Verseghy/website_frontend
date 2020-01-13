@@ -20,6 +20,7 @@ import { LoadersModule } from '@verseghy/ui'
 import { environment } from '../environments/environment'
 import { ServiceWorkerModule } from '@angular/service-worker'
 import { AngularFireAnalyticsModule, APP_NAME, APP_VERSION, COLLECTION_ENABLED, ScreenTrackingService } from '@angular/fire/analytics'
+import { AngularFirePerformanceModule } from '@angular/fire/performance'
 
 library.add(faCheck)
 
@@ -41,6 +42,7 @@ library.add(faCheck)
     }),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAnalyticsModule,
+    AngularFirePerformanceModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [
