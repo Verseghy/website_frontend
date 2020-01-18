@@ -16,9 +16,8 @@ export class ColleaguesComponent implements OnInit {
     'Vezetőség',
     'Tanárok',
     'Óraadók',
-    'Gazdasági-, adminisztratív- és technikai dolgozóink',
-    'Konyhai dolgozók',
-    'Karbantartók',
+    'Tevelő, oktató munkát közvetlenül segítők',
+    'Karbantartók, portások, takarítók',
   ]
   colleagues: Observable<Entity[][]>
 
