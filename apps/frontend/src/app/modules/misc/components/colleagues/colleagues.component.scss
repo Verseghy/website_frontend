@@ -44,6 +44,7 @@
   display: grid;
   grid-template-columns: 100px 1fr;
   grid-gap: 10px;
+  white-space: pre-line;
 
   @media screen and (max-width: 992px) {
     grid-template-columns: 1fr;
