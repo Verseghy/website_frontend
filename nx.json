@@ -13,13 +13,15 @@
       "tags": []
     },
     "frontend-e2e": {
-      "tags": []
+      "tags": [],
+      "implicitDependencies": ["frontend"]
     },
     "math-competition": {
       "tags": []
     },
     "math-competition-e2e": {
-      "tags": []
+      "tags": [],
+      "implicitDependencies": ["math-competition"]
     },
     "calendar": {
       "tags": []
