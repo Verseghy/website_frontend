@@ -3,17 +3,8 @@ import { createSelector } from '@ngrx/store'
 
 const selectFeature = state => state[postsFeatureKey]
 
-export const selectPosts = createSelector(
-  selectFeature,
-  (state: State) => state.posts
-)
+export const selectPosts = createSelector(selectFeature, (state: State) => state.posts)
 
-export const selectFeaturedPosts = createSelector(
-  selectFeature,
-  (state: State) => state.featuredPosts
-)
+export const selectFeaturedPosts = createSelector(selectFeature, (state: State) => state.featuredPosts)
 
-export const selectLoading = createSelector(
-  selectFeature,
-  (state: State) => state.loading
-)
+export const selectLoading = createSelector(selectFeature, (state: State) => state.loading)

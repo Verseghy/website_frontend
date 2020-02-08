@@ -77,7 +77,9 @@ export class CompetitionEffects {
     combineLatest([this.actions$.pipe(ofType(CompetitionActions.loadTeam)), this.authFacade.uid$]).pipe(
       switchMap(([, uid]) => {
         if (uid === '') return of([])
-        return this.afs.collection<Team>('teams', ref => ref.where('members', 'array-contains', uid)).stateChanges()
+        return this.afs
+          .collection<Team>('teams', ref => ref.where('members', 'array-contains', uid))
+          .stateChanges()
       }),
       map(e => {
         if (e.length) {
