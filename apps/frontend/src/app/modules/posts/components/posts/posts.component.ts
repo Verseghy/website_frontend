@@ -15,7 +15,7 @@ import { format } from 'date-fns'
 })
 export class PostsComponent implements OnInit {
   post$: Observable<Post>
-  @ViewChild('slideshow', { static: false }) slideshow: any
+  @ViewChild('slideshow') slideshow: any
 
   constructor(private requestService: RequestService, private route: ActivatedRoute, private sanitizer: DomSanitizer) {}
 
