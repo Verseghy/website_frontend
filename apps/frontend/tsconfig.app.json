@@ -5,6 +5,6 @@
     "outDir": "../../dist/out-tsc",
     "types": []
   },
-  "exclude": ["src/test-setup.ts", "**/*.spec.ts"],
-  "include": ["**/*.ts", "../../node_modules/@types/node/index.d.ts"]
+  "files": ["src/main.ts", "src/polyfills.ts"],
+  "include": ["**/*.d.ts", "../../node_modules/@types/node/index.d.ts"]
 }
