@@ -5095,7 +5095,7 @@ extglob@^2.0.4:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
-extract-math@^1.0.3:
+extract-math@1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/extract-math/-/extract-math-1.0.5.tgz#228c4fa9ca5700de536c175c6ab10da1a093ba96"
   integrity sha512-uilrQFjtc2ghQDwax4FqKpsgUsyeD4591fKEYxAAa7NAWKqg00qvXDpiDJzG3Ae2zvDuYIE9wNJcFEG3tgNQ6g==
@@ -6663,10 +6663,10 @@ karma@4.3.0:
     tmp "0.0.33"
     useragent "2.3.0"
 
-katex@^0.10.0:
-  version "0.10.2"
-  resolved "https://registry.yarnpkg.com/katex/-/katex-0.10.2.tgz#39973edbb65eda5b6f9e7f41648781e557dd4932"
-  integrity sha512-cQOmyIRoMloCoSIOZ1+gEwsksdJZ1EW4SWm3QzxSza/QsnZr6D4U1V9S4q+B/OLm2OQ8TCBecQ8MaIfnScI7cw==
+katex@0.11.1:
+  version "0.11.1"
+  resolved "https://registry.yarnpkg.com/katex/-/katex-0.11.1.tgz#df30ca40c565c9df01a466a00d53e079e84ffaa2"
+  integrity sha512-5oANDICCTX0NqYIyAiFCCwjQ7ERu3DQG2JFHLbYOf+fXaMoH8eg/zOq5WSYJsKMi/QebW+Eh3gSM+oss1H/bww==
   dependencies:
     commander "^2.19.0"
 
@@ -7352,13 +7352,14 @@ ng-in-viewport@6.0.3:
     intersection-observer ">=0.5.1"
     tslib ">=1.9.0"
 
-ng-katex@1.3.1:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/ng-katex/-/ng-katex-1.3.1.tgz#d0e517ccaceb12d6ea53a23e78785f0832714089"
-  integrity sha512-MKTteKTrGq+tetu4K8kUjX+UXsEhJC4WTruj5P8TfiU9AIn3JwEytjr6wvloOGNufnZ1prL8eliAWmpqv0jsFQ==
+ng-katex@2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/ng-katex/-/ng-katex-2.0.1.tgz#dbe5962de2f3be9e452a0623ea177bf71d386e9c"
+  integrity sha512-S3rRMhrRb0vWUtQqBeMfbUIb60ccVnjl2uyb9cvE8XsahP2pRLpP+3NfMzKsLgaLbuGGyV86rvXAVhD5Vax3Qw==
   dependencies:
-    extract-math "^1.0.3"
-    katex "^0.10.0"
+    extract-math "1.0.5"
+    katex "0.11.1"
+    tslib "^1.9.0"
 
 ng-simple-slideshow@1.2.9:
   version "1.2.9"
