@@ -10788,10 +10788,10 @@ stylus@0.54.7:
     semver "^6.0.0"
     source-map "^0.7.3"
 
-subsink@1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/subsink/-/subsink-1.0.0.tgz#48ca96dbc4fd57ed0ceaf9fdd302ace37c864eaf"
-  integrity sha512-HDzahJaoR9x1PAhFOMUB/Q3IUjNML6wY1bZ2m6bXAo74+PUm4k6Yb68XUyp/kpchOHegN6ickwMLIWYKIp6NEg==
+subsink@1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/subsink/-/subsink-1.0.1.tgz#1cab43932f62769bf9cc1f9580246244d2813018"
+  integrity sha512-WtsWee/fOtrJat2aKGRF4X36kvjsv8wdcSKWcAxYUPgww5TYHPU+Jro9hu2YJKynl607V97Nc+plGXyWrLqhNQ==
 
 supports-color@^2.0.0:
   version "2.0.0"
