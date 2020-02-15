@@ -83,6 +83,7 @@
     "@types/node": "12.12.26",
     "codelyzer": "5.2.1",
     "dotenv": "8.1.0",
+    "husky": "^4.2.3",
     "jasmine-core": "2.99.1",
     "jasmine-marbles": "0.6.0",
     "jasmine-spec-reporter": "4.2.1",
@@ -98,5 +99,11 @@
     "ts-node": "8.4.1",
     "tslint": "5.20.0",
     "typescript": "3.7.5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn format:write && yarn affected:lint --fix",
+      "pre-push": "yarn affected:test && yarn affected:e2e"
+    }
   }
 }
