@@ -82,7 +82,7 @@
     "@types/jasminewd2": "2.0.6",
     "@types/node": "12.12.26",
     "codelyzer": "5.2.1",
-    "dotenv": "8.1.0",
+    "dotenv": "8.2.0",
     "husky": "^4.2.3",
     "jasmine-core": "2.99.1",
     "jasmine-marbles": "0.6.0",
