@@ -32,4 +32,5 @@ export interface Label {
   color: string
   name: string
   backgroundDark?: boolean
+  isDark: boolean
 }
