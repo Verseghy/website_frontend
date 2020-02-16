@@ -3,7 +3,7 @@
     <div class="content">
       <div
         class="card"
-        *ngFor="let categoryId of [0, 1, 2, 3, 4, 5]"
+        *ngFor="let categoryId of [0, 1, 2, 3, 4]"
         [id]="'category-' + categoryId"
         inViewport
         [inViewportOptions]="{ threshold: [0], rootMargin: '-70px 0px 0px 0px' }"
@@ -29,13 +29,10 @@
       <a [routerLink]="'/misc/colleagues'" fragment="category-1"><span [ngClass]="{ active: (visible | async) === 1 }">Tanárok</span></a>
       <a [routerLink]="'/misc/colleagues'" fragment="category-2"><span [ngClass]="{ active: (visible | async) === 2 }">Óraadók</span></a>
       <a [routerLink]="'/misc/colleagues'" fragment="category-3">
-        <span [ngClass]="{ active: (visible | async) === 3 }">Gazdasági-, adminisztratív- és technikai dolgozóink</span>
+        <span [ngClass]="{ active: (visible | async) === 3 }">Nevelő, oktató munkát közvetlenül segítők</span>
       </a>
       <a [routerLink]="'/misc/colleagues'" fragment="category-4"
-        ><span [ngClass]="{ active: (visible | async) === 4 }">Konyhai dolgozók</span></a
-      >
-      <a [routerLink]="'/misc/colleagues'" fragment="category-5"
-        ><span [ngClass]="{ active: (visible | async) === 5 }">Karbantartók</span></a
+        ><span [ngClass]="{ active: (visible | async) === 4 }">Karbantartók, portások, takarítók</span></a
       >
     </div>
   </div>
