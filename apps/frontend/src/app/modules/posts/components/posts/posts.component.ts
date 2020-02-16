@@ -11,7 +11,7 @@ import { format } from 'date-fns'
 @Component({
   selector: 'verseghy-posts',
   templateUrl: './posts.component.html',
-  styleUrls: ['./posts.component.css'],
+  styleUrls: ['./posts.component.scss'],
 })
 export class PostsComponent implements OnInit {
   post$: Observable<Post>
@@ -33,7 +33,7 @@ export class PostsComponent implements OnInit {
         for (const i of Object.keys(x.labels)) {
           x.labels[i].isDark = ContrastService.getConstrast(x.labels[i].color)
         }
-        x.content = this.sanitizer.bypassSecurityTrustHtml(<string>x.content)
+        x.content = this.sanitizer.bypassSecurityTrustHtml(this.processCustomTags(<string>x.content))
         return x
       })
     )
@@ -50,5 +50,29 @@ export class PostsComponent implements OnInit {
 
   formatDate(date: string): string {
     return format(new Date(date), 'YYYY-MM-DD')
+  }
+
+  processCustomTags(html: string): string {
+    const parser = new DOMParser()
+    const dom = parser.parseFromString(html, 'text/html')
+    const tables = Array.from(dom.getElementsByTagName('table'))
+    const links = Array.from(dom.getElementsByTagName('a'))
+
+    for (const table of tables) {
+      const parentNode = table.parentNode
+      const index = Array.from(parentNode.children).indexOf(table)
+
+      const element = dom.createElement('div')
+      element.classList.add('table-container')
+      element.append(table)
+
+      parentNode.insertBefore(element, parentNode.children[index])
+    }
+
+    links.forEach(link => {
+      link.setAttribute('target', '_blank')
+    })
+
+    return dom.documentElement.innerHTML
   }
 }
