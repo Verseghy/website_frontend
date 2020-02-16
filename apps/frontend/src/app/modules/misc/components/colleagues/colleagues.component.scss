@@ -43,6 +43,7 @@
 .item {
   display: grid;
   grid-template-columns: 100px 1fr;
+  grid-template-rows: repeat(4, min-content) max-content;
   grid-gap: 10px;
   white-space: pre-line;
 
@@ -64,14 +65,37 @@
     font-weight: 700;
     font-size: 24px;
     font-family: 'Open Sans', sans-serif;
+    grid-column: 2;
+
+    @media screen and (max-width: 992px) {
+      grid-column: unset;
+    }
   }
 
   .title {
     font-style: italic;
+    grid-column: 2;
+
+    @media screen and (max-width: 992px) {
+      grid-column: unset;
+    }
   }
 
   .subject {
     color: #999;
+    grid-column: 2;
+
+    @media screen and (max-width: 992px) {
+      grid-column: unset;
+    }
+  }
+
+  .job {
+    grid-column: 2;
+
+    @media screen and (max-width: 992px) {
+      grid-column: unset;
+    }
   }
 
   .description {
