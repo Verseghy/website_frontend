@@ -164,6 +164,22 @@
       border: 1px solid #ccc;
       padding: 5px;
     }
+
+    ul {
+      list-style-position: outside;
+    }
+
+    > ul {
+      margin-bottom: 21px;
+    }
+
+    li {
+      margin-left: 20px;
+    }
+
+    li p {
+      display: inline-block;
+    }
   }
 }
 
