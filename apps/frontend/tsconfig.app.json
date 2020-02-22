@@ -3,7 +3,7 @@
   "compilerOptions": {
     "downlevelIteration": true,
     "outDir": "../../dist/out-tsc",
-    "types": []
+    "types": ["node"]
   },
   "files": ["src/main.ts", "src/polyfills.ts"],
   "include": ["**/*.d.ts", "../../node_modules/@types/node/index.d.ts"]
