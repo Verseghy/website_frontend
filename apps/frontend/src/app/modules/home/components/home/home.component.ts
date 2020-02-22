@@ -4,7 +4,7 @@ import { PostsFacade } from '../../state/posts/posts.facade'
 @Component({
   selector: 'verseghy-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
   constructor(private postsFacade: PostsFacade) {}
