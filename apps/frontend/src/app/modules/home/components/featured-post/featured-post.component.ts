@@ -11,7 +11,7 @@ import { ContrastService } from '../../../../services/contrast.service'
 @Component({
   selector: 'verseghy-featured-post',
   templateUrl: './featured-post.component.html',
-  styleUrls: ['./featured-post.component.css'],
+  styleUrls: ['./featured-post.component.scss'],
   animations: [
     trigger('animate', [
       transition('left => void', [
@@ -67,7 +67,7 @@ export class FeaturedPostComponent implements OnDestroy {
   autoplaySpeed = 1000
   isHovered = false
   page$ = new BehaviorSubject(0)
-  post$ = combineLatest([this.postsFacade.featuredPosts$, this.page$]).pipe(
+  posts$ = combineLatest([this.postsFacade.featuredPosts$, this.page$]).pipe(
     map(([posts, page]) => [
       posts.map(post => ({
         ...post,

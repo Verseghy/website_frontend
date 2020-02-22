@@ -1,4 +1,4 @@
-<div (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()" class="container" (swipeleft)="next()" (swiperight)="previous()">
+<!--<div (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()" class="container" (swipeleft)="next()" (swiperight)="previous()">
   <div class="content" [@animate]="animate" *ngFor="let post of post$ | async">
     <div class="background">
       <img [src]="post.index_image" alt="" />
@@ -27,4 +27,32 @@
   <div class="nav">
     <i (click)="previous()" class="material-icons">navigate_before</i> <i (click)="next()" class="material-icons">navigate_next</i>
   </div>
-</div>
+</div>-->
+<ng-container *ngIf="posts$ | async as posts">
+  <ng-container *ngIf="posts.length">
+    <div class="card" *ngFor="let post of posts">
+      <div class="content">
+        <div class="label-container">
+          <verseghy-label
+            *ngFor="let label of post.labels"
+            [label]="label"
+            [ngClass]="{ dark: label.backgroundDark }"
+            [ngStyle]="{ 'background-color': label.color }"
+          ></verseghy-label>
+        </div>
+        <div class="author">
+<!--          <img *ngIf="post.author.image" [src]="post.author.image" alt="" />-->
+          <img src="https://backend.verseghy-gimnazium.net/storage/authors_images/4cf999238a662ed7bbf12a96a5aa3faa.png" alt="">
+          <span>{{ post.author.name }}</span>
+        </div>
+        <h2>{{ post.title }}</h2>
+        <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id metus in massa imperdiet elementum. Donec maximus consequat vehicula. Nullam viverra ultrices tincidunt. Fusce tincidunt condimentum orci sit amet condimentum. Vestibulum consequat, mauris in aliquet hendrerit, magna nunc sagittis mi, sed vehicula libero nibh et sem. Phasellus eu consectetur justo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id metus in massa imperdiet elementum. Donec maximus consequat vehicula. Nullam viverra ultrices tincidunt. Fusce tincidunt condimentum orci sit amet condimentum. Vestibulum consequat, mauris in aliquet hendrerit, magna nunc sagittis mi, sed vehicula libero nibh et sem. Phasellus eu consectetur justo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id metus in massa imperdiet elementum. Donec maximus consequat vehicula. Nullam viverra ultrices tincidunt. Fusce tincidunt condimentum orci sit amet condimentum. Vestibulum consequat, mauris in aliquet hendrerit, magna nunc sagittis mi, sed vehicula libero nibh et sem. Phasellus eu consectetur justo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id metus in massa imperdiet elementum. Donec maximus consequat vehicula. Nullam viverra ultrices tincidunt. Fusce tincidunt condimentum orci sit amet condimentum. Vestibulum consequat, mauris in aliquet hendrerit, magna nunc sagittis mi, sed vehicula libero nibh et sem. Phasellus eu consectetur justo.</p>
+<!--        <p class="description">{{ post.description }}</p>-->
+      </div>
+      <img [src]="post.index_image" alt="" class="index-img" />
+    </div>
+  </ng-container>
+  <ng-container *ngIf="!posts.length">
+
+  </ng-container>
+</ng-container>
