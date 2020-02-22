@@ -9,7 +9,7 @@ import { PostsFacade } from '../../state/posts/posts.facade'
 export class HomeComponent implements OnInit {
   constructor(private postsFacade: PostsFacade) {}
 
-  posts = this.postsFacade.posts$
+  posts$ = this.postsFacade.posts$
   isLoading$ = this.postsFacade.isLoading$
 
   ngOnInit() {
