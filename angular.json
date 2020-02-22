@@ -60,6 +60,14 @@
                   "maximumWarning": "6kb"
                 }
               ]
+            },
+            "hmr": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/frontend/src/environments/environment.ts",
+                  "with": "apps/frontend/src/environments/environment.hmr.ts"
+                }
+              ]
             }
           }
         },
@@ -71,6 +79,10 @@
           "configurations": {
             "production": {
               "browserTarget": "frontend:build:production"
+            },
+            "hmr": {
+              "hmr": true,
+              "browserTarget": "frontend:build:hmr"
             }
           }
         },

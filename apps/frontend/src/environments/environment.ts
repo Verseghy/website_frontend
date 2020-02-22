@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  hmr: true,
+  hmr: false,
   baseURL: 'https://backend.verseghy-gimnazium.net/api',
   firebase: {
     apiKey: 'AIzaSyCF0TKD1kp1YgihjB4SMAHkfIPp8euaNLQ',
