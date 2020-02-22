@@ -9,7 +9,18 @@
       </div>
     </ng-container>
     <ng-container *ngIf="!posts.length">
-      Loading...
+      <div class="grid">
+        <div class="skeleton-card" *ngFor="let _ of [0, 1, 2]">
+          <div class="image-placeholder"></div>
+          <div class="content-placeholder">
+            <div class="text-skeleton"></div>
+            <div class="text-skeleton"></div>
+            <div class="text-skeleton"></div>
+            <div class="circle"></div>
+            <div class="text-skeleton inline"></div>
+          </div>
+        </div>
+      </div>
     </ng-container>
   </ng-container>
 </div>
