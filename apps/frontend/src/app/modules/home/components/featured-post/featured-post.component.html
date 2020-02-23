@@ -1,33 +1,3 @@
-<!--<div (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()" class="container" (swipeleft)="next()" (swiperight)="previous()">
-  <div class="content" [@animate]="animate" *ngFor="let post of post$ | async">
-    <div class="background">
-      <img [src]="post.index_image" alt="" />
-    </div>
-    <a class="post-content" [routerLink]="['/posts/' + post.id]">
-      <div class="text">
-        <div class="label-container">
-          <verseghy-label
-            *ngFor="let label of post.labels"
-            [label]="label"
-            [ngClass]="{ dark: label.backgroundDark }"
-            [ngStyle]="{ 'background-color': label.color }"
-          ></verseghy-label>
-        </div>
-        <h2>{{ post.title }}</h2>
-        <p class="description">{{ post.description }}</p>
-        <div class="bottom">
-          <img *ngIf="post.author.image" [src]="post.author.image" alt="" />
-          <p>{{ post.author.name }}</p>
-          <p>{{ formatDate(post.date) }}</p>
-        </div>
-      </div>
-    </a>
-    <div class="hover"></div>
-  </div>
-  <div class="nav">
-    <i (click)="previous()" class="material-icons">navigate_before</i> <i (click)="next()" class="material-icons">navigate_next</i>
-  </div>
-</div>-->
 <ng-container *ngIf="posts$ | async as posts">
   <ng-container *ngIf="posts.length">
     <div class="cards">
@@ -42,28 +12,13 @@
         </div>
         <div class="meta">
           <div class="author">
-            <!--          <img *ngIf="post.author.image" [src]="post.author.image" alt="" />-->
-            <img src="https://backend.verseghy-gimnazium.net/storage/authors_images/4cf999238a662ed7bbf12a96a5aa3faa.png" alt="" />
+            <img *ngIf="post.author.image" [src]="post.author.image" alt="" />
             <span>{{ post.author.name }}</span>
           </div>
           <span class="date">Közzétéve: {{ formatDate(post.date) }}</span>
         </div>
         <h2>{{ post.title }}</h2>
-        <p class="description">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id metus in massa imperdiet elementum. Donec maximus consequat
-          vehicula. Nullam viverra ultrices tincidunt. Fusce tincidunt condimentum orci sit amet condimentum. Vestibulum consequat, mauris
-          in aliquet hendrerit, magna nunc sagittis mi, sed vehicula libero nibh et sem. Phasellus eu consectetur justo. Lorem ipsum dolor
-          sit amet, consectetur adipiscing elit. In id metus in massa imperdiet elementum. Donec maximus consequat vehicula. Nullam viverra
-          ultrices tincidunt. Fusce tincidunt condimentum orci sit amet condimentum. Vestibulum consequat, mauris in aliquet hendrerit,
-          magna nunc sagittis mi, sed vehicula libero nibh et sem. Phasellus eu consectetur justo. Lorem ipsum dolor sit amet, consectetur
-          adipiscing elit. In id metus in massa imperdiet elementum. Donec maximus consequat vehicula. Nullam viverra ultrices tincidunt.
-          Fusce tincidunt condimentum orci sit amet condimentum. Vestibulum consequat, mauris in aliquet hendrerit, magna nunc sagittis mi,
-          sed vehicula libero nibh et sem. Phasellus eu consectetur justo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id
-          metus in massa imperdiet elementum. Donec maximus consequat vehicula. Nullam viverra ultrices tincidunt. Fusce tincidunt
-          condimentum orci sit amet condimentum. Vestibulum consequat, mauris in aliquet hendrerit, magna nunc sagittis mi, sed vehicula
-          libero nibh et sem. Phasellus eu consectetur justo.
-        </p>
-        <!--        <p class="description">{{ post.description }}</p>-->
+        <p class="description">{{ post.description }}</p>
         <a [routerLink]="['/posts/' + post.id]" class="read-more">Tovább</a>
         <img [src]="post.index_image" alt="" class="index-img" />
       </a>
