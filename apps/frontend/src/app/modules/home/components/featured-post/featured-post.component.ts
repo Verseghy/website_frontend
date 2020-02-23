@@ -14,7 +14,30 @@ import { ContrastService } from '../../../../services/contrast.service'
   styleUrls: ['./featured-post.component.scss'],
   animations: [
     trigger('animate', [
-      transition('left => void', [
+      transition(':enter', [
+        style({
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          opacity: 0,
+        }),
+        animate(
+          '200ms',
+          style({
+            opacity: 1,
+          })
+        ),
+      ]),
+      transition(':leave', [
+        animate(
+          '200ms',
+          style({
+            opacity: 0,
+          })
+        ),
+      ]),
+
+      /*,transition('left => void', [
         animate(
           '300ms',
           style({
@@ -57,7 +80,7 @@ import { ContrastService } from '../../../../services/contrast.service'
             opacity: 1,
           })
         ),
-      ]),
+      ]),*/
     ]),
   ],
 })
@@ -89,6 +112,8 @@ export class FeaturedPostComponent implements OnDestroy {
   page = 0
   animate = ''
 
+  featuredPosts$ = this.postsFacade.featuredPosts$
+
   constructor(private postsFacade: PostsFacade, private appRef: ApplicationRef) {}
 
   /*ngOnInit(): void {
@@ -111,17 +136,11 @@ export class FeaturedPostComponent implements OnDestroy {
   }
 
   next(): void {
-    this.animate = 'left'
-    setTimeout(() => {
-      this.page$.next(++this.page)
-    })
+    this.page$.next(++this.page)
   }
 
   previous(): void {
-    this.animate = 'right'
-    setTimeout(() => {
-      this.page$.next(--this.page)
-    })
+    this.page$.next(--this.page)
   }
 
   onMouseEnter(): void {
@@ -134,5 +153,10 @@ export class FeaturedPostComponent implements OnDestroy {
 
   formatDate(date: string): string {
     return format(new Date(date), 'YYYY-MM-DD')
+  }
+
+  toPage(page: number) {
+    this.page = page
+    this.page$.next(page)
   }
 }

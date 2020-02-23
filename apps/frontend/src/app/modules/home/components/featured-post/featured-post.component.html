@@ -30,8 +30,8 @@
 </div>-->
 <ng-container *ngIf="posts$ | async as posts">
   <ng-container *ngIf="posts.length">
-    <div class="card" *ngFor="let post of posts">
-      <div class="content">
+    <div class="cards">
+      <a class="card" *ngFor="let post of posts" [routerLink]="['/posts/' + post.id]" [@animate]="animate">
         <div class="label-container">
           <verseghy-label
             *ngFor="let label of post.labels"
@@ -40,19 +40,48 @@
             [ngStyle]="{ 'background-color': label.color }"
           ></verseghy-label>
         </div>
-        <div class="author">
-<!--          <img *ngIf="post.author.image" [src]="post.author.image" alt="" />-->
-          <img src="https://backend.verseghy-gimnazium.net/storage/authors_images/4cf999238a662ed7bbf12a96a5aa3faa.png" alt="">
-          <span>{{ post.author.name }}</span>
+        <div class="meta">
+          <div class="author">
+            <!--          <img *ngIf="post.author.image" [src]="post.author.image" alt="" />-->
+            <img src="https://backend.verseghy-gimnazium.net/storage/authors_images/4cf999238a662ed7bbf12a96a5aa3faa.png" alt="" />
+            <span>{{ post.author.name }}</span>
+          </div>
+          <span class="date">Közzétéve: {{ formatDate(post.date) }}</span>
         </div>
         <h2>{{ post.title }}</h2>
-        <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id metus in massa imperdiet elementum. Donec maximus consequat vehicula. Nullam viverra ultrices tincidunt. Fusce tincidunt condimentum orci sit amet condimentum. Vestibulum consequat, mauris in aliquet hendrerit, magna nunc sagittis mi, sed vehicula libero nibh et sem. Phasellus eu consectetur justo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id metus in massa imperdiet elementum. Donec maximus consequat vehicula. Nullam viverra ultrices tincidunt. Fusce tincidunt condimentum orci sit amet condimentum. Vestibulum consequat, mauris in aliquet hendrerit, magna nunc sagittis mi, sed vehicula libero nibh et sem. Phasellus eu consectetur justo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id metus in massa imperdiet elementum. Donec maximus consequat vehicula. Nullam viverra ultrices tincidunt. Fusce tincidunt condimentum orci sit amet condimentum. Vestibulum consequat, mauris in aliquet hendrerit, magna nunc sagittis mi, sed vehicula libero nibh et sem. Phasellus eu consectetur justo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id metus in massa imperdiet elementum. Donec maximus consequat vehicula. Nullam viverra ultrices tincidunt. Fusce tincidunt condimentum orci sit amet condimentum. Vestibulum consequat, mauris in aliquet hendrerit, magna nunc sagittis mi, sed vehicula libero nibh et sem. Phasellus eu consectetur justo.</p>
-<!--        <p class="description">{{ post.description }}</p>-->
-      </div>
-      <img [src]="post.index_image" alt="" class="index-img" />
+        <p class="description">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id metus in massa imperdiet elementum. Donec maximus consequat
+          vehicula. Nullam viverra ultrices tincidunt. Fusce tincidunt condimentum orci sit amet condimentum. Vestibulum consequat, mauris
+          in aliquet hendrerit, magna nunc sagittis mi, sed vehicula libero nibh et sem. Phasellus eu consectetur justo. Lorem ipsum dolor
+          sit amet, consectetur adipiscing elit. In id metus in massa imperdiet elementum. Donec maximus consequat vehicula. Nullam viverra
+          ultrices tincidunt. Fusce tincidunt condimentum orci sit amet condimentum. Vestibulum consequat, mauris in aliquet hendrerit,
+          magna nunc sagittis mi, sed vehicula libero nibh et sem. Phasellus eu consectetur justo. Lorem ipsum dolor sit amet, consectetur
+          adipiscing elit. In id metus in massa imperdiet elementum. Donec maximus consequat vehicula. Nullam viverra ultrices tincidunt.
+          Fusce tincidunt condimentum orci sit amet condimentum. Vestibulum consequat, mauris in aliquet hendrerit, magna nunc sagittis mi,
+          sed vehicula libero nibh et sem. Phasellus eu consectetur justo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id
+          metus in massa imperdiet elementum. Donec maximus consequat vehicula. Nullam viverra ultrices tincidunt. Fusce tincidunt
+          condimentum orci sit amet condimentum. Vestibulum consequat, mauris in aliquet hendrerit, magna nunc sagittis mi, sed vehicula
+          libero nibh et sem. Phasellus eu consectetur justo.
+        </p>
+        <!--        <p class="description">{{ post.description }}</p>-->
+        <a [routerLink]="['/posts/' + post.id]" class="read-more">Tovább</a>
+        <img [src]="post.index_image" alt="" class="index-img" />
+      </a>
+    </div>
+    <div class="nav">
+      <i (click)="previous()" class="material-icons">navigate_before</i>
+      <ng-container *ngIf="featuredPosts$ | async as featuredPosts">
+        <span
+          class="dot"
+          *ngFor="let a of featuredPosts; let i = index"
+          [class]="{ active: i % featuredPosts.length === page }"
+          (click)="toPage(i)"
+        >
+          <span class="inner"></span>
+        </span>
+      </ng-container>
+      <i (click)="next()" class="material-icons">navigate_next</i>
     </div>
   </ng-container>
-  <ng-container *ngIf="!posts.length">
-
-  </ng-container>
+  <ng-container *ngIf="!posts.length"> </ng-container>
 </ng-container>

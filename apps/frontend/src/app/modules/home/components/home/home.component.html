@@ -5,7 +5,9 @@
     <ng-container *ngIf="posts.length">
       <div class="grid"><verseghy-card [post]="post" *ngFor="let post of posts; trackBy: trackByFn"></verseghy-card></div>
       <div class="load-more-wrapper">
-        <button mat-raised-button color="primary" class="load-more" [disabled]="isLoading$ | async" (click)="nextPage()">Több betöltése</button>
+        <button mat-raised-button color="primary" class="load-more" [disabled]="isLoading$ | async" (click)="nextPage()">
+          Több betöltése
+        </button>
       </div>
     </ng-container>
     <ng-container *ngIf="!posts.length">
