@@ -5,7 +5,7 @@ import { SharedModule } from '../shared/shared.module'
 
 import { PostsComponent } from './components/posts/posts.component'
 import { RequestService } from './services/request.service'
-import { SlideshowModule } from 'ng-simple-slideshow'
+import { SlideshowModule } from '@verseghy/simple-slideshow'
 
 const routes: Routes = [
   {

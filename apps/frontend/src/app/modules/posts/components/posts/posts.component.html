@@ -21,6 +21,20 @@
         <span class="date">Közzétéve: {{ formatDate(post?.date) }}</span>
       </div>
       <div class="post-content" [innerHTML]="post?.content"></div>
+      <slideshow
+              #slideshow
+              class="post-content"
+              [height]="'400px'"
+              [imageUrls]="post?.images"
+              [autoPlay]="post?.images?.length > 1"
+              [autoPlayWaitForLazyLoad]="true"
+              [lazyLoad]="post?.images?.length > 1"
+              [hideOnNoSlides]="true"
+              [backgroundSize]="'contain'"
+              [showArrows]="false"
+              [showDots]="false"
+              [disableSwiping]="post?.images?.length < 2"
+      ></slideshow>
       <div class="meta">
         <img *ngIf="post?.author.image" class="author-image" [src]="post?.author.image" alt="" />
         <span class="name">{{ post?.author.name }}</span>

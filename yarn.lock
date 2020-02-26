@@ -7973,11 +7973,6 @@ ng-katex@2.0.2:
     katex "0.11.1"
     tslib "^1.9.0"
 
-ng-simple-slideshow@1.2.9:
-  version "1.2.9"
-  resolved "https://registry.yarnpkg.com/ng-simple-slideshow/-/ng-simple-slideshow-1.2.9.tgz#384706ea76ed859c77927fd3b0585aba20d9a034"
-  integrity sha512-05bLd9pWFAIhlOuScO1FOhCubNm9oZ3HK7fJ0oZgn9m9kl257yxXQv/1fBsVrCu0v/25zQRGRS9EgkX5UXhJdQ==
-
 nice-try@^1.0.4:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
