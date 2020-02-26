@@ -3,7 +3,7 @@
  arrow styles adapted from https://codepen.io/minustalent/pen/Frhaw
  */
 
-$border-color: darken(#FFF, 5%);
+$border-color: darken(#fff, 5%);
 
 .display-none {
   display: none !important;
@@ -20,11 +20,11 @@ $border-color: darken(#FFF, 5%);
   height: 46px;
   text-align: center;
   padding: 0;
-  background-color: rgba(0,0,0,0.2);
-  transition: all .2s ease-in-out;
+  background-color: rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease-in-out;
 
   &:hover {
-    background-color: rgba(0,0,0,0.33);
+    background-color: rgba(0, 0, 0, 0.33);
   }
 
   .arrow-exitfs {
@@ -35,7 +35,7 @@ $border-color: darken(#FFF, 5%);
     border: {
       top: 2px solid $border-color;
     }
-    transition: all .2s ease-in-out;
+    transition: all 0.2s ease-in-out;
 
     &.prev {
       transform: rotate(-45deg);
@@ -204,7 +204,7 @@ $border-color: darken(#FFF, 5%);
         top: 2px solid $border-color;
         left: 2px solid $border-color;
       }
-      transition: all .2s ease-in-out;
+      transition: all 0.2s ease-in-out;
       user-select: none;
 
       &:before {
@@ -215,7 +215,7 @@ $border-color: darken(#FFF, 5%);
           left: -50%;
           top: -50%;
         }
-        content: "";
+        content: '';
         transform: rotate(45deg);
       }
 
@@ -267,15 +267,15 @@ $border-color: darken(#FFF, 5%);
           content: '';
           width: 4px;
           height: 4px;
-          background: var(--dot-color, #FFF);
+          background: var(--dot-color, #fff);
           border-radius: 4px;
           display: block;
           position: absolute;
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
-          opacity: .7;
-          transition: all .5s ease-out;
+          opacity: 0.7;
+          transition: all 0.5s ease-out;
         }
       }
 
