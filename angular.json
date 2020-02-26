@@ -328,6 +328,34 @@
           "styleext": "scss"
         }
       }
+    },
+    "simple-slideshow": {
+      "projectType": "library",
+      "root": "libs/simple-slideshow",
+      "sourceRoot": "libs/simple-slideshow/src",
+      "prefix": "verseghy",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["libs/simple-slideshow/tsconfig.lib.json", "libs/simple-slideshow/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!libs/simple-slideshow/**"]
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/simple-slideshow/src/test.ts",
+            "tsConfig": "libs/simple-slideshow/tsconfig.spec.json",
+            "karmaConfig": "libs/simple-slideshow/karma.conf.js"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "cli": {
