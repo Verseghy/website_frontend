@@ -1,10 +1,10 @@
-import { IImage } from "./IImage";
+import { IImage } from './IImage'
 
 export interface ISlide {
-  image: IImage;
-  action: string;
-  leftSide: boolean;
-  rightSide: boolean;
-  selected: boolean;
-  loaded: boolean;
+  image: IImage
+  action: string
+  leftSide: boolean
+  rightSide: boolean
+  selected: boolean
+  loaded: boolean
 }

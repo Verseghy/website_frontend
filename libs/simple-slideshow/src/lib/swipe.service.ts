@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core'
 
 @Injectable()
 export class SwipeService {
   // adapted from https://stackoverflow.com/a/44511007/1743936
-  private _swipeCoord?: [number, number];
-  private _swipeTime?: number;
+  private _swipeCoord?: [number, number]
+  private _swipeTime?: number
 
   /**
    * @param {TouchEvent} e
@@ -14,25 +14,26 @@ export class SwipeService {
    *              else return a 0 to do nothing
    */
   swipe(e: TouchEvent, when: string): number {
-    const coord: [number, number] = [e.changedTouches[0].pageX, e.changedTouches[0].pageY];
-    const time = new Date().getTime();
+    const coord: [number, number] = [e.changedTouches[0].pageX, e.changedTouches[0].pageY]
+    const time = new Date().getTime()
 
     if (when === 'start') {
-      this._swipeCoord = coord;
-      this._swipeTime = time;
-    }
+      this._swipeCoord = coord
+      this._swipeTime = time
+    } else if (when === 'end') {
+      const direction = [coord[0] - this._swipeCoord[0], coord[1] - this._swipeCoord[1]]
+      const duration = time - this._swipeTime
 
-    else if (when === 'end') {
-      const direction = [coord[0] - this._swipeCoord[0], coord[1] - this._swipeCoord[1]];
-      const duration = time - this._swipeTime;
-
-      if (duration < 1000 // Short enough
-        && Math.abs(direction[1]) < Math.abs(direction[0]) // Horizontal enough
-        && Math.abs(direction[0]) > 30) {  // Long enough
-        return direction[0] < 0 ? 1 : -1;
+      if (
+        duration < 1000 && // Short enough
+        Math.abs(direction[1]) < Math.abs(direction[0]) && // Horizontal enough
+        Math.abs(direction[0]) > 30
+      ) {
+        // Long enough
+        return direction[0] < 0 ? 1 : -1
       }
     }
 
-    return 0;
+    return 0
   }
 }
