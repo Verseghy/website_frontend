@@ -156,3 +156,50 @@
     vertical-align: middle;
   }
 }
+
+.skeleton {
+  animation: skeleton-pulse 1.5s ease-in-out 0.5s infinite;
+
+  .card {
+    background: #efefef;
+    box-shadow: none;
+  }
+
+  .index-img {
+    background: #e6e6e6;
+  }
+
+  .text-skeleton {
+    background: #e6e6e6;
+    height: 15px;
+    border-radius: 4px;
+    margin: 7px 0;
+
+    &.inline {
+      display: inline-block;
+      width: 50%;
+    }
+  }
+
+  .circle {
+    height: 30px;
+    width: 30px;
+    background: #e6e6e6;
+    border-radius: 50%;
+    margin-top: 20px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+
+@keyframes skeleton-pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}

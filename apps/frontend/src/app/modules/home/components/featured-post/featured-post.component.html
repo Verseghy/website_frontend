@@ -20,7 +20,7 @@
         <h2>{{ post.title }}</h2>
         <p class="description">{{ post.description }}</p>
         <a [routerLink]="['/posts/' + post.id]" class="read-more">Tovább</a>
-        <img [src]="post.index_image" alt="" class="index-img" />
+        <img [src]="post.index_image" alt="" class="index-img"/>
       </a>
     </div>
     <div class="nav">
@@ -38,5 +38,43 @@
       <i (click)="next()" class="material-icons">navigate_next</i>
     </div>
   </ng-container>
-  <ng-container *ngIf="!posts.length"> </ng-container>
+  <ng-container *ngIf="!posts.length">
+    <div class="cards skeleton">
+      <a class="card" *ngFor="let post of posts" [routerLink]="['/posts/' + post.id]" [@animate]="animate">
+        <div class="label-container">
+          <div class="text-skeleton"></div>
+        </div>
+        <div class="meta">
+          <div class="author">
+            <div class="circle"></div>
+            <div class="text-skeleton inline"></div>
+          </div>
+          <div class="text-skeleton inline"></div>
+        </div>
+        <h2>
+          <div class="text-skeleton"></div>
+          <div class="text-skeleton"></div>
+        </h2>
+        <p class="description">
+          <div class="text-skeleton"></div>
+        </p>
+        <a [routerLink]="['/posts/' + post.id]" class="read-more">Tovább</a>
+        <div class="index-img"></div>
+      </a>
+    </div>
+    <div class="nav">
+      <i (click)="previous()" class="material-icons">navigate_before</i>
+      <ng-container *ngIf="featuredPosts$ | async as featuredPosts">
+        <span
+          class="dot"
+          *ngFor="let a of featuredPosts; let i = index"
+          [class]="{ active: i % featuredPosts.length === page }"
+          (click)="toPage(i)"
+        >
+          <span class="inner"></span>
+        </span>
+      </ng-container>
+      <i (click)="next()" class="material-icons">navigate_next</i>
+    </div>
+  </ng-container>
 </ng-container>
