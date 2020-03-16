@@ -83,6 +83,7 @@
     "@types/node": "12.12.26",
     "codelyzer": "5.2.1",
     "dotenv": "8.2.0",
+    "firebase-tools": "7.15.0",
     "jasmine-core": "2.99.1",
     "jasmine-marbles": "0.6.0",
     "jasmine-spec-reporter": "4.2.1",

@@ -393,7 +393,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/apps/paper",
+            "outputPath": "apps/paper/dist/",
             "index": "apps/paper/src/index.html",
             "main": "apps/paper/src/main.ts",
             "polyfills": "apps/paper/src/polyfills.ts",
