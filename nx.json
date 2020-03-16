@@ -31,6 +31,13 @@
     },
     "simple-slideshow": {
       "tags": []
+    },
+    "paper": {
+      "tags": []
+    },
+    "paper-e2e": {
+      "tags": [],
+      "implicitDependencies": ["paper"]
     }
   }
 }

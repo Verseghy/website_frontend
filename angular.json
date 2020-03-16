@@ -356,6 +356,146 @@
           "styleext": "scss"
         }
       }
+    },
+    "paper": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:interceptor": {
+          "skipTests": true
+        },
+        "@nrwl/angular:class": {
+          "skipTests": true
+        },
+        "@nrwl/angular:component": {
+          "style": "scss",
+          "skipTests": true
+        },
+        "@nrwl/angular:directive": {
+          "skipTests": true
+        },
+        "@nrwl/angular:guard": {
+          "skipTests": true
+        },
+        "@nrwl/angular:module": {
+          "skipTests": true
+        },
+        "@nrwl/angular:pipe": {
+          "skipTests": true
+        },
+        "@nrwl/angular:service": {
+          "skipTests": true
+        }
+      },
+      "root": "apps/paper",
+      "sourceRoot": "apps/paper/src",
+      "prefix": "verseghy",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/paper",
+            "index": "apps/paper/src/index.html",
+            "main": "apps/paper/src/main.ts",
+            "polyfills": "apps/paper/src/polyfills.ts",
+            "tsConfig": "apps/paper/tsconfig.app.json",
+            "aot": true,
+            "assets": ["apps/paper/src/favicon.ico", "apps/paper/src/assets"],
+            "styles": ["apps/paper/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/paper/src/environments/environment.ts",
+                  "with": "apps/paper/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "paper:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "paper:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "paper:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/paper/tsconfig.app.json", "apps/paper/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!apps/paper/**"]
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "apps/paper/src/test.ts",
+            "tsConfig": "apps/paper/tsconfig.spec.json",
+            "karmaConfig": "apps/paper/karma.conf.js",
+            "polyfills": "apps/paper/src/polyfills.ts",
+            "styles": [],
+            "scripts": [],
+            "assets": []
+          }
+        }
+      }
+    },
+    "paper-e2e": {
+      "root": "apps/paper-e2e",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "apps/paper-e2e/protractor.conf.js",
+            "devServerTarget": "paper:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "paper:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/paper-e2e/tsconfig.e2e.json",
+            "exclude": ["**/node_modules/**", "!apps/paper-e2e/**"]
+          }
+        }
+      }
     }
   },
   "cli": {
@@ -379,6 +519,13 @@
     },
     "@nrwl/schematics:node-application": {
       "framework": "express"
+    },
+    "@nrwl/angular:application": {
+      "unitTestRunner": "karma",
+      "e2eTestRunner": "protractor"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "karma"
     }
   }
 }
