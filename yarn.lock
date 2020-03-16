@@ -7964,10 +7964,10 @@ ng-in-viewport@6.0.3:
     intersection-observer ">=0.5.1"
     tslib ">=1.9.0"
 
-ng-katex@2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/ng-katex/-/ng-katex-2.0.2.tgz#81cd418a20d44248582cbdf00c0064e668fae5cf"
-  integrity sha512-yg6baVaVMf99zJbxlWenQOyrnxGJImEl/FJlAQ77xfKWW8I/Pvz3BreHCiK/R4+ocFD2zau+vVmucx4nMSdQ7g==
+ng-katex@2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/ng-katex/-/ng-katex-2.0.3.tgz#e1d714502f146a52e3c1dac2fb4b1296a4000d5d"
+  integrity sha512-ed68gPsiiKAo2UQn7vZZS97nRCrE6fSP0jYgWzb8i1kR4kMgMGF7XAAdLJr8KRMP5LmmELMWo03gyvD0HAashg==
   dependencies:
     extract-math "1.0.5"
     katex "0.11.1"
