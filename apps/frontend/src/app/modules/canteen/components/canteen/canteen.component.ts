@@ -21,7 +21,7 @@ export class CanteenComponent implements OnInit {
   ngOnInit() {
     this.store.dispatch(new LoadCanteen())
     this.canteen = this.store.pipe(
-      select(CANTEEN_FEATURE_KEY),
+      select(state => state[CANTEEN_FEATURE_KEY]),
       map((state: CanteenState) => {
         return [state.thisWeek, state.nextWeek]
       })

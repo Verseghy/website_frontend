@@ -28,7 +28,7 @@ export class ColleaguesComponent implements OnInit {
   ngOnInit() {
     this.store.dispatch(new LoadColleagues())
     this.colleagues = this.store.pipe(
-      select(COLLEAGUES_FEATURE_KEY),
+      select(state => state[COLLEAGUES_FEATURE_KEY]),
       map((state: ColleaguesState) => {
         return state.categories
       })
