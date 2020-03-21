@@ -63,7 +63,7 @@
     "firebase": "7.12.0",
     "hammerjs": "2.0.8",
     "lodash-es": "^4.17.15",
-    "ng-katex": "2.0.2",
+    "ng-katex": "2.0.3",
     "parse-color": "1.0.0",
     "rxjs": "6.5.4",
     "subsink": "1.0.1",
