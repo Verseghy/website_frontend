@@ -1,67 +1,67 @@
 <div
-  *ngIf="post.type === '0'"
-  [ngClass]="{ dark: post.backgroundDark }"
-  [ngStyle]="{ 'background-color': post.color }"
-  [routerLink]="['/posts/' + post.id]"
+  *ngIf="contrastedPost.type === '0'"
+  [ngClass]="{ dark: contrastedPost.backgroundDark }"
+  [ngStyle]="{ 'background-color': contrastedPost.color }"
+  [routerLink]="['/posts/' + contrastedPost.id]"
   class="content"
 >
   <div class="label-container">
     <span
-      *ngFor="let label of post.labels"
+      *ngFor="let label of contrastedPost.labels"
       [ngClass]="{ dark: label.backgroundDark }"
       [ngStyle]="{ 'background-color': label.color }"
       class="label"
       >{{ label.name }}</span
     >
   </div>
-  <p class="title">{{ post.title }}</p>
-  <p class="description">{{ post.description }}</p>
+  <p class="title">{{ contrastedPost.title }}</p>
+  <p class="description">{{ contrastedPost.description }}</p>
   <div class="bottom">
-    <img *ngIf="post.author.image" [src]="post.author.image" alt="" class="authorimg" />
-    <p>{{ post.author.name }}</p>
-    <p>{{ formatDate(post.date) }}</p>
+    <img *ngIf="contrastedPost.author.image" [src]="contrastedPost.author.image" alt="" class="authorimg" />
+    <p>{{ contrastedPost.author.name }}</p>
+    <p>{{ formatDate(contrastedPost.date) }}</p>
   </div>
 </div>
 <div
   class="content"
-  *ngIf="post.type === '2'"
-  [ngStyle]="{ 'background-color': post.color }"
-  [ngClass]="{ dark: post.backgroundDark }"
-  [routerLink]="['/posts/' + post.id]"
+  *ngIf="contrastedPost.type === '2'"
+  [ngStyle]="{ 'background-color': contrastedPost.color }"
+  [ngClass]="{ dark: contrastedPost.backgroundDark }"
+  [routerLink]="['/posts/' + contrastedPost.id]"
 >
-  <img class="postimg" [src]="post.index_image" alt="" />
+  <img class="postimg" [src]="contrastedPost.index_image" alt="" />
   <div class="label-container">
     <span
-      *ngFor="let label of post.labels"
+      *ngFor="let label of contrastedPost.labels"
       class="label"
       [ngStyle]="{ 'background-color': label.color }"
       [ngClass]="{ dark: label.backgroundDark }"
       >{{ label.name }}</span
     >
   </div>
-  <p class="title">{{ post.title }}</p>
+  <p class="title">{{ contrastedPost.title }}</p>
   <div class="bottom">
-    <img *ngIf="post.author.image" class="authorimg" [src]="post.author.image" alt="" />
-    <p>{{ post.author.name }}</p>
-    <p>{{ formatDate(post.date) }}</p>
+    <img *ngIf="contrastedPost.author.image" class="authorimg" [src]="contrastedPost.author.image" alt="" />
+    <p>{{ contrastedPost.author.name }}</p>
+    <p>{{ formatDate(contrastedPost.date) }}</p>
   </div>
 </div>
-<div class="content type2" *ngIf="post.type === '1'" [routerLink]="['/posts/' + post.id]">
-  <div class="bg-image"><img class="bgimg" [src]="post.index_image" alt="" /></div>
+<div class="content type2" *ngIf="contrastedPost.type === '1'" [routerLink]="['/posts/' + contrastedPost.id]">
+  <div class="bg-image"><img class="bgimg" [src]="contrastedPost.index_image" alt="" /></div>
   <div class="label-container">
     <span
-      *ngFor="let label of post.labels"
+      *ngFor="let label of contrastedPost.labels"
       class="label"
       [ngStyle]="{ 'background-color': label.color }"
       [ngClass]="{ dark: label.backgroundDark }"
       >{{ label.name }}</span
     >
   </div>
-  <p class="title">{{ post.title }}</p>
-  <p class="description">{{ post.description }}</p>
+  <p class="title">{{ contrastedPost.title }}</p>
+  <p class="description">{{ contrastedPost.description }}</p>
   <div class="bottom">
-    <img *ngIf="post.author.image" class="authorimg" [src]="post.author.image" alt="" />
-    <p>{{ post.author.name }}</p>
-    <p>{{ formatDate(post.date) }}</p>
+    <img *ngIf="contrastedPost.author.image" class="authorimg" [src]="contrastedPost.author.image" alt="" />
+    <p>{{ contrastedPost.author.name }}</p>
+    <p>{{ formatDate(contrastedPost.date) }}</p>
   </div>
 </div>

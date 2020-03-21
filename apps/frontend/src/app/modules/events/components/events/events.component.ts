@@ -38,7 +38,7 @@ export class EventsComponent implements OnInit {
 
   ngOnInit() {
     this.calendarEvents = this.store.pipe(
-      select(EVENTS_FEATURE_KEY),
+      select(state => state[EVENTS_FEATURE_KEY]),
       map((data: EventsState) => {
         let calendarEvents: Event[] = []
         for (const item of data.list) {
