@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core'
 import { ArchiveRoutingModule } from './archive-routing.module'
 import { ArchiveScreenComponent } from './archive-screen.component'
-import { MatExpansionModule } from '@angular/material'
+import { MatExpansionModule } from '@angular/material/expansion'
 import { StoreModule } from '@ngrx/store'
 import * as fromArchive from './state/archive.reducer'
 import { EffectsModule } from '@ngrx/effects'
