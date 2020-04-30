@@ -95,7 +95,7 @@
     "loaders.css": "0.1.2",
     "ng-in-viewport": "6.0.3",
     "prettier": "1.19.1",
-    "protractor": "5.4.3",
+    "protractor": "5.4.4",
     "ts-node": "8.7.0",
     "tslint": "6.0.0",
     "typescript": "~3.8.3"
