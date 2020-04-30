@@ -81,7 +81,7 @@
     "@types/jasmine": "2.8.16",
     "@types/jasminewd2": "2.0.6",
     "@types/node": "12.12.26",
-    "codelyzer": "5.2.1",
+    "codelyzer": "5.2.2",
     "dotenv": "8.2.0",
     "firebase-tools": "7.15.1",
     "jasmine-core": "2.99.1",
