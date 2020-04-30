@@ -9638,10 +9638,10 @@ next-tick@~1.0.0:
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
   integrity sha1-yobR/ogoFpsBICCOPchCS524NCw=
 
-ng-in-viewport@6.0.3:
-  version "6.0.3"
-  resolved "https://registry.yarnpkg.com/ng-in-viewport/-/ng-in-viewport-6.0.3.tgz#582a509f6f18070e640f5cffb28cac8633341652"
-  integrity sha512-n5A27pOpC1wvuZppJJtY4wNRvFXCJX+BHthbLFd3QQy1RVbEMjKxgkPETWo4efB51l9Eg88SJ8toLusKXPduTA==
+ng-in-viewport@6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/ng-in-viewport/-/ng-in-viewport-6.1.0.tgz#2ba8a1628421c3ecb259a2c74f5a04d65f2a727d"
+  integrity sha512-mJlsiGBhOLiqgM4S36zg9IWjv0YsOPuoVB1T4mKaq4NZ2aHB/8t5n5pB+pP93k1mmSUhp+cPscGua5o7gJrURg==
   dependencies:
     intersection-observer ">=0.5.1"
     tslib ">=1.9.0"
