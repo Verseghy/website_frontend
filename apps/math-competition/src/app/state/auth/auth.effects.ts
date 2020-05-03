@@ -26,7 +26,7 @@ export class AuthEffects {
     this.actions$.pipe(
       ofType(login),
       exhaustMap(({ email, password }) =>
-        from(this.afAuth.auth.signInWithEmailAndPassword(email, password)).pipe(
+        from(this.afAuth.signInWithEmailAndPassword(email, password)).pipe(
           map(() => {
             this.router.navigate(['/waiting'])
             return noop()
@@ -42,7 +42,7 @@ export class AuthEffects {
       this.actions$.pipe(
         ofType(logout),
         exhaustMap(() => {
-          return from(this.afAuth.auth.signOut())
+          return from(this.afAuth.signOut())
         }),
         tap(() => {
           return this.router.navigate(['/login'])
