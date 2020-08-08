@@ -1,7 +1,6 @@
 <div
   *ngIf="contrastedPost.type === '0'"
-  [ngClass]="{ dark: contrastedPost.backgroundDark }"
-  [ngStyle]="{ 'background-color': contrastedPost.color }"
+  [ngStyle]="{ 'background-color': 'hsl(' + getHueFromHEXColor(contrastedPost.color) + ' 79% 91%)' }"
   [routerLink]="['/posts/' + contrastedPost.id]"
   class="content"
 >
@@ -25,8 +24,7 @@
 <div
   class="content"
   *ngIf="contrastedPost.type === '2'"
-  [ngStyle]="{ 'background-color': contrastedPost.color }"
-  [ngClass]="{ dark: contrastedPost.backgroundDark }"
+  [ngStyle]="{ 'background-color': 'hsl(' + getHueFromHEXColor(contrastedPost.color) + ' 79% 91%)' }"
   [routerLink]="['/posts/' + contrastedPost.id]"
 >
   <img class="postimg" [src]="contrastedPost.index_image" alt="" />

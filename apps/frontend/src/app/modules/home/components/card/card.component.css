@@ -2,10 +2,12 @@
   display: inline-block;
   box-sizing: border-box;
   position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: box-shadow 300ms;
 }
 
 .content {
-  box-shadow: 0 3px 5px 0 rgba(0, 1, 1, 0.1);
   background-color: #fff;
   padding: 30px 30px 54px;
   height: 100%;
@@ -46,16 +48,15 @@
 .title {
   color: #111111;
   font-family: 'Open Sans', sans-serif;
-  font-size: 22px;
-  font-weight: 700;
+  font-size: 20px;
   margin-bottom: 8px;
   z-index: 1;
   position: relative;
   transition: color 0.3s;
 }
 
-.content:hover .title {
-  color: #009cff;
+:host:hover {
+  box-shadow: 0 0 20px #c3c3c3;
 }
 
 .description {
@@ -84,6 +85,7 @@
   padding: 0;
   object-fit: cover;
   height: 200px;
+  border-radius: 8px;
 }
 
 .bg-image {
