@@ -1,6 +1,5 @@
 :host {
   @media screen and (max-width: 740px) {
-    margin: -30px -20px 0;
     display: block;
   }
 }
@@ -15,8 +14,9 @@
 }
 
 .card {
-  box-shadow: 0 3px 5px 0 rgba(0, 1, 1, 0.1);
-  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: hsl(0deg 0% 97%);
   display: grid;
   grid-template-columns: 3fr 4fr;
   grid-template-rows: repeat(3, min-content) 1fr min-content;
@@ -37,17 +37,12 @@
     object-fit: cover;
     grid-column: 2;
     grid-row: 1 / span 5;
+    border-radius: 8px;
 
     @media screen and (max-width: 740px) {
       grid-row: 3;
       grid-column: auto;
       height: 300px;
-    }
-  }
-
-  h2 {
-    @media screen and (max-width: 740px) {
-      margin-top: 20px;
     }
   }
 
@@ -90,9 +85,13 @@
     color: #111111;
     font-family: 'Open Sans', sans-serif;
     font-size: 22px;
-    font-weight: 700;
+    font-weight: 400;
     margin-bottom: 10px;
     padding: 0 30px;
+
+    @media screen and (max-width: 740px) {
+      margin-top: 20px;
+    }
   }
 
   .description {
@@ -117,7 +116,11 @@
       left: 0;
       right: 0;
       height: 60px;
-      background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+      background: linear-gradient(to bottom, hsla(0deg, 0%, 97%, 0), hsla(0deg, 0%, 97%, 1));
+
+      @media screen and (max-width: 740px) {
+        visibility: hidden;
+      }
     }
   }
 }
