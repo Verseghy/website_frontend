@@ -139,7 +139,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "apps/frontend-e2e/tsconfig.e2e.json",
-            "exclude": ["**/node_modules/**", "!apps/frontend-e2e/**"]
+            "exclude": ["**/node_modules/**", "!apps/frontend-e2e/**/*"]
           }
         }
       }
@@ -273,7 +273,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "apps/math-competition-e2e/tsconfig.e2e.json",
-            "exclude": ["**/node_modules/**", "!apps/math-competition-e2e/**"]
+            "exclude": ["**/node_modules/**", "!apps/math-competition-e2e/**/*"]
           }
         }
       }
@@ -288,7 +288,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": ["libs/calendar/tsconfig.lib.json", "libs/calendar/tsconfig.spec.json", "libs/calendar/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**", "!libs/calendar/**"]
+            "exclude": ["**/node_modules/**", "!libs/calendar/**/*"]
           }
         },
         "test": {
@@ -311,7 +311,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": ["libs/ui/tsconfig.lib.json", "libs/ui/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**", "!libs/ui/**"]
+            "exclude": ["**/node_modules/**", "!libs/ui/**/*"]
           }
         },
         "test": {
@@ -339,7 +339,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": ["libs/simple-slideshow/tsconfig.lib.json", "libs/simple-slideshow/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**", "!libs/simple-slideshow/**"]
+            "exclude": ["**/node_modules/**", "!libs/simple-slideshow/**/*"]
           }
         },
         "test": {
@@ -360,7 +360,6 @@
   },
   "cli": {
     "warnings": {
-      "typescriptMismatch": false,
       "versionMismatch": false
     },
     "defaultCollection": "@nrwl/angular",
