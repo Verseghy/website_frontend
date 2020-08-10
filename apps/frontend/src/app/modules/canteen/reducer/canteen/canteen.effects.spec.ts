@@ -33,7 +33,7 @@ describe('CanteenEffects', () => {
       ],
     })
 
-    effects = TestBed.get(CanteenEffects)
+    effects = TestBed.inject(CanteenEffects)
   })
 
   describe('loadCanteen$', () => {

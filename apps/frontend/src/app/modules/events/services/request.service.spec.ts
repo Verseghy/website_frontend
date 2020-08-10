@@ -13,7 +13,7 @@ describe('RequestService', () => {
   )
 
   it('should be created', () => {
-    const service: RequestService = TestBed.get(RequestService)
+    const service: RequestService = TestBed.inject(RequestService)
     expect(service).toBeTruthy()
   })
 })
