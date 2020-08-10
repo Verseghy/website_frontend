@@ -30,7 +30,7 @@ export class CanteenService {
     const thisWeek = this.getForWeek(year, week)
     const nextWeek = this.getForWeek(year, week + 1)
 
-    return forkJoin(thisWeek, nextWeek)
+    return forkJoin([thisWeek, nextWeek])
   }
 
   constructor(private http: HttpClient) {}

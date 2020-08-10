@@ -21,7 +21,7 @@ describe('CanteenService', () => {
   )
 
   it('should be created', () => {
-    const service: CanteenService = TestBed.get(CanteenService)
+    const service: CanteenService = TestBed.inject(CanteenService)
     expect(service).toBeTruthy()
   })
 })

@@ -23,7 +23,7 @@ describe('EventsEffects', () => {
       providers: [EventsEffects, DataPersistence, provideMockActions(() => actions), { provide: HttpClient, useValue: httpMock }],
     })
 
-    effects = TestBed.get(EventsEffects)
+    effects = TestBed.inject(EventsEffects)
   })
 
   describe('loadEvents$', () => {

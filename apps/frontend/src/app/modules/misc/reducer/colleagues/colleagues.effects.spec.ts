@@ -35,7 +35,7 @@ describe('ColleaguesEffects', () => {
       ],
     })
 
-    effects = TestBed.get(ColleaguesEffects)
+    effects = TestBed.inject(ColleaguesEffects)
   })
 
   describe('loadColleagues$', () => {
