@@ -20,6 +20,7 @@
     <p>{{ contrastedPost.author.name }}</p>
     <p>{{ formatDate(contrastedPost.date) }}</p>
   </div>
+  <div class="focus-border"></div>
 </div>
 <div
   class="content"
@@ -43,6 +44,7 @@
     <p>{{ contrastedPost.author.name }}</p>
     <p>{{ formatDate(contrastedPost.date) }}</p>
   </div>
+  <div class="focus-border"></div>
 </div>
 <div class="content type2" *ngIf="contrastedPost.type === '1'" [routerLink]="['/posts/' + contrastedPost.id]">
   <div class="bg-image"><img class="bgimg" [src]="contrastedPost.index_image" alt="" /></div>
@@ -62,4 +64,5 @@
     <p>{{ contrastedPost.author.name }}</p>
     <p>{{ formatDate(contrastedPost.date) }}</p>
   </div>
+  <div class="focus-border"></div>
 </div>
