@@ -1,0 +1,7 @@
+<a
+    *ngFor="let message of (alertMessages$ | async)"
+    [ngClass]="message.priority"
+    [attr.href]="message.link ? message.link : null"
+>
+    {{ message.message }}
+</a>
