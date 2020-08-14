@@ -1,17 +1,15 @@
 import { Injectable } from '@angular/core'
-import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs'
 import { AlertMessage } from '../models/alert-message'
-import { environment } from '../../../../environments/environment'
+import { AngularFirestore } from '@angular/fire/firestore'
 
 @Injectable({
   providedIn: 'root',
 })
 export class AlertService {
-  constructor(private http: HttpClient) {}
+  constructor(private firestore: AngularFirestore) {}
 
   getAlertMessages(): Observable<AlertMessage[]> {
-    // TODO: change url
-    return this.http.get<AlertMessage[]>(environment.baseURL + '/')
+    return this.firestore.collection<AlertMessage>('messages').valueChanges()
   }
 }
