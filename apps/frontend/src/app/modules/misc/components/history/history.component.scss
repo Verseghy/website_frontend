@@ -1,16 +1,22 @@
-.container {
+:host {
+  padding: 0 20px;
   max-width: 1200px;
+  margin: 20px auto 0;
+  display: block;
+}
+
+.container {
   font-family: 'Cabin', sans-serif;
   font-size: 16px;
-  margin: 20px auto 0;
-  background: #fff;
-  box-shadow: 0 3px 5px 0 rgba(0, 1, 1, 0.1);
+  background: #f7f7f7;
+  border-radius: 8px;
   padding: 40px 40px 48px;
   box-sizing: border-box;
 }
 
 h2 {
   font-size: 30px;
+  font-weight: 400;
 }
 
 .year {
