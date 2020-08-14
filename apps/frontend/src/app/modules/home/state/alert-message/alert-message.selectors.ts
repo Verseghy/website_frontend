@@ -12,4 +12,5 @@ export const getAlertMessages = createSelector(getAlertMessageState, (state: Sta
   state.alertMessages.slice().sort((a, b) => {
     const priorities = [AlertMessagePriority.HIGH, AlertMessagePriority.MEDIUM, AlertMessagePriority.LOW]
     return priorities.indexOf(a.priority) - priorities.indexOf(b.priority)
-  }))
+  })
+)
