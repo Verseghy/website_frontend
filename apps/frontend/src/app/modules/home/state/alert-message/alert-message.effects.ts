@@ -13,8 +13,8 @@ export class AlertMessageEffects {
       ofType(AlertMessageActions.loadAlertMessage),
       concatMap(() =>
         this.service.getAlertMessages().pipe(
-          map(alertMessages => AlertMessageActions.loadAlertMessageSuccess({ alertMessages })),
-          catchError(error => of(AlertMessageActions.loadAlertMessageFailure({ error })))
+          map((alertMessages) => AlertMessageActions.loadAlertMessageSuccess({ alertMessages })),
+          catchError((error) => of(AlertMessageActions.loadAlertMessageFailure({ error })))
         )
       )
     )

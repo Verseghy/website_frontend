@@ -17,15 +17,13 @@ export interface AlertMessagePartialState {
 
 export const initialState: State = {
   alertMessages: [],
-  loaded: false
+  loaded: false,
 }
 
 const alertMessageReducer = createReducer(
   initialState,
   on(AlertMessageActions.loadAlertMessage, (state) => ({ ...state, loaded: false, error: null })),
-  on(AlertMessageActions.loadAlertMessageSuccess, (state, { alertMessages }) =>
-      ({ ...state, alertMessages, loaded: true, error: null })
-  ),
+  on(AlertMessageActions.loadAlertMessageSuccess, (state, { alertMessages }) => ({ ...state, alertMessages, loaded: true, error: null })),
   on(AlertMessageActions.loadAlertMessageFailure, (state, { error }) => ({ ...state, error }))
 )
 

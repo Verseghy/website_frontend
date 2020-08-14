@@ -5,11 +5,10 @@ import { AlertMessage } from '../models/alert-message'
 import { environment } from '../../../../environments/environment'
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AlertService {
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getAlertMessages(): Observable<AlertMessage[]> {
     // TODO: change url
