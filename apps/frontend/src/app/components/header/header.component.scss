@@ -1,7 +1,7 @@
 :host {
   height: 64px;
   background: #fff;
-  box-shadow: 0 3px 5px 0 rgba(0, 1, 1, 0.1);
+  box-shadow: 0 0 10px 0 rgba(0, 1, 1, 0.1);
   z-index: 11;
   position: fixed;
   left: 0;
@@ -63,6 +63,7 @@
     color: #fff;
     padding: 0 7px;
     margin-left: 5px;
+    border-radius: 3px;
   }
 }
 
@@ -99,7 +100,7 @@
 
 .menu-header {
   display: none;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #f3f3f3;
 
   @media screen and (max-width: 992px) {
     display: block;
@@ -128,6 +129,7 @@
   }
 
   &.ekreta {
+    border-radius: 3px;
     transition: background-color 300ms;
     -webkit-tap-highlight-color: transparent;
 
@@ -136,7 +138,7 @@
     }
 
     &:hover {
-      background-color: #eceff1;
+      background-color: #f7f7f7;
     }
 
     img {
@@ -168,7 +170,7 @@
   &:hover {
     > a,
     > span {
-      background-color: #eceff1;
+      background-color: #f7f7f7;
     }
 
     .submenu {
@@ -194,11 +196,16 @@
     color: #000;
   }
 
+  span {
+    border-radius: 3px 3px 0 0;
+  }
+
   > a,
   > span {
     display: block;
     padding: 0 15px;
     transition: background-color 300ms;
+    border-radius: 3px;
 
     @media screen and (max-width: 992px) {
       padding-left: 32px;
@@ -222,24 +229,22 @@
     position: absolute;
     opacity: 0;
     pointer-events: none;
-    background: #fff;
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+    background: #f7f7f7;
     transition: opacity 300ms;
     min-width: 140px;
+    border-radius: 0 3px 3px 3px;
 
     @media screen and (max-width: 992px) {
       position: static;
       display: none;
-      background: #009cff;
-      box-shadow: none;
     }
 
     a {
       display: block;
       padding: 0 15px;
+      border-radius: 3px;
 
       @media screen and (max-width: 992px) {
-        color: #fff;
         padding-left: 32px;
       }
 
