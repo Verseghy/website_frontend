@@ -34,7 +34,10 @@
     </div>
   </div>
   <div class="left">
-    <i class="material-icons TEMP-disabled-not-implemented-link">search</i>
+    <div class="search active">
+      <i class="material-icons">search</i>
+      <input type="text" placeholder="Keresés" (keyup)="search($event)" [(ngModel)]="searchTerm" />
+    </div>
     <i (click)="drawer = !drawer" class="material-icons menu-toggle">menu</i>
   </div>
 </div>
