@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
-import { combineLatest, Observable, Subscription } from 'rxjs'
-import { SearchService } from '../../services/search.service'
-import { Post } from '../../../../models/Post'
+import { combineLatest } from 'rxjs'
+import { SearchFacade } from '../../state/search/search.facade'
+import { SubSink } from 'subsink'
 
 @Component({
   selector: 'verseghy-search',
@@ -10,26 +10,26 @@ import { Post } from '../../../../models/Post'
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit, OnDestroy {
-  private asd$: Subscription
+  private subsink = new SubSink()
 
-  posts$: Observable<Post[]>
+  posts$ = this.searchFacade.posts$
+  loaded$ = this.searchFacade.loaded$
+  error$ = this.searchFacade.error$
 
-  constructor(private route: ActivatedRoute, private service: SearchService) { }
+  constructor(private route: ActivatedRoute, private searchFacade: SearchFacade) { }
 
   ngOnInit(): void {
-    this.asd$ = combineLatest([this.route.params, this.route.data]).subscribe(([params, data]) => {
+    this.subsink.sink = combineLatest([this.route.params, this.route.data]).subscribe(([params, data]) => {
       if (!params || !data) return
 
-      if (data.type === 'term') {
-        this.posts$ = this.service.queryTerm(params.term)
-      } else if (data.type === 'label') {
-        this.posts$ = this.service.queryLabel(params.term)
-      }
+      if (data.type === 'term') this.searchFacade.queryTerm(params.term)
+      if (data.type === 'label') this.searchFacade.queryLabel(params.labelID)
+      if (data.type === 'author') this.searchFacade.queryAuthor(params.authorID)
     })
   }
 
   ngOnDestroy() {
-    this.asd$.unsubscribe()
+    this.subsink.unsubscribe()
   }
 
 }
