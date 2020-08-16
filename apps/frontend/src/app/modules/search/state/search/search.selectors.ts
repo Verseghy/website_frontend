@@ -9,5 +9,3 @@ export const getSearchLoaded = createSelector(getSearchState, (state: State) => 
 export const getSearchError = createSelector(getSearchState, (state: State) => state.error)
 
 export const getSearchPosts = createSelector(getSearchState, (state: State) => state.posts)
-
-

@@ -6,22 +6,22 @@ const routes: Routes = [
   {
     path: 'term/:term',
     component: SearchComponent,
-    data: { type: 'term' }
+    data: { type: 'term' },
   },
   {
     path: 'label/:labelID',
     component: SearchComponent,
-    data: { type: 'label' }
+    data: { type: 'label' },
   },
   {
     path: 'author/:authorID',
     component: SearchComponent,
-    data: { type: 'author' }
-  }
-];
+    data: { type: 'author' },
+  },
+]
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class SearchRoutingModule { }
+export class SearchRoutingModule {}

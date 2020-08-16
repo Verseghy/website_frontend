@@ -5,16 +5,14 @@ import { format } from 'date-fns'
 @Component({
   selector: 'verseghy-card',
   templateUrl: './card.component.html',
-  styleUrls: ['./card.component.scss']
+  styleUrls: ['./card.component.scss'],
 })
 export class CardComponent implements OnInit {
-
   @Input() post: Post
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   formatDate(date: string): string {
     return format(new Date(date), 'YYYY-MM-DD')
@@ -54,5 +52,4 @@ export class CardComponent implements OnInit {
 
     return Math.round(360 * h)
   }
-
 }
