@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from '@angular/core'
+import { RouterModule, Routes } from '@angular/router'
 import { SearchComponent } from './components/search/search.component'
 
 const routes: Routes = [
@@ -9,9 +9,14 @@ const routes: Routes = [
     data: { type: 'term' }
   },
   {
-    path: 'label/:term',
+    path: 'label/:labelID',
     component: SearchComponent,
     data: { type: 'label' }
+  },
+  {
+    path: 'author/:authorID',
+    component: SearchComponent,
+    data: { type: 'author' }
   }
 ];
 
