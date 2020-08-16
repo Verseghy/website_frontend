@@ -5,11 +5,10 @@ import { Post } from '../../../models/Post'
 import { environment } from '../../../../environments/environment'
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SearchService {
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   queryTerm(term: string): Observable<Post[]> {
     return this.http.get<Post[]>(environment.baseURL + '/posts/search', { params: { term } })

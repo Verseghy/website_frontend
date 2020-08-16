@@ -7,7 +7,7 @@ import { SubSink } from 'subsink'
 @Component({
   selector: 'verseghy-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss']
+  styleUrls: ['./search.component.scss'],
 })
 export class SearchComponent implements OnInit, OnDestroy {
   private subsink = new SubSink()
@@ -16,7 +16,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   loaded$ = this.searchFacade.loaded$
   error$ = this.searchFacade.error$
 
-  constructor(private route: ActivatedRoute, private searchFacade: SearchFacade) { }
+  constructor(private route: ActivatedRoute, private searchFacade: SearchFacade) {}
 
   ngOnInit(): void {
     this.subsink.sink = combineLatest([this.route.params, this.route.data]).subscribe(([params, data]) => {
@@ -31,5 +31,4 @@ export class SearchComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subsink.unsubscribe()
   }
-
 }
