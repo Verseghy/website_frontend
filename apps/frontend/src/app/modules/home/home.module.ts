@@ -5,7 +5,6 @@ import { HttpClientModule } from '@angular/common/http'
 import { SharedModule } from '../shared/shared.module'
 
 import { HomeComponent } from './components/home/home.component'
-import { CardComponent } from './components/card/card.component'
 import { FeaturedPostComponent } from './components/featured-post/featured-post.component'
 import { StoreModule } from '@ngrx/store'
 import * as fromPosts from './state/posts/posts.reducer'
@@ -36,7 +35,7 @@ const routes: Routes = [
     StoreModule.forFeature(fromAlertMessage.ALERTMESSAGE_FEATURE_KEY, fromAlertMessage.reducer),
     EffectsModule.forFeature([AlertMessageEffects]),
   ],
-  declarations: [HomeComponent, CardComponent, FeaturedPostComponent, AlertComponent],
+  declarations: [HomeComponent, FeaturedPostComponent, AlertComponent],
   providers: [AlertMessageFacade],
 })
 export class HomeModule {}
