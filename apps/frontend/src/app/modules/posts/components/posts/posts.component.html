@@ -12,7 +12,7 @@
     <img class="index-image" [src]="post?.index_image" alt="" />
     <div class="small-meta">
       <img *ngIf="post?.author.image" class="author-image" [src]="post?.author.image" alt="" />
-      <span class="name">{{ post?.author.name }}</span>
+      <span class="name" [routerLink]="['/search', 'author', post?.author.id]">{{ post?.author.name }}</span>
       <span class="date">Közzétéve: {{ formatDate(post?.date) }}</span>
     </div>
     <div class="post-content" [innerHTML]="post?.content"></div>
@@ -32,7 +32,7 @@
     ></verseghy-slideshow>
     <div class="meta">
       <img *ngIf="post?.author.image" class="author-image" [src]="post?.author.image" alt="" />
-      <span class="name">{{ post?.author.name }}</span>
+      <span class="name" [routerLink]="['/search', 'author', post?.author.id]">{{ post?.author.name }}</span>
       <p class="description">{{ post?.author.description }}</p>
     </div>
   </div>
