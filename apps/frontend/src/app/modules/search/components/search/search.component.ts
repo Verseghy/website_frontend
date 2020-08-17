@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router'
 import { combineLatest } from 'rxjs'
 import { SearchFacade } from '../../state/search/search.facade'
 import { SubSink } from 'subsink'
+import { map } from 'rxjs/operators'
 
 @Component({
   selector: 'verseghy-search',
@@ -15,6 +16,9 @@ export class SearchComponent implements OnInit, OnDestroy {
   posts$ = this.searchFacade.posts$
   loaded$ = this.searchFacade.loaded$
   error$ = this.searchFacade.error$
+
+  type$ = this.route.data.pipe(map(({ type }) => type))
+  term$ = this.route.params.pipe(map(({ term }) => term))
 
   constructor(private route: ActivatedRoute, private searchFacade: SearchFacade) {}
 

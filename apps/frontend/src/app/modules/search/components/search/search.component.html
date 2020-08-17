@@ -1,2 +1,4 @@
-<h1>Találatok:</h1>
-<!--<verseghy-card [post]="post" *ngFor="let post of posts$ | async"></verseghy-card>-->
+<h1 *ngIf="(type$ | async) === 'term'">Találatok erre a kifejezésre: "{{ term$ | async }}"</h1>
+<div class="results">
+    <verseghy-card [post]="post" *ngFor="let post of posts$ | async"></verseghy-card>
+</div>
