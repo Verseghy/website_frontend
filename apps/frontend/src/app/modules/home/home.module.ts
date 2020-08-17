@@ -14,7 +14,7 @@ import { MatButtonModule } from '@angular/material/button'
 import { AlertComponent } from './components/alert/alert.component'
 import * as fromAlertMessage from './state/alert-message/alert-message.reducer'
 import { AlertMessageEffects } from './state/alert-message/alert-message.effects'
-import { AlertMessageFacade } from './state/alert-message/alert-message.facade';
+import { AlertMessageFacade } from './state/alert-message/alert-message.facade'
 import { BannersComponent } from './components/banners/banners.component'
 
 const routes: Routes = [
