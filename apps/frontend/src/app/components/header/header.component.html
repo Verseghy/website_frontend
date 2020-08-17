@@ -5,6 +5,10 @@
   </div>
   <div [ngClass]="{ open: drawer }" class="middle">
     <div class="menu-header"><i (click)="drawer = !drawer" class="material-icons menu-close">close</i></div>
+    <div class="search top">
+      <i class="material-icons">search</i>
+      <input type="text" placeholder="Keresés" (keyup)="search($event)" [(ngModel)]="searchTerm" />
+    </div>
     <div class="menu">
       <a (click)="drawer = !drawer" href="" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Főoldal</a>
     </div>
@@ -32,12 +36,12 @@
         <img alt="" src="assets/icons/kreta2.png" />
       </a>
     </div>
-  </div>
-  <div class="left">
-    <div class="search active">
+    <div class="search">
       <i class="material-icons">search</i>
       <input type="text" placeholder="Keresés" (keyup)="search($event)" [(ngModel)]="searchTerm" />
     </div>
+  </div>
+  <div class="left">
     <i (click)="drawer = !drawer" class="material-icons menu-toggle">menu</i>
   </div>
 </div>

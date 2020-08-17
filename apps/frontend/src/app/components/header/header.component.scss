@@ -254,7 +254,6 @@
 
         @media screen and (max-width: 992px) {
           background-color: rgba(0, 0, 0, 0.1);
-          color: #fff;
         }
       }
     }
@@ -305,16 +304,31 @@ i {
 }
 
 .search {
-  display: inline-block;
+  display: flex;
   border-radius: 3px;
-  margin: 12px 0;
+  margin: 0 3px;
+  background-color: #f7f7f7;
+
+  @media screen and (max-width: 992px) {
+    display: none;
+    margin: 0;
+    border-radius: 0;
+  }
+
+  &.top {
+    display: none;
+
+    @media screen and (max-width: 992px) {
+      display: flex;
+    }
+  }
 
   &:focus-within {
     box-shadow: 0 0 0 2px #000;
-  }
 
-  &.active {
-    background-color: #f7f7f7;
+    @media screen and (max-width: 992px) {
+      box-shadow: 0 0 0 2px #000 inset;
+    }
   }
 
   i {
@@ -323,6 +337,13 @@ i {
     line-height: 40px;
     margin: 0;
     vertical-align: middle;
+
+    @media screen and (max-width: 992px) {
+      width: 48px;
+      height: 48px;
+      line-height: 48px;
+      padding-left: 4px;
+    }
   }
 
   input {
@@ -330,5 +351,9 @@ i {
     height: 40px;
     vertical-align: middle;
     outline: 0;
+
+    @media screen and (max-width: 992px) {
+      height: 48px;
+    }
   }
 }
