@@ -8,6 +8,7 @@ import { EffectsModule } from '@ngrx/effects'
 import * as fromSearch from './state/search/search.reducer'
 import { SearchEffects } from './state/search/search.effects'
 import { SearchFacade } from './state/search/search.facade'
+import { SharedModule } from '../shared/shared.module'
 
 @NgModule({
   declarations: [SearchComponent],
@@ -16,6 +17,7 @@ import { SearchFacade } from './state/search/search.facade'
     SearchRoutingModule,
     StoreModule.forFeature(fromSearch.SEARCH_FEATURE_KEY, fromSearch.reducer),
     EffectsModule.forFeature([SearchEffects]),
+    SharedModule,
   ],
   providers: [SearchFacade],
 })
