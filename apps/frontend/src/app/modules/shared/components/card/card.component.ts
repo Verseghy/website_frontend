@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core'
-import { ContrastService } from '../../services/contrast.service'
-import { Post } from '../../models/Post'
+import { ContrastService } from '../../../../services/contrast.service'
+import { Post } from '../../../../models/Post'
 import { format } from 'date-fns'
 import cloneDeep from 'lodash-es/cloneDeep'
 

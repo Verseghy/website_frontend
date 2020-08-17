@@ -21,12 +21,11 @@ import { environment } from '../environments/environment'
 import { ServiceWorkerModule } from '@angular/service-worker'
 import { AngularFireAnalyticsModule, APP_NAME, APP_VERSION, COLLECTION_ENABLED, ScreenTrackingService } from '@angular/fire/analytics'
 import { AngularFirePerformanceModule } from '@angular/fire/performance'
-import { CardComponent } from './components/card/card.component'
 
 library.add(faCheck)
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent, CardComponent],
+  declarations: [AppComponent, HeaderComponent, FooterComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
