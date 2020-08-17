@@ -38,7 +38,12 @@ const routes: Routes = [
   {
     path: '',
     component: EmptyLayoutComponent,
-    children: []
+    children: [
+      {
+        path: 'competitions',
+        loadChildren: () => import('./modules/competitions/competitions.module').then(m => m.CompetitionsModule),
+      }
+    ]
   }
 ]
 
