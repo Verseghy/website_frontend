@@ -14,7 +14,8 @@ import { MatButtonModule } from '@angular/material/button'
 import { AlertComponent } from './components/alert/alert.component'
 import * as fromAlertMessage from './state/alert-message/alert-message.reducer'
 import { AlertMessageEffects } from './state/alert-message/alert-message.effects'
-import { AlertMessageFacade } from './state/alert-message/alert-message.facade'
+import { AlertMessageFacade } from './state/alert-message/alert-message.facade';
+import { BannersComponent } from './components/banners/banners.component'
 
 const routes: Routes = [
   {
@@ -35,7 +36,7 @@ const routes: Routes = [
     StoreModule.forFeature(fromAlertMessage.ALERTMESSAGE_FEATURE_KEY, fromAlertMessage.reducer),
     EffectsModule.forFeature([AlertMessageEffects]),
   ],
-  declarations: [HomeComponent, FeaturedPostComponent, AlertComponent],
+  declarations: [HomeComponent, FeaturedPostComponent, AlertComponent, BannersComponent],
   providers: [AlertMessageFacade],
 })
 export class HomeModule {}
