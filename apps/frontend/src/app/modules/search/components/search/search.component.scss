@@ -1,0 +1,18 @@
+:host {
+  padding: 0 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: block;
+}
+
+h1 {
+  font-weight: 400;
+  margin-top: 30px;
+}
+
+.results {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-gap: 20px;
+  margin-top: 20px;
+}

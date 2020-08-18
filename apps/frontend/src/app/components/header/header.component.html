@@ -5,6 +5,10 @@
   </div>
   <div [ngClass]="{ open: drawer }" class="middle">
     <div class="menu-header"><i (click)="drawer = !drawer" class="material-icons menu-close">close</i></div>
+    <div class="search top">
+      <i class="material-icons">search</i>
+      <input type="text" placeholder="Keresés" (keyup)="search($event)" [(ngModel)]="searchTerm" />
+    </div>
     <div class="menu">
       <a (click)="drawer = !drawer" href="" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Főoldal</a>
     </div>
@@ -25,6 +29,9 @@
         <!-- <a (click)="drawer = !drawer" href="" routerLink="/misc/classes">Osztályok</a> -->
         <a (click)="drawer = !drawer" href="" routerLink="/misc/documents">Dokumentumok</a>
         <a (click)="drawer = !drawer" href="" routerLink="/misc/authors">Fejlesztők</a>
+        <a (click)="drawer = !drawer" href="" [routerLink]="['/posts', 0]">Alapítvány</a>
+        <a (click)="drawer = !drawer" href="" [routerLink]="['/posts', 0]">Szabályzataink</a>
+        <a (click)="drawer = !drawer" href="" [routerLink]="['/posts', 0]">Eredmények</a>
       </div>
     </div>
     <div class="menu ekreta">
@@ -32,9 +39,12 @@
         <img alt="" src="assets/icons/kreta2.png" />
       </a>
     </div>
+    <div class="search">
+      <i class="material-icons">search</i>
+      <input type="text" placeholder="Keresés" (keyup)="search($event)" [(ngModel)]="searchTerm" />
+    </div>
   </div>
   <div class="left">
-    <i class="material-icons TEMP-disabled-not-implemented-link">search</i>
     <i (click)="drawer = !drawer" class="material-icons menu-toggle">menu</i>
   </div>
 </div>

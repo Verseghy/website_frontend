@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'verseghy-header',
@@ -9,7 +10,16 @@ export class HeaderComponent implements OnInit {
   drawer: boolean
   submenu1: boolean
   submenu2: boolean
-  constructor() {}
+
+  searchTerm: string
+
+  constructor(private router: Router) {}
 
   ngOnInit() {}
+
+  search(event) {
+    if (event.key === 'Enter') {
+      this.router.navigate(['search', 'term', this.searchTerm])
+    }
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, HostBinding, Input, OnInit } from '@angular/core'
 
 @Component({
   selector: 'verseghy-label',
@@ -7,6 +7,10 @@ import { Component, Input, OnInit } from '@angular/core'
 })
 export class LabelComponent implements OnInit {
   @Input() label: any
+
+  @HostBinding('routerLink') get routerLink() {
+    return ['/search', 'label', this.label.id]
+  }
 
   constructor() {}
 
