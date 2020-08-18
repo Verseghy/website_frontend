@@ -20,6 +20,7 @@ export class HeaderComponent implements OnInit {
   search(event) {
     if (event.key === 'Enter') {
       this.router.navigate(['search', 'term', this.searchTerm])
+      this.drawer = false
     }
   }
 }
