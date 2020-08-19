@@ -9,12 +9,14 @@ import * as fromSearch from './state/search/search.reducer'
 import { SearchEffects } from './state/search/search.effects'
 import { SearchFacade } from './state/search/search.facade'
 import { SharedModule } from '../shared/shared.module'
+import { LoadersModule } from '@verseghy/ui'
 
 @NgModule({
   declarations: [SearchComponent],
   imports: [
     CommonModule,
     SearchRoutingModule,
+    LoadersModule,
     StoreModule.forFeature(fromSearch.SEARCH_FEATURE_KEY, fromSearch.reducer),
     EffectsModule.forFeature([SearchEffects]),
     SharedModule,

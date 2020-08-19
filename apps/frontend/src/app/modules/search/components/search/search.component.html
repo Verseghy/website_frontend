@@ -1,4 +1,7 @@
 <h1 *ngIf="(type$ | async) === 'term'">Találatok erre a kifejezésre: "{{ term$ | async }}"</h1>
+<verseghy-loaders [hidden]="(loaded$ | async) === true || (error$ | async) !== null" [loader]="'pacman'"></verseghy-loaders>
+<span *ngIf="(error$ | async) !== null && (error$ | async).status === 404">Nincs találat!</span>
+<span *ngIf="(error$ | async) !== null && (error$ | async).status !== 404">Ismeretlen hiba történt!</span>
 <div class="results">
   <verseghy-card [post]="post" *ngFor="let post of posts$ | async"></verseghy-card>
 </div>
