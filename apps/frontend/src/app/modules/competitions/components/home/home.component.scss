@@ -36,6 +36,12 @@ h1 {
   background-color: #f7f7f7;
   border-radius: 8px;
   grid-row: span 2;
+  transition: box-shadow 300ms;
+
+  &:hover {
+    box-shadow: 0 0 20px #c3c3c3;
+    cursor: pointer;
+  }
 
   &:focus {
     outline: 0;
