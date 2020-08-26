@@ -1,1 +1,18 @@
-<p>home works!</p>
+<div class="content">
+    <h1>Verseghy Versenyek</h1>
+    <div *ngFor="let i of [1,2,3]" [routerLink]="['/posts', '0']" class="card">
+        <img src="https://via.placeholder.com/500" alt="">
+        <div class="card-header">
+            <h2>Lorem ipsum</h2>
+            <span *ngIf="true" class="status">
+                <span class="dot"></span>
+                <span>Registation closed</span>
+            </span>
+            <span *ngIf="false" class="status opened">
+                <span class="dot"></span>
+                <span>Registation opened</span>
+            </span>
+        </div>
+        <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus posuere semper hendrerit. Praesent rutrum quam at urna dapibus, vitae egestas lectus interdum. Praesent luctus urna massa, sed imperdiet sem auctor sed.</p>
+    </div>
+</div>
