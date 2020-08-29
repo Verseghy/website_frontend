@@ -1,18 +1,20 @@
 <div class="content">
     <h1>Verseghy Versenyek</h1>
-    <div *ngFor="let i of [1,2,3]" [routerLink]="['/posts', '0']" class="card">
-        <img src="https://via.placeholder.com/500" alt="">
+    <div *ngFor="let competition of competitions$ | async" [routerLink]="[competition.id]" class="card">
+        <img *ngIf="competition.card.image" [src]="competition.card.image" alt="">
         <div class="card-header">
-            <h2>Lorem ipsum</h2>
-            <span *ngIf="true" class="status">
-                <span class="dot"></span>
-                <span>Registation closed</span>
-            </span>
-            <span *ngIf="false" class="status opened">
+            <h2>{{ competition.name }}</h2>
+            <span *ngIf="isRegistrationOpen(competition.registration); else registrationClosed" class="status opened">
                 <span class="dot"></span>
                 <span>Registation opened</span>
             </span>
+            <ng-template #registrationClosed>
+                <span class="status">
+                    <span class="dot"></span>
+                    <span>Registation closed</span>
+                </span>
+            </ng-template>
         </div>
-        <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus posuere semper hendrerit. Praesent rutrum quam at urna dapibus, vitae egestas lectus interdum. Praesent luctus urna massa, sed imperdiet sem auctor sed.</p>
+        <p class="description">{{ competition.card.shortDescription }}</p>
     </div>
 </div>
