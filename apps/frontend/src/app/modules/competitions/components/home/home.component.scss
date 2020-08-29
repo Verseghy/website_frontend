@@ -36,6 +36,13 @@ h1 {
   background-color: #f7f7f7;
   border-radius: 8px;
   grid-row: span 2;
+  transition: box-shadow 300ms;
+  font-family: 'Roboto', sans-serif;
+
+  &:hover {
+    box-shadow: 0 0 20px #c3c3c3;
+    cursor: pointer;
+  }
 
   &:focus {
     outline: 0;
@@ -110,5 +117,6 @@ h1 {
   .description {
     font-size: 16px;
     padding: 20px;
+    line-height: 1.2;
   }
 }
