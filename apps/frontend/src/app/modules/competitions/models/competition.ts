@@ -1,14 +1,14 @@
 export interface Competition {
   id: number
-  name: number
+  name: string
   year: number
   registration: CompetitionRegistration
   card: CompetitionCardView
   hero: CompetitionHeroView
   about: CompetitionAboutView
-  rounds: CompetitionRound[]
-  FAQs: CompetitionFAQ[]
-  Rules
+  schedule: CompetitionScheduleView
+  FAQ: CompetitionFAQ[]
+  rules: CompetitionRulesView
 }
 
 export interface CompetitionCardView {
@@ -35,13 +35,25 @@ export interface CompetitionAboutView {
   description: string
 }
 
-export interface CompetitionRoundView {
-  description: string
+export interface CompetitionScheduleView {
+  rounds: CompetitionRound[]
 }
 
-export enum CompetitionRegistration {
-  OPEN = "open",
-  CLOSED = "closed"
+export interface CompetitionScheduleView {
+  rounds: CompetitionRound[]
+}
+
+export interface CompetitionRulesView {
+  rules: CompetitionRule[]
+}
+
+export interface CompetitionFAQView {
+  FAQs: CompetitionFAQ[]
+}
+
+export interface CompetitionRegistration {
+  start: Date
+  end: Date
 }
 
 export interface CompetitionRound {
@@ -59,7 +71,7 @@ export interface CompetitionFAQ {
   }
 }
 
-export interface CompetitionRules {
+export interface CompetitionRule {
   name: string
   rule: string
 }
