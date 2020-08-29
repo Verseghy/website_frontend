@@ -1,3 +1,6 @@
+import { firestore } from 'firebase/app';
+import Timestamp = firestore.Timestamp;
+
 export interface Competition {
   id: number
   name: string
@@ -52,14 +55,14 @@ export interface CompetitionFAQView {
 }
 
 export interface CompetitionRegistration {
-  start: Date
-  end: Date
+  start: Timestamp
+  end: Timestamp
 }
 
 export interface CompetitionRound {
   name: string
-  start: Date
-  end: Date
+  start: Timestamp
+  end: Timestamp
   description?: string
 }
 
