@@ -67,11 +67,8 @@ export interface CompetitionRound {
 }
 
 export interface CompetitionFAQ {
-  name: string
-  QA: {
-    question: string
-    answer: string
-  }
+  question: string
+  answer: string
 }
 
 export interface CompetitionRule {
