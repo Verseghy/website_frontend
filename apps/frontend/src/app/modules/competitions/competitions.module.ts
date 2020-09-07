@@ -15,15 +15,22 @@ import { ScheduleComponent } from './components/schedule/schedule.component';
 import { FaqComponent } from './components/faq/faq.component';
 import { RulesComponent } from './components/rules/rules.component';
 import { MenuComponent } from './components/menu/menu.component'
+import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome'
+import { faAddressBook, faCoffee } from '@fortawesome/free-solid-svg-icons'
 
 @NgModule({
   declarations: [HomeComponent, InfoComponent, HeroComponent, AboutComponent, ScheduleComponent, FaqComponent, RulesComponent, MenuComponent],
   imports: [
     CommonModule,
     CompetitionsRoutingModule,
+    FontAwesomeModule,
     StoreModule.forFeature(fromCompetitions.COMPETITIONS_FEATURE_KEY, fromCompetitions.reducer),
     EffectsModule.forFeature([CompetitionsEffects]),
   ],
   providers: [CompetitionsFacade],
 })
-export class CompetitionsModule {}
+export class CompetitionsModule {
+  constructor(library: FaIconLibrary) {
+    library.addIcons(faCoffee, faAddressBook);
+  }
+}
