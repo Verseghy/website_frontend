@@ -1,1 +1,5 @@
-<p>hero works!</p>
+<div class="left">
+    <h1>{{ (competition$ | async).name }}</h1>
+    <p>{{ (competition$ | async).hero.description }}</p>
+</div>
+<img [src]="(competition$ | async).hero.image" alt="">

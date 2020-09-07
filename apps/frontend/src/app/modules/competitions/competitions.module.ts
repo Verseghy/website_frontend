@@ -16,7 +16,7 @@ import { FaqComponent } from './components/faq/faq.component';
 import { RulesComponent } from './components/rules/rules.component';
 import { MenuComponent } from './components/menu/menu.component'
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome'
-import { faAddressBook, faCoffee } from '@fortawesome/free-solid-svg-icons'
+import { faCalendarAlt } from '@fortawesome/free-regular-svg-icons'
 
 @NgModule({
   declarations: [HomeComponent, InfoComponent, HeroComponent, AboutComponent, ScheduleComponent, FaqComponent, RulesComponent, MenuComponent],
@@ -31,6 +31,6 @@ import { faAddressBook, faCoffee } from '@fortawesome/free-solid-svg-icons'
 })
 export class CompetitionsModule {
   constructor(library: FaIconLibrary) {
-    library.addIcons(faCoffee, faAddressBook);
+    library.addIcons(faCalendarAlt)
   }
 }

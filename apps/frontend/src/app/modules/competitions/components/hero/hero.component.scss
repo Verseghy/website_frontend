@@ -1,0 +1,25 @@
+:host {
+  font-family: 'Roboto', sans-serif;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: min-content;
+  grid-gap: 30px;
+}
+
+h1 {
+  font-size: 48px;
+  font-weight: 400;
+}
+
+p {
+  margin-top: 30px;
+  line-height: 24px;
+}
+
+img {
+  width: 100%;
+  height: 300px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+

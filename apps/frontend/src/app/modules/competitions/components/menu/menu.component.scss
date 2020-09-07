@@ -1,8 +1,21 @@
+:host {
+  display: block;
+  position: sticky;
+  top: 0;
+  left: 0;
+  background: #fff;
+  margin-top: 50px;
+}
+
 span {
   display: inline-block;
   color: #000;
   line-height: 40px;
   cursor: pointer;
   padding: 0 20px;
-  border-radius: 8px;
+
+  &.active {
+    border-bottom: 2px inset #009cff;
+    color: #009cff;
+  }
 }

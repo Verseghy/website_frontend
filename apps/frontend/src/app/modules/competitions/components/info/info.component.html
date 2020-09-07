@@ -1,5 +1,8 @@
-<verseghy-hero></verseghy-hero>
-<verseghy-menu></verseghy-menu>
-<verseghy-about></verseghy-about>
-<verseghy-schedule></verseghy-schedule>
-<verseghy-faq></verseghy-faq>
+<ng-container *ngIf="loaded$ | async">
+    <verseghy-hero></verseghy-hero>
+    <verseghy-menu></verseghy-menu>
+    <verseghy-about></verseghy-about>
+    <verseghy-rules></verseghy-rules>
+    <verseghy-schedule></verseghy-schedule>
+    <verseghy-faq></verseghy-faq>
+</ng-container>

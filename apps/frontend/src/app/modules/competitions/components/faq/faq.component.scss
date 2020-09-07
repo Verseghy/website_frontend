@@ -1,0 +1,32 @@
+:host {
+  margin-top: 50px;
+  display: block;
+  font-family: 'Roboto', sans-serif;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.container {
+  background-color: #f7f7f7;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 10px;
+  line-height: 24px;
+
+  .question {
+    margin-bottom: 15px;
+    margin-top: 30px;
+    font-size: 20px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

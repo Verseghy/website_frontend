@@ -1,0 +1,26 @@
+:host {
+  margin-top: 50px;
+  display: block;
+  font-family: 'Roboto', sans-serif;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.round {
+  background-color: #f7f7f7;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 10px 0;
+  display: flex;
+
+  fa-icon {
+    margin-right: 20px;
+  }
+
+  span {
+    width: 50%;
+  }
+}

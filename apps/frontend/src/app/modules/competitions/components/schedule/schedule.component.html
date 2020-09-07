@@ -1,1 +1,8 @@
-<p>schedule works!</p>
+<h2>Schedule</h2>
+<div class="round" *ngFor="let round of (competition$ | async).schedule.rounds">
+    <span class="time">
+        <fa-icon [icon]="['far', 'calendar-alt']"></fa-icon>
+        {{ formatTime(round.start.toDate(), round.end.toDate()) }}
+    </span>
+    <span class="name">{{ round.name }}</span>
+</div>
