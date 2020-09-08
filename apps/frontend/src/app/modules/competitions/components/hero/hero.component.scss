@@ -4,11 +4,19 @@
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: min-content;
   grid-gap: 30px;
+
+  @media screen and (max-width: 972px) {
+    grid-template-columns: 1fr;
+  }
 }
 
 h1 {
   font-size: 48px;
   font-weight: 400;
+
+  @media screen and (max-width: 972px) {
+    font-size: 24px;
+  }
 }
 
 p {
@@ -21,5 +29,9 @@ img {
   height: 300px;
   border-radius: 8px;
   object-fit: cover;
+
+  @media screen and (max-width: 972px) {
+    height: 250px;
+  }
 }
 
