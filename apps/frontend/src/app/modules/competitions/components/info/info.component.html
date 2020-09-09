@@ -1,8 +1,8 @@
 <ng-container *ngIf="loaded$ | async">
     <verseghy-hero></verseghy-hero>
-    <verseghy-menu></verseghy-menu>
-    <verseghy-about></verseghy-about>
-    <verseghy-rules></verseghy-rules>
-    <verseghy-schedule></verseghy-schedule>
-    <verseghy-faq></verseghy-faq>
+    <verseghy-menu [inviewport]="inviewport"></verseghy-menu>
+    <verseghy-about inViewport [inViewportOptions]="{ threshold: [0], rootMargin: '0px 0px 0px 0px' }" (inViewportAction)="$event.visible ? inviewport = 'about' : false;"></verseghy-about>
+    <verseghy-rules inViewport [inViewportOptions]="{ threshold: [0], rootMargin: '-70px 0px 0px 0px' }" (inViewportAction)="$event.visible ? inviewport = 'rules' : false;"></verseghy-rules>
+    <verseghy-schedule inViewport [inViewportOptions]="{ threshold: [0], rootMargin: '-70px 0px 0px 0px' }" (inViewportAction)="$event.visible ? inviewport = 'schedule' : false;"></verseghy-schedule>
+    <verseghy-faq inViewport [inViewportOptions]="{ threshold: [0], rootMargin: '-70px 0px 0px 0px' }" (inViewportAction)="$event.visible ? inviewport = 'faq' : false;"></verseghy-faq>
 </ng-container>
