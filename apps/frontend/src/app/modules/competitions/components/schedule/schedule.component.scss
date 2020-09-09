@@ -19,12 +19,31 @@ h2 {
     padding: 20px;
     position: relative;
 
+    @media screen and (max-width: 972px) {
+      flex-direction: column;
+    }
+
     fa-icon {
       margin-right: 20px;
     }
 
     span {
       width: 50%;
+      margin-right: 20px;
+
+      @media screen and (max-width: 972px) {
+        width: auto;
+        margin-right: 50px;
+      }
+
+      &.name {
+        margin-right: 50px;
+
+        @media screen and (max-width: 972px) {
+          margin-top: 20px;
+          margin-right: 0;
+        }
+      }
     }
 
     .open-button {
@@ -37,6 +56,7 @@ h2 {
       text-align: center;
       cursor: pointer;
       transition: 100ms ease-in-out;
+      -webkit-tap-highlight-color: transparent;
 
       &.open {
         transform: rotate3d(0, 0, 1, 90deg);

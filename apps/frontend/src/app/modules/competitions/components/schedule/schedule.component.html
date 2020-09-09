@@ -7,6 +7,7 @@
         </span>
         <span class="name">{{ round.name }}</span>
         <fa-icon
+            *ngIf="round.description"
             [icon]="['fas', 'angle-down']"
             class="open-button"
             (click)="dropdown.isOpen = !dropdown.isOpen"

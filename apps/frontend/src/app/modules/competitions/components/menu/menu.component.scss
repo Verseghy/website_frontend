@@ -1,10 +1,11 @@
 :host {
-  display: block;
+  display: flex;
   position: sticky;
   top: 0;
   left: 0;
   background: #fff;
   margin-top: 50px;
+  z-index: 10;
 }
 
 a {
@@ -14,6 +15,11 @@ a {
   cursor: pointer;
   padding: 0 20px;
   text-decoration: none;
+  text-align: center;
+
+  @media screen and (max-width: 972px) {
+    flex: 1;
+  }
 
   &.active {
     border-bottom: 2px inset #009cff;

@@ -28,6 +28,7 @@ export interface CompetitionsPartialState {
 
 export const initialState: State = {
   loaded: true,
+  // TODO: remove this
   competitions: [
     {
       id: 0,
@@ -68,7 +69,7 @@ export const initialState: State = {
       schedule: {
         rounds: [
           {
-            name: 'Lorem Ipsum',
+            name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
             start: Timestamp.now(),
             end: Timestamp.fromDate(addHours(new Date(), 2)),
             description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque a sapien eget elit suscipit pulvinar nec nec ante. Integer eleifend lacinia enim blandit rhoncus.',
@@ -77,7 +78,6 @@ export const initialState: State = {
             name: 'Lorem Ipsum',
             start: Timestamp.now(),
             end: Timestamp.fromDate(addHours(new Date(), 2)),
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque a sapien eget elit suscipit pulvinar nec nec ante. Integer eleifend lacinia enim blandit rhoncus.',
           },
           {
             name: 'Lorem Ipsum',
