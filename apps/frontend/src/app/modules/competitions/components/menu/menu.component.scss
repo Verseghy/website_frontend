@@ -7,12 +7,13 @@
   margin-top: 50px;
 }
 
-span {
+a {
   display: inline-block;
   color: #000;
   line-height: 40px;
   cursor: pointer;
   padding: 0 20px;
+  text-decoration: none;
 
   &.active {
     border-bottom: 2px inset #009cff;

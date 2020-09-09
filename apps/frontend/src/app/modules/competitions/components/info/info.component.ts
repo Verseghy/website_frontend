@@ -14,8 +14,10 @@ export class InfoComponent implements OnInit, OnDestroy {
 
   private subsink = new SubSink()
 
+  private _visibleSections = new Map<number, boolean>();
+
   loaded$: Observable<boolean>
-  inviewport = 'about'
+  inviewport = 0
 
   constructor(private route: ActivatedRoute, private facade: CompetitionsFacade) { }
 
@@ -28,6 +30,17 @@ export class InfoComponent implements OnInit, OnDestroy {
     })
 
     this.loaded$ = this.facade.selectedCompetition$.pipe(map(competition => !!competition))
+  }
+
+  setVisible(section: number, visible: boolean): void {
+    this._visibleSections.set(section, visible)
+
+    for (const entry of this._visibleSections.entries()) {
+      if (entry[1]) {
+        this.inviewport = entry[0]
+        break
+      }
+    }
   }
 
   ngOnDestroy() {

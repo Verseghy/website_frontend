@@ -1,4 +1,4 @@
-<span [class.active]="inviewport === 'about'">about</span>
-<span [class.active]="inviewport === 'rules'">rules</span>
-<span [class.active]="inviewport === 'schedule'">schedule</span>
-<span [class.active]="inviewport === 'faq'">faq</span>
+<a [routerLink]="'./'" fragment="about" [class.active]="inviewport === 0">about</a>
+<a [routerLink]="'./'" fragment="rules" [class.active]="inviewport === 1">rules</a>
+<a [routerLink]="'./'" fragment="schedule" [class.active]="inviewport === 2">schedule</a>
+<a [routerLink]="'./'" fragment="faq" [class.active]="inviewport === 3">faq</a>
