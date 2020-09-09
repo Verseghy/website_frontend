@@ -1,8 +1,17 @@
 <h2>Schedule</h2>
-<div class="round" *ngFor="let round of (competition$ | async).schedule.rounds">
-    <span class="time">
-        <fa-icon [icon]="['far', 'calendar-alt']"></fa-icon>
-        {{ formatTime(round.start.toDate(), round.end.toDate()) }}
-    </span>
-    <span class="name">{{ round.name }}</span>
+<div class="round" verseghyDropdown #dropdown="verseghyDropdown" *ngFor="let round of (competition$ | async).schedule.rounds">
+    <div class="top">
+        <span class="time">
+            <fa-icon [icon]="['far', 'calendar-alt']"></fa-icon>
+            {{ formatTime(round.start.toDate(), round.end.toDate()) }}
+        </span>
+        <span class="name">{{ round.name }}</span>
+        <fa-icon
+            [icon]="['fas', 'angle-down']"
+            class="open-button"
+            (click)="dropdown.isOpen = !dropdown.isOpen"
+            [class.open]="dropdown.isOpen"
+        ></fa-icon>
+    </div>
+    <p class="description" *ngIf="dropdown.isOpen">{{ round.description }}</p>
 </div>

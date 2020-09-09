@@ -12,15 +12,41 @@ h2 {
 .round {
   background-color: #f7f7f7;
   border-radius: 8px;
-  padding: 20px;
   margin: 10px 0;
-  display: flex;
 
-  fa-icon {
-    margin-right: 20px;
+  .top {
+    display: flex;
+    padding: 20px;
+    position: relative;
+
+    fa-icon {
+      margin-right: 20px;
+    }
+
+    span {
+      width: 50%;
+    }
+
+    .open-button {
+      position: absolute;
+      top: 6px;
+      right: 0;
+      width: 48px;
+      height: 48px;
+      line-height: 48px;
+      text-align: center;
+      cursor: pointer;
+      transition: 100ms ease-in-out;
+
+      &.open {
+        transform: rotate3d(0, 0, 1, 90deg);
+      }
+    }
   }
 
-  span {
-    width: 50%;
+  .description {
+    border-radius: 8px;
+    padding: 20px;
+    background: #f2f2f2;
   }
 }
