@@ -19,17 +19,58 @@
   }
 }
 
-h1 {
-  font-size: 52px;
-  font-weight: 400;
-  font-family: 'Open-Sans', sans-serif;
-  color: #3c3c3c;
+.title {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 
-  @media screen and (max-width: 900px) {
-    font-size: 32px;
-    text-align: center;
-    margin: 0 auto;
-    max-width: 520px;
+  h1 {
+    font-size: 52px;
+    font-weight: 400;
+    font-family: 'Open-Sans', sans-serif;
+    color: #3c3c3c;
+
+    @media screen and (max-width: 900px) {
+      font-size: 32px;
+      text-align: center;
+      margin: 0 auto;
+      max-width: 520px;
+    }
+  }
+
+  .back {
+    margin-bottom: 30px;
+    cursor: pointer;
+    margin-top: 20px;
+
+    @media screen and (max-width: 900px) {
+      margin: 20px auto 0;
+      max-width: 520px;
+    }
+
+    &:hover {
+      color: #009cff;
+      -webkit-tap-highlight-color: transparent;
+
+      fa-icon {
+        animation: arrow 300ms;
+      }
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    fa-icon {
+      margin-right: 15px;
+      display: inline-block;
+    }
+  }
+
+  @keyframes arrow {
+    0%   { transform: translate3d(0, 0, 0) }
+    50%  { transform: translate3d(5px, 0, 0) }
+    100% { transform: translate3d(0, 0, 0) }
   }
 }
 

@@ -1,4 +1,8 @@
 <ng-container *ngIf="loaded$ | async">
+    <p class="back" [routerLink]="['/competitions/']">
+        <fa-icon [icon]="['fas', 'angle-left']"></fa-icon>
+        Vissza a versenyekhez
+    </p>
     <verseghy-hero></verseghy-hero>
     <verseghy-menu [inviewport]="inviewport"></verseghy-menu>
     <verseghy-about id="about" inViewport [inViewportOptions]="{ threshold: [0], rootMargin: '-70px 0px 0px 0px' }" (inViewportAction)="$event.visible ? setVisible(0, true) : setVisible(0, false)"></verseghy-about>

@@ -8,3 +8,32 @@
     margin: 50px auto;
   }
 }
+
+.back {
+  margin-bottom: 30px;
+  cursor: pointer;
+
+  &:hover {
+    color: #009cff;
+    -webkit-tap-highlight-color: transparent;
+
+    fa-icon {
+      animation: arrow 300ms;
+    }
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  fa-icon {
+    margin-right: 15px;
+    display: inline-block;
+  }
+}
+
+@keyframes arrow {
+  0%   { transform: translate3d(0, 0, 0) }
+  50%  { transform: translate3d(5px, 0, 0) }
+  100% { transform: translate3d(0, 0, 0) }
+}

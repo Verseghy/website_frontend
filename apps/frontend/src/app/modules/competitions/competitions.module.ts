@@ -18,7 +18,7 @@ import { MenuComponent } from "./components/menu/menu.component";
 import { FaIconLibrary, FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { faCalendarAlt } from "@fortawesome/free-regular-svg-icons";
 import { InViewportModule } from "ng-in-viewport";
-import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import { faAngleDown, faAngleLeft } from '@fortawesome/free-solid-svg-icons'
 import { DropdownDirective } from './directives/dropdown.directive'
 
 @NgModule({
@@ -35,6 +35,6 @@ import { DropdownDirective } from './directives/dropdown.directive'
 })
 export class CompetitionsModule {
   constructor(library: FaIconLibrary) {
-    library.addIcons(faCalendarAlt, faAngleDown)
+    library.addIcons(faCalendarAlt, faAngleDown, faAngleLeft)
   }
 }
