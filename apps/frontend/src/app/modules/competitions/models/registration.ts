@@ -1,6 +1,7 @@
 export interface RegistrationSection {
   title: string
   sections: RegistrationSubSection[]
+  column: SectionColumn
 }
 
 export interface RegistrationSubSection {
@@ -22,6 +23,13 @@ export interface SelectField extends RegistrationField {
 export interface RadioField extends RegistrationField {
   type: InputType.RADIO
   options: string[]
+}
+
+export enum SectionColumn {
+  RIGHT = 'right',
+  LEFT = 'left',
+  BOTH = 'both',
+  CENTER = 'center',
 }
 
 export enum FieldColumn {

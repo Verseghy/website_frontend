@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core'
 import { Observable, of } from 'rxjs'
 import {
   FieldColumn,
-  SelectField,
   InputType,
-  RegistrationSection,
-  RegistrationField,
   RadioField,
+  RegistrationField,
+  RegistrationSection,
+  SectionColumn,
+  SelectField,
 } from '../../models/registration'
 
 @Component({
@@ -18,222 +19,175 @@ export class RegistrationComponent implements OnInit {
 
   sections$: Observable<RegistrationSection[]> = of([
     {
-      title: 'Lorem Ipsum 1',
+      title: 'Pályamunka neve',
       sections: [
         {
-          title: 'Lorem ipsum dolor sit amet',
           fields: [
             {
-              name: 'Text field',
+              name: '',
               type: InputType.TEXT,
-              column: FieldColumn.LEFT,
-            },
-            {
-              name: 'Number field',
-              type: InputType.NUMBER,
-              column: FieldColumn.LEFT,
-            },
-            {
-              name: 'Text field',
-              type: InputType.TEXT,
-              column: FieldColumn.LEFT,
-            },
-            {
-              name: 'Number field',
-              type: InputType.NUMBER,
-              column: FieldColumn.RIGHT,
-            },
-            {
-              name: 'Select field',
-              type: InputType.SELECT,
-              column: FieldColumn.LEFT,
-              options: ['option 1', 'option 2', 'option 3', 'option 4', 'option 5'],
-            },
-            {
-              name: 'Checkbox field',
-              type: InputType.CHECKBOX,
-              column: FieldColumn.RIGHT,
-            },
-            {
-              name: 'Radio field',
-              type: InputType.RADIO,
               column: FieldColumn.BOTH,
-              options: ['option 1', 'option 2', 'option 3', 'option 4', 'option 5'],
-            },
-          ]
-        },
-        {
-          title: 'Lorem ipsum dolor sit amet 2',
-          fields: [
-            {
-              name: 'Text field',
-              type: InputType.TEXT,
-              column: FieldColumn.LEFT,
-            },
-            {
-              name: 'Text field 2',
-              type: InputType.TEXT,
-              column: FieldColumn.RIGHT,
-            },
-            {
-              name: 'Select field',
-              type: InputType.SELECT,
-              column: FieldColumn.LEFT,
-              options: ['option 1', 'option 2', 'option 3', 'option 4', 'option 5'],
-            },
-            {
-              name: 'Checkbox field',
-              type: InputType.CHECKBOX,
-              column: FieldColumn.RIGHT,
-            },
-            {
-              name: 'Radio field',
-              type: InputType.RADIO,
-              column: FieldColumn.BOTH,
-              options: ['option 1', 'option 2', 'option 3', 'option 4', 'option 5'],
-            },
+            }
           ]
         }
-      ]
+      ],
+      column: SectionColumn.BOTH,
     },
     {
-      title: 'Lorem Ipsum 2',
+      title: 'A csapattagok iskolája',
       sections: [
         {
-          title: 'Lorem ipsum dolor sit amet',
           fields: [
             {
-              name: 'Text field',
+              name: 'Iskola neve',
               type: InputType.TEXT,
-              column: FieldColumn.LEFT,
-            },
-            {
-              name: 'Text field 2',
-              type: InputType.TEXT,
-              column: FieldColumn.RIGHT,
-            },
-            {
-              name: 'Select field',
-              type: InputType.SELECT,
-              column: FieldColumn.LEFT,
-              options: ['option 1', 'option 2', 'option 3', 'option 4', 'option 5'],
-            },
-            {
-              name: 'Checkbox field',
-              type: InputType.CHECKBOX,
-              column: FieldColumn.RIGHT,
-            },
-            {
-              name: 'Radio field',
-              type: InputType.RADIO,
               column: FieldColumn.BOTH,
-              options: ['option 1', 'option 2', 'option 3', 'option 4', 'option 5'],
             },
           ]
         },
         {
-          title: 'Lorem ipsum dolor sit amet 2',
+          title: 'Iskola címe',
           fields: [
             {
-              name: 'Text field',
+              name: 'Irányítószám',
               type: InputType.TEXT,
               column: FieldColumn.LEFT,
             },
             {
-              name: 'Text field 2',
+              name: 'Város',
               type: InputType.TEXT,
               column: FieldColumn.RIGHT,
             },
             {
-              name: 'Select field',
-              type: InputType.SELECT,
-              column: FieldColumn.LEFT,
-              options: ['option 1', 'option 2', 'option 3', 'option 4', 'option 5'],
-            },
-            {
-              name: 'Checkbox field',
-              type: InputType.CHECKBOX,
-              column: FieldColumn.RIGHT,
-            },
-            {
-              name: 'Radio field',
-              type: InputType.RADIO,
+              name: 'Utca, házszám',
+              type: InputType.TEXT,
               column: FieldColumn.BOTH,
-              options: ['option 1', 'option 2', 'option 3', 'option 4', 'option 5'],
+            },
+            {
+              name: 'Telefonszám',
+              type: InputType.TEXT,
+              column: FieldColumn.LEFT,
             },
           ]
         }
-      ]
+      ],
+      column: SectionColumn.BOTH,
     },
     {
-      title: 'Lorem Ipsum 3',
+      title: '1. csapattag',
       sections: [
         {
-          title: 'Lorem ipsum dolor sit amet',
           fields: [
             {
-              name: 'Text field',
+              name: 'Név',
               type: InputType.TEXT,
-              column: FieldColumn.LEFT,
-            },
-            {
-              name: 'Text field 2',
-              type: InputType.TEXT,
-              column: FieldColumn.RIGHT,
-            },
-            {
-              name: 'Select field',
-              type: InputType.SELECT,
-              column: FieldColumn.LEFT,
-              options: ['option 1', 'option 2', 'option 3', 'option 4', 'option 5'],
-            },
-            {
-              name: 'Checkbox field',
-              type: InputType.CHECKBOX,
-              column: FieldColumn.RIGHT,
-            },
-            {
-              name: 'Radio field',
-              type: InputType.RADIO,
               column: FieldColumn.BOTH,
-              options: ['option 1', 'option 2', 'option 3', 'option 4', 'option 5'],
             },
-          ]
-        },
-        {
-          title: 'Lorem ipsum dolor sit amet 2',
-          fields: [
             {
-              name: 'Text field',
+              name: 'Osztály',
               type: InputType.TEXT,
               column: FieldColumn.LEFT,
             },
             {
-              name: 'Text field 2',
+              name: 'Email cím',
               type: InputType.TEXT,
-              column: FieldColumn.RIGHT,
-            },
-            {
-              name: 'Select field',
-              type: InputType.SELECT,
-              column: FieldColumn.LEFT,
-              options: ['option 1', 'option 2', 'option 3', 'option 4', 'option 5'],
-            },
-            {
-              name: 'Checkbox field',
-              type: InputType.CHECKBOX,
-              column: FieldColumn.RIGHT,
-            },
-            {
-              name: 'Radio field',
-              type: InputType.RADIO,
               column: FieldColumn.BOTH,
-              options: ['option 1', 'option 2', 'option 3', 'option 4', 'option 5'],
+            },
+            {
+              name: 'Telefonszám',
+              type: InputType.TEXT,
+              column: FieldColumn.LEFT,
             },
           ]
         }
-      ]
-    }
+      ],
+      column: SectionColumn.LEFT,
+    },
+    {
+      title: '2. csapattag',
+      sections: [
+        {
+          fields: [
+            {
+              name: 'Név',
+              type: InputType.TEXT,
+              column: FieldColumn.BOTH,
+            },
+            {
+              name: 'Osztály',
+              type: InputType.TEXT,
+              column: FieldColumn.LEFT,
+            },
+            {
+              name: 'Email cím',
+              type: InputType.TEXT,
+              column: FieldColumn.BOTH,
+            },
+            {
+              name: 'Telefonszám',
+              type: InputType.TEXT,
+              column: FieldColumn.LEFT,
+            },
+          ]
+        }
+      ],
+      column: SectionColumn.RIGHT,
+    },
+    {
+      title: '3. csapattag',
+      sections: [
+        {
+          fields: [
+            {
+              name: 'Név',
+              type: InputType.TEXT,
+              column: FieldColumn.BOTH,
+            },
+            {
+              name: 'Osztály',
+              type: InputType.TEXT,
+              column: FieldColumn.LEFT,
+            },
+            {
+              name: 'Email cím',
+              type: InputType.TEXT,
+              column: FieldColumn.BOTH,
+            },
+            {
+              name: 'Telefonszám',
+              type: InputType.TEXT,
+              column: FieldColumn.LEFT,
+            },
+          ]
+        }
+      ],
+      column: SectionColumn.CENTER,
+    },
+    {
+      title: 'Felkészítő tanár',
+      sections: [
+        {
+          fields: [
+            {
+              name: 'Név',
+              type: InputType.TEXT,
+              column: FieldColumn.BOTH,
+            },
+            {
+              name: 'Email cím',
+              type: InputType.TEXT,
+              column: FieldColumn.BOTH,
+            },
+            {
+              name: 'Telefonszám',
+              type: InputType.TEXT,
+              column: FieldColumn.LEFT,
+            },
+          ]
+        }
+      ],
+      column: SectionColumn.CENTER,
+    },
   ])
 
   constructor() { }
