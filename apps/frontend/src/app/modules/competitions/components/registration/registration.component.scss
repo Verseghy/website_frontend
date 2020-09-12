@@ -1,0 +1,176 @@
+:host {
+  display: block;
+  max-width: 1100px;
+  margin: 100px auto;
+  padding: 0 20px;
+  font-family: 'Roboto', sans-serif;
+
+  @media screen and (max-width: 972px) {
+    margin: 50px auto;
+  }
+}
+
+h1 {
+  font-weight: 400;
+  font-size: 36px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.card {
+  padding: 20px;
+  border-radius: 8px;
+  background: #f7f7f7;
+  margin-bottom: 40px;
+
+  .card-title {
+    font-size: 24px;
+    color: #121212;
+    font-weight: 400;
+    margin-bottom: 15px;
+  }
+
+  .subsection {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+
+    @media screen and (max-width: 972px) {
+      grid-template-columns: 1fr;
+    }
+
+    .subsection-title {
+      font-size: 18px;
+      color: #151515;
+      font-weight: 400;
+      padding: 5px 0;
+      border-bottom: 1px solid #e8e8e8;
+      margin-bottom: 10px;
+      grid-column: span 2;
+
+      @media screen and (max-width: 972px) {
+        grid-column: 1;
+      }
+    }
+
+    + .subsection {
+      margin-top: 20px;
+    }
+  }
+}
+
+.column-left {
+  grid-column: 1;
+}
+
+.column-right {
+  grid-column: 2;
+
+  @media screen and (max-width: 972px) {
+    grid-column: 1;
+  }
+}
+
+.column-both {
+  grid-column: 1 / span 2;
+
+  @media screen and (max-width: 972px) {
+    grid-column: 1;
+  }
+}
+
+.input-number,
+.input-text {
+  label {
+    display: block;
+  }
+
+  input {
+    display: block;
+    padding: 7px 12px;
+    border-radius: 3px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 5px;
+    font-size: 16px;
+    transition: box-shadow 100ms;
+
+    &:focus {
+      outline: 0;
+      box-shadow: 0 0 0 2px #000;
+    }
+
+    &:invalid {
+      box-shadow: 0 0 0 2px red;
+    }
+  }
+}
+
+.input-select {
+  select {
+    appearance: none;
+    padding: 7px 40px 7px 12px;
+    border-radius: 3px;
+    background: #d8d8d8;
+    font-size: 16px;
+    margin-left: 10px;
+
+    &:focus {
+      outline: 0;
+      box-shadow: 0 0 0 2px #000;
+    }
+  }
+
+  label {
+    position: relative;
+  }
+
+  fa-icon {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 15px;
+  }
+}
+
+.input-checkbox {
+  input {
+    margin-right: 10px;
+  }
+}
+
+.input-radio {
+  span,
+  label {
+    display: block;
+  }
+
+  input {
+    margin-right: 10px;
+  }
+}
+
+.register {
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  background: #009cff;
+  margin: 30px auto 0;
+  line-height: 32px;
+  display: block;
+  text-align: center;
+  width: 200px;
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 1px;
+  cursor: pointer;
+
+  &:hover {
+    background: #52bdff;
+  }
+
+  &:focus {
+    outline: 0;
+    box-shadow: 0 0 0 2px #000;
+  }
+}

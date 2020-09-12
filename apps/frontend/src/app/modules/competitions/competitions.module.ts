@@ -19,10 +19,11 @@ import { FaIconLibrary, FontAwesomeModule } from "@fortawesome/angular-fontaweso
 import { faCalendarAlt } from "@fortawesome/free-regular-svg-icons";
 import { InViewportModule } from "ng-in-viewport";
 import { faAngleDown, faAngleLeft } from '@fortawesome/free-solid-svg-icons'
-import { DropdownDirective } from './directives/dropdown.directive'
+import { DropdownDirective } from './directives/dropdown.directive';
+import { RegistrationComponent } from './components/registration/registration.component'
 
 @NgModule({
-  declarations: [HomeComponent, InfoComponent, HeroComponent, AboutComponent, ScheduleComponent, FaqComponent, RulesComponent, MenuComponent, DropdownDirective],
+  declarations: [HomeComponent, InfoComponent, HeroComponent, AboutComponent, ScheduleComponent, FaqComponent, RulesComponent, MenuComponent, DropdownDirective, RegistrationComponent],
   imports: [
     CommonModule,
     CompetitionsRoutingModule,
