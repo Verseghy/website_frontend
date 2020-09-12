@@ -35,3 +35,21 @@ img {
   }
 }
 
+.register {
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  background: #009cff;
+  margin-top: 30px;
+  line-height: 32px;
+  display: inline-block;
+  padding: 0 20px;
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 1px;
+
+  &:hover {
+    background: #52bdff;
+  }
+}
+
