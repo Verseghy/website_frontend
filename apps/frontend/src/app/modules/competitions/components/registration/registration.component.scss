@@ -191,27 +191,43 @@ h1 {
   }
 }
 
-.register {
-  color: #fff;
-  text-decoration: none;
-  border-radius: 8px;
-  background: #009cff;
+.buttons {
+  width: 320px;
   margin: 30px auto 0;
-  line-height: 32px;
-  display: block;
-  text-align: center;
-  width: 200px;
-  text-transform: uppercase;
-  font-size: 14px;
-  letter-spacing: 1px;
-  cursor: pointer;
+  display: flex;
+  gap: 20px;
 
-  &:hover {
-    background: #52bdff;
+  a,
+  .register {
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    background: #009cff;
+    line-height: 32px;
+    display: block;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    flex: 1;
+
+    &:hover {
+      background: #52bdff;
+    }
+
+    &:focus {
+      outline: 0;
+      box-shadow: 0 0 0 2px #000;
+    }
   }
 
-  &:focus {
-    outline: 0;
-    box-shadow: 0 0 0 2px #000;
+  a {
+    background: #f7f7f7;
+    color: #000;
+
+    &:hover {
+      background: #f2f2f2;
+    }
   }
 }
