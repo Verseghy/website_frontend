@@ -99,7 +99,7 @@ export class Cell {
         if (this._rows[item].row < this._maxRows - 1) {
           if (!this._rows[item].placeholder) {
             const top = Number(item) * 24 + 'px'
-            const width = 'calc(' + this._rows[item].width * 100 + '% + ' + (this._rows[item].width - 5) + 'px)'
+            const width = 'calc(' + this._rows[item].width * 100 + '% + ' + (this._rows[item].width * 2 - 6) + 'px)'
             events.push({
               id: this._rows[item].id,
               title: this._rows[item].title,
