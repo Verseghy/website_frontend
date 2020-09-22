@@ -1,9 +1,15 @@
 <div class="controls">
   <div class="middle">
-    <button class="next" (click)="prevMonth()">&lt;</button> <span class="month">{{ formatedDate }}</span>
-    <button class="prev" (click)="nextMonth()">&gt;</button>
+    <button class="next" (click)="prevMonth()">
+      <fa-icon [icon]="['fas', 'angle-left']"></fa-icon>
+    </button> <span class="month">{{ formatedDate }}</span>
+    <button class="prev" (click)="nextMonth()">
+      <fa-icon [icon]="['fas', 'angle-right']"></fa-icon>
+    </button>
   </div>
-  <button class="now" (click)="now()">{{ today }}</button>
+  <div class="right">
+    <button class="now" (click)="now()">{{ today }}</button>
+  </div>
 </div>
 <div class="grid">
   <div class="cellElement header" *ngFor="let item of shortDayNames">

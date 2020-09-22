@@ -3,7 +3,8 @@
   position: relative;
   width: 100%;
   height: 100%;
-  grid-template-rows: 48px 1fr;
+  grid-template-rows: min-content 1fr;
+  grid-gap: 10px;
   font-family: 'Roboto', sans-serif;
 }
 
@@ -11,32 +12,31 @@
   height: 100%;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: 20px auto;
-  border-left: #e0e0e0 1px solid;
-  border-top: #e0e0e0 1px solid;
+  grid-template-rows: min-content auto;
   box-sizing: border-box;
+  grid-gap: 2px;
 }
 
 .cellElement {
-  border-right: #e0e0e0 1px solid;
-  border-bottom: #e0e0e0 1px solid;
   color: #212121;
   line-height: 32px;
   font-size: 14px;
   position: relative;
-}
+  background: #f8f8f8;
+  border-radius: 8px;
 
-.cellElement > span {
-  margin: 0 8px;
-}
+  > span {
+    text-align: center;
+    display: block;
+  }
 
-.header {
-  border-bottom: 0;
-  color: #757575;
-}
+  &.header {
+    color: #757575;
+  }
 
-.today {
-  background-color: #f5f5f5;
+  &.today {
+    background-color: #ebebeb;
+  }
 }
 
 .events {
@@ -53,7 +53,7 @@
   line-height: 20px;
   color: #fff;
   font-size: 12px;
-  border-radius: 2px;
+  border-radius: 3px;
   display: block;
   box-sizing: border-box;
   z-index: 10;
@@ -69,35 +69,59 @@
   padding: 0 8px;
 }
 
-.middle {
-  text-align: center;
-}
+.controls {
+  display: grid;
+  grid-template-columns: 1fr 320px 1fr;
 
-.month {
-  width: 150px;
-  display: inline-block;
-}
+  .middle {
+    width: 320px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    grid-column: 2;
 
-button {
-  height: 32px;
-  margin: 8px 0;
-  color: rgba(0, 0, 0, 0.54);
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 0 10px;
-  background: transparent;
-  font-weight: 700;
-  cursor: pointer;
-}
+    .month {
+      display: inline-block;
+    }
 
-button:focus {
-  outline: none;
-}
+    button {
+      background-color: transparent;
+      width: 36px;
+      line-height: 36px;
+      cursor: pointer;
+      border-radius: 50%;
 
-.now {
-  position: absolute;
-  right: 10px;
-  top: 0;
+      &:focus {
+        outline: 0;
+      }
+    }
+  }
+
+  .right {
+    display: flex;
+    justify-content: flex-end;
+
+    .now {
+      background-color: #ebebeb;
+      border-radius: 3px;
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: 400;
+      padding: 7px 16px;
+      color: #000;
+      transition: all 100ms;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #d9d9d9;
+      }
+
+      &:focus {
+        outline: 0;
+        box-shadow: 0 0 0 2px #000;
+      }
+    }
+  }
 }
 
 .more {
@@ -107,10 +131,6 @@ button:focus {
   width: calc(100% - 1px);
   background: transparent;
   z-index: auto;
-}
-
-.controls {
-  position: relative;
 }
 
 .popup {
