@@ -21,7 +21,7 @@
       <div
         class="event"
         *ngFor="let event of cell.renderedEvents; trackBy: trackBy2"
-        [ngStyle]="{ top: event.top, width: event.width, 'background-color': event.color }"
+        [ngStyle]="{ top: event.top, width: event.width, 'background-color': 'hsl(' + getHueFromHEXColor(event.color) + ' 82% 70%)' }"
         [ngClass]="{ more: event.more }"
         (click)="setEventDetailsPopup(event.id, $event)"
       >
