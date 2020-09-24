@@ -340,6 +340,9 @@ export class CalendarComponent implements OnInit, AfterViewInit {
 
   public setEventDetailsPopup(id: number, click): void {
     setTimeout(() => {
+      const popupWidth = 300
+      const padding = 20
+
       const event = this._getEvent(id)
       const boundingRect = click.target.getBoundingClientRect()
       const calendarBoundingRect = this._el.nativeElement.getBoundingClientRect()
@@ -349,15 +352,11 @@ export class CalendarComponent implements OnInit, AfterViewInit {
       this.eventDetailsPopupDescription = event.description
       this.eventDetailsPopupColor = `hsl(${this.getHueFromHEXColor(event.color)}, 82%, 70%)`
       this.eventDetailsPopupTop = boundingRect.y - calendarBoundingRect.y
-      if (document.body.clientWidth - boundingRect.right < 320) {
-        if (boundingRect.x < 320) {
-          this.eventDetailsPopupLeft = calendarBoundingRect.width / 2 - 150
-        } else {
-          this.eventDetailsPopupLeft = boundingRect.x - 310 - calendarBoundingRect.x
-        }
-      } else {
-        this.eventDetailsPopupLeft = boundingRect.right + 10 - calendarBoundingRect.x
+      let left = click.pageX - calendarBoundingRect.x + padding
+      if (click.pageX + padding + popupWidth > document.body.clientWidth) {
+        left = click.pageX - calendarBoundingRect.x - padding - popupWidth
       }
+      this.eventDetailsPopupLeft = left
     })
   }
 
