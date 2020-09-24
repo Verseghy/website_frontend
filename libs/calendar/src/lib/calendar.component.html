@@ -49,13 +49,15 @@
     <div class="header">
       <span class="day">{{ moreEventsPopupDay }}</span>
       <h2 class="date">{{ moreEventsPopupDate }}</h2>
-      <span class="close" (click)="closeMoreEventsPopup()">x</span>
+      <span class="close" (click)="closeMoreEventsPopup()">
+        <fa-icon [icon]="['fas', 'times']"></fa-icon>
+      </span>
     </div>
     <div class="events">
       <div
         class="event popup-event"
         *ngFor="let event of moreEventsPopupEvents"
-        [ngStyle]="{ 'background-color': event.color }"
+        [ngStyle]="{ 'background-color': 'hsl(' + getHueFromHEXColor(event.color) + ' 82% 70%)' }"
         (click)="setEventDetailsPopup(event.id, $event)"
       >
         <span>{{ event.title }}</span>
@@ -65,7 +67,7 @@
 </div>
 <div class="popup">
   <div
-    class="eventDetails"
+    class="event-details"
     [ngStyle]="{ 'margin-top': eventDetailsPopupTop + 'px', 'margin-left': eventDetailsPopupLeft + 'px' }"
     *ngIf="eventDetailsPopupVisible"
     #eventDetails
