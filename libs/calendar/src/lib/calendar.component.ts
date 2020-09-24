@@ -347,7 +347,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
       this.eventDetailsPopupTitle = event.title
       this.eventDetailsPopupDate = this._formatTwoDays(event.startDate, event.endDate)
       this.eventDetailsPopupDescription = event.description
-      this.eventDetailsPopupColor = event.color
+      this.eventDetailsPopupColor = `hsl(${this.getHueFromHEXColor(event.color)}, 82%, 70%)`
       this.eventDetailsPopupTop = boundingRect.y - calendarBoundingRect.y
       if (document.body.clientWidth - boundingRect.right < 320) {
         if (boundingRect.x < 320) {
