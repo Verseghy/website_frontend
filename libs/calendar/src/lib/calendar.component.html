@@ -72,9 +72,13 @@
   >
     <div class="header" [ngStyle]="{ 'background-color': eventDetailsPopupColor }">
       <h2 class="title">{{ eventDetailsPopupTitle }}</h2>
-      <span class="close" (click)="closeEventDetailsPopup()">x</span>
+      <span class="close" (click)="closeEventDetailsPopup()">
+        <fa-icon [icon]="['fas', 'times']"></fa-icon>
+      </span>
     </div>
-    <span class="date">{{ eventDetailsPopupDate }}</span>
-    <p class="description">{{ eventDetailsPopupDescription }}</p>
+    <div class="content">
+      <span class="date">{{ eventDetailsPopupDate }}</span>
+      <p class="description">{{ eventDetailsPopupDescription }}</p>
+    </div>
   </div>
 </div>

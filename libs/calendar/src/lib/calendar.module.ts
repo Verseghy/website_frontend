@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common'
 import { CalendarComponent } from './calendar.component'
 import { PopupComponent } from './popup/popup.component'
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome'
-import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons'
+import { faAngleLeft, faAngleRight, faTimes } from '@fortawesome/free-solid-svg-icons'
 
 @NgModule({
   imports: [CommonModule, FontAwesomeModule],
@@ -12,6 +12,6 @@ import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons'
 })
 export class CalendarModule {
   constructor(library: FaIconLibrary) {
-    library.addIcons(faAngleLeft, faAngleRight);
+    library.addIcons(faAngleLeft, faAngleRight, faTimes);
   }
 }
