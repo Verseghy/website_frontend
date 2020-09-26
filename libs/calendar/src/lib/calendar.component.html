@@ -2,7 +2,8 @@
   <div class="middle">
     <button class="next" (click)="prevMonth()">
       <fa-icon [icon]="['fas', 'angle-left']"></fa-icon>
-    </button> <span class="month">{{ formatedDate }}</span>
+    </button>
+    <span class="month">{{ formatedDate }}</span>
     <button class="prev" (click)="nextMonth()">
       <fa-icon [icon]="['fas', 'angle-right']"></fa-icon>
     </button>
@@ -12,10 +13,10 @@
   </div>
 </div>
 <div class="grid">
-  <div class="cellElement header" *ngFor="let item of shortDayNames">
+  <div class="cell-element header" *ngFor="let item of shortDayNames">
     <span>{{ item }}</span>
   </div>
-  <div #cellElement *ngFor="let cell of cells; trackBy: trackBy1" class="cellElement" [ngClass]="{ today: cell.today }">
+  <div #cellElement *ngFor="let cell of cells; trackBy: trackBy1" class="cell-element" [ngClass]="{ today: cell.today }">
     <span class="date">{{ cell.day }}</span>
     <div class="events">
       <div

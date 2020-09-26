@@ -12,6 +12,6 @@ import { faAngleLeft, faAngleRight, faTimes } from '@fortawesome/free-solid-svg-
 })
 export class CalendarModule {
   constructor(library: FaIconLibrary) {
-    library.addIcons(faAngleLeft, faAngleRight, faTimes);
+    library.addIcons(faAngleLeft, faAngleRight, faTimes)
   }
 }
