@@ -1,53 +1,53 @@
 <h1>Regisztráció</h1>
 <div class="content">
-    <div class="card column-{{ section.column }}" *ngFor="let section of (sections$ | async)">
-        <h2 class="card-title">{{ section.title }}</h2>
-        <div class="subsection" *ngFor="let subsection of section.sections">
-            <h3 class="subsection-title" *ngIf="subsection.title">{{ subsection.title }}</h3>
-            <ng-container *ngFor="let field of subsection.fields">
-                <div class="input-{{ field.type }} column-{{ field.column }}">
-                    <ng-container *ngIf="field.type === 'text'">
-                        <label>
-                            {{ field.name }}
-                            <input type="text" />
-                        </label>
-                    </ng-container>
-                    <ng-container *ngIf="field.type === 'number'">
-                        <label>
-                            {{ field.name }}
-                            <input type="number" />
-                        </label>
-                    </ng-container>
-                    <ng-container *ngIf="field.type === 'select'">
-                        <label>
-                            {{ field.name }}
-                            <select>
-                                <option *ngFor="let option of asSelectField(field).options" value="">{{ option }}</option>
-                            </select>
-                            <fa-icon [icon]="['fas', 'angle-down']"></fa-icon>
-                        </label>
-                    </ng-container>
-                    <ng-container *ngIf="field.type === 'checkbox'">
-                        <label>
-                            <input type="checkbox" />
-                            {{ field.name }}
-                        </label>
-                    </ng-container>
-                    <ng-container *ngIf="field.type === 'radio'">
-                        <span>{{ field.name }}</span>
-                        <ng-container *ngFor="let option of asRadioField(field).options">
-                            <label>
-                                <input [name]="field.name" type="radio" />
-                                {{ option }}
-                            </label>
-                        </ng-container>
-                    </ng-container>
-                </div>
+  <div class="card column-{{ section.column }}" *ngFor="let section of sections$ | async">
+    <h2 class="card-title">{{ section.title }}</h2>
+    <div class="subsection" *ngFor="let subsection of section.sections">
+      <h3 class="subsection-title" *ngIf="subsection.title">{{ subsection.title }}</h3>
+      <ng-container *ngFor="let field of subsection.fields">
+        <div class="input-{{ field.type }} column-{{ field.column }}">
+          <ng-container *ngIf="field.type === 'text'">
+            <label>
+              {{ field.name }}
+              <input type="text" />
+            </label>
+          </ng-container>
+          <ng-container *ngIf="field.type === 'number'">
+            <label>
+              {{ field.name }}
+              <input type="number" />
+            </label>
+          </ng-container>
+          <ng-container *ngIf="field.type === 'select'">
+            <label>
+              {{ field.name }}
+              <select>
+                <option *ngFor="let option of asSelectField(field).options" value="">{{ option }}</option>
+              </select>
+              <fa-icon [icon]="['fas', 'angle-down']"></fa-icon>
+            </label>
+          </ng-container>
+          <ng-container *ngIf="field.type === 'checkbox'">
+            <label>
+              <input type="checkbox" />
+              {{ field.name }}
+            </label>
+          </ng-container>
+          <ng-container *ngIf="field.type === 'radio'">
+            <span>{{ field.name }}</span>
+            <ng-container *ngFor="let option of asRadioField(field).options">
+              <label>
+                <input [name]="field.name" type="radio" />
+                {{ option }}
+              </label>
             </ng-container>
+          </ng-container>
         </div>
+      </ng-container>
     </div>
+  </div>
 </div>
 <div class="buttons">
-    <a [routerLink]="['../']">Vissza</a>
-    <button class="register">Regisztráció</button>
+  <a [routerLink]="['../']">Vissza</a>
+  <button class="register">Regisztráció</button>
 </div>

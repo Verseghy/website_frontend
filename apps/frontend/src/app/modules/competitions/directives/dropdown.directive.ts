@@ -1,13 +1,11 @@
-import { Directive } from '@angular/core';
+import { Directive } from '@angular/core'
 
 @Directive({
   selector: '[verseghyDropdown]',
-  exportAs: 'verseghyDropdown'
+  exportAs: 'verseghyDropdown',
 })
 export class DropdownDirective {
-
   isOpen = false
 
-  constructor() { }
-
+  constructor() {}
 }

@@ -1,6 +1,6 @@
 <div class="left">
-    <h1>{{ (competition$ | async).name }}</h1>
-    <p>{{ (competition$ | async).hero.description }}</p>
-    <a [routerLink]="['./registration']" class="register">Regisztráció</a>
+  <h1>{{ (competition$ | async).name }}</h1>
+  <p>{{ (competition$ | async).hero.description }}</p>
+  <a [routerLink]="['./registration']" class="register">Regisztráció</a>
 </div>
-<img [src]="(competition$ | async).hero.image" alt="">
+<img [src]="(competition$ | async).hero.image" alt="" />

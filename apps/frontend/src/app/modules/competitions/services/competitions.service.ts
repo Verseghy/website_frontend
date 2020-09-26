@@ -10,6 +10,8 @@ export class CompetitionsService {
   constructor(private firestore: AngularFirestore) {}
 
   getRecentCompetitions(): Observable<Competition[]> {
-    return this.firestore.collection<Competition>('competitions', ref => ref.where('year', '>=', new Date().getFullYear())).valueChanges()
+    return this.firestore
+      .collection<Competition>('competitions', (ref) => ref.where('year', '>=', new Date().getFullYear()))
+      .valueChanges()
   }
 }

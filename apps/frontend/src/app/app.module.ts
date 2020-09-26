@@ -20,8 +20,8 @@ import { LoadersModule } from '@verseghy/ui'
 import { environment } from '../environments/environment'
 import { ServiceWorkerModule } from '@angular/service-worker'
 import { AngularFireAnalyticsModule, APP_NAME, APP_VERSION, COLLECTION_ENABLED, ScreenTrackingService } from '@angular/fire/analytics'
-import { AngularFirePerformanceModule } from '@angular/fire/performance';
-import { MainLayoutComponent } from './components/main-layout/main-layout.component';
+import { AngularFirePerformanceModule } from '@angular/fire/performance'
+import { MainLayoutComponent } from './components/main-layout/main-layout.component'
 import { EmptyLayoutComponent } from './components/empty-layout/empty-layout.component'
 
 library.add(faCheck)

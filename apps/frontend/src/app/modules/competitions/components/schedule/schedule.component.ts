@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 import { Observable } from 'rxjs'
 import { Competition } from '../../models/competition'
 import { CompetitionsFacade } from '../../state/competitions/competitions.facade'
@@ -7,13 +7,12 @@ import { format, isSameDay, isSameHour, isSameMinute, isSameMonth, isSameYear } 
 @Component({
   selector: 'verseghy-schedule',
   templateUrl: './schedule.component.html',
-  styleUrls: ['./schedule.component.scss']
+  styleUrls: ['./schedule.component.scss'],
 })
 export class ScheduleComponent implements OnInit {
-
   competition$: Observable<Competition>
 
-  constructor(private facade: CompetitionsFacade) { }
+  constructor(private facade: CompetitionsFacade) {}
 
   ngOnInit(): void {
     this.competition$ = this.facade.selectedCompetition$
@@ -44,5 +43,4 @@ export class ScheduleComponent implements OnInit {
 
     return formatedDate
   }
-
 }

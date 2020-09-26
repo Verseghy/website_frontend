@@ -1,12 +1,32 @@
 <ng-container *ngIf="loaded$ | async">
-    <p class="back" [routerLink]="['/competitions/']">
-        <fa-icon [icon]="['fas', 'angle-left']"></fa-icon>
-        Vissza a versenyekhez
-    </p>
-    <verseghy-hero></verseghy-hero>
-    <verseghy-menu [inviewport]="inviewport"></verseghy-menu>
-    <verseghy-about id="about" inViewport [inViewportOptions]="{ threshold: [0], rootMargin: '-70px 0px 0px 0px' }" (inViewportAction)="$event.visible ? setVisible(0, true) : setVisible(0, false)"></verseghy-about>
-    <verseghy-rules id="rules" inViewport [inViewportOptions]="{ threshold: [0], rootMargin: '-70px 0px 0px 0px' }" (inViewportAction)="$event.visible ? setVisible(1, true) : setVisible(1, false)"></verseghy-rules>
-    <verseghy-schedule id="schedule" inViewport [inViewportOptions]="{ threshold: [0], rootMargin: '-70px 0px 0px 0px' }" (inViewportAction)="$event.visible ? setVisible(2, true) : setVisible(2, false)"></verseghy-schedule>
-    <verseghy-faq id="faq" inViewport [inViewportOptions]="{ threshold: [0], rootMargin: '-70px 0px 0px 0px' }" (inViewportAction)="$event.visible ? setVisible(3, true) : setVisible(3, false)"></verseghy-faq>
+  <p class="back" [routerLink]="['/competitions/']">
+    <fa-icon [icon]="['fas', 'angle-left']"></fa-icon>
+    Vissza a versenyekhez
+  </p>
+  <verseghy-hero></verseghy-hero>
+  <verseghy-menu [inviewport]="inviewport"></verseghy-menu>
+  <verseghy-about
+    id="about"
+    inViewport
+    [inViewportOptions]="{ threshold: [0], rootMargin: '-70px 0px 0px 0px' }"
+    (inViewportAction)="$event.visible ? setVisible(0, true) : setVisible(0, false)"
+  ></verseghy-about>
+  <verseghy-rules
+    id="rules"
+    inViewport
+    [inViewportOptions]="{ threshold: [0], rootMargin: '-70px 0px 0px 0px' }"
+    (inViewportAction)="$event.visible ? setVisible(1, true) : setVisible(1, false)"
+  ></verseghy-rules>
+  <verseghy-schedule
+    id="schedule"
+    inViewport
+    [inViewportOptions]="{ threshold: [0], rootMargin: '-70px 0px 0px 0px' }"
+    (inViewportAction)="$event.visible ? setVisible(2, true) : setVisible(2, false)"
+  ></verseghy-schedule>
+  <verseghy-faq
+    id="faq"
+    inViewport
+    [inViewportOptions]="{ threshold: [0], rootMargin: '-70px 0px 0px 0px' }"
+    (inViewportAction)="$event.visible ? setVisible(3, true) : setVisible(3, false)"
+  ></verseghy-faq>
 </ng-container>

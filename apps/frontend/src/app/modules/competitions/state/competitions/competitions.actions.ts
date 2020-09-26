@@ -3,10 +3,7 @@ import { Competition } from '../../models/competition'
 
 export const loadRecentCompetitions = createAction('[competitions] Load Recent Competitions')
 
-export const loadCompetitionsSuccess = createAction(
-  '[competitions] Load Competitions Success',
-  props<{ competitions: Competition[] }>()
-)
+export const loadCompetitionsSuccess = createAction('[competitions] Load Competitions Success', props<{ competitions: Competition[] }>())
 
 export const loadCompetitionsFailure = createAction('[competitions] Load Competitions Failure', props<{ error: any }>())
 

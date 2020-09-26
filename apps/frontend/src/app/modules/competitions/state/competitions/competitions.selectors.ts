@@ -1,5 +1,5 @@
-import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { COMPETITIONS_FEATURE_KEY, CompetitionsPartialState, State } from "./competitions.reducer";
+import { createFeatureSelector, createSelector } from '@ngrx/store'
+import { COMPETITIONS_FEATURE_KEY, CompetitionsPartialState, State } from './competitions.reducer'
 
 export const getCompetitionsState = createFeatureSelector<CompetitionsPartialState, State>(COMPETITIONS_FEATURE_KEY)
 
@@ -13,8 +13,4 @@ export const getEntities = createSelector(getCompetitionsState, (state: State) =
 
 export const getSelectedID = createSelector(getCompetitionsState, (state: State) => state.selectedID)
 
-export const getSelected = createSelector(
-  getEntities,
-  getSelectedID,
-  (entities, selectedID) => selectedID && entities[selectedID]
-)
+export const getSelected = createSelector(getEntities, getSelectedID, (entities, selectedID) => selectedID && entities[selectedID])

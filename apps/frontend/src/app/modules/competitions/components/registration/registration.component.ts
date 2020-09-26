@@ -13,10 +13,9 @@ import {
 @Component({
   selector: 'verseghy-registration',
   templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.scss']
+  styleUrls: ['./registration.component.scss'],
 })
 export class RegistrationComponent implements OnInit {
-
   sections$: Observable<RegistrationSection[]> = of([
     {
       title: 'Pályamunka neve',
@@ -27,9 +26,9 @@ export class RegistrationComponent implements OnInit {
               name: '',
               type: InputType.TEXT,
               column: FieldColumn.BOTH,
-            }
-          ]
-        }
+            },
+          ],
+        },
       ],
       column: SectionColumn.BOTH,
     },
@@ -43,7 +42,7 @@ export class RegistrationComponent implements OnInit {
               type: InputType.TEXT,
               column: FieldColumn.BOTH,
             },
-          ]
+          ],
         },
         {
           title: 'Iskola címe',
@@ -68,8 +67,8 @@ export class RegistrationComponent implements OnInit {
               type: InputType.TEXT,
               column: FieldColumn.LEFT,
             },
-          ]
-        }
+          ],
+        },
       ],
       column: SectionColumn.BOTH,
     },
@@ -98,8 +97,8 @@ export class RegistrationComponent implements OnInit {
               type: InputType.TEXT,
               column: FieldColumn.LEFT,
             },
-          ]
-        }
+          ],
+        },
       ],
       column: SectionColumn.LEFT,
     },
@@ -128,8 +127,8 @@ export class RegistrationComponent implements OnInit {
               type: InputType.TEXT,
               column: FieldColumn.LEFT,
             },
-          ]
-        }
+          ],
+        },
       ],
       column: SectionColumn.RIGHT,
     },
@@ -158,8 +157,8 @@ export class RegistrationComponent implements OnInit {
               type: InputType.TEXT,
               column: FieldColumn.LEFT,
             },
-          ]
-        }
+          ],
+        },
       ],
       column: SectionColumn.CENTER,
     },
@@ -183,17 +182,16 @@ export class RegistrationComponent implements OnInit {
               type: InputType.TEXT,
               column: FieldColumn.LEFT,
             },
-          ]
-        }
+          ],
+        },
       ],
       column: SectionColumn.CENTER,
     },
   ])
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   asSelectField(field: RegistrationField): SelectField {
     return field as SelectField
@@ -202,5 +200,4 @@ export class RegistrationComponent implements OnInit {
   asRadioField(field: RegistrationField): RadioField {
     return field as RadioField
   }
-
 }

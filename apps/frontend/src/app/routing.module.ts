@@ -11,33 +11,33 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule),
+        loadChildren: () => import('./modules/home/home.module').then((m) => m.HomeModule),
       },
       {
         path: 'posts',
-        loadChildren: () => import('./modules/posts/posts.module').then(m => m.PostsModule),
+        loadChildren: () => import('./modules/posts/posts.module').then((m) => m.PostsModule),
       },
       {
         path: 'misc',
-        loadChildren: () => import('./modules/misc/misc.module').then(m => m.MiscModule),
+        loadChildren: () => import('./modules/misc/misc.module').then((m) => m.MiscModule),
       },
       {
         path: 'events',
-        loadChildren: () => import('./modules/events/events.module').then(m => m.EventsModule),
+        loadChildren: () => import('./modules/events/events.module').then((m) => m.EventsModule),
       },
       {
         path: 'canteen',
-        loadChildren: () => import('./modules/canteen/canteen.module').then(m => m.CanteenModule),
+        loadChildren: () => import('./modules/canteen/canteen.module').then((m) => m.CanteenModule),
       },
       {
         path: 'archive',
-        loadChildren: () => import('./modules/archive/archive.module').then(m => m.ArchiveModule),
+        loadChildren: () => import('./modules/archive/archive.module').then((m) => m.ArchiveModule),
       },
       {
         path: 'search',
         loadChildren: () => import('./modules/search/search.module').then((m) => m.SearchModule),
       },
-    ]
+    ],
   },
   {
     path: '',
@@ -45,10 +45,10 @@ const routes: Routes = [
     children: [
       {
         path: 'competitions',
-        loadChildren: () => import('./modules/competitions/competitions.module').then(m => m.CompetitionsModule),
-      }
-    ]
-  }
+        loadChildren: () => import('./modules/competitions/competitions.module').then((m) => m.CompetitionsModule),
+      },
+    ],
+  },
 ]
 
 @NgModule({

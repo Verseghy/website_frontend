@@ -1,7 +1,7 @@
 <h2>FAQ</h2>
 <div class="container">
-    <ng-container *ngFor="let faq of (competition$ | async).FAQ">
-        <p class="question">{{ faq.question }}</p>
-        <p class="answer">{{ faq.answer }}</p>
-    </ng-container>
+  <ng-container *ngFor="let faq of (competition$ | async).FAQ">
+    <p class="question">{{ faq.question }}</p>
+    <p class="answer">{{ faq.answer }}</p>
+  </ng-container>
 </div>

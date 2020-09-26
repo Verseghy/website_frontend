@@ -1,26 +1,26 @@
 <div class="content">
-    <div class="title">
-        <h1>Verseghy Versenyek</h1>
-        <p class="back" [routerLink]="['/']">
-            <fa-icon [icon]="['fas', 'angle-left']"></fa-icon>
-            Vissza a főoldalra
-        </p>
+  <div class="title">
+    <h1>Verseghy Versenyek</h1>
+    <p class="back" [routerLink]="['/']">
+      <fa-icon [icon]="['fas', 'angle-left']"></fa-icon>
+      Vissza a főoldalra
+    </p>
+  </div>
+  <div *ngFor="let competition of competitions$ | async" [routerLink]="[competition.id]" class="card">
+    <img *ngIf="competition.card.image" [src]="competition.card.image" alt="" />
+    <div class="card-header">
+      <h2>{{ competition.name }}</h2>
+      <span *ngIf="isRegistrationOpen(competition.registration); else registrationClosed" class="status opened">
+        <span class="dot"></span>
+        <span>Registation opened</span>
+      </span>
+      <ng-template #registrationClosed>
+        <span class="status">
+          <span class="dot"></span>
+          <span>Registation closed</span>
+        </span>
+      </ng-template>
     </div>
-    <div *ngFor="let competition of competitions$ | async" [routerLink]="[competition.id]" class="card">
-        <img *ngIf="competition.card.image" [src]="competition.card.image" alt="">
-        <div class="card-header">
-            <h2>{{ competition.name }}</h2>
-            <span *ngIf="isRegistrationOpen(competition.registration); else registrationClosed" class="status opened">
-                <span class="dot"></span>
-                <span>Registation opened</span>
-            </span>
-            <ng-template #registrationClosed>
-                <span class="status">
-                    <span class="dot"></span>
-                    <span>Registation closed</span>
-                </span>
-            </ng-template>
-        </div>
-        <p class="description">{{ competition.card.shortDescription }}</p>
-    </div>
+    <p class="description">{{ competition.card.shortDescription }}</p>
+  </div>
 </div>
