@@ -8,6 +8,16 @@
 h1 {
   font-weight: 400;
   margin-top: 30px;
+  font-size: 24px;
+
+  @media screen and (max-width: 770px) {
+    font-size: 20px;
+  }
+}
+
+span {
+  margin-top: 20px;
+  display: block;
 }
 
 .results {
