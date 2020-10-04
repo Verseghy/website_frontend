@@ -23,9 +23,9 @@ export class PageComponent implements OnInit, OnDestroy {
 
   slug$ = this.route.params.pipe(map(({ slug }) => slug))
   data$ = this.slug$.pipe(
-    switchMap(slug => this.requestService.getPageBySlug(slug)),
+    switchMap((slug) => this.requestService.getPageBySlug(slug)),
     tap(() => this.error$.next(false)),
-    catchError(error => {
+    catchError((error) => {
       this.error$.next(true)
       return throwError(error)
     })
