@@ -57,6 +57,11 @@ h1 {
     td,
     th {
       padding: 5px;
+      border-right: 1px solid #dedede;
+
+      &:last-child {
+        border-right: 0;
+      }
     }
 
     tr {
