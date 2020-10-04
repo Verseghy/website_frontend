@@ -28,6 +28,9 @@ export class PageComponent implements OnInit, OnDestroy {
     })
   )
 
+  // creates a div element around table elements,
+  // sets links target to _blank
+  // and removes p tag around img tags
   private static _processCustomTags(html: string): string {
     const parser = new DOMParser()
     const dom = parser.parseFromString(html, 'text/html')
@@ -48,6 +51,15 @@ export class PageComponent implements OnInit, OnDestroy {
     links.forEach((link) => {
       link.setAttribute('target', '_blank')
     })
+
+    const images = Array.from(dom.getElementsByTagName('img'))
+    for (const image of images) {
+      const parent = image.parentElement
+      const parent2 = parent.parentElement
+
+      const index = Array.from(parent2.children).indexOf(parent)
+      parent2.insertBefore(image, parent2.children[index])
+    }
 
     return dom.documentElement.innerHTML
   }
