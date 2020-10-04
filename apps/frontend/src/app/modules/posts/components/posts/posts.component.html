@@ -18,7 +18,7 @@
     <div class="post-content" [innerHTML]="post?.content"></div>
     <verseghy-slideshow
       #slideshow
-      class="post-content"
+      class="post-content slideshow"
       [height]="'400px'"
       [imageUrls]="post?.images"
       [autoPlay]="post?.images?.length > 1"
@@ -26,7 +26,7 @@
       [lazyLoad]="post?.images?.length > 1"
       [hideOnNoSlides]="true"
       [backgroundSize]="'contain'"
-      [showArrows]="false"
+      [showArrows]="true"
       [showDots]="false"
       [disableSwiping]="post?.images?.length < 2"
     ></verseghy-slideshow>
