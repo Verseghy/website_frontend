@@ -8,25 +8,22 @@ import { RequestService } from '../../services/request.service'
 @Component({
   selector: 'verseghy-page',
   templateUrl: './page.component.html',
-  styleUrls: ['./page.component.scss']
+  styleUrls: ['./page.component.scss'],
 })
 export class PageComponent implements OnInit, OnDestroy {
-
   constructor(
     private route: ActivatedRoute,
     private requestService: RequestService,
     private titleService: Title,
     private domSanitizer: DomSanitizer
-  ) { }
+  ) {}
 
   private subsink = new SubSink()
 
   slug$ = this.route.params.pipe(map(({ slug }) => slug))
-  data$ = this.slug$.pipe(
-    switchMap(slug => this.requestService.getPageBySlug(slug))
-  )
+  data$ = this.slug$.pipe(switchMap((slug) => this.requestService.getPageBySlug(slug)))
   content$ = this.data$.pipe(
-    map(data => {
+    map((data) => {
       return this.domSanitizer.bypassSecurityTrustHtml(PageComponent._processCustomTags(data.content))
     })
   )
@@ -48,7 +45,7 @@ export class PageComponent implements OnInit, OnDestroy {
       parentNode.insertBefore(element, parentNode.children[index])
     }
 
-    links.forEach(link => {
+    links.forEach((link) => {
       link.setAttribute('target', '_blank')
     })
 
@@ -56,9 +53,7 @@ export class PageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-
-
-    this.subsink.sink = this.data$.subscribe(data => {
+    this.subsink.sink = this.data$.subscribe((data) => {
       this.titleService.setTitle(data.title)
     })
   }
@@ -66,5 +61,4 @@ export class PageComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subsink.unsubscribe()
   }
-
 }
