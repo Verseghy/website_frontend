@@ -5,10 +5,9 @@ import { environment } from '../../../../environments/environment.prod'
 import { Observable } from 'rxjs'
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RequestService {
-
   constructor(private http: HttpClient) {}
 
   getPageBySlug(slug: string): Observable<PageData> {

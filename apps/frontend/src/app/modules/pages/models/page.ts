@@ -1,5 +1,5 @@
 export enum PageTemplate {
-  SERVICES = 'services'
+  SERVICES = 'services',
 }
 
 export interface PageData {
