@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
-import { map, switchMap } from 'rxjs/operators'
+import { catchError, map, switchMap, tap } from 'rxjs/operators'
 import { DomSanitizer, Title } from '@angular/platform-browser'
 import { SubSink } from 'subsink'
 import { RequestService } from '../../services/request.service'
+import { Subject, throwError } from 'rxjs'
 
 @Component({
   selector: 'verseghy-page',
@@ -21,12 +22,20 @@ export class PageComponent implements OnInit, OnDestroy {
   private subsink = new SubSink()
 
   slug$ = this.route.params.pipe(map(({ slug }) => slug))
-  data$ = this.slug$.pipe(switchMap((slug) => this.requestService.getPageBySlug(slug)))
+  data$ = this.slug$.pipe(
+    switchMap(slug => this.requestService.getPageBySlug(slug)),
+    tap(() => this.error$.next(false)),
+    catchError(error => {
+      this.error$.next(true)
+      return throwError(error)
+    })
+  )
   content$ = this.data$.pipe(
     map((data) => {
       return this.domSanitizer.bypassSecurityTrustHtml(PageComponent._processCustomTags(data.content))
     })
   )
+  error$ = new Subject<boolean>()
 
   // creates a div element around table elements,
   // sets links target to _blank
