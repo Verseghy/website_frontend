@@ -1,4 +1,7 @@
 :host {
+  max-width: 1000px;
+  padding: 0 20px;
+  margin: 0 auto;
   display: block;
 }
 
@@ -6,4 +9,101 @@ h1 {
   font-size: 36px;
   font-weight: 400;
   font-family: 'Roboto', sans-serif;
+}
+
+.content {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  color: #202124;
+  line-height: 26px;
+
+  &::ng-deep {
+    > p {
+      max-width: 650px;
+      margin: 0 auto 21px;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin: 50px auto 15px;
+      max-width: 650px;
+      font-weight: 400;
+    }
+
+    .table-container {
+      overflow-x: scroll;
+      margin-bottom: 21px;
+      white-space: nowrap;
+      background: #f7f7f7;
+      border-radius: 8px;
+      padding: 10px;
+      box-sizing: border-box;
+
+      @media screen and (max-width: 1040px) {
+        max-width: calc(100vw - 40px);
+      }
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100% !important;
+    }
+
+    td,
+    th {
+      padding: 5px;
+    }
+
+    tr {
+      border-bottom: 1px solid #dedede;
+
+      &:last-child {
+        border: 0;
+      }
+    }
+
+    ul,
+    ol {
+      max-width: 650px;
+      margin: 0 auto;
+      list-style-position: outside;
+    }
+
+    > ul {
+      margin-bottom: 21px;
+    }
+
+    li {
+      margin-left: 20px;
+    }
+
+    li p {
+      display: inline-block;
+    }
+
+    blockquote {
+      background: #f8f8f8;
+      border-radius: 8px;
+      padding: 20px;
+      max-width: 650px;
+      margin: 0 auto 21px;
+      font-style: italic;
+      box-sizing: border-box;
+
+      p ~ p {
+        margin-top: 21px;
+      }
+    }
+
+    img {
+      width: 100% !important;
+      height: 100% !important;
+      border-radius: 8px;
+    }
+  }
 }

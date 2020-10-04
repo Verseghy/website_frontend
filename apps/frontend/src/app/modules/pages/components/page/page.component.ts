@@ -12,6 +12,13 @@ import { RequestService } from '../../services/request.service'
 })
 export class PageComponent implements OnInit, OnDestroy {
 
+  constructor(
+    private route: ActivatedRoute,
+    private requestService: RequestService,
+    private titleService: Title,
+    private domSanitizer: DomSanitizer
+  ) { }
+
   private subsink = new SubSink()
 
   slug$ = this.route.params.pipe(map(({ slug }) => slug))
@@ -20,16 +27,33 @@ export class PageComponent implements OnInit, OnDestroy {
   )
   content$ = this.data$.pipe(
     map(data => {
-      return this.domSanitizer.bypassSecurityTrustHtml(data.content)
+      return this.domSanitizer.bypassSecurityTrustHtml(PageComponent._processCustomTags(data.content))
     })
   )
 
-  constructor(
-    private route: ActivatedRoute,
-    private requestService: RequestService,
-    private titleService: Title,
-    private domSanitizer: DomSanitizer
-  ) { }
+  private static _processCustomTags(html: string): string {
+    const parser = new DOMParser()
+    const dom = parser.parseFromString(html, 'text/html')
+    const tables = Array.from(dom.getElementsByTagName('table'))
+    const links = Array.from(dom.getElementsByTagName('a'))
+
+    for (const table of tables) {
+      const parentNode = table.parentNode
+      const index = Array.from(parentNode.children).indexOf(table)
+
+      const element = dom.createElement('div')
+      element.classList.add('table-container')
+      element.append(table)
+
+      parentNode.insertBefore(element, parentNode.children[index])
+    }
+
+    links.forEach(link => {
+      link.setAttribute('target', '_blank')
+    })
+
+    return dom.documentElement.innerHTML
+  }
 
   ngOnInit(): void {
 
