@@ -98,7 +98,7 @@ h1 {
   line-height: 26px;
 
   &::ng-deep {
-    p {
+    > p {
       max-width: 650px;
       margin: 0 auto 21px;
     }
@@ -130,12 +130,17 @@ h1 {
 
     table {
       border-collapse: collapse;
-      width: 100%;
+      width: 100% !important;
     }
 
     td,
     th {
       padding: 5px;
+      border-right: 1px solid #dedede;
+
+      &:last-child {
+        border-right: 0;
+      }
     }
 
     tr {
@@ -146,7 +151,8 @@ h1 {
       }
     }
 
-    ul {
+    ul,
+    ol {
       max-width: 650px;
       margin: 0 auto;
       list-style-position: outside;
@@ -162,6 +168,26 @@ h1 {
 
     li p {
       display: inline-block;
+    }
+
+    blockquote {
+      background: #f8f8f8;
+      border-radius: 8px;
+      padding: 20px;
+      max-width: 650px;
+      margin: 0 auto 21px;
+      font-style: italic;
+      box-sizing: border-box;
+
+      p ~ p {
+        margin-top: 21px;
+      }
+    }
+
+    img {
+      width: 100% !important;
+      height: 100% !important;
+      border-radius: 8px;
     }
   }
 }
