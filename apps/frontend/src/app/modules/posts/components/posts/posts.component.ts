@@ -1,12 +1,12 @@
-import { Component, HostListener, OnInit, ViewChild } from '@angular/core'
-import { combineLatest, Observable } from 'rxjs'
-import { RequestService } from '../../services/request.service'
-import { Post } from '../../../../models/Post'
-import { ActivatedRoute } from '@angular/router'
-import { ContrastService } from '../../../../services/contrast.service'
-import { map, switchMap } from 'rxjs/operators'
-import { DomSanitizer } from '@angular/platform-browser'
-import { format } from 'date-fns'
+import { Component, HostListener, OnInit, ViewChild } from "@angular/core";
+import { combineLatest, Observable } from "rxjs";
+import { RequestService } from "../../services/request.service";
+import { Post } from "../../../../models/Post";
+import { ActivatedRoute } from "@angular/router";
+import { ContrastService } from "../../../../services/contrast.service";
+import { map, switchMap } from "rxjs/operators";
+import { DomSanitizer } from "@angular/platform-browser";
+import { format } from "date-fns";
 
 @Component({
   selector: 'verseghy-posts',
@@ -69,9 +69,18 @@ export class PostsComponent implements OnInit {
       parentNode.insertBefore(element, parentNode.children[index])
     }
 
-    links.forEach(link => {
+    links.forEach((link) => {
       link.setAttribute('target', '_blank')
     })
+
+    const images = Array.from(dom.getElementsByTagName('img'))
+    for (const image of images) {
+      const parent = image.parentElement
+      const parent2 = parent.parentElement
+
+      const index = Array.from(parent2.children).indexOf(parent)
+      parent2.insertBefore(image, parent2.children[index])
+    }
 
     return dom.documentElement.innerHTML
   }
