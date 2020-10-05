@@ -1,12 +1,12 @@
-import { Component, HostListener, OnInit, ViewChild } from "@angular/core";
-import { combineLatest, Observable } from "rxjs";
-import { RequestService } from "../../services/request.service";
-import { Post } from "../../../../models/Post";
-import { ActivatedRoute } from "@angular/router";
-import { ContrastService } from "../../../../services/contrast.service";
-import { map, switchMap } from "rxjs/operators";
-import { DomSanitizer } from "@angular/platform-browser";
-import { format } from "date-fns";
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core'
+import { combineLatest, Observable } from 'rxjs'
+import { RequestService } from '../../services/request.service'
+import { Post } from '../../../../models/Post'
+import { ActivatedRoute } from '@angular/router'
+import { ContrastService } from '../../../../services/contrast.service'
+import { map, switchMap } from 'rxjs/operators'
+import { DomSanitizer } from '@angular/platform-browser'
+import { format } from 'date-fns'
 
 @Component({
   selector: 'verseghy-posts',
