@@ -22,14 +22,14 @@ export class PostsComponent implements OnInit {
   ngOnInit() {
     this.post$ = combineLatest([this.route.params, this.route.queryParams]).pipe(
       map(([params, queryParams]) => ({ params, queryParams })),
-      switchMap(x => {
+      switchMap((x) => {
         if (x.queryParams.token) {
           return this.requestService.getPostByIdPreview(x.params.id, x.queryParams.token)
         } else {
           return this.requestService.getPostById(x.params.id)
         }
       }),
-      map(x => {
+      map((x) => {
         for (const i of Object.keys(x.labels)) {
           x.labels[i].isDark = ContrastService.getConstrast(x.labels[i].color)
         }
