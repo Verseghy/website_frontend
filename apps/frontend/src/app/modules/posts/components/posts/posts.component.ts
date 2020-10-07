@@ -65,6 +65,9 @@ export class PostsComponent implements OnInit {
       const element = dom.createElement('div')
       element.classList.add('table-container')
       element.append(table)
+      element.style.maxWidth = table.style.width
+
+      table.style.width = '100%'
 
       parentNode.insertBefore(element, parentNode.children[index])
     }
@@ -80,6 +83,9 @@ export class PostsComponent implements OnInit {
 
       const index = Array.from(parent2.children).indexOf(parent)
       parent2.insertBefore(image, parent2.children[index])
+
+      image.style.maxWidth = image.style.width
+      image.style.width = '100%'
     }
 
     return dom.documentElement.innerHTML

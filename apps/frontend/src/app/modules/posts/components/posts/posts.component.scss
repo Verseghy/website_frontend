@@ -116,7 +116,7 @@ h1 {
 
     .table-container {
       overflow-x: scroll;
-      margin-bottom: 21px;
+      margin: 0 auto 21px;
       white-space: nowrap;
       background: #f7f7f7;
       border-radius: 8px;
@@ -124,13 +124,12 @@ h1 {
       box-sizing: border-box;
 
       @media screen and (max-width: 1040px) {
-        max-width: calc(100vw - 40px);
+        max-width: calc(100vw - 40px) !important;
       }
     }
 
     table {
       border-collapse: collapse;
-      width: 100% !important;
     }
 
     td,
