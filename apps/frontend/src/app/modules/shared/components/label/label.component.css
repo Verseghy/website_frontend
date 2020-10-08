@@ -1,5 +1,6 @@
 :host {
-  font-size: 10px;
+  font-size: 1rem;
+  font-weight: 700;
   text-transform: uppercase;
   padding: 5px 11px 4px;
   border-radius: 20px;
