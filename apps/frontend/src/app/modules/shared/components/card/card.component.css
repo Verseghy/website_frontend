@@ -24,7 +24,8 @@
 }
 
 .label {
-  font-size: 10px;
+  font-size: 1rem;
+  font-weight: 700;
   text-transform: uppercase;
   padding: 5px 11px 4px;
   border-radius: 20px;
@@ -48,8 +49,9 @@
 
 .title {
   color: #111111;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 20px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
   margin-bottom: 8px;
   z-index: 1;
   position: relative;
@@ -132,7 +134,7 @@
   display: inline-block;
   vertical-align: middle;
   margin-right: 20px;
-  font-size: 12px;
+  font-size: 1.2rem;
   color: #5e5e5e;
   z-index: 1;
   position: relative;
