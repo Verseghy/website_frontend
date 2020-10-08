@@ -38,13 +38,12 @@
 h1 {
   margin-bottom: 15px;
   color: #111111;
-  font-family: 'Open Sans', sans-serif;
   font-weight: 400;
-  font-size: 36px;
+  font-size: 3.6rem;
   line-height: 1.2;
 
   @media screen and (max-width: 770px) {
-    font-size: 24px;
+    font-size: 2.4rem;
   }
 }
 
@@ -60,7 +59,6 @@ h1 {
   }
 
   .name {
-    font-family: 'Roboto', sans-serif;
     grid-column: 2;
   }
 }
@@ -77,13 +75,12 @@ h1 {
   }
 
   .name {
-    font-size: 14px;
+    font-size: 1.4rem;
     font-weight: 300;
   }
 
   .date {
-    font-family: 'Roboto', sans-serif;
-    font-size: 13px;
+    font-size: 1.3rem;
     font-weight: 300;
     color: #757575;
     grid-column: 2;
@@ -91,11 +88,10 @@ h1 {
 }
 
 .post-content {
-  font-family: 'Roboto', sans-serif;
-  font-size: 16px;
+  font-size: 1.6rem;
   font-weight: 300;
   color: #202124;
-  line-height: 26px;
+  line-height: 1.6;
 
   &::ng-deep {
     > p {
@@ -204,13 +200,12 @@ h1 {
   }
 
   .name {
-    font-size: 16px;
+    font-size: 1.6rem;
     font-weight: 400;
   }
 
   .description {
-    font-family: 'Roboto', sans-serif;
-    font-size: 14px;
+    font-size: 1.4rem;
     font-weight: 300;
     line-height: 22px;
     grid-column: 2;
