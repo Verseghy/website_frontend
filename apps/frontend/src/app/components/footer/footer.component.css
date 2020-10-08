@@ -34,7 +34,7 @@ ul li {
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   line-height: 2.5;
   color: rgba(255, 255, 255, 0.8);
-  font-size: 14px;
+  font-size: 1.4rem;
 }
 
 ul li a {
@@ -60,7 +60,7 @@ input {
 button {
   color: #fff;
   text-transform: uppercase;
-  font-weight: bold;
+  font-weight: 700;
   background-color: #009cff;
   height: 40px;
   width: 100%;
@@ -88,7 +88,7 @@ button:hover {
 }
 
 h4 {
-  font-size: 22px;
+  font-size: 2.2rem;
   margin-bottom: 10px;
   color: #fff;
 }
