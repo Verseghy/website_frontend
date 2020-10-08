@@ -42,9 +42,9 @@
 }
 
 .title {
-  font-family: 'Cabin', serif;
+  font-family: 'Cabin', sans-serif;
   text-transform: uppercase;
-  font-size: 24px;
+  font-size: 2.4rem;
   line-height: 64px;
   padding: 0 16px;
   cursor: pointer;
@@ -55,7 +55,7 @@
   @media screen and (max-width: 992px) {
     line-height: 56px;
     padding: 0 8px;
-    font-size: 18px;
+    font-size: 1.8rem;
   }
 
   .beta {
@@ -114,6 +114,7 @@
 }
 
 .menu {
+  font-family: 'Cabin', sans-serif;
   display: inline-block;
   color: #000;
   line-height: 40px;
