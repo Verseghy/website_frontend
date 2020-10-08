@@ -71,7 +71,7 @@ $breakpoints: (
 .menu-header {
   text-align: center;
   display: block;
-  font-size: 24px;
+  font-size: 2.4rem;
   padding: 15px 20px 10px;
   background-color: #f7f7f7;
   border-top-left-radius: 8px;
@@ -94,7 +94,8 @@ $breakpoints: (
 }
 
 .day-name {
-  font-size: 20px;
+  font-size: 2rem;
+  font-weight: 700;
   margin-bottom: 10px;
   display: block;
 }
@@ -102,13 +103,13 @@ $breakpoints: (
 h2 {
   grid-column: span 2;
   text-align: center;
-  font-size: 48px;
+  font-size: 4.8rem;
   font-weight: 500;
   margin-bottom: 25px;
 
   @include respond-below(sm) {
     grid-column: span 1;
-    font-size: 34px;
+    font-size: 3.4rem;
     margin-bottom: 5px;
   }
 }
