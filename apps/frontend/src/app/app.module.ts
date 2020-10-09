@@ -20,12 +20,13 @@ import { LoadersModule } from '@verseghy/ui'
 import { environment } from '../environments/environment'
 import { ServiceWorkerModule } from '@angular/service-worker'
 import { AngularFireAnalyticsModule, APP_NAME, APP_VERSION, COLLECTION_ENABLED, ScreenTrackingService } from '@angular/fire/analytics'
-import { AngularFirePerformanceModule } from '@angular/fire/performance'
+import { AngularFirePerformanceModule } from '@angular/fire/performance';
+import { ToastComponent } from './components/toast/toast.component'
 
 library.add(faCheck)
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent],
+  declarations: [AppComponent, HeaderComponent, FooterComponent, ToastComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
