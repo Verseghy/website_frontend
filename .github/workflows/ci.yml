@@ -33,7 +33,6 @@ jobs:
       - name: Test
         run: yarn affected:test --no-progress --base=remotes/origin/master
 
-
       #- name: Webdriver Manager Update
       #  run: ./node_modules/.bin/webdriver-manager update
       #- name: E2E
