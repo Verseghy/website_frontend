@@ -32,9 +32,6 @@ jobs:
       - name: Build
         run: yarn build frontend --prod --no-progress
 
-      - name: Test
-        run: yarn affected:test --no-progress --base=remotes/origin/master
-
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
