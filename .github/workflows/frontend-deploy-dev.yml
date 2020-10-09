@@ -39,5 +39,6 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_VFG_HONLAP }}'
           projectId: vfg-honlap
           entryPoint: 'apps/frontend'
+          channelId: '${{ github.ref }}'
         env:
           FIREBASE_CLI_PREVIEWS: hostingchannels
