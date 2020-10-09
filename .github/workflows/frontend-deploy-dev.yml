@@ -28,10 +28,7 @@ jobs:
         run: yarn
 
       - name: Build
-        run: yarn build frontend --prod --no-progress
-
-      - name: Test
-        run: yarn affected:test --no-progress --base=remotes/origin/master
+        run: yarn build frontend --no-progress
 
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
