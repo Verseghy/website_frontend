@@ -1,0 +1,39 @@
+:host {
+  display: block;
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  z-index: 9;
+  max-width: 340px;
+  box-sizing: border-box;
+}
+
+.toast {
+  padding: 15px;
+  color: #fff;
+  background: #292929;
+  border-radius: 8px;
+  font-size: 1.4rem;
+  max-width: 360px;
+
+  .actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    justify-content: flex-end;
+
+    button {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 5px;
+      border-radius: 3px;
+      text-transform: uppercase;
+      color: #fff;
+      cursor: pointer;
+      transition: background 100ms;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+    }
+  }
+}
