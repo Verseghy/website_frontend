@@ -25,10 +25,10 @@ export class FooterComponent implements OnInit {
   devClickHandler() {
     caches
       .keys()
-      .then(a => Promise.all(a.map(n => caches.delete(n))))
+      .then((a) => Promise.all(a.map((n) => caches.delete(n))))
       .then(() => {
         if ('serviceWorker' in navigator) {
-          navigator.serviceWorker.getRegistrations().then(async registrations => {
+          navigator.serviceWorker.getRegistrations().then(async (registrations) => {
             for (const registration of registrations) {
               console.log('serviceWorker unregistered')
               await registration.unregister()
