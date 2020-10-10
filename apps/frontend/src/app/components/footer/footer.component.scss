@@ -15,8 +15,24 @@
   grid-gap: 60px;
   margin-bottom: 80px;
 
+  @media screen and (max-width: 992px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media screen and (max-width: 650px) {
+    grid-template-columns: 1fr
+  }
+
   h2 {
     font-size: 2.8rem;
+
+    @media screen and (max-width: 992px) {
+      grid-column: span 3;
+    }
+
+    @media screen and (max-width: 650px) {
+      grid-column: span 1;
+    }
   }
 
   .block {
@@ -44,15 +60,15 @@
 
 .bottom {
   background: #f8f8f8;
-  height: 70px;
-  line-height: 70px;
+  padding: 20px 0;
   font-size: 1.2rem;
   color: #616161;
 
   .container {
     display: flex;
     justify-content: space-between;
-
+    align-items: center;
+    
     .right {
       font-size: 2rem;
 
