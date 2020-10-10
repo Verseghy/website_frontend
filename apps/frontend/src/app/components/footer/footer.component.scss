@@ -58,6 +58,10 @@
 
       img {
         height: 48px;
+
+        &:focus {
+          outline: 0;
+        }
       }
     }
   }
