@@ -7,9 +7,7 @@ import { RoutingModule } from './routing.module'
 import { HeaderComponent } from './components/header/header.component'
 import { HttpClientModule } from '@angular/common/http'
 import { FooterComponent } from './components/footer/footer.component'
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faCheck } from '@fortawesome/free-solid-svg-icons'
+import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { FormsModule } from '@angular/forms'
 import { NxModule } from '@nrwl/angular'
 import { StoreModule } from '@ngrx/store'
@@ -22,8 +20,7 @@ import { ServiceWorkerModule } from '@angular/service-worker'
 import { AngularFireAnalyticsModule, APP_NAME, APP_VERSION, COLLECTION_ENABLED, ScreenTrackingService } from '@angular/fire/analytics'
 import { AngularFirePerformanceModule } from '@angular/fire/performance'
 import { ToastComponent } from './components/toast/toast.component'
-
-library.add(faCheck)
+import { faFacebookF } from '@fortawesome/free-brands-svg-icons'
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent, ToastComponent],
@@ -54,4 +51,8 @@ library.add(faCheck)
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(library: FaIconLibrary) {
+    library.addIcons(faFacebookF)
+  }
+}
