@@ -2,6 +2,8 @@ import { async, TestBed } from '@angular/core/testing'
 import { AppComponent } from './app.component'
 import { RouterTestingModule } from '@angular/router/testing'
 import { Component, Input } from '@angular/core'
+import { SwUpdate } from '@angular/service-worker'
+import { Observable } from 'rxjs'
 
 @Component({ selector: 'verseghy-header', template: '', styles: [] })
 class HeaderComponent {}
@@ -13,11 +15,22 @@ class LoadersComponent {
   @Input() loaderClass
 }
 
+const SwUpdateMock = {
+  available: new Observable(),
+  activateUpdate: new Promise(() => {}),
+}
+
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
       declarations: [AppComponent, HeaderComponent, FooterComponent, LoadersComponent],
+      providers: [
+        {
+          provide: SwUpdate,
+          useValue: SwUpdateMock,
+        },
+      ],
     }).compileComponents()
   }))
 
