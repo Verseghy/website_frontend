@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component } from '@angular/core'
 import { ToastService } from '../../services/toast.service'
 import { animate, style, transition, trigger } from '@angular/animations'
 
@@ -37,25 +37,8 @@ import { animate, style, transition, trigger } from '@angular/animations'
     ]),
   ],
 })
-export class ToastComponent implements OnInit {
+export class ToastComponent {
   toast$ = this.toastService.toast$
 
   constructor(private toastService: ToastService) {}
-
-  ngOnInit() {
-    setTimeout(() => {
-      this.toastService.createToast('This is a random toast message!', [
-        {
-          title: 'button 1',
-          callback: () => {
-            console.log('Asdasdasdasd')
-          },
-        },
-      ])
-
-      setTimeout(() => {
-        this.toastService.removeToast()
-      }, 5000)
-    }, 5000)
-  }
 }
