@@ -1,15 +1,14 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core'
 import { BehaviorSubject } from 'rxjs'
 import { Toast, ToastAction } from '../models/toast'
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ToastService {
-
   toast$ = new BehaviorSubject<Toast | null>(null)
 
-  constructor() { }
+  constructor() {}
 
   public createToast(message: string, actions: ToastAction[]): void {
     this.toast$.next({ message, actions })

@@ -1,4 +1,4 @@
-<div *ngIf="(toast$ | async)" class="toast">
+<div *ngIf="toast$ | async" class="toast">
   {{ (toast$ | async).message }}
   <div class="actions">
     <button *ngFor="let action of (toast$ | async).actions" (click)="action.callback()">
