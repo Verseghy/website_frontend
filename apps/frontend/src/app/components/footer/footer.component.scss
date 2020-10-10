@@ -20,7 +20,7 @@
   }
 
   @media screen and (max-width: 650px) {
-    grid-template-columns: 1fr
+    grid-template-columns: 1fr;
   }
 
   h2 {
@@ -68,7 +68,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    
+
     .right {
       font-size: 2rem;
 
