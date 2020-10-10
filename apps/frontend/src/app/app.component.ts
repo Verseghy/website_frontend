@@ -1,6 +1,10 @@
-import { AfterViewInit, ApplicationRef, Component } from '@angular/core'
+import { AfterViewInit, ApplicationRef, Component, OnInit } from '@angular/core'
 import { animate, group, query, style, transition, trigger } from '@angular/animations'
 import { NavigationCancel, NavigationEnd, NavigationStart, Router } from '@angular/router'
+import { SwUpdate } from '@angular/service-worker'
+import { first } from 'rxjs/operators'
+import { concat, interval } from 'rxjs'
+import { ToastService } from './services/toast.service'
 
 @Component({
   selector: 'verseghy-root',
@@ -41,12 +45,32 @@ import { NavigationCancel, NavigationEnd, NavigationStart, Router } from '@angul
     ]),
   ],
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent implements AfterViewInit, OnInit {
   loaded = false
-  constructor(private router: Router) {}
+  constructor(private router: Router, private swupdate: SwUpdate, private appRef: ApplicationRef, private toastService: ToastService) {}
+
+  ngOnInit() {
+    const appIsStable$ = this.appRef.isStable.pipe(first((isStable) => isStable === true))
+    const hourly$ = interval(60 * 60 * 1000)
+
+    concat(appIsStable$, hourly$).subscribe(() => this.swupdate.checkForUpdate())
+
+    this.swupdate.available.subscribe(() => {
+      this.toastService.createToast('Frissítés elérhető. Kérlek töltsd újra az oldalt!', [
+        {
+          title: 'Újratöltés',
+          callback: () => {
+            this.swupdate.activateUpdate().then(() => {
+              window.location.reload()
+            })
+          },
+        },
+      ])
+    })
+  }
 
   ngAfterViewInit(): void {
-    this.router.events.subscribe(event => {
+    this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
         window.scrollTo(0, 0)
         this.loaded = false
