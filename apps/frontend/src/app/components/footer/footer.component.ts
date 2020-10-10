@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component } from '@angular/core'
 import { environment } from '../../../environments/environment'
 
 @Component({
@@ -6,17 +6,8 @@ import { environment } from '../../../environments/environment'
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss'],
 })
-export class FooterComponent implements OnInit {
-  buttonTextVisible = true
-  spinnerVisible = false
-  checkMarkVisible = false
-  email: string
-  subscribeButtonDisabled = false
-  subscribeButtonDone = false
-
+export class FooterComponent {
   constructor() {}
-
-  ngOnInit() {}
 
   get appVersion() {
     return environment.version
@@ -37,24 +28,5 @@ export class FooterComponent implements OnInit {
           })
         }
       })
-  }
-
-  subscribeToNewsletter() {
-    if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(this.email)) {
-      this.spinnerVisible = true
-      this.buttonTextVisible = false
-      this.subscribeButtonDisabled = true
-      console.log(this.email)
-      this.email = ''
-      setTimeout(() => this._subscribeConfirmed(), 3000)
-    } else {
-      alert('Hibás email-cím!')
-    }
-  }
-
-  private _subscribeConfirmed() {
-    this.spinnerVisible = false
-    this.subscribeButtonDone = true
-    this.checkMarkVisible = true
   }
 }
