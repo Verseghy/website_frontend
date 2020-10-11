@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 import { catchError, map, switchMap, tap } from 'rxjs/operators'
-import { DomSanitizer, Title } from '@angular/platform-browser'
+import { Title } from '@angular/platform-browser'
 import { SubSink } from 'subsink'
 import { RequestService } from '../../services/request.service'
 import { Subject, throwError } from 'rxjs'
@@ -15,8 +15,7 @@ export class PageComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private requestService: RequestService,
-    private titleService: Title,
-    private domSanitizer: DomSanitizer
+    private titleService: Title
   ) {}
 
   private subsink = new SubSink()
@@ -30,54 +29,7 @@ export class PageComponent implements OnInit, OnDestroy {
       return throwError(error)
     })
   )
-  content$ = this.data$.pipe(
-    map((data) => {
-      return this.domSanitizer.bypassSecurityTrustHtml(PageComponent._processCustomTags(data.content))
-    })
-  )
   error$ = new Subject<boolean>()
-
-  // creates a div element around table elements,
-  // sets links target to _blank
-  // and removes p tag around img tags
-  private static _processCustomTags(html: string): string {
-    const parser = new DOMParser()
-    const dom = parser.parseFromString(html, 'text/html')
-    const tables = Array.from(dom.getElementsByTagName('table'))
-    const links = Array.from(dom.getElementsByTagName('a'))
-
-    for (const table of tables) {
-      const parentNode = table.parentNode
-      const index = Array.from(parentNode.children).indexOf(table)
-
-      const element = dom.createElement('div')
-      element.classList.add('table-container')
-      element.append(table)
-      element.style.maxWidth = table.style.width
-
-      table.style.width = '100%'
-
-      parentNode.insertBefore(element, parentNode.children[index])
-    }
-
-    links.forEach((link) => {
-      link.setAttribute('target', '_blank')
-    })
-
-    const images = Array.from(dom.getElementsByTagName('img'))
-    for (const image of images) {
-      const parent = image.parentElement
-      const parent2 = parent.parentElement
-
-      const index = Array.from(parent2.children).indexOf(parent)
-      parent2.insertBefore(image, parent2.children[index])
-
-      image.style.maxWidth = image.style.width
-      image.style.width = '100%'
-    }
-
-    return dom.documentElement.innerHTML
-  }
 
   ngOnInit(): void {
     this.subsink.sink = this.data$.subscribe((data) => {

@@ -5,7 +5,6 @@ import { Post } from '../../../../models/Post'
 import { ActivatedRoute } from '@angular/router'
 import { ContrastService } from '../../../../services/contrast.service'
 import { map, switchMap } from 'rxjs/operators'
-import { DomSanitizer } from '@angular/platform-browser'
 import { format } from 'date-fns'
 
 @Component({
@@ -17,7 +16,7 @@ export class PostsComponent implements OnInit {
   post$: Observable<Post>
   @ViewChild('slideshow') slideshow: any
 
-  constructor(private requestService: RequestService, private route: ActivatedRoute, private sanitizer: DomSanitizer) {}
+  constructor(private requestService: RequestService, private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.post$ = combineLatest([this.route.params, this.route.queryParams]).pipe(
@@ -33,7 +32,6 @@ export class PostsComponent implements OnInit {
         for (const i of Object.keys(x.labels)) {
           x.labels[i].isDark = ContrastService.getConstrast(x.labels[i].color)
         }
-        x.content = this.sanitizer.bypassSecurityTrustHtml(this.processCustomTags(<string>x.content))
         return x
       })
     )
@@ -50,44 +48,5 @@ export class PostsComponent implements OnInit {
 
   formatDate(date: string): string {
     return format(new Date(date), 'YYYY-MM-DD')
-  }
-
-  processCustomTags(html: string): string {
-    const parser = new DOMParser()
-    const dom = parser.parseFromString(html, 'text/html')
-    const tables = Array.from(dom.getElementsByTagName('table'))
-    const links = Array.from(dom.getElementsByTagName('a'))
-
-    for (const table of tables) {
-      const parentNode = table.parentNode
-      const index = Array.from(parentNode.children).indexOf(table)
-
-      const element = dom.createElement('div')
-      element.classList.add('table-container')
-      element.append(table)
-      element.style.maxWidth = table.style.width
-
-      table.style.width = '100%'
-
-      parentNode.insertBefore(element, parentNode.children[index])
-    }
-
-    links.forEach((link) => {
-      link.setAttribute('target', '_blank')
-    })
-
-    const images = Array.from(dom.getElementsByTagName('img'))
-    for (const image of images) {
-      const parent = image.parentElement
-      const parent2 = parent.parentElement
-
-      const index = Array.from(parent2.children).indexOf(parent)
-      parent2.insertBefore(image, parent2.children[index])
-
-      image.style.maxWidth = image.style.width
-      image.style.width = '100%'
-    }
-
-    return dom.documentElement.innerHTML
   }
 }

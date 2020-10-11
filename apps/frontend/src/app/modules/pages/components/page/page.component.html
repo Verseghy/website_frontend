@@ -1,2 +1,4 @@
 <h1 *ngIf="error$ | async">Hibás lekérdezés</h1>
-<div class="content" [innerHTML]="content$ | async"></div>
+<ng-container *ngIf="data$ | async as data">
+  <verseghy-page-renderer [title]="data.title" [data]="data.content"></verseghy-page-renderer>
+</ng-container>

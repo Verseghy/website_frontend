@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common'
 
 import { PagesRoutingModule } from './pages-routing.module'
 import { PageComponent } from './components/page/page.component'
+import { SharedModule } from '../shared/shared.module'
 
 @NgModule({
   declarations: [PageComponent],
-  imports: [CommonModule, PagesRoutingModule],
+  imports: [CommonModule, PagesRoutingModule, SharedModule],
 })
 export class PagesModule {}
