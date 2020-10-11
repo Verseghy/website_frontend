@@ -1,0 +1,28 @@
+:host {
+  max-width: 1200px;
+  padding: 0 20px;
+  margin: {
+    top: 30px;
+    right: auto;
+    left: auto;
+  }
+  display: flex;
+  gap: 20px;
+}
+
+.sidebar {
+  width: 250px;
+}
+
+.content {
+  flex: 1;
+}
+
+h1 {
+  margin-bottom: 30px;
+}
+
+p {
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
