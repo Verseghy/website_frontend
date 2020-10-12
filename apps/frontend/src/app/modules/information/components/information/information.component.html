@@ -1,3 +1,2 @@
 <verseghy-sidebar class="sidebar" [data]="menu$ | async"></verseghy-sidebar>
-<div>{{ slug$ | async }}</div>
-<verseghy-page-renderer class="content" [title]="title" [data]="content"></verseghy-page-renderer>
+<verseghy-page-renderer class="content" [title]="(page$ | async)?.title" [data]="(page$ | async)?.content"></verseghy-page-renderer>

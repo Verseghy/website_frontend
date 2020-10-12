@@ -5,7 +5,13 @@
       <span class="menu-item">{{ item.name }}</span>
     </ng-container>
     <ng-container *ngFor="let children of item.children">
-      <span class="menu-item section-item">{{ children.name }}</span>
+      <span *ngIf="children.type === 'page_link'" class="menu-item section-item" (click)="loadPage(children.slug)">{{
+        children.name
+      }}</span>
+      <span *ngIf="children.type === 'internal_link'" class="menu-item section-item" [routerLink]="children.link"
+        >{{ children.name }} -></span
+      >
+      <a *ngIf="children.type === 'external_link'" class="menu-item section-item" [href]="children.link">{{ children.name }} -></a>
     </ng-container>
   </ng-container>
 </div>
