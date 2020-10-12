@@ -4,7 +4,9 @@ import { InformationPartialState } from './information.reducer'
 import { selectError, selectLoadedMenu, selectLoadedPage, selectMenuItems, selectPage } from './information.selectors'
 import { queryMenuItems, queryPage } from './information.actions'
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class InformationFacade {
   loadedMenu$ = this.store$.pipe(select(selectLoadedMenu))
   loadedPage$ = this.store$.pipe(select(selectLoadedPage))
