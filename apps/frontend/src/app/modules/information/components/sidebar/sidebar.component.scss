@@ -14,4 +14,23 @@
       background: #ececec;
     }
   }
+
+  .section-title {
+    display: block;
+    color: #6f6f6f;
+    padding: {
+      left: 15px;
+      bottom: 5px;
+    }
+    margin-bottom: 5px;
+    border-bottom: 1px solid #ececec;
+  }
+
+  * ~ .section-title {
+    margin-top: 20px;
+  }
+
+  .section-item {
+    margin-left: 10px;
+  }
 }
