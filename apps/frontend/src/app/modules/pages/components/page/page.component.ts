@@ -12,11 +12,7 @@ import { Subject, throwError } from 'rxjs'
   styleUrls: ['./page.component.scss'],
 })
 export class PageComponent implements OnInit, OnDestroy {
-  constructor(
-    private route: ActivatedRoute,
-    private requestService: RequestService,
-    private titleService: Title
-  ) {}
+  constructor(private route: ActivatedRoute, private requestService: RequestService, private titleService: Title) {}
 
   private subsink = new SubSink()
 
