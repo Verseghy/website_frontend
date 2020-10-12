@@ -4,10 +4,9 @@ import { DomSanitizer } from '@angular/platform-browser'
 @Component({
   selector: 'verseghy-page-renderer',
   templateUrl: './page-renderer.component.html',
-  styleUrls: ['./page-renderer.component.scss']
+  styleUrls: ['./page-renderer.component.scss'],
 })
 export class PageRendererComponent {
-
   @Input() title: string
   @Input() data: string
 
