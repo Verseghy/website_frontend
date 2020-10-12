@@ -4,8 +4,14 @@ import { InformationComponent } from './components/information/information.compo
 
 const routes: Routes = [
   {
+    path: ':slug',
+    component: InformationComponent,
+    data: { type: 'slug' }
+  },
+  {
     path: '',
-    component: InformationComponent
+    component: InformationComponent,
+    data: { type: 'default' }
   }
 ];
 
