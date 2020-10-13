@@ -9,12 +9,14 @@ import { StoreModule } from '@ngrx/store'
 import * as fromInformation from './state/information/information.reducer'
 import { EffectsModule } from '@ngrx/effects'
 import { InformationEffects } from './state/information/information.effects'
+import { LoadersModule } from '@verseghy/ui'
 
 @NgModule({
   declarations: [InformationComponent, SidebarComponent],
   imports: [
     CommonModule,
     InformationRoutingModule,
+    LoadersModule,
     SharedModule,
     StoreModule.forFeature(fromInformation.informationFeatureKey, fromInformation.reducer),
     EffectsModule.forFeature([InformationEffects]),
