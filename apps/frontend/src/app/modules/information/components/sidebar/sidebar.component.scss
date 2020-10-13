@@ -1,7 +1,26 @@
 .container {
   border-radius: 8px;
   background: #f8f8f8;
-  padding: 10px 0;
+
+  .dropdown-content {
+    overflow: hidden;
+
+    @media screen and (min-width: 993px) {
+      height: 100% !important;
+    }
+
+    @media screen and (max-width: 992px) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    > *:first-child {
+      margin-top: 10px;
+    }
+
+    > *:last-child {
+      margin-bottom: 10px;
+    }
+  }
 
   .menu-item {
     display: block;
@@ -15,22 +34,63 @@
     }
   }
 
-  .section-title {
-    display: block;
-    color: #6f6f6f;
-    padding: {
-      left: 15px;
-      bottom: 5px;
+  .section {
+    @media screen and (max-width: 992px) {
+      grid-column: span 2;
+      display: flex;
+      flex-wrap: wrap;
     }
-    margin-bottom: 5px;
-    border-bottom: 1px solid #ececec;
+
+    .section-title {
+      display: block;
+      color: #6f6f6f;
+      padding: {
+        left: 15px;
+        bottom: 5px;
+      }
+      margin-bottom: 5px;
+      border-bottom: 1px solid #ececec;
+
+      @media screen and (max-width: 992px) {
+        width: 100%;
+      }
+    }
+
+    .section-item {
+      margin-left: 10px;
+
+      @media screen and (max-width: 992px) {
+        width: 50%;
+        margin-left: 0;
+        box-sizing: border-box;
+      }
+
+      @media screen and (max-width: 600px) {
+        width: 100%;
+      }
+    }
   }
 
-  * ~ .section-title {
+  * ~ .section {
     margin-top: 20px;
   }
 
-  .section-item {
-    margin-left: 10px;
+  .dropdown-header {
+    display: none;
+    background: #eaeaea;
+    border-radius: 8px;
+
+    @media screen and (max-width: 992px) {
+      display: block;
+    }
+
+    .dropdown-icon {
+      display: block;
+      width: 48px;
+      height: 48px;
+      text-align: center;
+      line-height: 48px;
+      border-radius: 8px;
+    }
   }
 }

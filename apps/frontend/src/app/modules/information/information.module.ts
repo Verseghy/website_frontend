@@ -10,6 +10,8 @@ import * as fromInformation from './state/information/information.reducer'
 import { EffectsModule } from '@ngrx/effects'
 import { InformationEffects } from './state/information/information.effects'
 import { LoadersModule } from '@verseghy/ui'
+import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome'
+import { faBars } from '@fortawesome/free-solid-svg-icons'
 
 @NgModule({
   declarations: [InformationComponent, SidebarComponent],
@@ -20,6 +22,11 @@ import { LoadersModule } from '@verseghy/ui'
     SharedModule,
     StoreModule.forFeature(fromInformation.informationFeatureKey, fromInformation.reducer),
     EffectsModule.forFeature([InformationEffects]),
+    FontAwesomeModule,
   ],
 })
-export class InformationModule {}
+export class InformationModule {
+  constructor(library: FaIconLibrary) {
+    library.addIcons(faBars)
+  }
+}

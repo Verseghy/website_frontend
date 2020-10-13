@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core'
 import { InformationFacade } from '../../state/information/information.facade'
 import { ActivatedRoute } from '@angular/router'
 import { map, switchMap } from 'rxjs/operators'
@@ -10,10 +10,12 @@ import { combineLatest, of } from 'rxjs'
   styleUrls: ['./information.component.scss'],
 })
 export class InformationComponent implements OnInit {
-  error$ = this.informationFacade.error$ // TODO(tiborszepesi): implement errorhandling
+  @ViewChild('scroll') renderer: ElementRef
+
+  error$ = this.informationFacade.error$
   menu$ = this.informationFacade.menu$
-  loadedPage$ = this.informationFacade.loadedPage$ // TODO(tiborszepesi): implement loading
-  loadedMenu$ = this.informationFacade.loadedMenu$ // TODO(tiborszepesi): implement loading
+  loadedPage$ = this.informationFacade.loadedPage$
+  loadedMenu$ = this.informationFacade.loadedMenu$
 
   slug$ = this.route.params.pipe(map(({ slug }) => slug))
   page$ = combineLatest([this.informationFacade.page$, this.slug$]).pipe(
