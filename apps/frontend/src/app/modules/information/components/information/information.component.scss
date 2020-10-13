@@ -19,10 +19,21 @@
 }
 
 h1 {
-  margin-bottom: 30px;
+  font-size: 3.6rem;
+  font-weight: 400;
+  max-width: 650px;
+  margin: 20px auto 30px;
+  text-align: center;
 }
 
-p {
-  line-height: 1.6;
-  margin-bottom: 20px;
+.loader::ng-deep {
+  .loader {
+    width: 60px;
+    height: auto;
+    margin: 0 auto;
+
+    .loader-inner div {
+      background-color: #dedede;
+    }
+  }
 }

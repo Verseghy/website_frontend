@@ -1,2 +1,10 @@
-<verseghy-sidebar class="sidebar" [data]="menu$ | async"></verseghy-sidebar>
-<verseghy-page-renderer class="content" [title]="(page$ | async)?.title" [data]="(page$ | async)?.content"></verseghy-page-renderer>
+<verseghy-sidebar *ngIf="loadedMenu$ | async" class="sidebar" [data]="menu$ | async"></verseghy-sidebar>
+<div class="content">
+  <h1 *ngIf="error$ | async" class="content">Ismeretlen hiba történt!</h1>
+  <verseghy-loaders [hidden]="(loadedPage$ | async) || (error$ | async)" [loader]="'ball-pulse'" class="loader"></verseghy-loaders>
+  <verseghy-page-renderer
+    *ngIf="!(error$ | async)"
+    [title]="(page$ | async)?.title"
+    [data]="(page$ | async)?.content"
+  ></verseghy-page-renderer>
+</div>

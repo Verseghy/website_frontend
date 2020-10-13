@@ -17,6 +17,9 @@ export class PageRendererComponent {
   }
 
   private static _processCustomTags(html: string): string {
+    if (!html)
+      return ''
+
     const parser = new DOMParser()
     const dom = parser.parseFromString(html, 'text/html')
     const tables = Array.from(dom.getElementsByTagName('table'))
