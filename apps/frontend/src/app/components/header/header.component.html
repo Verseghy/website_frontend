@@ -1,13 +1,15 @@
 <ng-container *ngIf="openHeader$ | async as openHeader">
   <div class="container" [@headerAnimation]="openHeader">
     <div class="right" [@headerAnimationRight]="openHeader">
-      <img alt="" class="logo-image" routerLink="/" src="assets/logo.svg" [@headerAnimationImage]="openHeader"/>
+      <img alt="" class="logo-image" routerLink="/" src="assets/logo.svg" [@headerAnimationImage]="openHeader" />
       <div class="logo">
         <div class="logo-top">
           <h1 class="title" routerLink="/" [@headerAnimationTitle]="openHeader">Verseghy</h1>
           <div class="title-suffix">
             <span class="beta" [@headerAnimationWeb]="openHeader">BETA</span>
-            <h1 class="title title-end" [@headerAnimationTitleEnd]="openHeader" [@headerAnimationTitle]="openHeader">&nbsp;Ferenc Gimnázium</h1>
+            <h1 class="title title-end" [@headerAnimationTitleEnd]="openHeader" [@headerAnimationTitle]="openHeader">
+              &nbsp;Ferenc Gimnázium
+            </h1>
           </div>
         </div>
         <div class="logo-bottom" [@headerAnimationLogoBottom]="openHeader">
@@ -22,7 +24,9 @@
         <input type="text" placeholder="Keresés" (keyup)="search($event)" [(ngModel)]="searchTerm" />
       </div>
       <div class="menu">
-        <a (click)="drawer = !drawer" href="" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Főoldal</a>
+        <a (click)="drawer = !drawer" href="" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+          >Főoldal</a
+        >
       </div>
       <div (click)="submenu1 = !submenu1" [ngClass]="{ open: submenu1 }" class="menu" routerLinkActive="active">
         <span>Menza</span> <i class="material-icons arrow">expand_more</i>

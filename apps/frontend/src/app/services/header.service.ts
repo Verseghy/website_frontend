@@ -4,16 +4,17 @@ import { BehaviorSubject } from 'rxjs'
 import { filter, map } from 'rxjs/operators'
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class HeaderService {
-
   useBigHeader$ = new BehaviorSubject('undefined')
 
   constructor(private router: Router) {
-    this.router.events.pipe(
-      filter((event) => event instanceof NavigationEnd),
-      map(({ url }: NavigationEnd) => url === '/' ? 'true' : 'false')
-    ).subscribe(this.useBigHeader$)
+    this.router.events
+      .pipe(
+        filter((event) => event instanceof NavigationEnd),
+        map(({ url }: NavigationEnd) => (url === '/' ? 'true' : 'false'))
+      )
+      .subscribe(this.useBigHeader$)
   }
 }
