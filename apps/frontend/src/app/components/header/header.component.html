@@ -1,4 +1,4 @@
-<ng-container *ngIf="openHeader$ | async as openHeader" [@.disabled]="true">
+<ng-container *ngIf="openHeader$ | async as openHeader">
   <div class="container" [@headerAnimation]="openHeader">
     <div class="right" [@headerAnimationRight]="openHeader">
       <img alt="" class="logo-image" routerLink="/" src="assets/logo.svg" [@headerAnimationImage]="openHeader"/>
