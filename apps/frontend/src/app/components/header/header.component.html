@@ -2,10 +2,17 @@
   <div class="container" [@headerAnimation]="openHeader">
     <div class="right" [@headerAnimationRight]="openHeader">
       <img alt="" class="logo-image" routerLink="/" src="assets/logo.svg" [@headerAnimationImage]="openHeader"/>
-      <h1 class="title" routerLink="/" [@headerAnimationTitle]="openHeader">Verseghy</h1>
-      <div class="title-suffix">
-        <span class="beta" [@headerAnimationWeb]="openHeader">BETA</span>
-        <h1 class="title title-end" [@headerAnimationTitleEnd]="openHeader" [@headerAnimationTitle]="openHeader">&nbsp;Ferenc Gimnázium</h1>
+      <div class="logo">
+        <div class="logo-top">
+          <h1 class="title" routerLink="/" [@headerAnimationTitle]="openHeader">Verseghy</h1>
+          <div class="title-suffix">
+            <span class="beta" [@headerAnimationWeb]="openHeader">BETA</span>
+            <h1 class="title title-end" [@headerAnimationTitleEnd]="openHeader" [@headerAnimationTitle]="openHeader">&nbsp;Ferenc Gimnázium</h1>
+          </div>
+        </div>
+        <div class="logo-bottom" [@headerAnimationLogoBottom]="openHeader">
+          <span>Alapítva: 1831</span>
+        </div>
       </div>
     </div>
     <div [ngClass]="{ open: drawer }" class="middle">
