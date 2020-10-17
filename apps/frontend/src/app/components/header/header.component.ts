@@ -97,7 +97,8 @@ export class HeaderComponent {
   openHeader$ = combineLatest([this.headerService.useBigHeader$, this.scrollEvent$, this.resizeEvent$]).pipe(
     tap(console.log),
     map(([bigHeader]) => {
-      if (window.innerWidth <= 992 || !bigHeader) return 'close'
+      if (bigHeader === 'undefined') return 'undefined'
+      if (window.innerWidth <= 992 || bigHeader === 'false') return 'close'
       return document.documentElement.scrollTop < 64 ? 'open' : 'close'
     })
   )

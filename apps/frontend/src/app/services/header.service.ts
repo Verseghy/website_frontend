@@ -8,12 +8,12 @@ import { filter, map, tap } from 'rxjs/operators'
 })
 export class HeaderService {
 
-  useBigHeader$ = new BehaviorSubject(false)
+  useBigHeader$ = new BehaviorSubject('undefined')
 
   constructor(private router: Router) {
     this.router.events.pipe(
       filter((event) => event instanceof NavigationEnd),
-      map(({ url }: NavigationEnd) => url === '/')
+      map(({ url }: NavigationEnd) => url === '/' ? 'true' : 'false')
     ).subscribe(this.useBigHeader$)
   }
 }
