@@ -2,7 +2,7 @@ import { Component } from '@angular/core'
 import { Router } from '@angular/router'
 import { animate, animateChild, group, query, state, style, transition, trigger } from '@angular/animations'
 import { combineLatest, fromEvent } from 'rxjs'
-import { map, startWith, tap } from 'rxjs/operators'
+import { map, startWith } from 'rxjs/operators'
 import { HeaderService } from '../../services/header.service'
 
 const openCloseAnimation = (open: boolean) => {
@@ -139,7 +139,6 @@ export class HeaderComponent {
   scrollEvent$ = fromEvent(document, 'scroll', { passive: true }).pipe(startWith(0))
   resizeEvent$ = fromEvent(window, 'resize', { passive: true }).pipe(startWith(0))
   openHeader$ = combineLatest([this.headerService.useBigHeader$, this.scrollEvent$, this.resizeEvent$]).pipe(
-    tap(console.log),
     map(([bigHeader]) => {
       if (bigHeader === 'undefined') return 'undefined'
       if (window.innerWidth <= 992 || bigHeader === 'false') return 'close'
