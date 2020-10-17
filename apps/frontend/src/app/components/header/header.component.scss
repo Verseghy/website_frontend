@@ -17,6 +17,7 @@
   max-width: 1200px;
   margin: 0 auto;
   position: relative;
+  will-change: height;
 
   @media screen and (max-width: 992px) {
     padding-right: 8px;
@@ -27,6 +28,29 @@
   flex: 1;
   display: flex;
   transform-origin: 0 0;
+
+  .logo {
+    margin-left: 16px;
+
+    @media screen and (max-width: 992px) {
+      margin-left: 8px;
+    }
+
+    .logo-top {
+      display: flex;
+    }
+
+    .logo-bottom {
+      opacity: 0;
+      margin-top: -3px;
+      will-change: letter-spacing;
+
+      span {
+        display: block;
+        font-size: 1.2rem;
+      }
+    }
+  }
 }
 
 .logo-image {
@@ -36,6 +60,7 @@
   outline: 0;
   -webkit-tap-highlight-color: transparent;
   user-select: none;
+  will-change: height;
 
   @media screen and (max-width: 992px) {
     padding: 4px 0;
@@ -47,15 +72,14 @@
   text-transform: uppercase;
   font-size: 2.4rem;
   line-height: 64px;
-  margin-left: 16px;
   cursor: pointer;
   outline: 0;
   -webkit-tap-highlight-color: transparent;
   user-select: none;
+  will-change: letter-spacing;
 
   @media screen and (max-width: 992px) {
     line-height: 56px;
-    margin-left: 8px;
     font-size: 1.8rem;
   }
 }
@@ -75,6 +99,7 @@
     line-height: 64px;
     font-weight: 700;
     opacity: 1;
+    will-change: opacity;
 
     @media screen and (max-width: 992px) {
       line-height: 56px;
@@ -86,8 +111,8 @@
     position: absolute;
     top: 0;
     white-space: nowrap;
-    margin-left: 0;
     opacity: 0;
+    will-change: opacity;
   }
 }
 

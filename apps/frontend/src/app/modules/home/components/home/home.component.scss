@@ -1,7 +1,11 @@
 :host {
   flex: 1;
-  margin-top: 85px;
+  margin-top: 94px;
   display: block;
+
+  @media screen and (max-width: 992px) {
+    margin-top: 0;
+  }
 }
 
 .container {

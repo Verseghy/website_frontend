@@ -13,7 +13,8 @@ const openCloseAnimation = (open: boolean) => {
       query('@headerAnimationTitle', animateChild()),
       query('@headerAnimationWeb', animateChild({ delay: open ? 0 : 170 })),
       query('@headerAnimationTitleEnd', animateChild({ delay: open ? 170 : 0 })),
-      animate('300ms'),
+      query('@headerAnimationLogoBottom', animateChild({ delay: open ? 100 : 0 })),
+      animate('300ms ease-in-out'),
     ]),
   ]
 }
@@ -57,10 +58,10 @@ const openCloseAnimation = (open: boolean) => {
     ]),
     trigger('headerAnimationRight', [
       state('open', style({
-        transform: 'scale(1.3)',
+        transform: 'scale3d(1.4, 1.4, 1.4)',
       })),
       state('close', style({
-        transform: 'scale(1)',
+        transform: 'scale3d(1, 1, 1)',
       })),
       transition('open <=> close', [
         animate('300ms')
@@ -79,13 +80,29 @@ const openCloseAnimation = (open: boolean) => {
     ]),
     trigger('headerAnimationImage', [
       state('open', style({
-        height: '84px',
+        height: '75px',
       })),
       state('close', style({
         height: '48px',
       })),
       transition('open <=> close', [
         animate('300ms ease-in-out')
+      ])
+    ]),
+    trigger('headerAnimationLogoBottom', [
+      state('open', style({
+        opacity: '1',
+        letterSpacing: '0',
+      })),
+      state('close', style({
+        opacity: '0',
+        letterSpacing: '-5px',
+      })),
+      transition('open => close', [
+        animate('150ms ease-in-out')
+      ]),
+      transition('close => open', [
+        animate('150ms ease-in-out')
       ])
     ])
   ]
