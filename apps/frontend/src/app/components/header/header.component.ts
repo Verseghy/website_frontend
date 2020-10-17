@@ -1,8 +1,8 @@
 import { Component } from '@angular/core'
-import { NavigationEnd, Router } from '@angular/router'
-import { animate, animateChild, group, query, stagger, state, style, transition, trigger } from '@angular/animations'
-import { combineLatest, fromEvent, of } from 'rxjs'
-import { filter, map, startWith, tap } from 'rxjs/operators'
+import { Router } from '@angular/router'
+import { animate, animateChild, group, query, state, style, transition, trigger } from '@angular/animations'
+import { combineLatest, fromEvent } from 'rxjs'
+import { map, startWith, tap } from 'rxjs/operators'
 import { HeaderService } from '../../services/header.service'
 
 const openCloseAnimation = (open: boolean) => {

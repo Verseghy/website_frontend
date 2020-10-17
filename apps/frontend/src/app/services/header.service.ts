@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core'
 import { NavigationEnd, Router } from '@angular/router'
 import { BehaviorSubject } from 'rxjs'
-import { filter, map, tap } from 'rxjs/operators'
+import { filter, map } from 'rxjs/operators'
 
 @Injectable({
   providedIn: 'root'
