@@ -17,6 +17,7 @@
   padding: 0 20px;
   max-width: 1200px;
   margin: 0 auto;
+  position: relative;
 
   @media screen and (max-width: 992px) {
     padding-right: 8px;
@@ -26,6 +27,7 @@
 .right {
   flex: 1;
   display: flex;
+  transform-origin: 0 0;
 }
 
 .logo-image {
@@ -46,7 +48,7 @@
   text-transform: uppercase;
   font-size: 2.4rem;
   line-height: 64px;
-  padding: 0 16px;
+  margin-left: 16px;
   cursor: pointer;
   outline: 0;
   -webkit-tap-highlight-color: transparent;
@@ -54,9 +56,13 @@
 
   @media screen and (max-width: 992px) {
     line-height: 56px;
-    padding: 0 8px;
+    margin-left: 8px;
     font-size: 1.8rem;
   }
+}
+
+.title-suffix {
+  position: relative;
 
   .beta {
     background-color: #000;
@@ -64,6 +70,25 @@
     padding: 0 7px;
     margin-left: 5px;
     border-radius: 3px;
+    font-family: "Cabin", sans-serif;
+    text-transform: uppercase;
+    font-size: 2.4rem;
+    line-height: 64px;
+    font-weight: 700;
+    opacity: 1;
+
+    @media screen and (max-width: 992px) {
+      line-height: 56px;
+      font-size: 1.8rem;
+    }
+  }
+
+  .title-end {
+    position: absolute;
+    top: 0;
+    white-space: nowrap;
+    margin-left: 0;
+    opacity: 0;
   }
 }
 
@@ -72,7 +97,9 @@
   display: flex;
   justify-content: flex-end;
   height: 40px;
-  margin: auto 0;
+  position: absolute;
+  bottom: 12px;
+  right: 20px;
 
   @media screen and (max-width: 992px) {
     position: fixed;
