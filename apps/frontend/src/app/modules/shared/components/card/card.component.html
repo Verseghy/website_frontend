@@ -14,7 +14,7 @@
     >
   </div>
   <p class="title">{{ contrastedPost.title }}</p>
-  <p class="description">{{ contrastedPost.description }}</p>
+  <p class="description" *ngIf="contrastedPost.description">{{ contrastedPost.description }}</p>
   <div class="bottom">
     <img *ngIf="contrastedPost.author.image" class="authorimg" [src]="contrastedPost.author.image" alt="" />
     <p>{{ contrastedPost.author.name }}</p>
