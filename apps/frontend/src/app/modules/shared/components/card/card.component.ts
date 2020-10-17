@@ -7,7 +7,7 @@ import cloneDeep from 'lodash-es/cloneDeep'
 @Component({
   selector: 'verseghy-card',
   templateUrl: './card.component.html',
-  styleUrls: ['./card.component.css'],
+  styleUrls: ['./card.component.scss'],
 })
 export class CardComponent {
   @Input() type = 0
