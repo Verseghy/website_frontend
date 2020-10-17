@@ -1,8 +1,22 @@
 import { Component } from '@angular/core'
 import { NavigationEnd, Router } from '@angular/router'
-import { animate, state, style, transition, trigger } from '@angular/animations'
-import { combineLatest, fromEvent } from 'rxjs'
-import { filter, map } from 'rxjs/operators'
+import { animate, animateChild, group, query, stagger, state, style, transition, trigger } from '@angular/animations'
+import { combineLatest, fromEvent, of } from 'rxjs'
+import { filter, map, startWith, tap } from 'rxjs/operators'
+import { HeaderService } from '../../services/header.service'
+
+const openCloseAnimation = (open: boolean) => {
+  return [
+    group([
+      query('@headerAnimationImage', animateChild()),
+      query('@headerAnimationRight', animateChild()),
+      query('@headerAnimationTitle', animateChild()),
+      query('@headerAnimationWeb', animateChild({ delay: open ? 0 : 170 })),
+      query('@headerAnimationTitleEnd', animateChild({ delay: open ? 170 : 0 })),
+      animate('300ms'),
+    ]),
+  ]
+}
 
 @Component({
   selector: 'verseghy-header',
@@ -10,29 +24,84 @@ import { filter, map } from 'rxjs/operators'
   styleUrls: ['./header.component.scss'],
   animations: [
     trigger('headerAnimation', [
-      state('true', style({
+      state('open', style({
         height: '128px',
       })),
-      state('false', style({
+      state('close', style({
         height: '64px',
       })),
-      transition('true <=> false', [
-        animate('300ms'),
+      transition('close => open', openCloseAnimation(true)),
+      transition('open => close', openCloseAnimation(false)),
+    ]),
+    trigger('headerAnimationWeb', [
+      state('open', style({
+        opacity: 0,
+      })),
+      state('close', style({
+        opacity: 1,
+      })),
+      transition('open <=> close', [
+        animate('300ms')
+      ])
+    ]),
+    trigger('headerAnimationTitleEnd', [
+      state('open', style({
+        opacity: 1,
+      })),
+      state('close', style({
+        opacity: 0,
+      })),
+      transition('open <=> close', [
+        animate('300ms')
+      ])
+    ]),
+    trigger('headerAnimationRight', [
+      state('open', style({
+        transform: 'scale(1.3)',
+      })),
+      state('close', style({
+        transform: 'scale(1)',
+      })),
+      transition('open <=> close', [
+        animate('300ms')
+      ])
+    ]),
+    trigger('headerAnimationTitle', [
+      state('open', style({
+        letterSpacing: '1px',
+      })),
+      state('close', style({
+        letterSpacing: '0px',
+      })),
+      transition('open <=> close', [
+        animate('300ms')
+      ])
+    ]),
+    trigger('headerAnimationImage', [
+      state('open', style({
+        height: '84px',
+      })),
+      state('close', style({
+        height: '48px',
+      })),
+      transition('open <=> close', [
+        animate('300ms ease-in-out')
       ])
     ])
   ]
 })
 export class HeaderComponent {
 
-  scrollEvent$ = fromEvent(document, 'scroll', { passive: true })
-  useBigHeader$ = this.router.events.pipe(
-    filter((event) => event instanceof NavigationEnd),
-    map(({ url }: NavigationEnd) => url === '/')
+  scrollEvent$ = fromEvent(document, 'scroll', { passive: true }).pipe(startWith(0))
+  resizeEvent$ = fromEvent(window, 'resize', { passive: true }).pipe(startWith(0))
+  openHeader$ = combineLatest([this.headerService.useBigHeader$, this.scrollEvent$, this.resizeEvent$]).pipe(
+    tap(console.log),
+    map(([bigHeader]) => {
+      if (window.innerWidth <= 992 || !bigHeader) return 'close'
+      return document.documentElement.scrollTop < 64 ? 'open' : 'close'
+    })
   )
-  openHeader$ = combineLatest([this.scrollEvent$, this.useBigHeader$]).pipe(
-    filter(([scroll, bigHeader]) => bigHeader),
-    map(() => document.documentElement.scrollTop < 64)
-  )
+
 
   drawer: boolean
   submenu1: boolean
@@ -40,7 +109,7 @@ export class HeaderComponent {
 
   searchTerm: string
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private headerService: HeaderService) {}
 
   search(event) {
     if (event.key === 'Enter') {
