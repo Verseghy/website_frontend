@@ -3,7 +3,7 @@
   [ngStyle]="{ 'background-color': 'hsl(' + getHueFromHEXColor(contrastedPost.color) + ' 79% 91%)' }"
   [routerLink]="['/posts/' + contrastedPost.id]"
 >
-  <img class="postimg" [src]="contrastedPost.index_image" alt="" />
+  <img class="index-img" [src]="contrastedPost.index_image" alt="" />
   <div class="label-container">
     <span
       *ngFor="let label of contrastedPost.labels"
@@ -16,7 +16,7 @@
   <p class="title">{{ contrastedPost.title }}</p>
   <p class="description" *ngIf="contrastedPost.description">{{ contrastedPost.description }}</p>
   <div class="bottom">
-    <img *ngIf="contrastedPost.author.image" class="authorimg" [src]="contrastedPost.author.image" alt="" />
+    <img *ngIf="contrastedPost.author.image" class="author-img" [src]="contrastedPost.author.image" alt="" />
     <p>{{ contrastedPost.author.name }}</p>
     <p>{{ formatDate(contrastedPost.date) }}</p>
   </div>
