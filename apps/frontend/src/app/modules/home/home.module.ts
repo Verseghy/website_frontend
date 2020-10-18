@@ -16,6 +16,8 @@ import * as fromAlertMessage from './state/alert-message/alert-message.reducer'
 import { AlertMessageEffects } from './state/alert-message/alert-message.effects'
 import { AlertMessageFacade } from './state/alert-message/alert-message.facade'
 import { BannersComponent } from './components/banners/banners.component'
+import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome'
+import { faExclamation, faExclamationCircle, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
 
 const routes: Routes = [
   {
@@ -30,6 +32,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     HttpClientModule,
     SharedModule,
+    FontAwesomeModule,
     StoreModule.forFeature(fromPosts.postsFeatureKey, fromPosts.reducer),
     EffectsModule.forFeature([PostsEffects]),
     MatButtonModule,
@@ -39,4 +42,8 @@ const routes: Routes = [
   declarations: [HomeComponent, FeaturedPostComponent, AlertComponent, BannersComponent],
   providers: [AlertMessageFacade],
 })
-export class HomeModule {}
+export class HomeModule {
+  constructor(library: FaIconLibrary) {
+    library.addIcons(faExclamation, faExclamationCircle, faExclamationTriangle)
+  }
+}

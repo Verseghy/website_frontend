@@ -1,10 +1,11 @@
 a {
-  display: block;
+  display: flex;
   border-radius: 8px;
   margin-top: 30px;
   padding: 30px;
   text-decoration: none;
   color: #000;
+  align-items: center;
 
   &.high {
     background-color: hsl(0deg 100% 90%);
@@ -15,10 +16,15 @@ a {
   }
 
   &.low {
-    background-color: hsl(0deg 0% 90%);
+    background-color: hsl(201deg 100% 90%);
   }
 
   &:last-child {
     margin-bottom: 30px;
+  }
+
+  fa-icon {
+    font-size: 32px;
+    margin-right: 20px;
   }
 }

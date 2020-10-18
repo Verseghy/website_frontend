@@ -1,3 +1,6 @@
 <a *ngFor="let message of alertMessages$ | async" [ngClass]="message.priority" [attr.href]="message.link ? message.link : null">
-  {{ message.message }}
+  <fa-icon [icon]="['fas', 'exclamation']" *ngIf="message.priority === 'low'" class="icon-low"></fa-icon>
+  <fa-icon [icon]="['fas', 'exclamation-circle']" *ngIf="message.priority === 'medium'" class="icon-medium"></fa-icon>
+  <fa-icon [icon]="['fas', 'exclamation-triangle']" *ngIf="message.priority === 'high'" class="icon-high"></fa-icon>
+  <p>{{ message.message }}</p>
 </a>
