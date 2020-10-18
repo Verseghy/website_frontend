@@ -30,7 +30,7 @@ export class PageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subsink.sink = this.data$.subscribe((data) => {
-      this.titleService.setTitle(data.title)
+      // this.titleService.setTitle(data.title)
     })
   }
 
