@@ -5,13 +5,12 @@
 >
   <img class="index-img" [src]="contrastedPost.index_image" alt="" />
   <div class="label-container">
-    <span
+    <verseghy-label
       *ngFor="let label of contrastedPost.labels"
-      class="label"
-      [ngStyle]="{ 'background-color': label.color }"
+      [label]="label"
       [ngClass]="{ dark: label.backgroundDark }"
-      >{{ label.name }}</span
-    >
+      [ngStyle]="{ 'background-color': label.color }"
+    ></verseghy-label>
   </div>
   <p class="title">{{ contrastedPost.title }}</p>
   <p class="description" *ngIf="contrastedPost.description">{{ contrastedPost.description }}</p>
