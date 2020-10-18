@@ -1,23 +1,18 @@
 <div
   class="content"
-  [ngStyle]="{ 'background-color': 'hsl(' + getHueFromHEXColor(contrastedPost.color) + ' 79% 91%)' }"
-  [routerLink]="['/posts/' + contrastedPost.id]"
+  [ngStyle]="{ 'background-color': 'hsl(' + getHueFromHEXColor(post.color) + ' 79% 91%)' }"
+  [routerLink]="['/posts/' + post.id]"
 >
-  <img class="index-img" [src]="contrastedPost.index_image" alt="" />
+  <img class="index-img" [src]="post.index_image" alt="" />
   <div class="label-container">
-    <verseghy-label
-      *ngFor="let label of contrastedPost.labels"
-      [label]="label"
-      [ngClass]="{ dark: label.backgroundDark }"
-      [ngStyle]="{ 'background-color': label.color }"
-    ></verseghy-label>
+    <verseghy-label *ngFor="let label of post.labels" [label]="label"></verseghy-label>
   </div>
-  <p class="title">{{ contrastedPost.title }}</p>
-  <p class="description" *ngIf="contrastedPost.description">{{ contrastedPost.description }}</p>
+  <p class="title">{{ post.title }}</p>
+  <p class="description" *ngIf="post.description">{{ post.description }}</p>
   <div class="bottom">
-    <img *ngIf="contrastedPost.author.image" class="author-img" [src]="contrastedPost.author.image" alt="" />
-    <p>{{ contrastedPost.author.name }}</p>
-    <p>{{ formatDate(contrastedPost.date) }}</p>
+    <img *ngIf="post.author.image" class="author-img" [src]="post.author.image" alt="" />
+    <p>{{ post.author.name }}</p>
+    <p>{{ formatDate(post.date) }}</p>
   </div>
   <div class="focus-border"></div>
 </div>

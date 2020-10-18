@@ -1,1 +1,6 @@
-<a [routerLink]="['/search', 'label', label.id]" (click)="$event.stopPropagation()">{{ label.name }}</a>
+<a
+  [routerLink]="['/search', 'label', label.id]"
+  (click)="$event.stopPropagation()"
+  [ngStyle]="{ 'background': label.color }"
+  [ngClass]="{ dark: isDark }"
+>{{ label.name }}</a>

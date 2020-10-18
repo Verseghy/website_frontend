@@ -31,6 +31,4 @@ export interface Label {
   id: number
   color: string
   name: string
-  backgroundDark?: boolean
-  isDark: boolean
 }

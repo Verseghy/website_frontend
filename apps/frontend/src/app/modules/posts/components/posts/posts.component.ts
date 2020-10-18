@@ -3,7 +3,6 @@ import { combineLatest, Observable } from 'rxjs'
 import { RequestService } from '../../services/request.service'
 import { Post } from '../../../../models/Post'
 import { ActivatedRoute } from '@angular/router'
-import { ContrastService } from '../../../../services/contrast.service'
 import { map, switchMap } from 'rxjs/operators'
 import { format } from 'date-fns'
 
@@ -27,12 +26,6 @@ export class PostsComponent implements OnInit {
         } else {
           return this.requestService.getPostById(x.params.id)
         }
-      }),
-      map((x) => {
-        for (const i of Object.keys(x.labels)) {
-          x.labels[i].isDark = ContrastService.getConstrast(x.labels[i].color)
-        }
-        return x
       })
     )
   }

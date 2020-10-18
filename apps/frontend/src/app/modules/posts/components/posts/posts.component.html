@@ -1,12 +1,7 @@
 <ng-container *ngIf="post$ | async as post">
   <div class="container">
     <div class="label-container">
-      <verseghy-label
-        *ngFor="let label of post?.labels"
-        [ngStyle]="{ 'background-color': label.color }"
-        [ngClass]="{ dark: label.isDark }"
-        [label]="label"
-      ></verseghy-label>
+      <verseghy-label *ngFor="let label of post?.labels" [label]="label"></verseghy-label>
     </div>
     <h1>{{ post?.title }}</h1>
     <img class="index-image" [src]="post?.index_image" alt="" />
