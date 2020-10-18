@@ -7,7 +7,6 @@
     left: auto;
   }
   display: flex;
-  gap: 20px;
 
   @media screen and (max-width: 992px) {
     flex-direction: column;
@@ -16,9 +15,14 @@
 
 .sidebar {
   width: 250px;
+  margin-right: 20px;
 
   @media screen and (max-width: 992px) {
     width: auto;
+    margin: {
+      right: 0;
+      bottom: 20px;
+    }
   }
 }
 
