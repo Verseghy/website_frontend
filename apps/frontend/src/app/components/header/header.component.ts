@@ -136,6 +136,7 @@ const openCloseAnimation = (open: boolean) => {
   ],
 })
 export class HeaderComponent {
+
   scrollEvent$ = fromEvent(document, 'scroll', { passive: true }).pipe(startWith(0))
   resizeEvent$ = fromEvent(window, 'resize', { passive: true }).pipe(startWith(0))
   openHeader$ = combineLatest([this.headerService.useBigHeader$, this.scrollEvent$, this.resizeEvent$]).pipe(
