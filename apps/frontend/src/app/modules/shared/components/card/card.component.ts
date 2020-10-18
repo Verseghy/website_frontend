@@ -1,12 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
 import { Post } from '../../../../models/Post'
 import { format } from 'date-fns'
-import cloneDeep from 'lodash-es/cloneDeep'
 
 @Component({
   selector: 'verseghy-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardComponent {
   @Input() type = 0

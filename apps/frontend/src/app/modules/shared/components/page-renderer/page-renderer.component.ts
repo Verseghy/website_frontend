@@ -1,10 +1,11 @@
-import { Component, Input } from '@angular/core'
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
 import { DomSanitizer } from '@angular/platform-browser'
 
 @Component({
   selector: 'verseghy-page-renderer',
   templateUrl: './page-renderer.component.html',
   styleUrls: ['./page-renderer.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PageRendererComponent {
   @Input() title: string

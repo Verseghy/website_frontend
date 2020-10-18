@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { ChangeDetectionStrategy, Component } from '@angular/core'
 import { Router } from '@angular/router'
 import { animate, animateChild, group, query, state, style, transition, trigger } from '@angular/animations'
 import { combineLatest, fromEvent } from 'rxjs'
@@ -134,6 +134,7 @@ const openCloseAnimation = (open: boolean) => {
       transition('close => open', [animate('150ms ease-in-out')]),
     ]),
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
   scrollEvent$ = fromEvent(document, 'scroll', { passive: true }).pipe(startWith(0))

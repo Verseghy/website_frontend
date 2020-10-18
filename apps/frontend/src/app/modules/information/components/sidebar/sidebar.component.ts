@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core'
 import { MenuItem } from '../../models/menu-item'
 import { Router } from '@angular/router'
 import { InformationFacade } from '../../state/information/information.facade'
@@ -32,6 +32,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
       ]),
     ]),
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SidebarComponent implements OnInit {
   @Input() data: MenuItem[]

@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core'
+import { ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild } from '@angular/core'
 import { InformationFacade } from '../../state/information/information.facade'
 import { ActivatedRoute } from '@angular/router'
 import { map, switchMap } from 'rxjs/operators'
@@ -8,6 +8,7 @@ import { combineLatest, of } from 'rxjs'
   selector: 'verseghy-information',
   templateUrl: './information.component.html',
   styleUrls: ['./information.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InformationComponent implements OnInit {
   @ViewChild('scroll') renderer: ElementRef

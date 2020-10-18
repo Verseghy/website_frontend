@@ -1,10 +1,11 @@
-import { Component } from '@angular/core'
+import { ChangeDetectionStrategy, Component } from '@angular/core'
 import { environment } from '../../../environments/environment'
 
 @Component({
   selector: 'verseghy-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooterComponent {
   constructor() {}

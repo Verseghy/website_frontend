@@ -2,7 +2,8 @@
   "extends": "../../tslint.json",
   "rules": {
     "directive-selector": [true, "attribute", "verseghy", "camelCase"],
-    "component-selector": [true, "element", "verseghy", "kebab-case"]
+    "component-selector": [true, "element", "verseghy", "kebab-case"],
+    "prefer-on-push-component-change-detection": "true"
   },
   "linterOptions": {
     "exclude": ["!**/*"]

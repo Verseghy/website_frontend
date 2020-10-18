@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
 import { CANTEEN_FEATURE_KEY, CanteenState, WeekCanteen } from '../../reducer/canteen/canteen.reducer'
 import { select, Store } from '@ngrx/store'
 import { LoadCanteen } from '../../reducer/canteen/canteen.actions'
@@ -9,6 +9,7 @@ import { Observable } from 'rxjs'
   selector: 'verseghy-canteen',
   templateUrl: './canteen.component.html',
   styleUrls: ['./canteen.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CanteenComponent implements OnInit {
   canteen: Observable<WeekCanteen[]>
@@ -21,7 +22,7 @@ export class CanteenComponent implements OnInit {
   ngOnInit() {
     this.store.dispatch(new LoadCanteen())
     this.canteen = this.store.pipe(
-      select(state => state[CANTEEN_FEATURE_KEY]),
+      select((state) => state[CANTEEN_FEATURE_KEY]),
       map((state: CanteenState) => {
         return [state.thisWeek, state.nextWeek]
       })

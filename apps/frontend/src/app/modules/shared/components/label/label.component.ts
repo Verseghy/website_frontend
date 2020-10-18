@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core'
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
 import { Label } from '../../../../models/Post'
 import * as colorParser from 'parse-color'
 
@@ -6,6 +6,7 @@ import * as colorParser from 'parse-color'
   selector: 'verseghy-label',
   templateUrl: './label.component.html',
   styleUrls: ['./label.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LabelComponent {
   @Input() label: Label
