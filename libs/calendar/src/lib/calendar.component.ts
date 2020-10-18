@@ -300,20 +300,18 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   }
 
   public setMoreEventsPopup(date: Date, events: number[]): void {
-    setTimeout(() => {
-      const height = (this._el.nativeElement.offsetHeight - 68) / this._getRowsInMonth()
-      const row = this._getWeekOfMonth(date)
-      let column = getDay(date)
-      if (column === 0) {
-        column = 7
-      }
-      this.moreEventsPopupVisible = true
-      this.moreEventsPopupTop = row * height - 50 + 69
-      this.moreEventsPopupLeft = (column - 1) * (this._el.nativeElement.offsetWidth / 7) - 24
-      this.moreEventsPopupDay = this.settings.shortDayNames[column - 1]
-      this.moreEventsPopupDate = getDate(date)
-      this.moreEventsPopupEvents = this._getDisplayedEvents(events)
-    })
+    const height = (this._el.nativeElement.offsetHeight - 68) / this._getRowsInMonth()
+    const row = this._getWeekOfMonth(date)
+    let column = getDay(date)
+    if (column === 0) {
+      column = 7
+    }
+    this.moreEventsPopupVisible = true
+    this.moreEventsPopupTop = row * height - 50 + 69
+    this.moreEventsPopupLeft = (column - 1) * (this._el.nativeElement.offsetWidth / 7) - 24
+    this.moreEventsPopupDay = this.settings.shortDayNames[column - 1]
+    this.moreEventsPopupDate = getDate(date)
+    this.moreEventsPopupEvents = this._getDisplayedEvents(events)
   }
 
   public closeMoreEventsPopup(): void {
@@ -339,31 +337,27 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   }
 
   public setEventDetailsPopup(id: number, click): void {
-    setTimeout(() => {
-      const popupWidth = 300
-      const padding = 20
+    const popupWidth = 300
+    const padding = 20
 
-      const event = this._getEvent(id)
-      const boundingRect = click.target.getBoundingClientRect()
-      const calendarBoundingRect = this._el.nativeElement.getBoundingClientRect()
-      this.eventDetailsPopupVisible = true
-      this.eventDetailsPopupTitle = event.title
-      this.eventDetailsPopupDate = this._formatTwoDays(event.startDate, event.endDate)
-      this.eventDetailsPopupDescription = event.description
-      this.eventDetailsPopupColor = `hsl(${this.getHueFromHEXColor(event.color)}, 82%, 70%)`
-      this.eventDetailsPopupTop = boundingRect.y - calendarBoundingRect.y
-      let left = click.pageX - calendarBoundingRect.x + padding
-      if (click.pageX + padding + popupWidth > document.body.clientWidth) {
-        left = click.pageX - calendarBoundingRect.x - padding - popupWidth
-      }
-      this.eventDetailsPopupLeft = left
-    })
+    const event = this._getEvent(id)
+    const boundingRect = click.target.getBoundingClientRect()
+    const calendarBoundingRect = this._el.nativeElement.getBoundingClientRect()
+    this.eventDetailsPopupVisible = true
+    this.eventDetailsPopupTitle = event.title
+    this.eventDetailsPopupDate = this._formatTwoDays(event.startDate, event.endDate)
+    this.eventDetailsPopupDescription = event.description
+    this.eventDetailsPopupColor = `hsl(${this.getHueFromHEXColor(event.color)}, 82%, 70%)`
+    this.eventDetailsPopupTop = boundingRect.y - calendarBoundingRect.y
+    let left = click.pageX - calendarBoundingRect.x + padding
+    if (click.pageX + padding + popupWidth > document.body.clientWidth) {
+      left = click.pageX - calendarBoundingRect.x - padding - popupWidth
+    }
+    this.eventDetailsPopupLeft = left
   }
 
   public closeEventDetailsPopup(): void {
-    setTimeout(() => {
-      this.eventDetailsPopupVisible = false
-    })
+    this.eventDetailsPopupVisible = false
   }
 
   @HostListener('document:click', ['$event'])
