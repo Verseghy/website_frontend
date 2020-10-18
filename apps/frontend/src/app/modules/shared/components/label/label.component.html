@@ -1,1 +1,1 @@
-<span [routerLink]="['/search', 'label', label.id]">{{ label.name }}</span>
+<a [routerLink]="['/search', 'label', label.id]" (click)="$event.stopPropagation()">{{ label.name }}</a>
