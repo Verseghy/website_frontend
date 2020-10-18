@@ -33,21 +33,6 @@
     margin-bottom: 8px;
     z-index: 1;
     position: relative;
-
-    .label {
-      font-size: 1rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      padding: 5px 11px 4px;
-      border-radius: 20px;
-      margin: 2px 5px 2px 0;
-      color: #000;
-      display: inline-block;
-
-      &.dark {
-        color: #fff;
-      }
-    }
   }
 
   .title {
