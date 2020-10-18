@@ -34,10 +34,23 @@ h2 {
 }
 
 .load-more {
-  display: inline-block;
+  display: block;
+  padding: 10px 20px;
   margin: 32px auto;
-  font-weight: bold;
+  border-radius: 3px;
+  font-size: 1.4rem;
   text-transform: uppercase;
+  cursor: pointer;
+  background: #ebebeb;
+
+  &:hover {
+    background: #d9d9d9;
+  }
+
+  &:focus {
+    outline: 0;
+    box-shadow: 0 0 0 2px #000;
+  }
 }
 
 .skeleton-card {
