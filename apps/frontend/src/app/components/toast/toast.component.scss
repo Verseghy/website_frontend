@@ -18,7 +18,6 @@
 
   .actions {
     display: flex;
-    gap: 10px;
     margin-top: 10px;
     justify-content: flex-end;
 
@@ -30,6 +29,11 @@
       color: #fff;
       cursor: pointer;
       transition: background 100ms;
+      margin-left: 10px;
+
+      &:first-child {
+        margin-left: 0;
+      }
 
       &:hover {
         background: rgba(255, 255, 255, 0.2);
