@@ -10,7 +10,6 @@ import { StoreModule } from '@ngrx/store'
 import * as fromPosts from './state/posts/posts.reducer'
 import { EffectsModule } from '@ngrx/effects'
 import { PostsEffects } from './state/posts/posts.effects'
-import { MatButtonModule } from '@angular/material/button'
 import { AlertComponent } from './components/alert/alert.component'
 import * as fromAlertMessage from './state/alert-message/alert-message.reducer'
 import { AlertMessageEffects } from './state/alert-message/alert-message.effects'
@@ -35,7 +34,6 @@ const routes: Routes = [
     FontAwesomeModule,
     StoreModule.forFeature(fromPosts.postsFeatureKey, fromPosts.reducer),
     EffectsModule.forFeature([PostsEffects]),
-    MatButtonModule,
     StoreModule.forFeature(fromAlertMessage.ALERTMESSAGE_FEATURE_KEY, fromAlertMessage.reducer),
     EffectsModule.forFeature([AlertMessageEffects]),
   ],
