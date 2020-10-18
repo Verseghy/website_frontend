@@ -1,4 +1,4 @@
-import { AfterViewInit, ApplicationRef, Component, OnInit } from '@angular/core'
+import { AfterViewInit, ApplicationRef, ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
 import { animate, group, query, style, transition, trigger } from '@angular/animations'
 import { NavigationCancel, NavigationEnd, NavigationStart, Router } from '@angular/router'
 import { SwUpdate } from '@angular/service-worker'
@@ -45,6 +45,7 @@ import { HeaderService } from './services/header.service'
       ]),
     ]),
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements AfterViewInit, OnInit {
   loaded = false

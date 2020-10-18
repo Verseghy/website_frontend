@@ -35,6 +35,7 @@ jobs:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_VFG_HONLAP }}'
           projectId: vfg-honlap
+          expires: 3d
           entryPoint: 'apps/frontend'
           channelId: '${{ github.ref }}'
         env:

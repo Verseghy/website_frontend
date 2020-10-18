@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, ViewChild } from '@angular/core'
+import { ChangeDetectionStrategy, Component, HostListener, OnInit, ViewChild } from '@angular/core'
 import { combineLatest, Observable } from 'rxjs'
 import { RequestService } from '../../services/request.service'
 import { Post } from '../../../../models/Post'
@@ -10,6 +10,7 @@ import { format } from 'date-fns'
   selector: 'verseghy-posts',
   templateUrl: './posts.component.html',
   styleUrls: ['./posts.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PostsComponent implements OnInit {
   post$: Observable<Post>

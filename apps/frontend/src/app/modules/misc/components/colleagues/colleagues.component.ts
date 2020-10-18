@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
 import { Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
 import { select, Store } from '@ngrx/store'
@@ -10,6 +10,7 @@ import { selectVisible } from '../../reducer/colleagues/colleagues.selectors'
   selector: 'verseghy-colleagues',
   templateUrl: './colleagues.component.html',
   styleUrls: ['./colleagues.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ColleaguesComponent implements OnInit {
   categories: string[] = [
@@ -28,7 +29,7 @@ export class ColleaguesComponent implements OnInit {
   ngOnInit() {
     this.store.dispatch(new LoadColleagues())
     this.colleagues = this.store.pipe(
-      select(state => state[COLLEAGUES_FEATURE_KEY]),
+      select((state) => state[COLLEAGUES_FEATURE_KEY]),
       map((state: ColleaguesState) => {
         return state.categories
       })

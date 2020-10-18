@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 import { catchError, map, switchMap, tap } from 'rxjs/operators'
 import { Title } from '@angular/platform-browser'
@@ -10,6 +10,7 @@ import { Subject, throwError } from 'rxjs'
   selector: 'verseghy-page',
   templateUrl: './page.component.html',
   styleUrls: ['./page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PageComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute, private requestService: RequestService, private titleService: Title) {}

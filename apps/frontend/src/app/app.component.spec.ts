@@ -1,15 +1,15 @@
 import { async, TestBed } from '@angular/core/testing'
 import { AppComponent } from './app.component'
 import { RouterTestingModule } from '@angular/router/testing'
-import { Component, Input } from '@angular/core'
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
 import { SwUpdate } from '@angular/service-worker'
 import { Observable } from 'rxjs'
 
-@Component({ selector: 'verseghy-header', template: '', styles: [] })
+@Component({ selector: 'verseghy-header', template: '', styles: [], changeDetection: ChangeDetectionStrategy.OnPush })
 class HeaderComponent {}
-@Component({ selector: 'verseghy-footer', template: '', styles: [] })
+@Component({ selector: 'verseghy-footer', template: '', styles: [], changeDetection: ChangeDetectionStrategy.OnPush })
 class FooterComponent {}
-@Component({ selector: 'verseghy-loaders', template: '', styles: [] })
+@Component({ selector: 'verseghy-loaders', template: '', styles: [], changeDetection: ChangeDetectionStrategy.OnPush })
 class LoadersComponent {
   @Input() loader
   @Input() loaderClass

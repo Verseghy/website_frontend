@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 import { combineLatest } from 'rxjs'
 import { SearchFacade } from '../../state/search/search.facade'
@@ -9,6 +9,7 @@ import { map } from 'rxjs/operators'
   selector: 'verseghy-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchComponent implements OnInit, OnDestroy {
   private subsink = new SubSink()

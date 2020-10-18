@@ -1,10 +1,9 @@
-import { ApplicationRef, Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core'
-import { interval, BehaviorSubject, combineLatest } from 'rxjs'
-import { Post } from '../../../../models/Post'
-import { filter, switchMap, tap, map } from 'rxjs/operators'
+import { ApplicationRef, ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core'
+import { BehaviorSubject, combineLatest } from 'rxjs'
+import { map } from 'rxjs/operators'
 import { SubSink } from 'subsink'
 import { PostsFacade } from '../../state/posts/posts.facade'
-import { trigger, transition, animate, style } from '@angular/animations'
+import { animate, style, transition, trigger } from '@angular/animations'
 import { format } from 'date-fns'
 
 @Component({
@@ -82,6 +81,7 @@ import { format } from 'date-fns'
       ]),*/
     ]),
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FeaturedPostComponent implements OnDestroy {
   private subs = new SubSink()

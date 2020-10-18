@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
 import { Event, Settings } from '@verseghy/calendar'
 import { EVENTS_FEATURE_KEY, EventsState } from '../../reducer/events.reducer'
 import { select, Store } from '@ngrx/store'
 import { MonthChange } from '../../reducer/events.actions'
-import { map, delay } from 'rxjs/operators'
+import { map } from 'rxjs/operators'
 import { Observable } from 'rxjs'
 
 @Component({
   selector: 'verseghy-events',
   templateUrl: './events.component.html',
   styleUrls: ['./events.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventsComponent implements OnInit {
   calendarSettings: Settings = {
@@ -38,7 +39,7 @@ export class EventsComponent implements OnInit {
 
   ngOnInit() {
     this.calendarEvents = this.store.pipe(
-      select(state => state[EVENTS_FEATURE_KEY]),
+      select((state) => state[EVENTS_FEATURE_KEY]),
       map((data: EventsState) => {
         let calendarEvents: Event[] = []
         for (const item of data.list) {

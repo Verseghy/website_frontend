@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
 import { PostsFacade } from '../../state/posts/posts.facade'
 
 @Component({
   selector: 'verseghy-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent implements OnInit {
   constructor(private postsFacade: PostsFacade) {}

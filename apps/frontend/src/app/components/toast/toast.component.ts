@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { ChangeDetectionStrategy, Component } from '@angular/core'
 import { ToastService } from '../../services/toast.service'
 import { animate, style, transition, trigger } from '@angular/animations'
 
@@ -36,6 +36,7 @@ import { animate, style, transition, trigger } from '@angular/animations'
       ]),
     ]),
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToastComponent {
   toast$ = this.toastService.toast$
