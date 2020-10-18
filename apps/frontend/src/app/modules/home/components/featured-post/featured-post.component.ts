@@ -90,10 +90,7 @@ export class FeaturedPostComponent implements OnDestroy {
   isHovered = false
   page$ = new BehaviorSubject(0)
   posts$ = combineLatest([this.postsFacade.featuredPosts$, this.page$]).pipe(
-    map(([posts, page]) => [
-      posts,
-      page,
-    ]),
+    map(([posts, page]) => [posts, page]),
     map(([posts, page]) => {
       // @ts-ignore TODO(zoltanszepesi): check this again after updating typescript
       this.page = ((page % posts.length) + posts.length) % posts.length
