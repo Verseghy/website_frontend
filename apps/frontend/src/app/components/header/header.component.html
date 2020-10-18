@@ -6,7 +6,7 @@
         <div class="logo-top">
           <h1 class="title" routerLink="/" [@headerAnimationTitle]="openHeader">Verseghy</h1>
           <div class="title-suffix">
-            <span class="beta" [@headerAnimationWeb]="openHeader">BETA</span>
+            <span class="web" [@headerAnimationWeb]="openHeader">WEB</span>
             <h1 class="title title-end" [@headerAnimationTitleEnd]="openHeader" [@headerAnimationTitle]="openHeader">
               &nbsp;Ferenc Gimnázium
             </h1>
@@ -28,15 +28,15 @@
           >Főoldal</a
         >
       </div>
+      <div class="menu"><a (click)="drawer = !drawer" href="" routerLink="/information" routerLinkActive="active">Információk</a></div>
       <div (click)="submenu1 = !submenu1" [ngClass]="{ open: submenu1 }" class="menu" routerLinkActive="active">
         <span>Menza</span> <i class="material-icons arrow">expand_more</i>
         <div class="submenu">
           <a (click)="drawer = !drawer" href="" routerLink="/canteen">Étlap</a>
-          <a (click)="drawer = !drawer" href="" class="TEMP-disabled-not-implemented-link">Befizetés</a>
+          <a (click)="drawer = !drawer" href="" routerLink="/pages/menza-befizetes">Befizetés, információk</a>
         </div>
       </div>
       <div class="menu"><a (click)="drawer = !drawer" href="" routerLink="/events" routerLinkActive="active">Események</a></div>
-      <div class="menu"><a (click)="drawer = !drawer" href="" routerLink="/information" routerLinkActive="active">Információk</a></div>
       <div class="menu ekreta">
         <a href="https://klik035992001.e-kreta.hu/Adminisztracio/Login" target="_blank">
           <img alt="" src="assets/icons/kreta2.png" />
