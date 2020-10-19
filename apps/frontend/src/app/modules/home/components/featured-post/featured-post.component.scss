@@ -16,7 +16,7 @@
 .card {
   border-radius: 8px;
   overflow: hidden;
-  background-color: hsl(0deg 0% 97%);
+  background-color: hsl(0deg 0% 95%);
   display: grid;
   grid-template-columns: 3fr 4fr;
   grid-template-rows: repeat(3, min-content) 1fr min-content;
@@ -121,7 +121,7 @@
       left: 0;
       right: 0;
       height: 60px;
-      background: linear-gradient(to bottom, hsla(0deg, 0%, 97%, 0), hsla(0deg, 0%, 97%, 1));
+      background: linear-gradient(to bottom, hsla(0deg, 0%, 95%, 0), hsl(0deg 0% 95%));
 
       @media screen and (max-width: 740px) {
         visibility: hidden;

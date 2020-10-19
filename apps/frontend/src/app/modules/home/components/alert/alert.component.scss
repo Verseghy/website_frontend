@@ -8,15 +8,15 @@ a {
   align-items: center;
 
   &.high {
-    background-color: hsl(0deg 100% 90%);
+    background-color: hsl(0deg 100% 80%);
   }
 
   &.medium {
-    background-color: hsl(54deg 100% 90%);
+    background-color: hsl(54deg 100% 80%);
   }
 
   &.low {
-    background-color: hsl(201deg 100% 90%);
+    background-color: hsl(201deg 100% 80%);
   }
 
   &:last-child {

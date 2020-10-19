@@ -1,6 +1,6 @@
 .container {
   border-radius: 8px;
-  background: #f8f8f8;
+  background: hsl(0deg 0% 95%);
 
   .dropdown-content {
     overflow: hidden;
@@ -43,13 +43,14 @@
 
     .section-title {
       display: block;
-      color: #6f6f6f;
+      color: #000;
       padding: {
         left: 15px;
         bottom: 5px;
       }
       margin-bottom: 5px;
-      border-bottom: 1px solid #ececec;
+      border-bottom: 1px solid #d2d2d2;
+      opacity: .45;
 
       @media screen and (max-width: 992px) {
         width: 100%;

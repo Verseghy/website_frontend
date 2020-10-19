@@ -36,7 +36,7 @@
   }
 
   .title {
-    color: #111111;
+    color: #000;
     font-family: 'Roboto', sans-serif;
     font-size: 2rem;
     font-weight: 700;
@@ -44,6 +44,7 @@
     z-index: 1;
     position: relative;
     transition: color 0.3s;
+    opacity: .87;
   }
 
   .description {
@@ -53,6 +54,7 @@
     margin-bottom: 20px;
     z-index: 1;
     position: relative;
+    opacity: .75;
   }
 
   .bottom {

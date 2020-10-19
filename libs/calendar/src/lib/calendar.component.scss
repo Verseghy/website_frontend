@@ -21,7 +21,7 @@
   line-height: 32px;
   font-size: 1.4rem;
   position: relative;
-  background: #f8f8f8;
+  background: hsl(0deg 0% 95%);
   border-radius: 8px;
 
   > span {
@@ -34,7 +34,7 @@
   }
 
   &.today {
-    background-color: #ebebeb;
+    background-color: hsl(0deg 0% 89%);
   }
 
   .events {
