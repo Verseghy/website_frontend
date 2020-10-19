@@ -1,6 +1,6 @@
-import { ApplicationRef, ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core'
-import { BehaviorSubject, combineLatest } from 'rxjs'
-import { map } from 'rxjs/operators'
+import { ApplicationRef, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core'
+import { BehaviorSubject, combineLatest, concat, interval, timer } from 'rxjs'
+import { filter, first, map, tap } from 'rxjs/operators'
 import { SubSink } from 'subsink'
 import { PostsFacade } from '../../state/posts/posts.facade'
 import { animate, style, transition, trigger } from '@angular/animations'
@@ -83,7 +83,7 @@ import { format } from 'date-fns'
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FeaturedPostComponent implements OnDestroy {
+export class FeaturedPostComponent implements OnDestroy, OnInit {
   private subs = new SubSink()
 
   autoplaySpeed = 1000
@@ -103,22 +103,19 @@ export class FeaturedPostComponent implements OnDestroy {
 
   featuredPosts$ = this.postsFacade.featuredPosts$
 
-  constructor(private postsFacade: PostsFacade, private appRef: ApplicationRef) {}
+  constructor(private postsFacade: PostsFacade, private appRef: ApplicationRef, private changeDetectorRef: ChangeDetectorRef) {}
 
-  /*ngOnInit(): void {
-    this.subs.add(
-      this.appRef.isStable
-        .pipe(
-          filter(stable => stable),
-          switchMap(() => interval(this.autoplaySpeed))
-        )
-        .subscribe(() => {
-          if (!this.isHovered) {
-            this.next()
-          }
-        })
-    )
-  }*/
+  ngOnInit(): void {
+    const appIsStable$ = this.appRef.isStable.pipe(first((isStable) => isStable === true))
+    const interval$ = timer(5 * 1000, 5 * 1000)
+
+    // TODO(zoltanszepesi): fix this mess
+    this.subs.sink = concat(appIsStable$, interval$).subscribe((val) => {
+      if (val === true) return
+      this.next()
+      this.changeDetectorRef.detectChanges()
+    })
+  }
 
   ngOnDestroy() {
     this.subs.unsubscribe()
