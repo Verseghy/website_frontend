@@ -1,6 +1,6 @@
 <div
   class="content"
-  [ngStyle]="{ 'background-color': 'hsl(' + getHueFromHEXColor(post.color) + ' 79% 91%)' }"
+  [ngStyle]="{ 'background-color': 'hsl(' + getColor(post.color) + ' 100% 80%)' }"
   [routerLink]="['/posts/' + post.id]"
 >
   <img class="index-img" [src]="post.index_image" alt="" />

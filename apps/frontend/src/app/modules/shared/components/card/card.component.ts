@@ -52,4 +52,8 @@ export class CardComponent {
 
     return Math.round(360 * h)
   }
+
+  getColor(color) {
+    return Math.floor(this.getHueFromHEXColor(color) / 30) * 30
+  }
 }
