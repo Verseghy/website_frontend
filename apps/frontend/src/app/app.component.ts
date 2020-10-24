@@ -6,6 +6,7 @@ import { first } from 'rxjs/operators'
 import { concat, interval } from 'rxjs'
 import { ToastService } from './services/toast.service'
 import { HeaderService } from './services/header.service'
+import { environment } from '../environments/environment'
 
 @Component({
   selector: 'verseghy-root',
@@ -62,7 +63,7 @@ export class AppComponent implements AfterViewInit, OnInit {
     const appIsStable$ = this.appRef.isStable.pipe(first((isStable) => isStable === true))
     const hourly$ = interval(60 * 60 * 1000)
 
-    concat(appIsStable$, hourly$).subscribe(() => this.swupdate.checkForUpdate())
+    concat(appIsStable$, hourly$).subscribe(() => environment.production && this.swupdate.checkForUpdate())
 
     this.swupdate.available.subscribe(() => {
       this.toastService.createToast('Frissítés elérhető. Kérlek töltsd újra az oldalt!', [
