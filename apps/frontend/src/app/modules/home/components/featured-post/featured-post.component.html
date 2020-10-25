@@ -1,7 +1,7 @@
 <ng-container *ngIf="posts$ | async as posts">
   <ng-container *ngIf="posts.length">
     <div class="cards">
-      <a class="card" *ngFor="let post of posts" [routerLink]="['/posts/' + post.id]" [@animate]="animate">
+      <a class="card" *ngFor="let post of posts" [routerLink]="['/posts', post.id]" [@animate]="animate">
         <div class="label-container">
           <verseghy-label *ngFor="let label of post.labels" [label]="label"></verseghy-label>
         </div>
@@ -14,7 +14,7 @@
         </div>
         <h2>{{ post.title }}</h2>
         <p class="description">{{ post.description }}</p>
-        <a [routerLink]="['/posts/' + post.id]" class="read-more">Tovább</a>
+        <a [routerLink]="['/posts', post.id]" class="read-more">Tovább</a>
         <img [src]="post.index_image" alt="" class="index-img" />
       </a>
     </div>

@@ -19,6 +19,8 @@
   cursor: pointer;
   min-height: 300px;
   border-radius: 8px;
+  display: block;
+  text-decoration: none;
 
   .index-img {
     width: calc(100% + 60px);
