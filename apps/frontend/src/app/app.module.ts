@@ -21,9 +21,10 @@ import { AngularFireAnalyticsModule, APP_NAME, APP_VERSION, COLLECTION_ENABLED, 
 import { AngularFirePerformanceModule } from '@angular/fire/performance'
 import { ToastComponent } from './components/toast/toast.component'
 import { faFacebookF } from '@fortawesome/free-brands-svg-icons'
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component'
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent, ToastComponent],
+  declarations: [AppComponent, HeaderComponent, FooterComponent, ToastComponent, PageNotFoundComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
