@@ -28,6 +28,8 @@
     border-radius: 8px;
     cursor: pointer;
     transition: background 200ms;
+    color: inherit;
+    text-decoration: none;
 
     &:hover {
       background: #ececec;
