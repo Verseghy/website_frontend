@@ -1,5 +1,5 @@
 :host {
-  max-width: 1200px;
+  max-width: min(1200px, calc(100vw - 40px));
   padding: 0 20px;
   margin: {
     top: 30px;
@@ -27,7 +27,11 @@
 }
 
 .content {
-  flex: 1;
+  width: calc(100% - 270px);
+
+  @media screen and (max-width: 992px) {
+    width: 100%;
+  }
 }
 
 h1 {
