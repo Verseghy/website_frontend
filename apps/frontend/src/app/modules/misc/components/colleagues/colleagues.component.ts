@@ -27,7 +27,7 @@ export class ColleaguesComponent implements OnInit, OnDestroy {
 
   structuredData0 = this.structuredDataService.addBreadcrumb([
     { item: 'https://verseghy-gimnazium.net/', position: 0, name: 'Főoldal' },
-    { item: 'https://verseghy-gimnazium.net/misc/colleagues', position: 1, name: 'Fejlesztők' },
+    { item: 'https://verseghy-gimnazium.net/misc/colleagues', position: 1, name: 'Munkatársak' },
   ])
 
   constructor(private store: Store<ColleaguesState>, private structuredDataService: StructuredDataService) {}
