@@ -1,9 +1,10 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core'
 import { CANTEEN_FEATURE_KEY, CanteenState, WeekCanteen } from '../../reducer/canteen/canteen.reducer'
 import { select, Store } from '@ngrx/store'
 import { LoadCanteen } from '../../reducer/canteen/canteen.actions'
 import { map } from 'rxjs/operators'
 import { Observable } from 'rxjs'
+import { StructuredDataService } from '../../../../services/structured-data.service'
 
 @Component({
   selector: 'verseghy-canteen',
@@ -11,13 +12,18 @@ import { Observable } from 'rxjs'
   styleUrls: ['./canteen.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CanteenComponent implements OnInit {
+export class CanteenComponent implements OnInit, OnDestroy {
   canteen: Observable<WeekCanteen[]>
 
   weekdays = ['Hétfő', 'Kedd', 'Szerda', 'Csütörtök', 'Péntek', 'Szombat', 'Vasárnap']
   week_prefixes = ['Heti menü', 'Jövő heti menü']
 
-  constructor(private store: Store<CanteenState>) {}
+  structuredData0 = this.structuredDataService.addBreadcrumb([
+    { item: 'https://verseghy-gimnazium.net/', position: 0, name: 'Főoldal' },
+    { item: 'https://verseghy-gimnazium.net/canteen', position: 1, name: 'Menza' },
+  ])
+
+  constructor(private store: Store<CanteenState>, private structuredDataService: StructuredDataService) {}
 
   ngOnInit() {
     this.store.dispatch(new LoadCanteen())
@@ -27,5 +33,9 @@ export class CanteenComponent implements OnInit {
         return [state.thisWeek, state.nextWeek]
       })
     )
+  }
+
+  ngOnDestroy() {
+    this.structuredDataService.removeStructuredData(this.structuredData0)
   }
 }

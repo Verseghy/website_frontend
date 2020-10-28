@@ -1,10 +1,11 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core'
 import { Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
 import { select, Store } from '@ngrx/store'
 import { COLLEAGUES_FEATURE_KEY, ColleaguesState, Entity } from '../../reducer/colleagues/colleagues.reducer'
 import { fromColleaguesActions, LoadColleagues } from '../../reducer/colleagues/colleagues.actions'
 import { selectVisible } from '../../reducer/colleagues/colleagues.selectors'
+import { StructuredDataService } from '../../../../services/structured-data.service'
 
 @Component({
   selector: 'verseghy-colleagues',
@@ -12,7 +13,7 @@ import { selectVisible } from '../../reducer/colleagues/colleagues.selectors'
   styleUrls: ['./colleagues.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ColleaguesComponent implements OnInit {
+export class ColleaguesComponent implements OnInit, OnDestroy {
   categories: string[] = [
     'Vezetőség',
     'Tanárok',
@@ -24,7 +25,12 @@ export class ColleaguesComponent implements OnInit {
 
   visible = this.store.pipe(select(selectVisible))
 
-  constructor(private store: Store<ColleaguesState>) {}
+  structuredData0 = this.structuredDataService.addBreadcrumb([
+    { item: 'https://verseghy-gimnazium.net/', position: 0, name: 'Főoldal' },
+    { item: 'https://verseghy-gimnazium.net/misc/colleagues', position: 1, name: 'Fejlesztők' },
+  ])
+
+  constructor(private store: Store<ColleaguesState>, private structuredDataService: StructuredDataService) {}
 
   ngOnInit() {
     this.store.dispatch(new LoadColleagues())
@@ -34,6 +40,10 @@ export class ColleaguesComponent implements OnInit {
         return state.categories
       })
     )
+  }
+
+  ngOnDestroy() {
+    this.structuredDataService.removeStructuredData(this.structuredData0)
   }
 
   setVisible(number: number, boolean: boolean) {
