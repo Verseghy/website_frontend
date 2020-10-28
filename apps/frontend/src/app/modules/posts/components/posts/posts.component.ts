@@ -37,7 +37,7 @@ export class PostsComponent implements OnInit, OnDestroy {
         }
       }),
       tap((post) => {
-        if (this.structuredData0) this.structuredDataService.removeStructuredData(this.structuredData0)
+        if (this.structuredData0 != null) this.structuredDataService.removeStructuredData(this.structuredData0)
         this.structuredData0 = this.structuredDataService.addArticle({
           headline: post.title,
           images: [post.index_image],
@@ -45,7 +45,7 @@ export class PostsComponent implements OnInit, OnDestroy {
           datePublished: post.date,
         })
 
-        if (this.structuredData1) this.structuredDataService.removeStructuredData(this.structuredData1)
+        if (this.structuredData1 != null) this.structuredDataService.removeStructuredData(this.structuredData1)
         this.structuredData1 = this.structuredDataService.addBreadcrumb([
           { item: 'https://verseghy-gimnazium.net/', position: 0, name: 'Főoldal' },
           { item: `https://verseghy-gimnazium.net/posts/${post.id}`, position: 1, name: post.title },

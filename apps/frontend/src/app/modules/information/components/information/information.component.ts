@@ -35,7 +35,7 @@ export class InformationComponent implements OnInit, OnDestroy {
     tap((page: PageData | null) => {
       if (!page) return
 
-      if (this.structuredData0) this.structuredDataService.removeStructuredData(this.structuredData0)
+      if (this.structuredData0 != null) this.structuredDataService.removeStructuredData(this.structuredData0)
       this.structuredData0 = this.structuredDataService.addBreadcrumb([
         { item: 'https://verseghy-gimnazium.net/', position: 0, name: 'Főoldal' },
         { item: 'https://verseghy-gimnazium.net/information/', position: 1, name: 'Információk' },
