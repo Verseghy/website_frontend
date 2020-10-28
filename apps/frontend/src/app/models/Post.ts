@@ -8,7 +8,7 @@ export interface Post {
   date: string
   description?: string
   images?: Image[]
-  index_image: Image
+  index_image: string
   labels?: Label[]
   title: string
   type: string
