@@ -1,42 +1,44 @@
-<div class="top">
-  <div class="logo-container">
-    <a [routerLink]="'/'" class="logo">
-      <img alt="" src="assets/logo.svg" />
-      <h2>Verseghy<span class="web">WEB</span></h2>
-    </a>
-  </div>
-  <div class="block">
-    <h4>Rólunk</h4>
-    <span>5000 Szolnok, Tisza park 1.</span>
-    <span>Telefon: 56/514-953; 20/540-4896</span>
-    <a href="mailto: verseghygimnazium@gmail.com">E-mail: verseghygimnazium@gmail.com</a>
-    <span>OM azonosító: 035992</span>
-    <span (click)="devClickHandler()">Honlap verzió: {{ appVersion }}</span>
-  </div>
-  <div class="block">
-    <h4>Linkek</h4>
-    <a [routerLink]="'/archive'">Archívum</a>
-    <a href class="TEMP-disabled-not-implemented-link">Impresszum</a>
-    <a href class="TEMP-disabled-not-implemented-link">Oldaltérkép</a>
-    <a href="http://regi.verseghy-gimnazium.net/">Vissza a régi oldalra</a>
-  </div>
-  <div class="block">
-    <h4>KRÉTA</h4>
-    <a href="https://klik035992001.e-kreta.hu/Adminisztracio/Login" target="_blank" rel="noopener noreferrer">
-      <img alt="" src="assets/icons/kreta2.png" />
-    </a>
-    <a href="https://eugyintezes.e-kreta.hu/" target="_blank" rel="noopener noreferrer">
-      <img alt="" src="assets/icons/eugy.png" />
-    </a>
-  </div>
-</div>
-<div class="bottom">
-  <div class="container">
-    <span>Honlap észrevételek, visszajelzések: contact@zoltanszepesi.com</span>
-    <div class="right">
-      <a href="#">
-        <fa-icon [icon]="['fab', 'facebook-f']"></fa-icon>
+<footer>
+  <div class="top">
+    <div class="logo-container">
+      <a [routerLink]="'/'" class="logo">
+        <img alt="" src="assets/logo.svg" />
+        <h2>Verseghy<span class="web">WEB</span></h2>
+      </a>
+    </div>
+    <div class="block">
+      <h4>Rólunk</h4>
+      <span>5000 Szolnok, Tisza park 1.</span>
+      <span>Telefon: 56/514-953; 20/540-4896</span>
+      <a href="mailto: verseghygimnazium@gmail.com">E-mail: verseghygimnazium@gmail.com</a>
+      <span>OM azonosító: 035992</span>
+      <span (click)="devClickHandler()">Honlap verzió: {{ appVersion }}</span>
+    </div>
+    <div class="block">
+      <h4>Linkek</h4>
+      <a [routerLink]="'/archive'">Archívum</a>
+      <a href class="TEMP-disabled-not-implemented-link">Impresszum</a>
+      <a href class="TEMP-disabled-not-implemented-link">Oldaltérkép</a>
+      <a href="http://regi.verseghy-gimnazium.net/">Vissza a régi oldalra</a>
+    </div>
+    <div class="block">
+      <h4>KRÉTA</h4>
+      <a href="https://klik035992001.e-kreta.hu/Adminisztracio/Login" target="_blank" rel="noopener noreferrer">
+        <img alt="" src="assets/icons/kreta2.png" />
+      </a>
+      <a href="https://eugyintezes.e-kreta.hu/" target="_blank" rel="noopener noreferrer">
+        <img alt="" src="assets/icons/eugy.png" />
       </a>
     </div>
   </div>
-</div>
+  <div class="bottom">
+    <div class="container">
+      <span>Honlap észrevételek, visszajelzések: contact@zoltanszepesi.com</span>
+      <div class="right">
+        <a href="#">
+          <fa-icon [icon]="['fab', 'facebook-f']"></fa-icon>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,26 +1,28 @@
 <div class="container">
   <verseghy-featured-post></verseghy-featured-post>
   <verseghy-alert></verseghy-alert>
-  <h2>Legfrissebb hírek</h2>
-  <ng-container *ngIf="posts$ | async as posts">
-    <ng-container *ngIf="posts.length">
-      <div class="grid"><verseghy-card [post]="post" *ngFor="let post of posts; trackBy: trackByFn"></verseghy-card></div>
-      <button class="load-more" [disabled]="isLoading$ | async" (click)="nextPage()">Több betöltése</button>
-    </ng-container>
-    <ng-container *ngIf="!posts.length">
-      <div class="grid">
-        <div class="skeleton-card" *ngFor="let _ of [0, 1, 2]">
-          <div class="image-placeholder"></div>
-          <div class="content-placeholder">
-            <div class="text-skeleton"></div>
-            <div class="text-skeleton"></div>
-            <div class="text-skeleton"></div>
-            <div class="circle"></div>
-            <div class="text-skeleton inline"></div>
+  <section>
+    <h2>Legfrissebb hírek</h2>
+    <ng-container *ngIf="posts$ | async as posts">
+      <ng-container *ngIf="posts.length">
+        <div class="grid"><verseghy-card [post]="post" *ngFor="let post of posts; trackBy: trackByFn"></verseghy-card></div>
+        <button class="load-more" [disabled]="isLoading$ | async" (click)="nextPage()">Több betöltése</button>
+      </ng-container>
+      <ng-container *ngIf="!posts.length">
+        <div class="grid">
+          <div class="skeleton-card" *ngFor="let _ of [0, 1, 2]">
+            <div class="image-placeholder"></div>
+            <div class="content-placeholder">
+              <div class="text-skeleton"></div>
+              <div class="text-skeleton"></div>
+              <div class="text-skeleton"></div>
+              <div class="circle"></div>
+              <div class="text-skeleton inline"></div>
+            </div>
           </div>
         </div>
-      </div>
+      </ng-container>
     </ng-container>
-  </ng-container>
+  </section>
   <verseghy-banners></verseghy-banners>
 </div>
