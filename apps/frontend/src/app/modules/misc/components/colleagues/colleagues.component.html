@@ -1,7 +1,7 @@
 <div class="container">
   <div class="content-container">
     <div class="content">
-      <div
+      <section
         class="card"
         *ngFor="let categoryId of [0, 1, 2, 3, 4]"
         [id]="'category-' + categoryId"
@@ -22,10 +22,10 @@
             </ul>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   </div>
-  <div class="sidebar-container">
+  <aside class="sidebar-container">
     <div class="sidebar">
       <a [routerLink]="'/misc/colleagues'" fragment="category-0"><span [ngClass]="{ active: (visible | async) === 0 }">Vezetőség</span></a>
       <a [routerLink]="'/misc/colleagues'" fragment="category-1"><span [ngClass]="{ active: (visible | async) === 1 }">Tanárok</span></a>
@@ -37,5 +37,5 @@
         ><span [ngClass]="{ active: (visible | async) === 4 }">Karbantartók, portások, takarítók</span></a
       >
     </div>
-  </div>
+  </aside>
 </div>
