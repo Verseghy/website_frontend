@@ -10,6 +10,7 @@ h1 {
   font-weight: 300;
   color: #202124;
   line-height: 26px;
+  word-break: break-word;
 
   &::ng-deep {
     > p {
