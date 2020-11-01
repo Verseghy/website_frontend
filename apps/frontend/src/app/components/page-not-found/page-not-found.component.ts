@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core'
+import { ChangeDetectionStrategy, Component, Inject, OnDestroy, OnInit } from '@angular/core'
+import { DOCUMENT } from '@angular/common'
 
 @Component({
   selector: 'verseghy-page-not-found',
@@ -6,4 +7,19 @@ import { ChangeDetectionStrategy, Component } from '@angular/core'
   styleUrls: ['./page-not-found.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PageNotFoundComponent {}
+export class PageNotFoundComponent implements OnInit, OnDestroy {
+  private _noIndexElement: HTMLElement
+
+  constructor(@Inject(DOCUMENT) private _document) {}
+
+  ngOnInit(): void {
+    this._noIndexElement = document.createElement('meta')
+    this._noIndexElement.setAttribute('name', 'robots')
+    this._noIndexElement.setAttribute('content', 'noindex')
+    this._document.head.appendChild(this._noIndexElement)
+  }
+
+  ngOnDestroy(): void {
+    this._noIndexElement.remove()
+  }
+}
