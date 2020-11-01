@@ -13,12 +13,7 @@ import { Subject, throwError } from 'rxjs'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PageComponent implements OnInit, OnDestroy {
-  constructor(
-    private route: ActivatedRoute,
-    private requestService: RequestService,
-    private titleService: Title,
-    private router: Router,
-  ) {}
+  constructor(private route: ActivatedRoute, private requestService: RequestService, private titleService: Title, private router: Router) {}
 
   private subsink = new SubSink()
 

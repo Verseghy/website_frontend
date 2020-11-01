@@ -57,8 +57,7 @@ export class InformationComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.informationFacade.queryMenu()
     this._subs.sink = this.error$.subscribe((error) => {
-      if (error)
-        this.router.navigate(['/404'])
+      if (error) this.router.navigate(['/404'])
     })
   }
 
