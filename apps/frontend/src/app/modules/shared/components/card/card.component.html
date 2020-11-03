@@ -9,7 +9,7 @@
     <div class="bottom">
       <img *ngIf="post.author.image" class="author-img" [src]="post.author.image" alt="" />
       <p>{{ post.author.name }}</p>
-      <p>{{ formatDate(post.date) }}</p>
+      <time [dateTime]="formatDate(post.date)">{{ formatDate(post.date) }}</time>
     </div>
     <div class="focus-border"></div>
   </article>

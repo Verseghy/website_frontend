@@ -8,7 +8,7 @@
     <div class="small-meta">
       <img *ngIf="post?.author.image" class="author-image" [src]="post?.author.image" alt="" />
       <a class="name" [routerLink]="['/search', 'author', post?.author.id]">{{ post?.author.name }}</a>
-      <span class="date">Közzétéve: {{ formatDate(post?.date) }}</span>
+      <span class="date">Közzétéve: <time [dateTime]="formatDate(post?.date)">{{ formatDate(post?.date) }}</time></span>
     </div>
     <verseghy-page-renderer [data]="post?.content"></verseghy-page-renderer>
     <verseghy-slideshow
