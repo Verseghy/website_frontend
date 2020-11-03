@@ -46,7 +46,8 @@ const routes: Routes = [
   },
   {
     path: '**',
-    component: PageNotFoundComponent,
+    redirectTo: '/404',
+    pathMatch: 'full',
   },
 ]
 
