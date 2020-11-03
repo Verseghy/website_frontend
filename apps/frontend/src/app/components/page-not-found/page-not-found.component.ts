@@ -13,7 +13,7 @@ export class PageNotFoundComponent implements OnInit, OnDestroy {
   constructor(@Inject(DOCUMENT) private _document) {}
 
   ngOnInit(): void {
-    this._noIndexElement = document.createElement('meta')
+    this._noIndexElement = this._document.createElement('meta')
     this._noIndexElement.setAttribute('name', 'robots')
     this._noIndexElement.setAttribute('content', 'noindex')
     this._document.head.appendChild(this._noIndexElement)
