@@ -1,6 +1,10 @@
 <div class="container">
-  <verseghy-featured-post></verseghy-featured-post>
-  <verseghy-alert></verseghy-alert>
+  <section>
+    <verseghy-featured-post></verseghy-featured-post>
+  </section>
+  <section>
+    <verseghy-alert></verseghy-alert>
+  </section>
   <section>
     <h2>Legfrissebb hírek</h2>
     <ng-container *ngIf="posts$ | async as posts">
@@ -24,5 +28,7 @@
       </ng-container>
     </ng-container>
   </section>
-  <verseghy-banners></verseghy-banners>
+  <section>
+    <verseghy-banners></verseghy-banners>
+  </section>
 </div>
