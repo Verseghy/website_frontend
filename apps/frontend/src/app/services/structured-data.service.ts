@@ -85,6 +85,6 @@ export class StructuredDataService {
   }
 
   removeStructuredData(id: number) {
-    this.document.getElementById(`structured-data-${id}`).remove()
+    this.document.getElementById(`structured-data-${id}`)?.remove()
   }
 }

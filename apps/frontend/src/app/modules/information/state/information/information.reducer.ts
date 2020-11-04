@@ -26,11 +26,11 @@ export const initialState: State = {
 export const reducer = createReducer(
   initialState,
 
-  on(InformationActions.queryMenuItems, (state) => ({ ...state, loadedMenu: false })),
+  on(InformationActions.queryMenuItems, (state) => ({ ...state, loadedMenu: false, error: null })),
   on(InformationActions.queryMenuItemsSuccess, (state, action) => ({ ...state, menuItems: action.data, loadedMenu: true })),
   on(InformationActions.queryMenuItemsFailure, (state, action) => ({ ...state, error: action.error })),
 
-  on(InformationActions.queryPage, (state) => ({ ...state, loadedPage: false })),
+  on(InformationActions.queryPage, (state) => ({ ...state, loadedPage: false, error: null })),
   on(InformationActions.queryPageSuccess, (state, action) => ({ ...state, page: action.data, loadedPage: true })),
   on(InformationActions.queryPageFailure, (state, action) => ({ ...state, error: action.error }))
 )
