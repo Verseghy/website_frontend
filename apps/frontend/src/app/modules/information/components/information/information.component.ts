@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core'
 import { InformationFacade } from '../../state/information/information.facade'
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import { map, switchMap, tap } from 'rxjs/operators'
 import { combineLatest, of } from 'rxjs'
+import { SubSink } from 'subsink'
 import { StructuredDataService } from '../../../../services/structured-data.service'
 import { PageData } from '../../../../models/page'
 
@@ -44,17 +45,25 @@ export class InformationComponent implements OnInit, OnDestroy {
     })
   )
 
+  private _subs = new SubSink()
+
   constructor(
     private route: ActivatedRoute,
     private informationFacade: InformationFacade,
-    private structuredDataService: StructuredDataService
+    private structuredDataService: StructuredDataService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.informationFacade.queryMenu()
+    this._subs.sink = this.error$.subscribe((error) => {
+      if (error)
+        this.router.navigate(['/404'])
+    })
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
+    this._subs.unsubscribe()
     this.structuredDataService.removeStructuredData(this.structuredData0)
   }
 }
