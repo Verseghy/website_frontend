@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core'
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import { catchError, map, switchMap, tap } from 'rxjs/operators'
 import { Title } from '@angular/platform-browser'
 import { SubSink } from 'subsink'
@@ -13,7 +13,12 @@ import { Subject, throwError } from 'rxjs'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PageComponent implements OnInit, OnDestroy {
-  constructor(private route: ActivatedRoute, private requestService: RequestService, private titleService: Title) {}
+  constructor(
+    private route: ActivatedRoute,
+    private requestService: RequestService,
+    private titleService: Title,
+    private router: Router,
+  ) {}
 
   private subsink = new SubSink()
 
@@ -23,6 +28,7 @@ export class PageComponent implements OnInit, OnDestroy {
     tap(() => this.error$.next(false)),
     catchError((error) => {
       this.error$.next(true)
+      this.router.navigate(['/404'])
       return throwError(error)
     })
   )
