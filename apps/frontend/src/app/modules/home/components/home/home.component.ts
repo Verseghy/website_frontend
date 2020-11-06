@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core'
 import { PostsFacade } from '../../state/posts/posts.facade'
 import { StructuredDataService } from '../../../../services/structured-data.service'
+import { TitleService } from '../../../../services/title.service'
 
 @Component({
   selector: 'verseghy-home',
@@ -9,7 +10,11 @@ import { StructuredDataService } from '../../../../services/structured-data.serv
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  constructor(private postsFacade: PostsFacade, private structuredDataService: StructuredDataService) {}
+  constructor(
+    private postsFacade: PostsFacade,
+    private structuredDataService: StructuredDataService,
+    private _titleService: TitleService
+  ) {}
 
   posts$ = this.postsFacade.posts$
   isLoading$ = this.postsFacade.isLoading$
@@ -18,6 +23,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   structuredData1 = this.structuredDataService.addBreadcrumb([{ item: 'https://verseghy-gimnazium.net/', position: 0, name: 'Főoldal' }])
 
   ngOnInit() {
+    this._titleService.setTitle('')
     this.postsFacade.loadInitPage()
   }
 

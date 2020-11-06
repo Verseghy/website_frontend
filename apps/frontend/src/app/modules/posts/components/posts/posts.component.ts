@@ -3,8 +3,9 @@ import { combineLatest, Observable, throwError } from 'rxjs'
 import { RequestService } from '../../services/request.service'
 import { Post } from '../../../../models/Post'
 import { ActivatedRoute, Router } from '@angular/router'
-import { catchError, map, switchMap } from 'rxjs/operators'
+import { catchError, map, switchMap, tap } from 'rxjs/operators'
 import { format } from 'date-fns'
+import { TitleService } from '../../../../services/title.service'
 
 @Component({
   selector: 'verseghy-posts',
@@ -16,7 +17,12 @@ export class PostsComponent implements OnInit {
   post$: Observable<Post>
   @ViewChild('slideshow') slideshow: any
 
-  constructor(private requestService: RequestService, private route: ActivatedRoute, private router: Router) {}
+  constructor(
+    private requestService: RequestService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private _titleService: TitleService
+  ) {}
 
   ngOnInit() {
     this.post$ = combineLatest([this.route.params, this.route.queryParams]).pipe(
@@ -31,6 +37,11 @@ export class PostsComponent implements OnInit {
       catchError((error) => {
         this.router.navigate(['/404'])
         return throwError(error)
+      }),
+      tap((post: Post | null) => {
+        if (!post) return
+
+        this._titleService.setTitle(post.title)
       })
     )
   }

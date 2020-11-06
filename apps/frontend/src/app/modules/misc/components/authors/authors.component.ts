@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core'
 import { StructuredDataService } from '../../../../services/structured-data.service'
+import { TitleService } from '../../../../services/title.service'
 
 @Component({
   selector: 'verseghy-authors',
@@ -13,9 +14,11 @@ export class AuthorsComponent implements OnInit, OnDestroy {
     { item: 'https://verseghy-gimnazium.net/misc/authors', position: 1, name: 'Fejlesztők' },
   ])
 
-  constructor(private structuredDataService: StructuredDataService) {}
+  constructor(private structuredDataService: StructuredDataService, private _titleService: TitleService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this._titleService.setTitle('Fejlesztők')
+  }
 
   ngOnDestroy() {
     this.structuredDataService.removeStructuredData(this.structuredData0)
