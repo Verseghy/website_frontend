@@ -5,6 +5,8 @@ import { Title } from '@angular/platform-browser'
 import { SubSink } from 'subsink'
 import { RequestService } from '../../services/request.service'
 import { Subject, throwError } from 'rxjs'
+import { TitleService } from '../../../../services/title.service'
+import { PageData } from '../../../../models/page'
 
 @Component({
   selector: 'verseghy-page',
@@ -13,7 +15,13 @@ import { Subject, throwError } from 'rxjs'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PageComponent implements OnInit, OnDestroy {
-  constructor(private route: ActivatedRoute, private requestService: RequestService, private titleService: Title, private router: Router) {}
+  constructor(
+    private route: ActivatedRoute,
+    private requestService: RequestService,
+    private titleService: Title,
+    private router: Router,
+    private _titleService: TitleService
+  ) {}
 
   private subsink = new SubSink()
 
@@ -25,6 +33,11 @@ export class PageComponent implements OnInit, OnDestroy {
       this.error$.next(true)
       this.router.navigate(['/404'])
       return throwError(error)
+    }),
+    tap((page: PageData | null) => {
+      if (!page) return
+
+      this._titleService.setTitle(page.title)
     })
   )
   error$ = new Subject<boolean>()

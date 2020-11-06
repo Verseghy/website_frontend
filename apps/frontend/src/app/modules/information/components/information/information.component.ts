@@ -6,6 +6,7 @@ import { combineLatest, of } from 'rxjs'
 import { SubSink } from 'subsink'
 import { StructuredDataService } from '../../../../services/structured-data.service'
 import { PageData } from '../../../../models/page'
+import { TitleService } from '../../../../services/title.service'
 
 @Component({
   selector: 'verseghy-information',
@@ -36,6 +37,8 @@ export class InformationComponent implements OnInit, OnDestroy {
     tap((page: PageData | null) => {
       if (!page) return
 
+      this._titleService.setTitle(page.title)
+
       if (this.structuredData0 != null) this.structuredDataService.removeStructuredData(this.structuredData0)
       this.structuredData0 = this.structuredDataService.addBreadcrumb([
         { item: 'https://verseghy-gimnazium.net/', position: 0, name: 'Főoldal' },
@@ -51,7 +54,8 @@ export class InformationComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private informationFacade: InformationFacade,
     private structuredDataService: StructuredDataService,
-    private router: Router
+    private router: Router,
+    private _titleService: TitleService
   ) {}
 
   ngOnInit(): void {

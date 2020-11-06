@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/
 import { ArchiveFacade } from './state/archive.facade'
 import { map } from 'rxjs/operators'
 import { StructuredDataService } from '../../services/structured-data.service'
+import { TitleService } from '../../services/title.service'
 
 @Component({
   selector: 'verseghy-archive-screen',
@@ -20,9 +21,14 @@ export class ArchiveScreenComponent implements OnInit, OnDestroy {
     { item: 'https://verseghy-gimnazium.net/archive', position: 1, name: 'Archívum' },
   ])
 
-  constructor(private archiveFacade: ArchiveFacade, private structuredDataService: StructuredDataService) {}
+  constructor(
+    private archiveFacade: ArchiveFacade,
+    private structuredDataService: StructuredDataService,
+    private _titleService: TitleService
+  ) {}
 
   ngOnInit() {
+    this._titleService.setTitle('Archívum')
     this.archiveFacade.loadArchives()
   }
 

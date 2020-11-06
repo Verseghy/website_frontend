@@ -6,6 +6,7 @@ import { MonthChange } from '../../reducer/events.actions'
 import { map } from 'rxjs/operators'
 import { Observable } from 'rxjs'
 import { StructuredDataService } from '../../../../services/structured-data.service'
+import { TitleService } from '../../../../services/title.service'
 
 @Component({
   selector: 'verseghy-events',
@@ -41,9 +42,14 @@ export class EventsComponent implements OnInit, OnDestroy {
     { item: 'https://verseghy-gimnazium.net/events', position: 1, name: 'Menza' },
   ])
 
-  constructor(private store: Store<EventsState>, private structuredDataService: StructuredDataService) {}
+  constructor(
+    private store: Store<EventsState>,
+    private structuredDataService: StructuredDataService,
+    private _titleService: TitleService
+  ) {}
 
   ngOnInit() {
+    this._titleService.setTitle('Események')
     this.calendarEvents = this.store.pipe(
       select((state) => state[EVENTS_FEATURE_KEY]),
       map((data: EventsState) => {

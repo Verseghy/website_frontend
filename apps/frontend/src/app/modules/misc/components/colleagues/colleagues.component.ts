@@ -6,6 +6,7 @@ import { COLLEAGUES_FEATURE_KEY, ColleaguesState, Entity } from '../../reducer/c
 import { fromColleaguesActions, LoadColleagues } from '../../reducer/colleagues/colleagues.actions'
 import { selectVisible } from '../../reducer/colleagues/colleagues.selectors'
 import { StructuredDataService } from '../../../../services/structured-data.service'
+import { TitleService } from '../../../../services/title.service'
 
 @Component({
   selector: 'verseghy-colleagues',
@@ -30,9 +31,14 @@ export class ColleaguesComponent implements OnInit, OnDestroy {
     { item: 'https://verseghy-gimnazium.net/misc/colleagues', position: 1, name: 'Munkatársak' },
   ])
 
-  constructor(private store: Store<ColleaguesState>, private structuredDataService: StructuredDataService) {}
+  constructor(
+    private store: Store<ColleaguesState>,
+    private structuredDataService: StructuredDataService,
+    private _titleService: TitleService
+  ) {}
 
   ngOnInit() {
+    this._titleService.setTitle('Munkatársak')
     this.store.dispatch(new LoadColleagues())
     this.colleagues = this.store.pipe(
       select((state) => state[COLLEAGUES_FEATURE_KEY]),

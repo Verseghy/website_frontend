@@ -5,6 +5,7 @@ import { LoadCanteen } from '../../reducer/canteen/canteen.actions'
 import { map } from 'rxjs/operators'
 import { Observable } from 'rxjs'
 import { StructuredDataService } from '../../../../services/structured-data.service'
+import { TitleService } from '../../../../services/title.service'
 
 @Component({
   selector: 'verseghy-canteen',
@@ -23,9 +24,14 @@ export class CanteenComponent implements OnInit, OnDestroy {
     { item: 'https://verseghy-gimnazium.net/canteen', position: 1, name: 'Menza' },
   ])
 
-  constructor(private store: Store<CanteenState>, private structuredDataService: StructuredDataService) {}
+  constructor(
+    private store: Store<CanteenState>,
+    private structuredDataService: StructuredDataService,
+    private _titleService: TitleService
+  ) {}
 
   ngOnInit() {
+    this._titleService.setTitle('Menza')
     this.store.dispatch(new LoadCanteen())
     this.canteen = this.store.pipe(
       select((state) => state[CANTEEN_FEATURE_KEY]),

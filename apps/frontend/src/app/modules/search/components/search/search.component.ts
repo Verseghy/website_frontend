@@ -4,6 +4,7 @@ import { combineLatest } from 'rxjs'
 import { SearchFacade } from '../../state/search/search.facade'
 import { SubSink } from 'subsink'
 import { map } from 'rxjs/operators'
+import { TitleService } from '../../../../services/title.service'
 
 @Component({
   selector: 'verseghy-search',
@@ -21,13 +22,18 @@ export class SearchComponent implements OnInit, OnDestroy {
   type$ = this.route.data.pipe(map(({ type }) => type))
   term$ = this.route.params.pipe(map(({ term }) => term))
 
-  constructor(private route: ActivatedRoute, private searchFacade: SearchFacade) {}
+  constructor(private route: ActivatedRoute, private searchFacade: SearchFacade, private _titleService: TitleService) {}
 
   ngOnInit(): void {
+    this._titleService.setTitle('Keresés')
+
     this.subsink.sink = combineLatest([this.route.params, this.route.data]).subscribe(([params, data]) => {
       if (!params || !data) return
 
-      if (data.type === 'term') this.searchFacade.queryTerm(params.term)
+      if (data.type === 'term') {
+        this.searchFacade.queryTerm(params.term)
+        this._titleService.setTitle(`Keresés: "${params.term}"`)
+      }
       if (data.type === 'label') this.searchFacade.queryLabel(params.labelID)
       if (data.type === 'author') this.searchFacade.queryAuthor(params.authorID)
     })
