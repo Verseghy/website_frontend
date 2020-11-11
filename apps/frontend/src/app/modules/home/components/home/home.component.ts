@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(
     private postsFacade: PostsFacade,
     private structuredDataService: StructuredDataService,
-    private _titleService: TitleService
+    private titleService: TitleService
   ) {}
 
   posts$ = this.postsFacade.posts$
@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   structuredData1 = this.structuredDataService.addBreadcrumb([{ item: 'https://verseghy-gimnazium.net/', position: 0, name: 'Főoldal' }])
 
   ngOnInit() {
-    this._titleService.setTitle('')
+    this.titleService.setTitle('')
     this.postsFacade.loadInitPage()
   }
 

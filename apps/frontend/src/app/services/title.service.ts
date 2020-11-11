@@ -7,13 +7,13 @@ import { Title } from '@angular/platform-browser'
 export class TitleService {
   private _titlePrefix = 'Verseghy Ferenc Gimnázium'
 
-  public constructor(private _titleService: Title) {}
+  public constructor(private titleService: Title) {}
 
   setTitle(title: string): void {
     if (title) {
-      this._titleService.setTitle(this._titlePrefix + ' - ' + title)
+      this.titleService.setTitle(this._titlePrefix + ' - ' + title)
     } else {
-      this._titleService.setTitle(this._titlePrefix)
+      this.titleService.setTitle(this._titlePrefix)
     }
   }
 }

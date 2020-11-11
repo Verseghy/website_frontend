@@ -14,10 +14,10 @@ export class AuthorsComponent implements OnInit, OnDestroy {
     { item: 'https://verseghy-gimnazium.net/misc/authors', position: 1, name: 'Fejlesztők' },
   ])
 
-  constructor(private structuredDataService: StructuredDataService, private _titleService: TitleService) {}
+  constructor(private structuredDataService: StructuredDataService, private titleService: TitleService) {}
 
   ngOnInit() {
-    this._titleService.setTitle('Fejlesztők')
+    this.titleService.setTitle('Fejlesztők')
   }
 
   ngOnDestroy() {

@@ -45,11 +45,11 @@ export class EventsComponent implements OnInit, OnDestroy {
   constructor(
     private store: Store<EventsState>,
     private structuredDataService: StructuredDataService,
-    private _titleService: TitleService
+    private titleService: TitleService
   ) {}
 
   ngOnInit() {
-    this._titleService.setTitle('Események')
+    this.titleService.setTitle('Események')
     this.calendarEvents = this.store.pipe(
       select((state) => state[EVENTS_FEATURE_KEY]),
       map((data: EventsState) => {

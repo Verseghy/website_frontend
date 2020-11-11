@@ -34,11 +34,11 @@ export class ColleaguesComponent implements OnInit, OnDestroy {
   constructor(
     private store: Store<ColleaguesState>,
     private structuredDataService: StructuredDataService,
-    private _titleService: TitleService
+    private titleService: TitleService
   ) {}
 
   ngOnInit() {
-    this._titleService.setTitle('Munkatársak')
+    this.titleService.setTitle('Munkatársak')
     this.store.dispatch(new LoadColleagues())
     this.colleagues = this.store.pipe(
       select((state) => state[COLLEAGUES_FEATURE_KEY]),
