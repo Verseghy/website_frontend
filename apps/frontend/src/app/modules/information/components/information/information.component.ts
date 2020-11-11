@@ -37,7 +37,7 @@ export class InformationComponent implements OnInit, OnDestroy {
     tap((page: PageData | null) => {
       if (!page) return
 
-      this._titleService.setTitle(page.title)
+      this.titleService.setTitle(page.title)
 
       if (this.structuredData0 != null) this.structuredDataService.removeStructuredData(this.structuredData0)
       this.structuredData0 = this.structuredDataService.addBreadcrumb([
@@ -55,7 +55,7 @@ export class InformationComponent implements OnInit, OnDestroy {
     private informationFacade: InformationFacade,
     private structuredDataService: StructuredDataService,
     private router: Router,
-    private _titleService: TitleService
+    private titleService: TitleService
   ) {}
 
   ngOnInit(): void {

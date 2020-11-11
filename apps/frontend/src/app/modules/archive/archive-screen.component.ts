@@ -24,11 +24,11 @@ export class ArchiveScreenComponent implements OnInit, OnDestroy {
   constructor(
     private archiveFacade: ArchiveFacade,
     private structuredDataService: StructuredDataService,
-    private _titleService: TitleService
+    private titleService: TitleService
   ) {}
 
   ngOnInit() {
-    this._titleService.setTitle('Archívum')
+    this.titleService.setTitle('Archívum')
     this.archiveFacade.loadArchives()
   }
 

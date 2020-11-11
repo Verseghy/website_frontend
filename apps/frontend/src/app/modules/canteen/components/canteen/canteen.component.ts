@@ -27,11 +27,11 @@ export class CanteenComponent implements OnInit, OnDestroy {
   constructor(
     private store: Store<CanteenState>,
     private structuredDataService: StructuredDataService,
-    private _titleService: TitleService
+    private titleService: TitleService
   ) {}
 
   ngOnInit() {
-    this._titleService.setTitle('Menza')
+    this.titleService.setTitle('Menza')
     this.store.dispatch(new LoadCanteen())
     this.canteen = this.store.pipe(
       select((state) => state[CANTEEN_FEATURE_KEY]),

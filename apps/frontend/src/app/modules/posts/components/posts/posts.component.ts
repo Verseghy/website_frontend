@@ -21,7 +21,7 @@ export class PostsComponent implements OnInit {
     private requestService: RequestService,
     private route: ActivatedRoute,
     private router: Router,
-    private _titleService: TitleService
+    private titleService: TitleService
   ) {}
 
   ngOnInit() {
@@ -41,7 +41,7 @@ export class PostsComponent implements OnInit {
       tap((post: Post | null) => {
         if (!post) return
 
-        this._titleService.setTitle(post.title)
+        this.titleService.setTitle(post.title)
       })
     )
   }
