@@ -10,11 +10,7 @@ import { TitleService } from '../../../../services/title.service'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  constructor(
-    private postsFacade: PostsFacade,
-    private structuredDataService: StructuredDataService,
-    private titleService: TitleService
-  ) {}
+  constructor(private postsFacade: PostsFacade, private structuredDataService: StructuredDataService, private titleService: TitleService) {}
 
   posts$ = this.postsFacade.posts$
   isLoading$ = this.postsFacade.isLoading$
