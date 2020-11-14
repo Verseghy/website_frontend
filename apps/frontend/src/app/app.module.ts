@@ -26,7 +26,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent, ToastComponent, PageNotFoundComponent],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
     RoutingModule,
     HttpClientModule,
