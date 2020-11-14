@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, Inject, PLATFORM_ID } from '@angular/core'
 import { Router } from '@angular/router'
 import { animate, animateChild, group, query, state, style, transition, trigger } from '@angular/animations'
-import { combineLatest, fromEvent, Observable } from 'rxjs'
+import { combineLatest, fromEvent, Observable, of } from 'rxjs'
 import { map, startWith } from 'rxjs/operators'
 import { HeaderService } from '../../services/header.service'
-import { DOCUMENT } from '@angular/common'
+import { DOCUMENT, isPlatformBrowser } from '@angular/common'
 
 const openCloseAnimation = (open: boolean) => {
   return [
@@ -140,13 +140,15 @@ const openCloseAnimation = (open: boolean) => {
 export class HeaderComponent {
   scrollEvent$ = fromEvent(this.document, 'scroll', { passive: true }).pipe(startWith(0))
   resizeEvent$ = globalThis.window ? fromEvent(globalThis.window, 'resize', { passive: true }).pipe(startWith(0)) : new Observable<never>()
-  openHeader$ = combineLatest([this.headerService.useBigHeader$, this.scrollEvent$, this.resizeEvent$]).pipe(
-    map(([bigHeader]) => {
-      if (bigHeader === 'undefined') return 'undefined'
-      if ((globalThis.window && globalThis.window.innerWidth <= 992) || bigHeader === 'false') return 'close'
-      return this.document.documentElement.scrollTop < 64 ? 'open' : 'close'
-    })
-  )
+  openHeader$ = isPlatformBrowser(this.platformID)
+    ? combineLatest([this.headerService.useBigHeader$, this.scrollEvent$, this.resizeEvent$]).pipe(
+        map(([bigHeader]) => {
+          if (bigHeader === 'undefined') return 'undefined'
+          if ((globalThis.window && globalThis.window.innerWidth <= 992) || bigHeader === 'false') return 'close'
+          return this.document.documentElement.scrollTop < 64 ? 'open' : 'close'
+        })
+      )
+    : of('close')
 
   drawer: boolean
   submenu1: boolean
@@ -154,7 +156,12 @@ export class HeaderComponent {
 
   searchTerm: string
 
-  constructor(private router: Router, private headerService: HeaderService, @Inject(DOCUMENT) private document) {}
+  constructor(
+    private router: Router,
+    private headerService: HeaderService,
+    @Inject(DOCUMENT) private document,
+    @Inject(PLATFORM_ID) private platformID
+  ) {}
 
   search(event) {
     if (event.key === 'Enter') {
