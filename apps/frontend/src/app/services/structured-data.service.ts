@@ -79,7 +79,7 @@ export class StructuredDataService {
     script.textContent = data
 
     script.id = `structured-data-${nextElem}`
-    this.document.head.append(script)
+    this.document.head.appendChild(script)
 
     return nextElem
   }

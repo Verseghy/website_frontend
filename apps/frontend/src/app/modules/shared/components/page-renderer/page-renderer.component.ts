@@ -1,5 +1,7 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
+import { ChangeDetectionStrategy, Component, Inject, Input, PLATFORM_ID } from '@angular/core'
 import { DomSanitizer } from '@angular/platform-browser'
+import { isPlatformBrowser } from '@angular/common'
+import { JSDOM } from 'jsdom'
 
 @Component({
   selector: 'verseghy-page-renderer',
@@ -11,15 +13,16 @@ export class PageRendererComponent {
   @Input() title: string
   @Input() data: string
 
-  constructor(private domSanitizer: DomSanitizer) {}
+  constructor(private domSanitizer: DomSanitizer, @Inject(PLATFORM_ID) private platformID: Object) {}
 
   get content() {
-    return this.domSanitizer.bypassSecurityTrustHtml(PageRendererComponent._processCustomTags(this.data))
+    return this.domSanitizer.bypassSecurityTrustHtml(this.processCustomTags(this.data))
   }
 
-  private static _processCustomTags(html: string): string {
+  private processCustomTags(html: string): string {
     if (!html) return ''
 
+    if (!isPlatformBrowser(this.platformID)) return html // TODO(zoltanszepesi): fix this
     const parser = new DOMParser()
     const dom = parser.parseFromString(html, 'text/html')
     const tables = Array.from(dom.getElementsByTagName('table'))

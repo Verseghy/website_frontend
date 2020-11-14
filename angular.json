@@ -122,7 +122,8 @@
           "options": {
             "outputPath": "dist/frontend/server",
             "main": "apps/frontend/server.ts",
-            "tsConfig": "apps/frontend/tsconfig.server.json"
+            "tsConfig": "apps/frontend/tsconfig.server.json",
+            "externalDependencies": ["@firebase/firestore"]
           },
           "configurations": {
             "production": {

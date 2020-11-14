@@ -1,9 +1,10 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core'
+import { ChangeDetectionStrategy, Component, Inject, PLATFORM_ID } from '@angular/core'
 import { Router } from '@angular/router'
 import { animate, animateChild, group, query, state, style, transition, trigger } from '@angular/animations'
-import { combineLatest, fromEvent } from 'rxjs'
+import { combineLatest, fromEvent, Observable } from 'rxjs'
 import { map, startWith } from 'rxjs/operators'
 import { HeaderService } from '../../services/header.service'
+import { DOCUMENT } from '@angular/common'
 
 const openCloseAnimation = (open: boolean) => {
   return [
@@ -137,13 +138,13 @@ const openCloseAnimation = (open: boolean) => {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
-  scrollEvent$ = fromEvent(document, 'scroll', { passive: true }).pipe(startWith(0))
-  resizeEvent$ = fromEvent(window, 'resize', { passive: true }).pipe(startWith(0))
+  scrollEvent$ = fromEvent(this.document, 'scroll', { passive: true }).pipe(startWith(0))
+  resizeEvent$ = globalThis.window ? fromEvent(globalThis.window, 'resize', { passive: true }).pipe(startWith(0)) : new Observable<never>()
   openHeader$ = combineLatest([this.headerService.useBigHeader$, this.scrollEvent$, this.resizeEvent$]).pipe(
     map(([bigHeader]) => {
       if (bigHeader === 'undefined') return 'undefined'
-      if (window.innerWidth <= 992 || bigHeader === 'false') return 'close'
-      return document.documentElement.scrollTop < 64 ? 'open' : 'close'
+      if ((globalThis.window && globalThis.window.innerWidth <= 992) || bigHeader === 'false') return 'close'
+      return this.document.documentElement.scrollTop < 64 ? 'open' : 'close'
     })
   )
 
@@ -153,7 +154,7 @@ export class HeaderComponent {
 
   searchTerm: string
 
-  constructor(private router: Router, private headerService: HeaderService) {}
+  constructor(private router: Router, private headerService: HeaderService, @Inject(DOCUMENT) private document) {}
 
   search(event) {
     if (event.key === 'Enter') {
