@@ -55,10 +55,11 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forRoot(routes, {
-      anchorScrolling: 'enabled',
-      scrollOffset: [0, 70],
-      scrollPositionRestoration: 'top',
-    }),
+    anchorScrolling: 'enabled',
+    scrollOffset: [0, 70],
+    scrollPositionRestoration: 'top',
+    initialNavigation: 'enabled'
+}),
   ],
   exports: [RouterModule],
   declarations: [],
