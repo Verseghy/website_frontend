@@ -11,22 +11,26 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () => import('./modules/login/login.module').then(m => m.LoginModule),
+    loadChildren: () => import('./modules/login/login.module').then((m) => m.LoginModule),
     canActivate: [TimeGuard, AuthGuard],
   },
   {
     path: 'competition',
-    loadChildren: () => import('./modules/competition/competition.module').then(m => m.CompetitionModule),
+    loadChildren: () => import('./modules/competition/competition.module').then((m) => m.CompetitionModule),
     canActivate: [TimeGuard, AuthGuard],
   },
   {
     path: 'waiting',
-    loadChildren: () => import('./modules/waiting/waiting.module').then(m => m.WaitingModule),
+    loadChildren: () => import('./modules/waiting/waiting.module').then((m) => m.WaitingModule),
     canActivate: [TimeGuard, AuthGuard],
   },
   {
     path: 'end',
-    loadChildren: () => import('./modules/end/end.module').then(m => m.EndModule),
+    loadChildren: () => import('./modules/end/end.module').then((m) => m.EndModule),
+  },
+  {
+    path: 'admin',
+    loadChildren: () => import('./modules/admin/admin.module').then((m) => m.AdminModule),
   },
   {
     path: '**',
