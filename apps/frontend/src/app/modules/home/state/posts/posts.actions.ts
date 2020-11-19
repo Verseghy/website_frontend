@@ -3,7 +3,7 @@ import { Post } from '../../../../models/Post'
 
 export const loadPosts = createAction('[home] Load posts', props<{ page: number }>())
 
-export const loadPostsSuccess = createAction('[home] Load Posts Success', props<{ posts: Post[] }>())
+export const loadPostsSuccess = createAction('[home] Load Posts Success', props<{ posts: Post[]; page: number }>())
 
 export const loadPostsFailure = createAction('[Posts] Load Posts Failure', props<{ error: any }>())
 
