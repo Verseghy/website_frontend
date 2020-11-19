@@ -8,23 +8,38 @@ export interface State {
   posts: Post[]
   featuredPosts: Post[]
   loading: boolean
+  pagesLoaded: {
+    [key: number]: boolean
+  }
+  featuredPostsLoaded: boolean
 }
 
 export const initialState: State = {
   posts: [],
   featuredPosts: [],
   loading: true,
+  pagesLoaded: {},
+  featuredPostsLoaded: false,
 }
 
 const postsReducer = createReducer(
   initialState,
 
   on(PostsActions.loadPosts, (state) => ({ ...state })),
-  on(PostsActions.loadPostsSuccess, (state, action) => ({ ...state, posts: [...state.posts, ...action.posts], loading: false })),
+  on(PostsActions.loadPostsSuccess, (state, action) => ({
+    ...state,
+    posts: [...state.posts, ...action.posts],
+    loading: false,
+    pagesLoaded: { ...state.pagesLoaded, [action.page]: true },
+  })),
   on(PostsActions.loadPostsFailure, (state, action) => state),
 
   on(PostsActions.loadFeaturedPosts, (state) => state),
-  on(PostsActions.loadFeaturedPostsSuccess, (state, action) => ({ ...state, featuredPosts: [...state.featuredPosts, ...action.posts] })),
+  on(PostsActions.loadFeaturedPostsSuccess, (state, action) => ({
+    ...state,
+    featuredPosts: [...state.featuredPosts, ...action.posts],
+    featuredPostsLoaded: true,
+  })),
   on(PostsActions.loadFeaturedPostsFailure, (state, action) => state)
 )
 
