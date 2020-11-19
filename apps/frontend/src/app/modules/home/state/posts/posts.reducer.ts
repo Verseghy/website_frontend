@@ -19,11 +19,11 @@ export const initialState: State = {
 const postsReducer = createReducer(
   initialState,
 
-  on(PostsActions.loadPosts, state => ({ ...state, loading: true })),
+  on(PostsActions.loadPosts, (state) => ({ ...state })),
   on(PostsActions.loadPostsSuccess, (state, action) => ({ ...state, posts: [...state.posts, ...action.posts], loading: false })),
   on(PostsActions.loadPostsFailure, (state, action) => state),
 
-  on(PostsActions.loadFeaturedPosts, state => state),
+  on(PostsActions.loadFeaturedPosts, (state) => state),
   on(PostsActions.loadFeaturedPostsSuccess, (state, action) => ({ ...state, featuredPosts: [...state.featuredPosts, ...action.posts] })),
   on(PostsActions.loadFeaturedPostsFailure, (state, action) => state)
 )
