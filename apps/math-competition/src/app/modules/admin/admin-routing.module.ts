@@ -9,7 +9,7 @@ const routes: Routes = [
     component: ListComponent,
   },
   {
-    path: '/edit',
+    path: 'edit/:id',
     component: EditComponent,
   },
 ]
