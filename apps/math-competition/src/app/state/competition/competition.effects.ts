@@ -32,33 +32,27 @@ export class CompetitionEffects {
           .collection<Problem>('problems')
           .stateChanges()
           .pipe(
-            catchError(e => {
+            catchError((e) => {
               console.error(e)
               return EMPTY
             }) // TODO(zoltanszepesi): proper errorhandling
           )
       ),
-      mergeMap(c => {
+      mergeMap((c) => {
         return Promise.all(
-          c.map(async e => {
+          c.map(async (e) => {
             switch (e.type) {
               case 'added': {
                 const problem = e.payload.doc.data()
                 if (problem.hasImage) {
-                  problem.image = await this.afstorage
-                    .ref(`images/${problem.id}.png`)
-                    .getDownloadURL()
-                    .toPromise()
+                  problem.image = await this.afstorage.ref(`images/${problem.id}.png`).getDownloadURL().toPromise()
                 }
                 return problemAdded(problem)
               }
               case 'modified': {
                 const problem = e.payload.doc.data()
                 if (problem.hasImage) {
-                  problem.image = await this.afstorage
-                    .ref(`images/${problem.id}.png`)
-                    .getDownloadURL()
-                    .toPromise()
+                  problem.image = await this.afstorage.ref(`images/${problem.id}.png`).getDownloadURL().toPromise()
                 }
                 return problemModified(problem)
               }
@@ -69,7 +63,7 @@ export class CompetitionEffects {
           })
         )
       }),
-      mergeMap(d => d)
+      mergeMap((d) => d)
     )
   )
 
@@ -78,10 +72,10 @@ export class CompetitionEffects {
       switchMap(([, uid]) => {
         if (uid === '') return of([])
         return this.afs
-          .collection<Team>('teams', ref => ref.where('members', 'array-contains', uid))
+          .collection<Team>('teams', (ref) => ref.where('members', 'array-contains', uid))
           .stateChanges()
       }),
-      map(e => {
+      map((e) => {
         if (e.length) {
           return loadTeamSucceed({ id: e[0].payload.doc.id })
         } else {
@@ -99,14 +93,14 @@ export class CompetitionEffects {
           .collection<Solution>(`teams/${teamID}/solutions`)
           .stateChanges()
           .pipe(
-            catchError(e => {
+            catchError((e) => {
               console.error(e)
               return EMPTY
             })
           )
       }),
-      mergeMap(c => {
-        return c.map(e => {
+      mergeMap((c) => {
+        return c.map((e) => {
           switch (e.type) {
             case 'added':
               return solutionAdded(e.payload.doc.data())
@@ -125,12 +119,29 @@ export class CompetitionEffects {
       combineLatest([this.actions$.pipe(ofType(CompetitionActions.setSolution)), this.competitionFacade.teamID$]).pipe(
         mergeMap(([e, teamID]) => {
           if (teamID === '') return of()
-          return of(
-            this.afs
-              .collection(`teams/${teamID}/solutions`)
-              .doc(String(e.id))
-              .set({ id: e.id, solution: e.solution })
-          )
+          return of(this.afs.collection(`teams/${teamID}/solutions`).doc(String(e.id)).set({ id: e.id, solution: e.solution }))
+        })
+      ),
+    { dispatch: false }
+  )
+
+  setProblem$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(CompetitionActions.setProblem),
+        mergeMap((problem) => {
+          return of(this.afs.collection('problems').doc(problem.id.toString()).set(problem))
+        })
+      ),
+    { dispatch: false }
+  )
+
+  removeProblem$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(CompetitionActions.removeProblem),
+        mergeMap(({ id }) => {
+          return of(this.afs.collection('problems').doc(id.toString()).delete())
         })
       ),
     { dispatch: false }

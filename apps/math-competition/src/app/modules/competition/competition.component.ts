@@ -16,7 +16,7 @@ export class CompetitionComponent implements OnInit {
   loaded = true
   page$ = new BehaviorSubject<number>(0)
   page = 0
-  problems$ = this.competitionFacade.problems$
+  problems$ = this.competitionFacade.mergedSolutionsAndProblems$
   paginated$ = combineLatest([this.problems$, this.page$]).pipe(
     map(([arr, page]) => {
       return arr.slice(page * 10, (page + 1) * 10)
