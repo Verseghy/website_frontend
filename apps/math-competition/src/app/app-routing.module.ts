@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router'
 import { AuthGuard } from './guards/auth.guard'
 import { LandingComponent } from './components/landing/landing.component'
 import { TimeGuard } from './guards/time.guard'
+import { IfNotAdminRedirectGuard } from './guards/if-not-admin-redirect.guard'
+import { IfAdminRedirectGuard } from './guards/if-admin-redirect.guard'
 
 const routes: Routes = [
   {
@@ -17,20 +19,22 @@ const routes: Routes = [
   {
     path: 'competition',
     loadChildren: () => import('./modules/competition/competition.module').then((m) => m.CompetitionModule),
-    canActivate: [TimeGuard, AuthGuard],
+    canActivate: [IfAdminRedirectGuard, TimeGuard, AuthGuard],
   },
   {
     path: 'waiting',
     loadChildren: () => import('./modules/waiting/waiting.module').then((m) => m.WaitingModule),
-    canActivate: [TimeGuard, AuthGuard],
+    canActivate: [IfAdminRedirectGuard, TimeGuard, AuthGuard],
   },
   {
     path: 'end',
     loadChildren: () => import('./modules/end/end.module').then((m) => m.EndModule),
+    canActivate: [IfAdminRedirectGuard],
   },
   {
     path: 'admin',
     loadChildren: () => import('./modules/admin/admin.module').then((m) => m.AdminModule),
+    canActivate: [IfNotAdminRedirectGuard],
   },
   {
     path: '**',
