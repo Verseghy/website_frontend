@@ -2963,7 +2963,7 @@
     enhanced-resolve "4.3.0"
     webpack-sources "1.4.3"
 
-"@nguniversal/builders@^10.1.0":
+"@nguniversal/builders@10.1.0":
   version "10.1.0"
   resolved "https://registry.yarnpkg.com/@nguniversal/builders/-/builders-10.1.0.tgz#1097bec29254e399117f0d827e73ef8af888f221"
   integrity sha512-4GeQ9S7fVMRbj5bwjCE9VVstrYW3MFrqyIwFcbI/l5Oq1kzWFQ3B6hDX1CVEKQYiofgIi1OWDWAhr/ryrQj1yg==
@@ -3277,7 +3277,7 @@
     "@types/qs" "*"
     "@types/range-parser" "*"
 
-"@types/express@^4.17.0":
+"@types/express@4.17.9":
   version "4.17.9"
   resolved "https://registry.yarnpkg.com/@types/express/-/express-4.17.9.tgz#f5f2df6add703ff28428add52bdec8a1091b0a78"
   integrity sha512-SDzEIZInC4sivGIFY4Sz1GG6J9UObPwCInYJjko2jzOf/Imx/dlpume6Xxwj1ORL82tBbmN4cPDIDkLbWHk9hw==
@@ -3327,7 +3327,7 @@
   dependencies:
     "@types/jasmine" "*"
 
-"@types/jsdom@^16.2.5":
+"@types/jsdom@16.2.5":
   version "16.2.5"
   resolved "https://registry.yarnpkg.com/@types/jsdom/-/jsdom-16.2.5.tgz#74ebad438741d249ecb416c5486dcde4217eb66c"
   integrity sha512-k/ZaTXtReAjwWu0clU0KLS53dyqZnA8mm+jwKFeFrvufXgICp+VNbskETFxKKAguv0pkaEKTax5MaRmvalM+TA==
@@ -6913,7 +6913,7 @@ expand-brackets@^2.1.4:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
-express@^4.15.2, express@^4.16.4, express@^4.17.1:
+express@4.17.1, express@^4.16.4, express@^4.17.1:
   version "4.17.1"
   resolved "https://registry.yarnpkg.com/express/-/express-4.17.1.tgz#4491fc38605cf51f8629d39c2b5d026f98a4c134"
   integrity sha512-mHJ9O79RqluphRrcw2X/GTh3k9tVv8YcoyY4Kkh4WDMUYKRZUq0h1o0w2rrrxBqM7VoeUVqgb27xlEMXTnYt4g==
@@ -9004,7 +9004,7 @@ jsbn@~0.1.0:
   resolved "https://registry.yarnpkg.com/jsbn/-/jsbn-0.1.1.tgz#a5e654c2e5a2deb5f201d96cefbca80c0ef2f513"
   integrity sha1-peZUwuWi3rXyAdls77yoDA7y9RM=
 
-jsdom@^16.4.0:
+jsdom@16.4.0, jsdom@^16.4.0:
   version "16.4.0"
   resolved "https://registry.yarnpkg.com/jsdom/-/jsdom-16.4.0.tgz#36005bde2d136f73eee1a830c6d45e55408edddb"
   integrity sha512-lYMm3wYdgPhrl7pDcRmvzPhhrGVBeVhPIqeHjzeiHN3DFmD1RBpbExbi8vU7BJdH8VAZYovR8DMt0PNNDM7k8w==
