@@ -1,1 +1,10 @@
-<p>list works!</p>
+<button (click)="logout()">Logout</button>
+<mat-paginator [length]="length$ | async" [pageSize]="10" [pageSizeOptions]="[10, 25, 100]" (page)="switchPage($event)"> </mat-paginator>
+<div class="problems">
+  <div *ngFor="let problem of problems$ | async; trackBy: trackByFn" class="problem-card">
+    <div class="problem-header">{{ problem.id + 1 }}. feladat</div>
+    <ng-katex-paragraph [paragraph]="problem.text" class="problem-description"></ng-katex-paragraph>
+    <textarea [value]="problem.text" (input)="input($event, problem)"></textarea>
+  </div>
+  <div class="new-problem" (click)="newProblem()">+</div>
+</div>

@@ -24,12 +24,14 @@ import { CompetitionEffects } from './state/competition/competition.effects'
 import { TimeEffects } from './state/time/time.effects'
 import { FormsModule } from '@angular/forms'
 import { AngularFireStorageModule } from '@angular/fire/storage'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 const material = [MdcTypographyModule, MdcButtonModule, MdcSwitchModule]
 
 @NgModule({
   declarations: [AppComponent, LandingComponent],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
