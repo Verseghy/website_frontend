@@ -79,4 +79,8 @@ export class ListComponent implements OnInit, OnDestroy {
   newProblem(): void {
     this.newProblem$.next()
   }
+
+  remove(id: number): void {
+    this.competitionFacade.removeProblem(id)
+  }
 }
