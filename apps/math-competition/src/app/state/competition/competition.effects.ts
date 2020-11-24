@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core'
 import { Actions, createEffect, ofType } from '@ngrx/effects'
 
-import { catchError, exhaustMap, map, mergeMap, switchMap } from 'rxjs/operators'
+import { catchError, concatMap, exhaustMap, map, mergeMap, switchMap, withLatestFrom } from 'rxjs/operators'
 
 import * as CompetitionActions from './competition.actions'
 import { AngularFirestore } from '@angular/fire/firestore'
 import { Problem } from '../../interfaces/problem.interface'
-import { combineLatest, EMPTY, of } from 'rxjs'
+import { combineLatest, EMPTY, forkJoin, of } from 'rxjs'
 import {
   loadTeamSucceed,
   problemAdded,
@@ -21,6 +21,8 @@ import { Team } from '../../interfaces/team.interface'
 import { CompetitionFacade } from './competition.facade'
 import { Solution } from '../../interfaces/solution.interface'
 import { AngularFireStorage } from '@angular/fire/storage'
+import { Store } from '@ngrx/store'
+import { selectProblems } from './competition.selectors'
 
 @Injectable()
 export class CompetitionEffects {
@@ -144,8 +146,30 @@ export class CompetitionEffects {
     () =>
       this.actions$.pipe(
         ofType(CompetitionActions.removeProblem),
-        mergeMap(({ id }) => {
-          return of(this.afs.collection('problems').doc(id.toString()).delete())
+        withLatestFrom(this.store$.select(selectProblems)),
+        concatMap(([{ id }, problems]) => {
+          const removals = []
+          for (let i = id + 1; i < problems[problems.length - 1].id - 1; i++) {
+            const problem = Object.assign({}, problems[i])
+            problem.id = i - 1
+            removals.push(
+              of(
+                this.afs
+                  .collection('problems')
+                  .doc((i - 1).toString())
+                  .set(problem)
+              )
+            )
+          }
+          removals.push(
+            of(
+              this.afs
+                .collection('problems')
+                .doc((problems.length - 1).toString())
+                .delete()
+            )
+          )
+          return forkJoin(removals)
         })
       ),
     { dispatch: false }
@@ -156,6 +180,7 @@ export class CompetitionEffects {
     private afs: AngularFirestore,
     private afstorage: AngularFireStorage,
     private authFacade: AuthFacade,
-    private competitionFacade: CompetitionFacade
+    private competitionFacade: CompetitionFacade,
+    private store$: Store<any>
   ) {}
 }
