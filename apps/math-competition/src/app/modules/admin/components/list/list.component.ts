@@ -1,17 +1,20 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnDestroy, OnInit } from '@angular/core'
 import { AuthFacade } from '../../../../state/auth/auth.facade'
 import { CompetitionFacade } from '../../../../state/competition/competition.facade'
 import { PageEvent } from '@angular/material/paginator'
 import { BehaviorSubject, combineLatest, Subject } from 'rxjs'
-import { debounceTime, map } from 'rxjs/operators'
+import { debounceTime, map, withLatestFrom } from 'rxjs/operators'
 import { Problem } from '../../../../interfaces/problem.interface'
+import { SubSink } from 'subsink'
 
 @Component({
   selector: 'verseghy-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss'],
 })
-export class ListComponent implements OnInit {
+export class ListComponent implements OnInit, OnDestroy {
+  private subs = new SubSink()
+
   pageProperties$ = new BehaviorSubject<PageEvent>({ pageIndex: 0, pageSize: 10, length: 0 })
   length$ = this.competitionFacade.problems$.pipe(map((problems) => problems.length))
   problems$ = combineLatest([this.competitionFacade.problems$, this.pageProperties$]).pipe(
@@ -23,14 +26,34 @@ export class ListComponent implements OnInit {
   )
 
   editProblem$ = new Subject<Problem>()
+  newProblem$ = new Subject<void>()
 
   constructor(private authFacade: AuthFacade, private competitionFacade: CompetitionFacade) {}
 
+  ngOnDestroy(): void {
+    this.subs.unsubscribe()
+  }
+
   ngOnInit(): void {
     this.competitionFacade.loadProblems()
-    this.editProblem$.pipe(debounceTime(1000)).subscribe((problem) => {
+    this.subs.sink = this.editProblem$.pipe(debounceTime(1000)).subscribe((problem) => {
       this.competitionFacade.setProblem(problem)
     })
+    this.subs.sink = this.newProblem$
+      .pipe(
+        withLatestFrom(this.competitionFacade.problems$),
+        map(([_, problems]) => {
+          return problems
+        })
+      )
+      .subscribe((problems) => {
+        const newID = problems[problems.length - 1].id + 1
+        const newProblem: Problem = {
+          id: newID,
+          text: '',
+        }
+        this.competitionFacade.setProblem(newProblem)
+      })
   }
 
   logout() {
@@ -54,6 +77,6 @@ export class ListComponent implements OnInit {
   }
 
   newProblem(): void {
-    console.log('new problem')
+    this.newProblem$.next()
   }
 }

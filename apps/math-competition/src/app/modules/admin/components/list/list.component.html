@@ -3,6 +3,7 @@
 <div class="problems">
   <div *ngFor="let problem of problems$ | async; trackBy: trackByFn" class="problem-card">
     <div class="problem-header">{{ problem.id + 1 }}. feladat</div>
+    <img class="problem-image" *ngIf="problem.hasImage" [src]="problem.image" alt="" />
     <ng-katex-paragraph [paragraph]="problem.text" class="problem-description"></ng-katex-paragraph>
     <textarea [value]="problem.text" (input)="input($event, problem)"></textarea>
   </div>
