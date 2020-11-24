@@ -83,4 +83,12 @@ export class ListComponent implements OnInit, OnDestroy {
   remove(id: number): void {
     this.competitionFacade.removeProblem(id)
   }
+
+  blur(event: Event, problem: Problem): void {
+    const newProblem = Object.assign({}, problem)
+    const target = event.target as HTMLTextAreaElement
+    newProblem.text = target.value
+
+    this.competitionFacade.setProblem(newProblem)
+  }
 }
