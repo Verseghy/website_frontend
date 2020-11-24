@@ -47,17 +47,17 @@ export class CompetitionEffects {
                 if (problem.hasImage) {
                   problem.image = await this.afstorage.ref(`images/${problem.id}.png`).getDownloadURL().toPromise()
                 }
-                return problemAdded(problem)
+                return problemAdded({ problem })
               }
               case 'modified': {
                 const problem = e.payload.doc.data()
                 if (problem.hasImage) {
                   problem.image = await this.afstorage.ref(`images/${problem.id}.png`).getDownloadURL().toPromise()
                 }
-                return problemModified(problem)
+                return problemModified({ problem })
               }
               case 'removed': {
-                return problemRemoved(e.payload.doc.data())
+                return problemRemoved({ problem: e.payload.doc.data() })
               }
             }
           })
@@ -103,11 +103,11 @@ export class CompetitionEffects {
         return c.map((e) => {
           switch (e.type) {
             case 'added':
-              return solutionAdded(e.payload.doc.data())
+              return solutionAdded({ solution: e.payload.doc.data() })
             case 'modified':
-              return solutionModified(e.payload.doc.data())
+              return solutionModified({ solution: e.payload.doc.data() })
             case 'removed':
-              return solutionRemoved(e.payload.doc.data())
+              return solutionRemoved({ solution: e.payload.doc.data() })
           }
         })
       })
@@ -117,9 +117,9 @@ export class CompetitionEffects {
   setSolution$ = createEffect(
     () =>
       combineLatest([this.actions$.pipe(ofType(CompetitionActions.setSolution)), this.competitionFacade.teamID$]).pipe(
-        mergeMap(([e, teamID]) => {
+        mergeMap(([{ solution }, teamID]) => {
           if (teamID === '') return of()
-          return of(this.afs.collection(`teams/${teamID}/solutions`).doc(String(e.id)).set({ id: e.id, solution: e.solution }))
+          return of(this.afs.collection(`teams/${teamID}/solutions`).doc(String(solution.id)).set({ id: solution.id, solution }))
         })
       ),
     { dispatch: false }
@@ -129,9 +129,13 @@ export class CompetitionEffects {
     () =>
       this.actions$.pipe(
         ofType(CompetitionActions.setProblem),
-        mergeMap((problem) => {
+        mergeMap(({ problem }) => {
           return of(this.afs.collection('problems').doc(problem.id.toString()).set(problem))
-        })
+        }),
+        catchError((err) => {
+          console.log(err)
+          return of()
+        }) // TODO: better errorhandling
       ),
     { dispatch: false }
   )
