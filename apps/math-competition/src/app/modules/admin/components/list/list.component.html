@@ -5,7 +5,7 @@
     <div class="problem-header">{{ problem.id + 1 }}. feladat</div>
     <img class="problem-image" *ngIf="problem.hasImage" [src]="problem.image" alt="" />
     <ng-katex-paragraph [paragraph]="problem.text" class="problem-description"></ng-katex-paragraph>
-    <textarea [value]="problem.text" (input)="input($event, problem)"></textarea>
+    <textarea [value]="problem.text" (input)="input($event, problem)" (blur)="blur($event, problem)"></textarea>
     <button (click)="remove(problem.id)" mat-stroked-button color="warn" class="remove-button">Törlés</button>
   </div>
   <div class="new-problem" (click)="newProblem()">+</div>
