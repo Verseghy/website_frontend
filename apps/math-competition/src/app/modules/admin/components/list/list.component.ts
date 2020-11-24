@@ -45,11 +45,7 @@ export class ListComponent implements OnInit {
     const target = event.target as HTMLTextAreaElement
     newProblem.text = target.value
 
-    // TODO: remove this
-    // @ts-ignore
-    delete newProblem.type
-
-    this.competitionFacade.setProblem(problem)
+    this.competitionFacade.setProblem(newProblem)
   }
 
   newProblem(): void {

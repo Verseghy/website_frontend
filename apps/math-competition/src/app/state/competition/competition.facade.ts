@@ -25,11 +25,11 @@ export class CompetitionFacade {
   }
 
   sendSolution(id: number, solution: number) {
-    this.store$.dispatch(setSolution({ id, solution }))
+    this.store$.dispatch(setSolution({ solution: { id, solution } }))
   }
 
   setProblem(problem: Problem) {
-    this.store$.dispatch(setProblem(problem))
+    this.store$.dispatch(setProblem({ problem }))
   }
 
   removeProblem(id: number) {

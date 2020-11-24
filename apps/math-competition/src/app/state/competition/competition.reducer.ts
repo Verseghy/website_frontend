@@ -22,30 +22,30 @@ const competitionReducer = createReducer(
 
   on(CompetitionActions.loadTeamSucceed, (state, { id }) => ({ ...state, teamID: id })),
 
-  on(CompetitionActions.problemAdded, (state, payload) => ({ ...state, problems: [...state.problems, payload] })),
-  on(CompetitionActions.problemModified, (state, payload) => ({
+  on(CompetitionActions.problemAdded, (state, { problem }) => ({ ...state, problems: [...state.problems, problem] })),
+  on(CompetitionActions.problemModified, (state, { problem }) => ({
     ...state,
-    problems: state.problems.map(e => {
-      if (e.id !== payload.id) return e
-      return payload
+    problems: state.problems.map((e) => {
+      if (e.id !== problem.id) return e
+      return problem
     }),
   })),
-  on(CompetitionActions.problemRemoved, (state, payload) => ({
+  on(CompetitionActions.problemRemoved, (state, { problem }) => ({
     ...state,
-    problems: state.problems.filter(e => e.id !== payload.id),
+    problems: state.problems.filter((e) => e.id !== problem.id),
   })),
 
-  on(CompetitionActions.solutionAdded, (state, payload) => ({ ...state, solutions: [...state.solutions, payload] })),
-  on(CompetitionActions.solutionModified, (state, payload) => ({
+  on(CompetitionActions.solutionAdded, (state, { solution }) => ({ ...state, solutions: [...state.solutions, solution] })),
+  on(CompetitionActions.solutionModified, (state, { solution }) => ({
     ...state,
-    solutions: state.solutions.map(e => {
-      if (e.id !== payload.id) return e
-      return payload
+    solutions: state.solutions.map((e) => {
+      if (e.id !== solution.id) return e
+      return solution
     }),
   })),
-  on(CompetitionActions.solutionRemoved, (state, payload) => ({
+  on(CompetitionActions.solutionRemoved, (state, { solution }) => ({
     ...state,
-    solutions: state.solutions.filter(e => e.id !== payload.id),
+    solutions: state.solutions.filter((e) => e.id !== solution.id),
   }))
 )
 

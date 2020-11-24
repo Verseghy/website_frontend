@@ -8,22 +8,22 @@ export const loadTeamSucceed = createAction('[Competition] Load Team Succeed', p
 
 export const loadProblems = createAction('[Competition] Load Problems')
 
-export const problemAdded = createAction('[Competition] Problem Added', props<Problem>())
+export const problemAdded = createAction('[Competition] Problem Added', props<{ problem: Problem }>())
 
-export const problemModified = createAction('[Competition] Problem Modified', props<Problem>())
+export const problemModified = createAction('[Competition] Problem Modified', props<{ problem: Problem }>())
 
-export const problemRemoved = createAction('[Competition] Problem Removed', props<Problem>())
+export const problemRemoved = createAction('[Competition] Problem Removed', props<{ problem: Problem }>())
 
-export const setProblem = createAction('[Competition] Problem Set', props<Problem>())
+export const setProblem = createAction('[Competition] Problem Set', props<{ problem: Problem }>())
 
 export const removeProblem = createAction('[Competition] Problem Remove', props<{ id: number }>())
 
 export const loadSolutions = createAction('[Competition] Load Solutions')
 
-export const solutionAdded = createAction('[Competition] Solutions Added', props<Solution>())
+export const solutionAdded = createAction('[Competition] Solutions Added', props<{ solution: Solution }>())
 
-export const solutionModified = createAction('[Competition] Solutions Modified', props<Solution>())
+export const solutionModified = createAction('[Competition] Solutions Modified', props<{ solution: Solution }>())
 
-export const solutionRemoved = createAction('[Competition] Solutions Removed', props<Solution>())
+export const solutionRemoved = createAction('[Competition] Solutions Removed', props<{ solution: Solution }>())
 
-export const setSolution = createAction('[Competition] Solution Set', props<Solution>())
+export const setSolution = createAction('[Competition] Solution Set', props<{ solution: Solution }>())
