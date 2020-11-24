@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core'
 import { AuthFacade } from '../../../../state/auth/auth.facade'
 import { CompetitionFacade } from '../../../../state/competition/competition.facade'
 import { PageEvent } from '@angular/material/paginator'
-import { BehaviorSubject, combineLatest } from 'rxjs'
-import { map } from 'rxjs/operators'
+import { BehaviorSubject, combineLatest, Subject } from 'rxjs'
+import { debounceTime, map } from 'rxjs/operators'
 import { Problem } from '../../../../interfaces/problem.interface'
 
 @Component({
@@ -22,10 +22,15 @@ export class ListComponent implements OnInit {
     })
   )
 
+  editProblem$ = new Subject<Problem>()
+
   constructor(private authFacade: AuthFacade, private competitionFacade: CompetitionFacade) {}
 
   ngOnInit(): void {
     this.competitionFacade.loadProblems()
+    this.editProblem$.pipe(debounceTime(1000)).subscribe((problem) => {
+      this.competitionFacade.setProblem(problem)
+    })
   }
 
   logout() {
@@ -45,7 +50,7 @@ export class ListComponent implements OnInit {
     const target = event.target as HTMLTextAreaElement
     newProblem.text = target.value
 
-    this.competitionFacade.setProblem(newProblem)
+    this.editProblem$.next(newProblem)
   }
 
   newProblem(): void {
