@@ -1,7 +1,7 @@
-import { Component, OnDestroy, OnInit } from '@angular/core'
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
 import { AuthFacade } from '../../../../state/auth/auth.facade'
 import { CompetitionFacade } from '../../../../state/competition/competition.facade'
-import { PageEvent } from '@angular/material/paginator'
+import { MatPaginator, PageEvent } from '@angular/material/paginator'
 import { BehaviorSubject, combineLatest, Subject } from 'rxjs'
 import { debounceTime, map, withLatestFrom } from 'rxjs/operators'
 import { Problem } from '../../../../interfaces/problem.interface'
@@ -27,6 +27,8 @@ export class ListComponent implements OnInit, OnDestroy {
 
   editProblem$ = new Subject<Problem>()
   newProblem$ = new Subject<void>()
+
+  @ViewChild('paginator') paginator: MatPaginator
 
   constructor(private authFacade: AuthFacade, private competitionFacade: CompetitionFacade) {}
 
@@ -54,6 +56,10 @@ export class ListComponent implements OnInit, OnDestroy {
         }
         this.competitionFacade.setProblem(newProblem)
       })
+
+    this.subs.sink = this.competitionFacade.setProblemSucces$.subscribe(() => {
+      this.paginator.lastPage()
+    })
   }
 
   logout() {
