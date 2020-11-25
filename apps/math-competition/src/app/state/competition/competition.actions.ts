@@ -15,6 +15,8 @@ export const problemModified = createAction('[Competition] Problem Modified', pr
 export const problemRemoved = createAction('[Competition] Problem Removed', props<{ problem: Problem }>())
 
 export const setProblem = createAction('[Competition] Problem Set', props<{ problem: Problem }>())
+export const setProblemSuccess = createAction('[Competition] Problem Set Success', props<{ problem: Problem }>())
+export const setProblemFailure = createAction('[Competition] Problem Set Failure', props<{ problem: Problem; error: any }>())
 
 export const removeProblem = createAction('[Competition] Problem Remove', props<{ id: number }>())
 

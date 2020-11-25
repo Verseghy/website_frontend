@@ -6,12 +6,14 @@ import { catchError, concatMap, exhaustMap, map, mergeMap, switchMap, withLatest
 import * as CompetitionActions from './competition.actions'
 import { AngularFirestore } from '@angular/fire/firestore'
 import { Problem } from '../../interfaces/problem.interface'
-import { combineLatest, EMPTY, forkJoin, of } from 'rxjs'
+import { combineLatest, EMPTY, forkJoin, from, of } from 'rxjs'
 import {
   loadTeamSucceed,
   problemAdded,
   problemModified,
   problemRemoved,
+  setProblemFailure,
+  setProblemSuccess,
   solutionAdded,
   solutionModified,
   solutionRemoved,
@@ -121,25 +123,31 @@ export class CompetitionEffects {
       combineLatest([this.actions$.pipe(ofType(CompetitionActions.setSolution)), this.competitionFacade.teamID$]).pipe(
         mergeMap(([{ solution }, teamID]) => {
           if (teamID === '') return of()
-          return of(this.afs.collection(`teams/${teamID}/solutions`).doc(String(solution.id)).set({ id: solution.id, solution }))
+          return from(this.afs.collection(`teams/${teamID}/solutions`).doc(String(solution.id)).set({ id: solution.id, solution }))
         })
       ),
     { dispatch: false }
   )
 
-  setProblem$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(CompetitionActions.setProblem),
-        mergeMap(({ problem }) => {
-          return of(this.afs.collection('problems').doc(problem.id.toString()).set(problem))
-        }),
-        catchError((err) => {
-          console.log(err)
-          return of()
-        }) // TODO: better errorhandling
-      ),
-    { dispatch: false }
+  setProblem$ = createEffect(() =>
+    // @ts-ignore
+    this.actions$.pipe(
+      ofType(CompetitionActions.setProblem),
+      mergeMap(({ problem }) => {
+        return from(this.afs.collection('problems').doc(problem.id.toString()).set(problem)).pipe(
+          map(() => {
+            return setProblemSuccess({ problem })
+          }),
+          catchError((error) => {
+            return of(setProblemFailure({ problem, error }))
+          })
+        )
+      }),
+      catchError((err) => {
+        console.log(err)
+        return of()
+      })
+    )
   )
 
   removeProblem$ = createEffect(
@@ -153,7 +161,7 @@ export class CompetitionEffects {
             const problem = Object.assign({}, problems[i])
             problem.id = i - 1
             removals.push(
-              of(
+              from(
                 this.afs
                   .collection('problems')
                   .doc((i - 1).toString())
@@ -162,7 +170,7 @@ export class CompetitionEffects {
             )
           }
           removals.push(
-            of(
+            from(
               this.afs
                 .collection('problems')
                 .doc((problems.length - 1).toString())
