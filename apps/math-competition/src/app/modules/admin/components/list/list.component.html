@@ -1,5 +1,11 @@
 <button (click)="logout()">Logout</button>
-<mat-paginator [length]="length$ | async" [pageSize]="10" [pageSizeOptions]="[10, 25, 100]" (page)="switchPage($event)"> </mat-paginator>
+<mat-paginator
+  [length]="length$ | async"
+  [pageSize]="10"
+  [pageSizeOptions]="[10, 25, 100]"
+  (page)="switchPage($event)"
+  #paginator
+></mat-paginator>
 <div class="problems">
   <div *ngFor="let problem of problems$ | async; trackBy: trackByFn" class="problem-card">
     <div class="problem-header">{{ problem.id + 1 }}. feladat</div>
