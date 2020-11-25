@@ -14,7 +14,7 @@ export class CompetitionFacade {
   problems$ = this.store$.pipe(select(selectProblems))
   mergedSolutionsAndProblems$: Observable<Merged[]> = this.store$.pipe(select(selectMerged))
   teamID$ = this.store$.pipe(select(selectTeam))
-  setProblemSucces$ = this.actions$.pipe(ofType(setProblemSuccess))
+  setProblemSuccess$ = this.actions$.pipe(ofType(setProblemSuccess))
 
   loadProblems() {
     this.store$.dispatch(loadProblems())

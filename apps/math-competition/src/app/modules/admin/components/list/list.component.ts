@@ -57,7 +57,7 @@ export class ListComponent implements OnInit, OnDestroy {
         this.competitionFacade.setProblem(newProblem)
       })
 
-    this.subs.sink = this.competitionFacade.setProblemSucces$.subscribe(() => {
+    this.subs.sink = this.competitionFacade.setProblemSuccess$.subscribe(() => {
       this.paginator.lastPage()
     })
   }
