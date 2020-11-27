@@ -154,31 +154,8 @@ export class CompetitionEffects {
     () =>
       this.actions$.pipe(
         ofType(CompetitionActions.removeProblem),
-        withLatestFrom(this.store$.select(selectProblems)),
-        concatMap(([{ id }, problems]) => {
-          const removals = []
-          for (let i = id + 1; i <= problems[problems.length - 1].id; i++) {
-            const problem = Object.assign({}, problems[i])
-            problem.id = i - 1
-            removals.push(
-              from(
-                this.afs
-                  .collection('problems')
-                  .doc((i - 1).toString())
-                  .set(problem)
-              )
-            )
-          }
-          return forkJoin(removals).pipe(
-            concatMap(() =>
-              from(
-                this.afs
-                  .collection('problems')
-                  .doc((problems.length - 1).toString())
-                  .delete()
-              )
-            )
-          )
+        concatMap(({ id }) => {
+          return from(this.afs.collection('problems').doc(id.toString()).delete())
         })
       ),
     { dispatch: false }
