@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { Actions, createEffect, ofType } from '@ngrx/effects'
 
-import { catchError, concatMap, exhaustMap, map, mergeMap, switchMap, withLatestFrom } from 'rxjs/operators'
+import { catchError, concatMap, exhaustMap, map, mergeMap, switchMap, tap, withLatestFrom } from 'rxjs/operators'
 
 import * as CompetitionActions from './competition.actions'
 import { AngularFirestore } from '@angular/fire/firestore'
@@ -169,15 +169,16 @@ export class CompetitionEffects {
               )
             )
           }
-          removals.push(
-            from(
-              this.afs
-                .collection('problems')
-                .doc((problems.length - 1).toString())
-                .delete()
+          return forkJoin(removals).pipe(
+            concatMap(() =>
+              from(
+                this.afs
+                  .collection('problems')
+                  .doc((problems.length - 1).toString())
+                  .delete()
+              )
             )
           )
-          return forkJoin(removals)
         })
       ),
     { dispatch: false }
