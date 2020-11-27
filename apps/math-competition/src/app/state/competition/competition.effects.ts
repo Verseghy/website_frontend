@@ -157,7 +157,7 @@ export class CompetitionEffects {
         withLatestFrom(this.store$.select(selectProblems)),
         concatMap(([{ id }, problems]) => {
           const removals = []
-          for (let i = id + 1; i < problems[problems.length - 1].id - 1; i++) {
+          for (let i = id + 1; i <= problems[problems.length - 1].id; i++) {
             const problem = Object.assign({}, problems[i])
             problem.id = i - 1
             removals.push(
