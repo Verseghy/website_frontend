@@ -7,12 +7,14 @@
   #paginator
 ></mat-paginator>
 <div class="problems">
-  <div *ngFor="let problem of problems$ | async; trackBy: trackByFn" class="problem-card">
+  <div *ngFor="let problem of problems$ | async; trackBy: trackByFn; let last = last" class="problem-card">
     <div class="problem-header">{{ problem.id + 1 }}. feladat</div>
     <img class="problem-image" *ngIf="problem.hasImage" [src]="problem.image" alt="" />
     <ng-katex-paragraph [paragraph]="problem.text" class="problem-description"></ng-katex-paragraph>
     <textarea [value]="problem.text" (input)="input($event, problem)" (blur)="blur($event, problem)"></textarea>
-    <button (click)="remove(problem.id)" mat-stroked-button color="warn" class="remove-button">Törlés</button>
+    <button *ngIf="problem.id == (length$ | async) - 1" (click)="remove(problem.id)" mat-stroked-button color="warn" class="remove-button">
+      Törlés
+    </button>
   </div>
   <div class="new-problem" (click)="newProblem()">+</div>
 </div>
