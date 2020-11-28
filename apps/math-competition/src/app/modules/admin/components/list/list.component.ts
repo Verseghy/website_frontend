@@ -3,7 +3,7 @@ import { AuthFacade } from '../../../../state/auth/auth.facade'
 import { CompetitionFacade } from '../../../../state/competition/competition.facade'
 import { MatPaginator, PageEvent } from '@angular/material/paginator'
 import { BehaviorSubject, combineLatest, Subject } from 'rxjs'
-import { debounceTime, map, withLatestFrom } from 'rxjs/operators'
+import { debounceTime, map, withLatestFrom, pairwise } from 'rxjs/operators'
 import { Problem } from '../../../../interfaces/problem.interface'
 import { SubSink } from 'subsink'
 
@@ -57,8 +57,8 @@ export class ListComponent implements OnInit, OnDestroy {
         this.competitionFacade.setProblem(newProblem)
       })
 
-    this.subs.sink = this.competitionFacade.setProblemSuccess$.subscribe(() => {
-      this.paginator.lastPage()
+    this.subs.sink = this.competitionFacade.setProblemSuccess$.pipe(withLatestFrom(this.length$.pipe(pairwise()))).subscribe(([_, b]) => {
+      if (b[0] !== b[1]) this.paginator.lastPage()
     })
   }
 
