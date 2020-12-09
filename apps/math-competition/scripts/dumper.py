@@ -16,24 +16,28 @@ def save_database(teams_handle, outputfile, heading, ids):
         if heading:
             writer.writerow(["Name", *ids])
         for team in teams:
-            writer.writerow([team["name"],*(team["submits"].get(key,None) for key in ids)])
+            writer.writerow([team["name"], *(team["submits"].get(key, None) for key in ids)])
 
 
 def main():
     DEFAULTS = {
-                "key": "./serviceAccountKey.json",
-                }
+        "key": "./serviceAccountKey.json",
+    }
 
-    parser = argparse.ArgumentParser(description='Download and save teams answers to file', epilog="Made by László Baráth (Sasszem), 2018")
+    parser = argparse.ArgumentParser(description='Download and save teams answers to file',
+                                     epilog="Made by László Baráth (Sasszem), 2018")
     parser.add_argument('output', help='Output CSV file')
-    parser.add_argument('--key', help='Account key JSON file. Defaults to "{}"'.format(DEFAULTS["key"]), default=DEFAULTS["key"])
-    parser.add_argument('-v','--verbose', help='Enable additional logging', action="store_true", dest="verbose")
-    parser.add_argument('--no-heading',help='Disable the generation of a first heading row in the report', dest="heading", action="store_false")
+    parser.add_argument('--key', help='Account key JSON file. Defaults to "{}"'.format(DEFAULTS["key"]),
+                        default=DEFAULTS["key"])
+    parser.add_argument('-v', '--verbose', help='Enable additional logging', action="store_true", dest="verbose")
+    parser.add_argument('--no-heading', help='Disable the generation of a first heading row in the report',
+                        dest="heading", action="store_false")
     args = parser.parse_args()
 
     db = utils.make_connection(args.key)
     ids = get_problem_ids(db)
     save_database(db.collection("teams"), args.output, args.heading, ids)
 
-if __name__=="__main__":
+
+if __name__ == "__main__":
     main()
