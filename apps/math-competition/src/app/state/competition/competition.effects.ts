@@ -123,7 +123,9 @@ export class CompetitionEffects {
       combineLatest([this.actions$.pipe(ofType(CompetitionActions.setSolution)), this.competitionFacade.teamID$]).pipe(
         mergeMap(([{ solution }, teamID]) => {
           if (teamID === '') return of()
-          return from(this.afs.collection(`teams/${teamID}/solutions`).doc(String(solution.id)).set({ id: solution.id, solution }))
+          return from(
+            this.afs.collection(`teams/${teamID}/solutions`).doc(String(solution.id)).set({ id: solution.id, solution: solution.solution })
+          )
         })
       ),
     { dispatch: false }
