@@ -21,7 +21,7 @@ def save_database(teams_handle, outputfile, heading, ids):
 
 def main():
     DEFAULTS = {
-        "key": "./serviceAccountKey.json",
+        "key": "./admin-adder/serviceAccountKey.json",
     }
 
     parser = argparse.ArgumentParser(description='Download and save teams answers to file',
