@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
 import { BehaviorSubject, combineLatest } from 'rxjs'
 import { map } from 'rxjs/operators'
 import { AuthFacade } from '../../state/auth/auth.facade'
@@ -11,6 +11,7 @@ import { AngularFireStorage } from '@angular/fire/storage'
   selector: 'verseghy-competition',
   templateUrl: './competition.component.html',
   styleUrls: ['./competition.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CompetitionComponent implements OnInit {
   loaded = true

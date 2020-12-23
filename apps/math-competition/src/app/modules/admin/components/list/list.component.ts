@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
 import { AuthFacade } from '../../../../state/auth/auth.facade'
 import { CompetitionFacade } from '../../../../state/competition/competition.facade'
 import { MatPaginator, PageEvent } from '@angular/material/paginator'
@@ -11,6 +11,7 @@ import { SubSink } from 'subsink'
   selector: 'verseghy-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ListComponent implements OnInit, OnDestroy {
   private subs = new SubSink()

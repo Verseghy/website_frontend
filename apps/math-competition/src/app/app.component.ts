@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core'
 import { AuthFacade } from './state/auth/auth.facade'
 import { TimeFacade } from './state/time/time.facade'
 import { DOCUMENT } from '@angular/common'
@@ -7,6 +7,7 @@ import { DOCUMENT } from '@angular/common'
   selector: 'verseghy-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit {
   constructor(private authFacade: AuthFacade, private timeFacade: TimeFacade, @Inject(DOCUMENT) private document) {}
