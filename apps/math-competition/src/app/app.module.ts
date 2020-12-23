@@ -29,11 +29,13 @@ import { TimeEffects } from './state/time/time.effects'
 import { FormsModule } from '@angular/forms'
 import { AngularFireStorageModule } from '@angular/fire/storage'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { CheckboxComponent } from './components/checkbox/checkbox.component'
+import { ButtonComponent } from './components/button/button.component'
 
 const material = [MdcTypographyModule, MdcButtonModule, MdcSwitchModule]
 
 @NgModule({
-  declarations: [AppComponent, LandingComponent],
+  declarations: [AppComponent, LandingComponent, CheckboxComponent, ButtonComponent],
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
