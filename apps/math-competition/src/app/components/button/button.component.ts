@@ -1,12 +1,10 @@
-import { Component, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component } from '@angular/core'
 
 @Component({
   selector: 'verseghy-button',
   templateUrl: './button.component.html',
-  styleUrls: ['./button.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ButtonComponent implements OnInit {
+export class ButtonComponent {
   constructor() {}
-
-  ngOnInit(): void {}
 }
