@@ -1,10 +1,11 @@
-import { Component, Inject, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core'
 import { DOCUMENT } from '@angular/common'
 
 @Component({
   selector: 'verseghy-landing',
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LandingComponent implements OnInit {
   get darkValue(): boolean {

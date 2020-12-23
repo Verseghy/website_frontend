@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
 import { combineLatest, interval } from 'rxjs'
 import { TimeFacade } from '../../state/time/time.facade'
 import { map, startWith } from 'rxjs/operators'
@@ -9,6 +9,7 @@ import { Router } from '@angular/router'
   selector: 'verseghy-waiting',
   templateUrl: './waiting.component.html',
   styleUrls: ['./waiting.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class WaitingComponent implements OnInit {
   time$ = combineLatest([interval(1000), this.timeFacade.startTime$]).pipe(

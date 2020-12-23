@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
 import { FormBuilder, Validators } from '@angular/forms'
 import { AuthFacade } from '../../../../state/auth/auth.facade'
 
@@ -6,6 +6,7 @@ import { AuthFacade } from '../../../../state/auth/auth.facade'
   selector: 'verseghy-loginscreen',
   templateUrl: './loginscreen.component.html',
   styleUrls: ['./loginscreen.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginscreenComponent implements OnInit {
   loginError$ = this.authFacade.loginError$
