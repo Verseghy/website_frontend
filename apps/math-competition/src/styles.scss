@@ -1,114 +1,22 @@
-/* You can add global styles to this file, and also import other style files */
-@use '@material/theme' with (
-  $primary: #1a73e8,
-  $secondary: #0f9d58
-);
-
-// MDC Styles
-@use '@material/typography/mdc-typography';
-@use '@material/switch/mdc-switch';
-@use '@material/button/mdc-button';
-@use '@material/textfield/mdc-text-field';
-
-// MDC mixins
-@use '@material/textfield/_index' as textfield;
-@use '@material/button/_index' as button;
-
-@use '@angular-mdc/theme/material';
-@import 'katex/dist/katex.css';
-
-@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import 'tailwindcss/screens';
 
 * {
-  margin: 0;
-  padding: 0;
-}
-
-html,
-body {
-  width: 100%;
-  min-height: 100vh;
-  background-color: #fff;
-  --mdc-theme-primary: #1a73e8;
-  --mdc-theme-secondary: #0f9d58;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html {
-  box-sizing: border-box;
+  @apply antialiased text-gray-900 leading-tight;
 }
 
 body {
-  transition: color, background-color 300ms;
+  @apply bg-gray-100 dark:bg-black dark:text-white transition-colors;
 }
 
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-}
-
-mjx-container:focus {
-  outline: 0;
-}
-
-body.dark-mode {
-  background: #121212;
-  color: rgba(255, 255, 255, 0.87);
-  --mdc-theme-primary: #01579b;
-  --mdc-theme-secondary: #33691e;
-  --mdc-theme-error: #f44336;
-  --mdc-theme-text-primary-on-background: rgba(255, 255, 255, 0.87);
-
-  .container,
-  .problem-card,
-  .problem-header {
-    border-color: #424242 !important;
-  }
-
-  input::placeholder {
-    color: #616161;
-  }
-
-  button[mdc-button] {
-    @include button.disabled-ink-color(#868686);
-  }
-
-  mdc-text-field {
-    @include textfield.ink-color(#fff);
-    @include textfield.label-color(#9e9e9e);
-    @include textfield.caret-color(#fff);
-
-    @include textfield.outline-color(#424242);
-    @include textfield.hover-outline-color(#fff);
-
-    @include textfield.placeholder-color(#868686);
-  }
-
-  verseghy-landing {
-    h3 {
-      color: #fff;
-    }
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .katex-display > .katex {
-    display: inline-block;
-    white-space: nowrap;
-    max-width: 100%;
-    overflow-x: scroll;
-    text-align: initial;
-  }
-
-  .katex {
-    font: normal 1.21em KaTeX_Main, Times New Roman, serif;
-    line-height: 1.2;
-    white-space: normal;
-    text-indent: 0;
-  }
-
-  .katex .base {
-    margin-top: 2px;
-    margin-bottom: 2px;
+@layer base {
+  h1 {
+    @apply text-3xl;
   }
 }

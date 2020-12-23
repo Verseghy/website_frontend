@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
       }
     }
     if (localStorage.getItem('dark-mode') === 'true') {
-      this.document.body.classList.add('dark-mode')
+      this.document.querySelector('html').classList.add('dark')
     }
   }
 }
