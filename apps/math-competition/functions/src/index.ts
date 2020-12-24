@@ -20,7 +20,7 @@ export const rate = functions
       error: any
     }
 
-    const req = request.body as RateRequest
+    const req = request.rawBody as RateRequest
     const res = {} as RateResponse
 
     try {
