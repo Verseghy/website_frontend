@@ -6,9 +6,9 @@ import { environment } from '../environments/environment'
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client'
 import { LoadingBarRouterModule } from '@ngx-loading-bar/router'
 
-import { USE_EMULATOR as USE_AUTH_EMULATOR } from '@angular/fire/auth';
-import { USE_EMULATOR as USE_FIRESTORE_EMULATOR } from '@angular/fire/firestore';
-import { USE_EMULATOR as USE_FUNCTIONS_EMULATOR } from '@angular/fire/functions';
+import { USE_EMULATOR as USE_AUTH_EMULATOR } from '@angular/fire/auth'
+import { USE_EMULATOR as USE_FIRESTORE_EMULATOR } from '@angular/fire/firestore'
+import { USE_EMULATOR as USE_FUNCTIONS_EMULATOR } from '@angular/fire/functions'
 
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'

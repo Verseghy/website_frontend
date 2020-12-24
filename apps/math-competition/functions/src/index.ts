@@ -29,10 +29,7 @@ export const rate = functions
       if (req.web) document.web = req.web
       if (req.feedback) document.feedback = req.feedback
 
-      await admin
-        .firestore()
-        .collection('ratings')
-        .add(document)
+      await admin.firestore().collection('ratings').add(document)
 
       res.ok = true
       response.status(200).send(res)
