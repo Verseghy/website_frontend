@@ -22,6 +22,7 @@ module.exports = (isProd) => ({
   variants: {
     extend: {
       transitionProperty: ['motion-safe'],
+      borderWidth: ['focus'],
     },
   },
   plugins: [],
