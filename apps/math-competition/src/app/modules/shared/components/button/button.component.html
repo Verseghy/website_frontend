@@ -1,5 +1,15 @@
 <button
-  class="bg-primary-600 hover:bg-primary-500 dark:hover:bg-primary-300 dark:bg-primary-400 dark:text-black px-4 py-2 w-full rounded-md uppercase text-sm text-white focus:outline-none focus:ring-2 ring-black dark:ring-white"
+  class="px-4 py-2 w-full rounded-md uppercase text-sm focus:outline-none focus:ring-2 ring-black dark:ring-white font-bold border-primary-600 dark:border-primary-400 border-2 hover:border-primary-500 dark:hover:border-primary-300 text-white"
+  [class]="{
+    'bg-primary-600': !outlined,
+    'hover:bg-primary-500': !outlined,
+    'dark:hover:bg-primary-300': !outlined,
+    'dark:bg-primary-400': !outlined,
+    'dark:text-black': !outlined,
+    'text-white': !outlined,
+    'dark:hover:bg-gray-900': outlined,
+    'hover:bg-gray-200': outlined
+  }"
 >
   <ng-content></ng-content>
 </button>
