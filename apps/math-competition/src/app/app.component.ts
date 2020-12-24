@@ -7,7 +7,7 @@ import { DOCUMENT } from '@angular/common'
   selector: 'verseghy-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit {
   constructor(private authFacade: AuthFacade, private timeFacade: TimeFacade, @Inject(DOCUMENT) private document) {}

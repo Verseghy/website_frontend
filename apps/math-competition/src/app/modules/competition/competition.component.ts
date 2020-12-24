@@ -11,7 +11,7 @@ import { AngularFireStorage } from '@angular/fire/storage'
   selector: 'verseghy-competition',
   templateUrl: './competition.component.html',
   styleUrls: ['./competition.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CompetitionComponent implements OnInit {
   loaded = true

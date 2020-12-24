@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
   selector: 'verseghy-end',
   templateUrl: './end.component.html',
   styleUrls: ['./end.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EndComponent implements OnInit {
   constructor() {}
