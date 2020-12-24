@@ -6,7 +6,7 @@ import { AuthFacade } from '../../../../state/auth/auth.facade'
   selector: 'verseghy-loginscreen',
   templateUrl: './loginscreen.component.html',
   styleUrls: ['./loginscreen.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginscreenComponent implements OnInit {
   loginError$ = this.authFacade.loginError$

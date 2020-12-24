@@ -29,14 +29,14 @@ import { TimeEffects } from './state/time/time.effects'
 import { FormsModule } from '@angular/forms'
 import { AngularFireStorageModule } from '@angular/fire/storage'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { CheckboxComponent } from './components/checkbox/checkbox.component'
-import { ButtonComponent } from './components/button/button.component'
+import { SharedModule } from './modules/shared/shared.module'
 
 const material = [MdcTypographyModule, MdcButtonModule, MdcSwitchModule]
 
 @NgModule({
-  declarations: [AppComponent, LandingComponent, CheckboxComponent, ButtonComponent],
+  declarations: [AppComponent, LandingComponent],
   imports: [
+    SharedModule,
     BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,

@@ -5,7 +5,7 @@ import { DOCUMENT } from '@angular/common'
   selector: 'verseghy-landing',
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LandingComponent implements OnInit {
   get darkValue(): boolean {
