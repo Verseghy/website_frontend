@@ -40,20 +40,29 @@
   },
   "emulators": {
     "functions": {
-      "port": 5001
+      "port": 5001,
+      "host": "0.0.0.0"
     },
     "firestore": {
-      "port": 5002
+      "port": 5002,
+      "host": "0.0.0.0"
     },
     "hosting": {
-      "port": 5000
+      "port": 5000,
+      "host": "0.0.0.0"
     },
     "pubsub": {
-      "port": 5003
+      "port": 5003,
+      "host": "0.0.0.0"
     },
     "ui": {
       "enabled": true,
-      "port": 5005
+      "port": 5005,
+      "host": "0.0.0.0"
+    },
+    "auth": {
+      "port": 5004,
+      "host": "0.0.0.0"
     }
   }
 }
