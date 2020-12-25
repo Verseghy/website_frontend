@@ -1,8 +1,8 @@
-import { async, TestBed } from '@angular/core/testing'
+import { TestBed, waitForAsync } from '@angular/core/testing'
 import { LoadersModule } from './loaders.module'
 
 describe('LoadersModule', () => {
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [LoadersModule],
     }).compileComponents()
