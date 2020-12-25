@@ -1,4 +1,4 @@
-import { async, TestBed } from '@angular/core/testing'
+import { TestBed, waitForAsync } from '@angular/core/testing'
 import { AppComponent } from './app.component'
 import { RouterTestingModule } from '@angular/router/testing'
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
@@ -21,7 +21,7 @@ const SwUpdateMock = {
 }
 
 describe('AppComponent', () => {
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
       declarations: [AppComponent, HeaderComponent, FooterComponent, LoadersComponent],

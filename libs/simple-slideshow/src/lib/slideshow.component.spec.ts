@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing'
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing'
 
 import { SlideshowComponent } from './slideshow.component'
 import { BrowserTransferStateModule } from '@angular/platform-browser'
@@ -7,7 +7,7 @@ describe('SlideshowComponent', () => {
   // let component: SlideshowComponent
   // let fixture: ComponentFixture<SlideshowComponent>
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [SlideshowComponent],
       imports: [BrowserTransferStateModule],

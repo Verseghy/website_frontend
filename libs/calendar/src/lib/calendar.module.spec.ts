@@ -1,8 +1,8 @@
-import { async, TestBed } from '@angular/core/testing'
+import { TestBed, waitForAsync } from '@angular/core/testing'
 import { CalendarModule } from './calendar.module'
 
 describe('CalendarModule', () => {
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [CalendarModule],
     }).compileComponents()
