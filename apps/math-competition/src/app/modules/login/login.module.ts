@@ -4,10 +4,7 @@ import { LoginscreenComponent } from './components/loginscreen/loginscreen.compo
 import { RouterModule, Routes } from '@angular/router'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
-import { MdcButtonModule, MdcTextFieldModule, MdcTypographyModule } from '@angular-mdc/web'
 import { SharedModule } from '../shared/shared.module'
-
-const material = [MdcTextFieldModule, MdcTypographyModule, MdcButtonModule]
 
 const routes: Routes = [
   {
@@ -18,6 +15,6 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [LoginscreenComponent],
-  imports: [CommonModule, RouterModule.forChild(routes), FormsModule, ReactiveFormsModule, ...material, SharedModule],
+  imports: [CommonModule, RouterModule.forChild(routes), FormsModule, ReactiveFormsModule, SharedModule],
 })
 export class LoginModule {}
