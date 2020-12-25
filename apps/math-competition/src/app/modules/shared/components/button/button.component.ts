@@ -7,6 +7,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
 })
 export class ButtonComponent {
   @Input() outlined = false
+  @Input() disabled = false
 
   constructor() {}
 }
