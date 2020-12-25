@@ -11,6 +11,7 @@ module.exports = (isProd) => ({
     extend: {
       fontFamily: {
         sans: 'Inter',
+        mono: 'JetBrains Mono',
       },
       colors: {
         primary: colors.green,
