@@ -2,25 +2,40 @@
   <img class="w-28 mx-auto mb-8" src="/assets/images/logo.svg" alt="" />
   <h1 class="text-center mb-4">Bejelentkezés</h1>
   <h3 class="text-center mb-10">A 190 matematikaverseny oldalára</h3>
-  <div *ngIf="(loginError$ | async)?.code" class="border-2 border-red-600 dark:border-red-400 p-6 rounded-md mb-10 text-red-600 dark:text-red-400">{{ localizeLoginError(loginError$ | async) }}</div>
+  <div
+    *ngIf="(loginError$ | async)?.code"
+    class="border-2 border-red-600 dark:border-red-400 p-6 rounded-md mb-10 text-red-600 dark:text-red-400"
+  >
+    {{ localizeLoginError(loginError$ | async) }}
+  </div>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <label class="mb-4 block">
       <span class="mb-1 block font-bold">Email cím</span>
       <verseghy-input formControlName="email"></verseghy-input>
       <ng-container *ngIf="form.controls['email'].touched">
-        <span *ngIf="form.controls['email'].hasError('required')" class="text-red-600 dark:text-red-400 text-sm mt-1">Email cím megadása kötelező</span>
-        <span *ngIf="form.controls['email'].hasError('email')" class="text-red-600 dark:text-red-400 text-sm mt-1">Email cím formátuma nem megfelelő</span>
+        <span *ngIf="form.controls['email'].hasError('required')" class="text-red-600 dark:text-red-400 text-sm mt-1"
+          >Email cím megadása kötelező</span
+        >
+        <span *ngIf="form.controls['email'].hasError('email')" class="text-red-600 dark:text-red-400 text-sm mt-1"
+          >Email cím formátuma nem megfelelő</span
+        >
       </ng-container>
     </label>
     <label class="mb-6 block">
       <span class="mb-1 block font-bold">Jelszó</span>
       <verseghy-input type="password" formControlName="password"></verseghy-input>
       <ng-container *ngIf="form.controls['password'].touched">
-        <span *ngIf="form.controls['password'].hasError('required')" class="text-red-600 dark:text-red-400 text-sm mt-1">Jelszó megadása kötelező</span>
+        <span *ngIf="form.controls['password'].hasError('required')" class="text-red-600 dark:text-red-400 text-sm mt-1"
+          >Jelszó megadása kötelező</span
+        >
       </ng-container>
     </label>
     <div class="flex justify-end mb-6">
-      <a class="text-sm text-primary-600 dark:text-primary-400 font-bold focus:outline-none focus:ring-1 ring-black dark:ring-white rounded-md px-1" [routerLink]="['/']">Elfelejtetted a jelszavad?</a>
+      <a
+        class="text-sm text-primary-600 dark:text-primary-400 font-bold focus:outline-none focus:ring-1 ring-black dark:ring-white rounded-md px-1"
+        [routerLink]="['/']"
+        >Elfelejtetted a jelszavad?</a
+      >
     </div>
     <verseghy-button [disabled]="!form.valid" class="block w-full">Bejelentkezés</verseghy-button>
     <div class="flex flex-row my-6">
