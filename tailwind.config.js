@@ -23,6 +23,9 @@ module.exports = (isProd) => ({
     extend: {
       transitionProperty: ['motion-safe'],
       borderWidth: ['focus'],
+      borderColor: ['disabled'],
+      backgroundColor: ['disabled'],
+      cursor: ['disabled'],
     },
   },
   plugins: [],
