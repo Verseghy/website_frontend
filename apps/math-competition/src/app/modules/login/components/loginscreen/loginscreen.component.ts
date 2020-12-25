@@ -22,8 +22,6 @@ export class LoginscreenComponent implements OnInit {
   ngOnInit() {}
 
   onSubmit() {
-    console.log('submit', this.form.controls['email'].hasError('required'))
-
     if (this.form.valid) {
       this.authFacade.login({ email: this.form.get('email').value, password: this.form.get('password').value })
     }
