@@ -7,12 +7,14 @@ describe('SlideshowComponent', () => {
   // let component: SlideshowComponent
   // let fixture: ComponentFixture<SlideshowComponent>
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [SlideshowComponent],
-      imports: [BrowserTransferStateModule],
-    }).compileComponents()
-  }))
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [SlideshowComponent],
+        imports: [BrowserTransferStateModule],
+      }).compileComponents()
+    })
+  )
 
   /*beforeEach(() => {
     fixture = TestBed.createComponent(SlideshowComponent)

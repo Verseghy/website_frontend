@@ -6,11 +6,13 @@ describe('LoadersComponent', () => {
   let component: LoadersComponent
   let fixture: ComponentFixture<LoadersComponent>
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [LoadersComponent],
-    }).compileComponents()
-  }))
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [LoadersComponent],
+      }).compileComponents()
+    })
+  )
 
   beforeEach(() => {
     fixture = TestBed.createComponent(LoadersComponent)

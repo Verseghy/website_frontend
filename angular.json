@@ -28,9 +28,7 @@
               "apps/frontend/src/.htaccess",
               "apps/frontend/src/manifest.webmanifest"
             ],
-            "styles": [
-              "apps/frontend/src/styles.scss"
-            ],
+            "styles": ["apps/frontend/src/styles.scss"],
             "scripts": [],
             "aot": true
           },
@@ -71,9 +69,7 @@
               ]
             }
           },
-          "outputs": [
-            "{options.outputPath}"
-          ]
+          "outputs": ["{options.outputPath}"]
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -106,10 +102,7 @@
               "apps/frontend/tsconfig.spec.json",
               "apps/frontend/tsconfig.server.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/frontend/**"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/frontend/**"]
           }
         },
         "test": {
@@ -121,13 +114,9 @@
             "polyfills": "apps/frontend/src/polyfills.ts",
             "styles": [],
             "scripts": [],
-            "assets": [
-              "apps/frontend/src/manifest.webmanifest"
-            ]
+            "assets": ["apps/frontend/src/manifest.webmanifest"]
           },
-          "outputs": [
-            "coverage/apps/frontend/"
-          ]
+          "outputs": ["coverage/apps/frontend/"]
         },
         "server": {
           "builder": "@angular-devkit/build-angular:server",
@@ -135,9 +124,7 @@
             "outputPath": "dist/frontend/server",
             "main": "apps/frontend/server.ts",
             "tsConfig": "apps/frontend/tsconfig.server.json",
-            "externalDependencies": [
-              "@firebase/firestore"
-            ]
+            "externalDependencies": ["@firebase/firestore"]
           },
           "configurations": {
             "production": {
@@ -171,9 +158,7 @@
           "options": {
             "browserTarget": "frontend:build:production",
             "serverTarget": "frontend:server:production",
-            "routes": [
-              "/"
-            ]
+            "routes": ["/"]
           },
           "configurations": {
             "production": {}
@@ -202,10 +187,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "apps/frontend-e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/frontend-e2e/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/frontend-e2e/**/*"]
           }
         }
       }
@@ -235,14 +217,9 @@
               "apps/math-competition/src/assets",
               "apps/math-competition/src/manifest.json"
             ],
-            "styles": [
-              "apps/math-competition/src/styles.scss"
-            ],
+            "styles": ["apps/math-competition/src/styles.scss"],
             "stylePreprocessorOptions": {
-              "includePaths": [
-                "apps/math-competition/src/scss",
-                "node_modules/"
-              ]
+              "includePaths": ["apps/math-competition/src/scss", "node_modules/"]
             },
             "scripts": [],
             "customWebpackConfig": {
@@ -306,10 +283,7 @@
               "apps/math-competition/tsconfig.spec.json",
               "apps/math-competition/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/math-competition/**"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/math-competition/**"]
           }
         },
         "test": {
@@ -322,15 +296,11 @@
             "styles": [],
             "scripts": [],
             "stylePreprocessorOptions": {
-              "includePaths": [
-                "apps/math-competition/src/scss"
-              ]
+              "includePaths": ["apps/math-competition/src/scss"]
             },
             "assets": []
           },
-          "outputs": [
-            "coverage/apps/math-competition/"
-          ]
+          "outputs": ["coverage/apps/math-competition/"]
         }
       }
     },
@@ -355,10 +325,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "apps/math-competition-e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/math-competition-e2e/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/math-competition-e2e/**/*"]
           }
         }
       }
@@ -372,15 +339,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "libs/calendar/tsconfig.lib.json",
-              "libs/calendar/tsconfig.spec.json",
-              "libs/calendar/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/calendar/**/*"
-            ]
+            "tsConfig": ["libs/calendar/tsconfig.lib.json", "libs/calendar/tsconfig.spec.json", "libs/calendar/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!libs/calendar/**/*"]
           }
         },
         "test": {
@@ -390,9 +350,7 @@
             "tsConfig": "libs/calendar/tsconfig.spec.json",
             "karmaConfig": "libs/calendar/karma.conf.js"
           },
-          "outputs": [
-            "coverage/libs/calendar"
-          ]
+          "outputs": ["coverage/libs/calendar"]
         }
       }
     },
@@ -405,14 +363,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "libs/ui/tsconfig.lib.json",
-              "libs/ui/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/ui/**/*"
-            ]
+            "tsConfig": ["libs/ui/tsconfig.lib.json", "libs/ui/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!libs/ui/**/*"]
           }
         },
         "test": {
@@ -422,9 +374,7 @@
             "tsConfig": "libs/ui/tsconfig.spec.json",
             "karmaConfig": "libs/ui/karma.conf.js"
           },
-          "outputs": [
-            "coverage/libs/ui"
-          ]
+          "outputs": ["coverage/libs/ui"]
         }
       },
       "schematics": {
@@ -442,14 +392,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "libs/simple-slideshow/tsconfig.lib.json",
-              "libs/simple-slideshow/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/simple-slideshow/**/*"
-            ]
+            "tsConfig": ["libs/simple-slideshow/tsconfig.lib.json", "libs/simple-slideshow/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!libs/simple-slideshow/**/*"]
           }
         },
         "test": {
@@ -459,9 +403,7 @@
             "tsConfig": "libs/simple-slideshow/tsconfig.spec.json",
             "karmaConfig": "libs/simple-slideshow/karma.conf.js"
           },
-          "outputs": [
-            "coverage/libs/simple-slideshow"
-          ]
+          "outputs": ["coverage/libs/simple-slideshow"]
         }
       },
       "schematics": {
