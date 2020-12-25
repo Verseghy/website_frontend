@@ -1,7 +1,7 @@
 <div class="m-auto max-w-md md:my-10 ring-gray-300 md:ring-1 rounded-md p-6 md:p-12 dark:ring-gray-700">
   <img class="w-28 mx-auto mb-8" src="/assets/images/logo.svg" alt="" />
-  <h1 class="text-center mb-4" mdcHeadline5>Bejelentkezés</h1>
-  <h3 class="text-center mb-10" mdcSubtitle1>A 190 matematikaverseny oldalára</h3>
+  <h1 class="text-center mb-4">Bejelentkezés</h1>
+  <h3 class="text-center mb-10">A 190 matematikaverseny oldalára</h3>
   <div *ngIf="(loginError$ | async)?.code" class="border-2 border-red-600 dark:border-red-400 p-6 rounded-md mb-10 text-red-600 dark:text-red-400">{{ localizeLoginError(loginError$ | async) }}</div>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <label class="mb-4 block">
