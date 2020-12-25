@@ -9,11 +9,6 @@ import { AngularFireStorageModule } from '@angular/fire/storage'
 
 @NgModule({
   declarations: [CompetitionComponent, TimerComponent],
-  imports: [
-    CommonModule,
-    CompetitionRoutingModule,
-    KatexModule,
-    AngularFireStorageModule,
-  ],
+  imports: [CommonModule, CompetitionRoutingModule, KatexModule, AngularFireStorageModule],
 })
 export class CompetitionModule {}
