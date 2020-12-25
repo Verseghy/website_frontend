@@ -21,18 +21,20 @@ const SwUpdateMock = {
 }
 
 describe('AppComponent', () => {
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
-      declarations: [AppComponent, HeaderComponent, FooterComponent, LoadersComponent],
-      providers: [
-        {
-          provide: SwUpdate,
-          useValue: SwUpdateMock,
-        },
-      ],
-    }).compileComponents()
-  }))
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [RouterTestingModule],
+        declarations: [AppComponent, HeaderComponent, FooterComponent, LoadersComponent],
+        providers: [
+          {
+            provide: SwUpdate,
+            useValue: SwUpdateMock,
+          },
+        ],
+      }).compileComponents()
+    })
+  )
 
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent)
