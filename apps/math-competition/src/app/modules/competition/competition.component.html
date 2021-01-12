@@ -1,0 +1,48 @@
+<div class="m-auto max-w-4xl space-y-10 my-10">
+  <verseghy-timer></verseghy-timer>
+  <div class="flex justify-center md:justify-end">
+    <verseghy-button [outlined]="true" (click)="logout()">Kilépés</verseghy-button>
+  </div>
+  <div class="flex align-middle justify-center">
+    <div class="grid grid-cols-5 md:grid-cols-10 gap-4">
+      <span
+        *ngFor="let problem of paginated$ | async"
+        class="w-10 h-10 rounded-md text-center leading-10 font-black font-mono cursor-pointer bg-gray-300 dark:bg-gray-700 focus:ring-2 ring-black dark:ring-white outline-none"
+        (click)="scrollTo(problem.id)"
+        [class]="{'bg-green-600': problem.solution !== null}"
+        tabindex="0"
+      >{{ problem.id + 1 }}</span>
+    </div>
+  </div>
+  <ng-container *ngTemplateOutlet="paginationNumbers"></ng-container>
+  <div class="divide-y md:divide-none divide-gray-300 dark:divide-gray-700 space-y-10">
+    <div
+      *ngFor="let problem of paginated$ | async; trackBy: trackByFn"
+      class="ring-gray-300 md:ring-1 md:rounded-md p-6 md:p-12 dark:ring-gray-700 space-y-8"
+      [id]="'problem-' + problem.id"
+    >
+      <p class="font-black">{{ problem.id + 1 }}. feladat</p>
+      <ng-katex-paragraph [paragraph]="problem.text" class="block"></ng-katex-paragraph>
+      <label class="block">
+        <input
+          verseghyInput
+          class="block"
+          placeholder="Megoldás"
+          type="number"
+          [value]="problem.solution"
+          (keyup)="blurField($event)"
+          (blur)="setSolution(problem.id, $event)"
+          autocomplete="off"
+        />
+      </label>
+    </div>
+  </div>
+  <ng-container *ngTemplateOutlet="paginationNumbers"></ng-container>
+</div>
+
+<ng-template #paginationNumbers>
+  <div class="flex justify-center space-x-4">
+    <verseghy-button [disabled]="disablePrevPage$ | async" (click)="prevPage()">Előző</verseghy-button>
+    <verseghy-button [disabled]="disableNextPage$ | async" (click)="nextPage()">Következő</verseghy-button>
+  </div>
+</ng-template>
