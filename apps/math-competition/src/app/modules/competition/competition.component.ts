@@ -5,7 +5,6 @@ import { AuthFacade } from '../../state/auth/auth.facade'
 import { CompetitionFacade } from '../../state/competition/competition.facade'
 import { TimeFacade } from '../../state/time/time.facade'
 import { Router } from '@angular/router'
-import { AngularFireStorage } from '@angular/fire/storage'
 
 @Component({
   selector: 'verseghy-competition',
@@ -34,14 +33,14 @@ export class CompetitionComponent implements OnInit {
     })
   )
 
-  constructor(private authFacade: AuthFacade, private competitionFacade: CompetitionFacade) {}
+  constructor(private authFacade: AuthFacade, private competitionFacade: CompetitionFacade, private router: Router) {}
 
   ngOnInit() {
     this.competitionFacade.loadCompetition()
   }
 
-  setSolution(id: number, solution: number) {
-    this.competitionFacade.sendSolution(id, solution)
+  setSolution(id: number, event: Event) {
+    this.competitionFacade.sendSolution(id, Number((event.target as HTMLInputElement).value))
   }
 
   logout() {
@@ -54,6 +53,8 @@ export class CompetitionComponent implements OnInit {
 
   scrollTo(id: number) {
     window.scrollTo({ top: (document.querySelector('#problem-' + id) as HTMLDivElement).offsetTop - 24, behavior: 'smooth' })
+    const input: HTMLInputElement = document.querySelector(`#problem-${id} input`)
+    input.focus({ preventScroll: true })
   }
 
   prevPage() {

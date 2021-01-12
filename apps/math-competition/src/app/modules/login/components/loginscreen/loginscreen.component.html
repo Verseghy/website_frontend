@@ -11,7 +11,7 @@
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <label class="mb-4 block">
       <span class="mb-1 block font-bold">Email cím</span>
-      <verseghy-input formControlName="email"></verseghy-input>
+      <input verseghyInput formControlName="email" />
       <ng-container *ngIf="form.controls['email'].touched">
         <span *ngIf="form.controls['email'].hasError('required')" class="text-red-600 dark:text-red-400 text-sm mt-1"
           >Email cím megadása kötelező</span
@@ -23,7 +23,7 @@
     </label>
     <label class="mb-6 block">
       <span class="mb-1 block font-bold">Jelszó</span>
-      <verseghy-input type="password" formControlName="password"></verseghy-input>
+      <input verseghyInput type="password" formControlName="password" />
       <ng-container *ngIf="form.controls['password'].touched">
         <span *ngIf="form.controls['password'].hasError('required')" class="text-red-600 dark:text-red-400 text-sm mt-1"
           >Jelszó megadása kötelező</span
