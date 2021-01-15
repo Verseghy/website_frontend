@@ -27,14 +27,11 @@ export class AuthEffects {
       ofType(login),
       exhaustMap(({ email, password }) =>
         from(this.afAuth.signInWithEmailAndPassword(email, password)).pipe(
-          map(() => {
-            this.router.navigate(['/waiting'])
-            return noop()
-          }),
           catchError(error => of(loginError({ error })))
         )
       )
-    )
+    ),
+    { dispatch: false }
   )
 
   logout$ = createEffect(
