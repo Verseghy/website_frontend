@@ -1,5 +1,7 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core'
 import { FormBuilder, Validators } from '@angular/forms'
+import {Router} from '@angular/router'
+import {SubSink} from 'subsink'
 import { AuthFacade } from '../../../../state/auth/auth.facade'
 
 @Component({
@@ -8,7 +10,9 @@ import { AuthFacade } from '../../../../state/auth/auth.facade'
   styleUrls: ['./loginscreen.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LoginscreenComponent implements OnInit {
+export class LoginscreenComponent implements OnInit, OnDestroy {
+  private subs = new SubSink()
+
   loginError$ = this.authFacade.loginError$
   loading$ = this.authFacade.loading$
 
@@ -17,9 +21,17 @@ export class LoginscreenComponent implements OnInit {
     password: this.fb.control('', [Validators.required]),
   })
 
-  constructor(private fb: FormBuilder, private authFacade: AuthFacade) {}
+  constructor(private fb: FormBuilder, private authFacade: AuthFacade, private router: Router) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.subs.sink = this.authFacade.uid$.subscribe((uid) => {
+      if (uid) this.router.navigate(['/waiting'])
+    })
+  }
+
+  ngOnDestroy() {
+    this.subs.unsubscribe()
+  }
 
   onSubmit() {
     if (this.form.valid) {

@@ -1,9 +1,10 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core'
 import { BehaviorSubject, combineLatest } from 'rxjs'
 import { map } from 'rxjs/operators'
 import { AuthFacade } from '../../state/auth/auth.facade'
 import { CompetitionFacade } from '../../state/competition/competition.facade'
 import { TimeFacade } from '../../state/time/time.facade'
+import { SubSink } from 'subsink'
 import { Router } from '@angular/router'
 
 @Component({
@@ -12,7 +13,9 @@ import { Router } from '@angular/router'
   styleUrls: ['./competition.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CompetitionComponent implements OnInit {
+export class CompetitionComponent implements OnInit, OnDestroy {
+  private subs = new SubSink()
+
   loaded = true
   page$ = new BehaviorSubject<number>(0)
   page = 0
@@ -37,6 +40,14 @@ export class CompetitionComponent implements OnInit {
 
   ngOnInit() {
     this.competitionFacade.loadCompetition()
+
+    this.subs.sink = this.authFacade.uid$.subscribe((uid) => {
+      if (!uid) this.router.navigate(['/login'])
+    })
+  }
+
+  ngOnDestroy() {
+    this.subs.unsubscribe()
   }
 
   setSolution(id: number, event: Event) {
