@@ -7,9 +7,10 @@ import { KatexModule } from 'ng-katex'
 import { MatPaginatorModule } from '@angular/material/paginator'
 import { MatSelectModule } from '@angular/material/select'
 import { MatButtonModule } from '@angular/material/button'
+import { SharedModule } from '../shared/shared.module'
 
 @NgModule({
   declarations: [ListComponent],
-  imports: [CommonModule, AdminRoutingModule, MatSelectModule, MatPaginatorModule, KatexModule, MatButtonModule],
+  imports: [CommonModule, AdminRoutingModule, MatSelectModule, MatPaginatorModule, KatexModule, MatButtonModule, SharedModule],
 })
 export class AdminModule {}
