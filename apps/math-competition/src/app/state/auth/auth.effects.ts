@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core'
 import { Actions, createEffect, ofType } from '@ngrx/effects'
 import { catchError, exhaustMap, map, tap } from 'rxjs/operators'
 import { AngularFireAuth } from '@angular/fire/auth'
-import { authenticated, initAuth, login, loginError, logout, noop, notAuthenticated } from './auth.actions'
+import { authenticated, initAuth, login, loginError, logout, notAuthenticated } from './auth.actions'
 import { from, of } from 'rxjs'
 import { Router } from '@angular/router'
 
@@ -12,7 +12,7 @@ export class AuthEffects {
     this.actions$.pipe(
       ofType(initAuth),
       exhaustMap(() => this.afAuth.authState),
-      map(x => {
+      map((x) => {
         if (x) {
           return authenticated({ uid: x.uid })
         } else {
@@ -22,15 +22,14 @@ export class AuthEffects {
     )
   )
 
-  login$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(login),
-      exhaustMap(({ email, password }) =>
-        from(this.afAuth.signInWithEmailAndPassword(email, password)).pipe(
-          catchError(error => of(loginError({ error })))
+  login$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(login),
+        exhaustMap(({ email, password }) =>
+          from(this.afAuth.signInWithEmailAndPassword(email, password)).pipe(catchError((error) => of(loginError({ error }))))
         )
-      )
-    ),
+      ),
     { dispatch: false }
   )
 
