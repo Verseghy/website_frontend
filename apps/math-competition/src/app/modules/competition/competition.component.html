@@ -9,7 +9,7 @@
         *ngFor="let problem of paginated$ | async"
         class="w-10 h-10 rounded-md text-center leading-10 font-black font-mono cursor-pointer bg-gray-300 dark:bg-gray-700 focus:ring-2 ring-black dark:ring-white outline-none"
         (click)="scrollTo(problem.id)"
-        [class]="{'bg-green-600': problem.solution !== null}"
+        [class]="{'bg-primary-600': problem.solution !== null, 'dark:bg-primary-400': problem.solution !== null, 'dark:text-black': problem.solution !== null}"
         tabindex="0"
       >{{ problem.id + 1 }}</span>
     </div>
@@ -28,7 +28,8 @@
           verseghyInput
           class="block"
           placeholder="Megoldás"
-          type="number"
+          type="text"
+          inputmode="numeric"
           [value]="problem.solution"
           (keyup)="blurField($event)"
           (blur)="setSolution(problem.id, $event)"
