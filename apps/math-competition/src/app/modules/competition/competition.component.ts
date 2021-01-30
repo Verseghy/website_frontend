@@ -51,7 +51,10 @@ export class CompetitionComponent implements OnInit, OnDestroy {
   }
 
   setSolution(id: number, event: Event) {
-    this.competitionFacade.sendSolution(id, Number((event.target as HTMLInputElement).value))
+    const target = event.target as HTMLInputElement
+    if (/^[0-9]*$/g.test(target.value)) {
+      this.competitionFacade.sendSolution(id, Number(target.value))
+    }
   }
 
   logout() {
