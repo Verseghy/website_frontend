@@ -3,14 +3,12 @@ import { BehaviorSubject, combineLatest } from 'rxjs'
 import { map } from 'rxjs/operators'
 import { AuthFacade } from '../../state/auth/auth.facade'
 import { CompetitionFacade } from '../../state/competition/competition.facade'
-import { TimeFacade } from '../../state/time/time.facade'
 import { SubSink } from 'subsink'
 import { Router } from '@angular/router'
 
 @Component({
   selector: 'verseghy-competition',
   templateUrl: './competition.component.html',
-  styleUrls: ['./competition.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CompetitionComponent implements OnInit, OnDestroy {
