@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core'
 import { FormBuilder, Validators } from '@angular/forms'
-import {Router} from '@angular/router'
-import {SubSink} from 'subsink'
+import { Router } from '@angular/router'
+import { SubSink } from 'subsink'
 import { AuthFacade } from '../../../../state/auth/auth.facade'
 
 @Component({

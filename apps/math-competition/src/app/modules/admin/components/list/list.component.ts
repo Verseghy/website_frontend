@@ -47,26 +47,30 @@ export class ListComponent implements OnInit, OnDestroy {
       this.competitionFacade.setProblem(problem)
     })
 
-    this.subs.sink = this.newProblem$.pipe(
-      withLatestFrom(this.competitionFacade.problems$),
-      map(([_, problems]) => {
-        return problems
+    this.subs.sink = this.newProblem$
+      .pipe(
+        withLatestFrom(this.competitionFacade.problems$),
+        map(([_, problems]) => {
+          return problems
+        })
+      )
+      .subscribe((problems) => {
+        const newID = problems[problems.length - 1].id + 1
+        const newProblem = {
+          id: newID,
+          text: '',
+        }
+        this.competitionFacade.setProblem(newProblem)
       })
-    ).subscribe((problems) => {
-      const newID = problems[problems.length - 1].id + 1
-      const newProblem = {
-        id: newID,
-        text: '',
-      }
-      this.competitionFacade.setProblem(newProblem)
-    })
 
-    this.subs.sink = this.competitionFacade.setProblemSuccess$.pipe(withLatestFrom(this.length$.pipe(pairwise()))).subscribe(([_, length]) => {
-      if (length[0] !== length[1]) {
-        this.page = Math.floor((length[1] - 1) / 10)
-        this.page$.next(this.page)
-      }
-    })
+    this.subs.sink = this.competitionFacade.setProblemSuccess$
+      .pipe(withLatestFrom(this.length$.pipe(pairwise())))
+      .subscribe(([_, length]) => {
+        if (length[0] !== length[1]) {
+          this.page = Math.floor((length[1] - 1) / 10)
+          this.page$.next(this.page)
+        }
+      })
 
     this.subs.sink = this.length$.pipe(pairwise()).subscribe((length) => {
       if (length[0] > length[1]) {

@@ -16,13 +16,9 @@
       </div>
       <ng-katex-paragraph [paragraph]="problem.text" class="block"></ng-katex-paragraph>
       <label class="block">
-        <textarea
-          verseghyInput
-          class="h-24"
-          (input)="setText($event, problem)"
-          (blur)="blurField($event, problem)"
-          autocomplete="off"
-        >{{ problem.text }}</textarea>
+        <textarea verseghyInput class="h-24" (input)="setText($event, problem)" (blur)="blurField($event, problem)" autocomplete="off">{{
+          problem.text
+        }}</textarea>
       </label>
     </div>
   </div>
