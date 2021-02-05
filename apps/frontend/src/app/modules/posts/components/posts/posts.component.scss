@@ -116,3 +116,12 @@ h1 {
     grid-column: 2;
   }
 }
+
+.slideshow {
+  display: block;
+  max-width: 650px;
+  margin: 0 auto;
+  border-radius: 8px;
+  background: #000;
+  overflow: hidden;
+}
