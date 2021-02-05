@@ -54,9 +54,9 @@ import { SharedModule } from './modules/shared/shared.module'
     }),
   ],
   providers: [
-    { provide: USE_AUTH_EMULATOR, useValue: !environment.production ? ['192.168.1.10', 5004] : undefined },
-    { provide: USE_FIRESTORE_EMULATOR, useValue: !environment.production ? ['192.168.1.10', 5002] : undefined },
-    { provide: USE_FUNCTIONS_EMULATOR, useValue: !environment.production ? ['192.168.1.10', 5001] : undefined },
+    { provide: USE_AUTH_EMULATOR, useValue: !environment.production ? ['localhost', 5004] : undefined },
+    { provide: USE_FIRESTORE_EMULATOR, useValue: !environment.production ? ['localhost', 5002] : undefined },
+    { provide: USE_FUNCTIONS_EMULATOR, useValue: !environment.production ? ['localhost', 5001] : undefined },
   ],
   bootstrap: [AppComponent],
 })
