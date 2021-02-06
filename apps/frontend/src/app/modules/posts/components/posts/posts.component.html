@@ -4,14 +4,16 @@
       <verseghy-label *ngFor="let label of post?.labels" [label]="label"></verseghy-label>
     </div>
     <h1>{{ post?.title }}</h1>
-    <img class="index-image" [src]="post?.index_image" alt="" />
     <div class="small-meta">
       <img *ngIf="post?.author.image" class="author-image" [src]="post?.author.image" alt="" />
-      <a class="name" [routerLink]="['/search', 'author', post?.author.id]">{{ post?.author.name }}</a>
-      <span class="date"
-        >Közzétéve: <time [dateTime]="formatDate(post?.date)">{{ formatDate(post?.date) }}</time></span
-      >
+      <p>
+        <a class="name" [routerLink]="['/search', 'author', post?.author.id]">{{ post?.author.name }}&nbsp;</a>
+        <span class="date"
+          >Közzétéve: <time [dateTime]="formatDate(post?.date)">{{ formatDate(post?.date) }}</time></span
+        >
+      </p>
     </div>
+    <img class="index-image" [src]="post?.index_image" alt="" />
     <verseghy-page-renderer [data]="post?.content"></verseghy-page-renderer>
     <verseghy-slideshow
       #slideshow
@@ -27,10 +29,5 @@
       [showDots]="false"
       [disableSwiping]="post?.images?.length < 2"
     ></verseghy-slideshow>
-    <div class="meta">
-      <img *ngIf="post?.author.image" class="author-image" [src]="post?.author.image" alt="" />
-      <a class="name" [routerLink]="['/search', 'author', post?.author.id]">{{ post?.author.name }}</a>
-      <p class="description">{{ post?.author.description }}</p>
-    </div>
   </div>
 </ng-container>
