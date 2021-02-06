@@ -17,6 +17,7 @@ import {
   OnChanges,
   SimpleChanges,
   AfterViewInit,
+  HostListener,
 } from '@angular/core'
 // import { SwipeService } from './swipe.service';
 import { isPlatformServer, DOCUMENT } from '@angular/common'
@@ -80,7 +81,7 @@ export class SlideshowComponent implements OnInit, AfterViewInit, DoCheck, OnCha
   @Output() fullscreenExit = new EventEmitter<boolean>()
   @Output() indexChanged = new EventEmitter<number>()
   @Output() imageLazyLoad = new EventEmitter<ISlide>()
-  @Output() click = new EventEmitter<{ slide: ISlide; index: number }>()
+  @Output() click2 = new EventEmitter<{ slide: ISlide; index: number }>()
 
   @ViewChild('container') container: ElementRef
   @ViewChild('prevArrow') prevArrow: ElementRef
@@ -100,6 +101,11 @@ export class SlideshowComponent implements OnInit, AfterViewInit, DoCheck, OnCha
     @Inject(PLATFORM_ID) private platform_id: any,
     @Inject(DOCUMENT) private document: any
   ) {}
+
+  @HostListener('click', ['$event'])
+  private onClick(event: Event): void {
+    event.stopPropagation()
+  }
 
   ngOnInit() {
     if (this.debug !== undefined) {
@@ -230,7 +236,7 @@ export class SlideshowComponent implements OnInit, AfterViewInit, DoCheck, OnCha
    */
   private _onClick(): void {
     const currentSlide = this.slides.length > 0 && this.slides[this.slideIndex]
-    this.click.emit({ slide: currentSlide, index: this.slideIndex })
+    this.click2.emit({ slide: currentSlide, index: this.slideIndex })
 
     if (currentSlide && currentSlide.image.clickAction) {
       currentSlide.image.clickAction()
@@ -550,7 +556,7 @@ export class SlideshowComponent implements OnInit, AfterViewInit, DoCheck, OnCha
     if (this.fullscreen) {
       this._renderer.setStyle(this.container.nativeElement, 'height', '100%')
       // Would be nice to make it configurable
-      this._renderer.setStyle(this.container.nativeElement, 'background-color', 'white')
+      this._renderer.setStyle(this.container.nativeElement, 'background-color', 'black')
     } else {
       // Would be nice to make it configurable
       this._renderer.removeStyle(this.container.nativeElement, 'background-color')

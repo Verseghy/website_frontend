@@ -13,7 +13,7 @@ $border-color: darken(#fff, 5%);
   display: block;
   cursor: pointer;
   position: fixed;
-  z-index: 1;
+  z-index: 13;
   top: 16px;
   left: 16px;
   width: 46px;
@@ -62,6 +62,7 @@ $border-color: darken(#fff, 5%);
 
 .slideshow-container.slideshow-container-fs {
   position: fixed;
+  z-index: 12;
   left: 0;
   top: 0;
   width: 100%;
@@ -75,6 +76,10 @@ $border-color: darken(#fff, 5%);
   height: 100%;
   width: 100%;
   overflow: hidden;
+
+  &:hover .arrow-container {
+    opacity: 1;
+  }
 
   .hide-slide {
     visibility: hidden;
@@ -94,6 +99,12 @@ $border-color: darken(#fff, 5%);
     visibility: visible;
     opacity: 1;
     display: block;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+
+    &:focus {
+      outline: none;
+    }
 
     &.selected {
       // transform: translate3d(0, 0, 0);
@@ -139,7 +150,7 @@ $border-color: darken(#fff, 5%);
     }
 
     &:not(.link) {
-      cursor: default;
+      cursor: pointer;
     }
   }
 
@@ -163,6 +174,9 @@ $border-color: darken(#fff, 5%);
     background-image: linear-gradient(transparent, transparent);
     z-index: 100;
     user-select: none;
+    opacity: 0;
+    transition: opacity 200ms;
+    -webkit-tap-highlight-color: transparent;
 
     &:before {
       display: block;
@@ -283,30 +297,6 @@ $border-color: darken(#fff, 5%);
         & button:before {
           transform: translate(-50%, -50%) scale(1.4);
           opacity: 1;
-        }
-      }
-    }
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .slideshow-container {
-    .arrow-container {
-      &:hover {
-        &:before {
-          opacity: 1;
-        }
-        .arrow {
-          border: {
-            width: 4px;
-          }
-        }
-      }
-      .arrow {
-        &:hover {
-          border: {
-            width: 4px;
-          }
         }
       }
     }

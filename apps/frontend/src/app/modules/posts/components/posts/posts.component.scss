@@ -79,3 +79,14 @@ h1 {
     white-space: nowrap;
   }
 }
+
+.slideshow {
+  display: block;
+  max-width: 770px;
+  margin: 0 auto;
+  border-radius: 8px;
+  background: #000;
+  overflow: hidden;
+  border: 1px solid black;
+  box-sizing: border-box;
+}

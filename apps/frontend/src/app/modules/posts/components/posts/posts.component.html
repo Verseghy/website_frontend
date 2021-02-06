@@ -17,17 +17,21 @@
     <verseghy-page-renderer [data]="post?.content"></verseghy-page-renderer>
     <verseghy-slideshow
       #slideshow
-      class="post-content"
-      [height]="'400px'"
+      class="post-content slideshow"
+      *ngIf="post.images.length"
+      [height]="'475px'"
       [imageUrls]="post?.images"
       [autoPlay]="post?.images?.length > 1"
       [autoPlayWaitForLazyLoad]="true"
       [lazyLoad]="post?.images?.length > 1"
       [hideOnNoSlides]="true"
       [backgroundSize]="'contain'"
-      [showArrows]="false"
+      [showArrows]="true"
       [showDots]="false"
       [disableSwiping]="post?.images?.length < 2"
+      [fullscreen]="fullscreen"
+      (click2)="fullscreen = true"
+      (fullscreenExit)="fullscreen = false"
     ></verseghy-slideshow>
   </div>
 </ng-container>
