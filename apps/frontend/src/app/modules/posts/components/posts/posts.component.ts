@@ -16,6 +16,7 @@ import { TitleService } from '../../../../services/title.service'
 export class PostsComponent implements OnInit {
   post$: Observable<Post>
   @ViewChild('slideshow') slideshow: any
+  fullscreen = false
 
   constructor(
     private requestService: RequestService,
