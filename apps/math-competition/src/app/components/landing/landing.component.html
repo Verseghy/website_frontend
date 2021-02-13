@@ -1,28 +1,26 @@
-<div class="container mdc-typography">
-  <h3 mdcHeadline5>Verseghy 190 Matekverseny</h3>
-  <p><strong>Az oldal használata:</strong></p>
-  <p>
+<div class="m-auto max-w-lg my-10 ring-gray-300 md:ring-1 rounded-md p-6 md:p-12 dark:ring-gray-700">
+  <h1 class="text-center mb-10 font-extrabold">Verseghy <span class="text-primary-600 dark:text-primary-400">190</span></h1>
+  <p class="mb-6 font-bold">Az oldal használata:</p>
+  <p class="mb-6">
     A csapattagok a csapatvezetőtől kapott emailcímmel és jelszóval jelentkezhetnek be az oldalra. Erről a csapatvezetők a verseny napján
     emailben kapnak értesítést.
   </p>
-  <p>
+  <p class="mb-6">
     A beírt megoldások a csapattagok között automatikusan szinkronizálódnak. A megoldás akkor tekinthető beírtnak, ha a felső sorban a
     feladathoz tartozó négyzet zöldre vált. Kérjük a kevésbé stabil internettel rendelkezőknek, hogy különös figyelemmel legyenek erre. Ha
     sehogysem vált zöldre a négyzet egy megoldás megadása után, kérjük próbáld meg újratölteni az oldalt. Ha ez sem működik kérjük a
     csapatvezetőnek kiküldött emailben lévő csatornákon vegyék fel a szerverzőkkel a kapcsolatot.
   </p>
-  <p>
+  <p class="mb-8">
     Az OLED kijelzővel rendelkező felhasználóknak ajánljuk a sötét téma használatát, mivel ez nagy mértékben csökkenti az
     akkumulátorhasználatot. Ez a beállítás az alább található kapcsolóval állítható. A verseny időtartama alatt bármikor ki és be
     kapcsolható ezen az oldalon.
   </p>
-
-  <div class="flex-container">
-    <mdc-form-field>
-      <label>Sötét téma</label>
-      <mdc-switch [(ngModel)]="darkValue"> </mdc-switch>
-    </mdc-form-field>
-
-    <button mdc-button raised class="button" [routerLink]="['/login']">Tovább</button>
+  <div class="flex justify-between items-center">
+    <label>
+      <verseghy-checkbox [value]="darkValue" (change)="changeDarkMode($event)"></verseghy-checkbox>
+      <span class="ml-3 align-middle">Sötét téma</span>
+    </label>
+    <verseghy-button [routerLink]="['/login']">tovább</verseghy-button>
   </div>
 </div>

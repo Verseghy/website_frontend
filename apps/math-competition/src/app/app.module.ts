@@ -20,7 +20,6 @@ import { AngularFireAuthModule } from '@angular/fire/auth'
 import { AngularFirestoreModule } from '@angular/fire/firestore'
 import { LandingComponent } from './components/landing/landing.component'
 
-import { MdcButtonModule, MdcTypographyModule, MdcSwitchModule } from '@angular-mdc/web'
 import { authKey, reducer as authReducer } from './state/auth/auth.reducer'
 import { competitionFeatureKey, reducer as competitionReducer } from './state/competition/competition.reducer'
 import { timeFeatureKey, reducer as timeReducer } from './state/time/time.reducer'
@@ -29,12 +28,12 @@ import { TimeEffects } from './state/time/time.effects'
 import { FormsModule } from '@angular/forms'
 import { AngularFireStorageModule } from '@angular/fire/storage'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-
-const material = [MdcTypographyModule, MdcButtonModule, MdcSwitchModule]
+import { SharedModule } from './modules/shared/shared.module'
 
 @NgModule({
   declarations: [AppComponent, LandingComponent],
   imports: [
+    SharedModule,
     BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,
@@ -53,7 +52,6 @@ const material = [MdcTypographyModule, MdcButtonModule, MdcSwitchModule]
     StoreDevtoolsModule.instrument({
       maxAge: 25,
     }),
-    ...material,
   ],
   providers: [
     { provide: USE_AUTH_EMULATOR, useValue: !environment.production ? ['localhost', 5004] : undefined },

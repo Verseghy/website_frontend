@@ -43,7 +43,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -69,7 +68,8 @@
                 }
               ]
             }
-          }
+          },
+          "outputs": ["{options.outputPath}"]
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -115,7 +115,8 @@
             "styles": [],
             "scripts": [],
             "assets": ["apps/frontend/src/manifest.webmanifest"]
-          }
+          },
+          "outputs": ["coverage/apps/frontend/"]
         },
         "server": {
           "builder": "@angular-devkit/build-angular:server",
@@ -203,7 +204,7 @@
       },
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-builders/custom-webpack:browser",
           "options": {
             "aot": true,
             "outputPath": "apps/math-competition/dist",
@@ -220,7 +221,10 @@
             "stylePreprocessorOptions": {
               "includePaths": ["apps/math-competition/src/scss", "node_modules/"]
             },
-            "scripts": []
+            "scripts": [],
+            "customWebpackConfig": {
+              "path": "webpack.config.js"
+            }
           },
           "configurations": {
             "production": {
@@ -254,7 +258,7 @@
           }
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
             "browserTarget": "math-competition:build"
           },
@@ -295,7 +299,8 @@
               "includePaths": ["apps/math-competition/src/scss"]
             },
             "assets": []
-          }
+          },
+          "outputs": ["coverage/apps/math-competition/"]
         }
       }
     },
@@ -344,7 +349,8 @@
             "main": "libs/calendar/src/test.ts",
             "tsConfig": "libs/calendar/tsconfig.spec.json",
             "karmaConfig": "libs/calendar/karma.conf.js"
-          }
+          },
+          "outputs": ["coverage/libs/calendar"]
         }
       }
     },
@@ -367,7 +373,8 @@
             "main": "libs/ui/src/test.ts",
             "tsConfig": "libs/ui/tsconfig.spec.json",
             "karmaConfig": "libs/ui/karma.conf.js"
-          }
+          },
+          "outputs": ["coverage/libs/ui"]
         }
       },
       "schematics": {
@@ -395,7 +402,8 @@
             "main": "libs/simple-slideshow/src/test.ts",
             "tsConfig": "libs/simple-slideshow/tsconfig.spec.json",
             "karmaConfig": "libs/simple-slideshow/karma.conf.js"
-          }
+          },
+          "outputs": ["coverage/libs/simple-slideshow"]
         }
       },
       "schematics": {

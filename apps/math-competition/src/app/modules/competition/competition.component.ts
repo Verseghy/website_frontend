@@ -1,18 +1,19 @@
-import { Component, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core'
 import { BehaviorSubject, combineLatest } from 'rxjs'
 import { map } from 'rxjs/operators'
 import { AuthFacade } from '../../state/auth/auth.facade'
 import { CompetitionFacade } from '../../state/competition/competition.facade'
-import { TimeFacade } from '../../state/time/time.facade'
+import { SubSink } from 'subsink'
 import { Router } from '@angular/router'
-import { AngularFireStorage } from '@angular/fire/storage'
 
 @Component({
   selector: 'verseghy-competition',
   templateUrl: './competition.component.html',
-  styleUrls: ['./competition.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CompetitionComponent implements OnInit {
+export class CompetitionComponent implements OnInit, OnDestroy {
+  private subs = new SubSink()
+
   loaded = true
   page$ = new BehaviorSubject<number>(0)
   page = 0
@@ -33,14 +34,25 @@ export class CompetitionComponent implements OnInit {
     })
   )
 
-  constructor(private authFacade: AuthFacade, private competitionFacade: CompetitionFacade) {}
+  constructor(private authFacade: AuthFacade, private competitionFacade: CompetitionFacade, private router: Router) {}
 
   ngOnInit() {
     this.competitionFacade.loadCompetition()
+
+    this.subs.sink = this.authFacade.uid$.subscribe((uid) => {
+      if (!uid) this.router.navigate(['/login'])
+    })
   }
 
-  setSolution(id: number, solution: number) {
-    this.competitionFacade.sendSolution(id, solution)
+  ngOnDestroy() {
+    this.subs.unsubscribe()
+  }
+
+  setSolution(id: number, event: Event) {
+    const target = event.target as HTMLInputElement
+    if (/^[0-9]*$/g.test(target.value)) {
+      this.competitionFacade.sendSolution(id, Number(target.value))
+    }
   }
 
   logout() {
@@ -53,6 +65,8 @@ export class CompetitionComponent implements OnInit {
 
   scrollTo(id: number) {
     window.scrollTo({ top: (document.querySelector('#problem-' + id) as HTMLDivElement).offsetTop - 24, behavior: 'smooth' })
+    const input: HTMLInputElement = document.querySelector(`#problem-${id} input`)
+    input.focus({ preventScroll: true })
   }
 
   prevPage() {

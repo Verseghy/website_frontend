@@ -1,5 +1,5 @@
-<div class="container mdc-typography">
-  <h2>Kérlek várj</h2>
-  <span>A verseny kezdetéig még: {{ time$ | async }}</span>
-  <span class="small">(A verseny kezdetekor átirányítunk a következő oldalra, az oldalt újratölteni nem szükséges)</span>
+<div class="m-auto max-w-md my-10 ring-gray-300 md:ring-1 rounded-md p-6 md:p-12 dark:ring-gray-700">
+  <h1 class="text-center font-black text-4xl mb-4">Kérlek várj!</h1>
+  <p class="text-center mb-2">A verseny kezdetéig még:</p>
+  <p class="text-center font-black text-primary-600 dark:text-primary-400 text-5xl font-mono">{{ time$ | async }}</p>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
 import { combineLatest, interval } from 'rxjs'
 import { map, startWith } from 'rxjs/operators'
 import { differenceInHours, differenceInMinutes, differenceInSeconds } from 'date-fns'
@@ -9,6 +9,7 @@ import { Router } from '@angular/router'
   selector: 'verseghy-timer',
   templateUrl: './timer.component.html',
   styleUrls: ['./timer.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TimerComponent implements OnInit {
   remainingTime$ = combineLatest([interval(1000), this.timeFacade.endTime$]).pipe(
@@ -17,9 +18,7 @@ export class TimerComponent implements OnInit {
       if (endline === 'loading') return '--:--:--'
       if (differenceInSeconds(endline, new Date()) > 0) {
         return (
-          differenceInHours(endline, new Date())
-            .toString()
-            .padStart(2, '0') +
+          differenceInHours(endline, new Date()).toString().padStart(2, '0') +
           ':' +
           ((differenceInMinutes(endline, new Date()) % 3600) % 60).toString().padStart(2, '0') +
           ':' +
