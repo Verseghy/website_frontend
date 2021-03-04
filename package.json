@@ -57,7 +57,7 @@
     "@ngrx/entity": "10.0.0",
     "@ngrx/router-store": "10.0.0",
     "@ngrx/store": "10.0.0",
-    "@nguniversal/express-engine": "10.1.0",
+    "@nguniversal/express-engine": "11.2.1",
     "@ngx-loading-bar/core": "4.2.0",
     "@ngx-loading-bar/http-client": "4.2.0",
     "@ngx-loading-bar/router": "4.2.0",
