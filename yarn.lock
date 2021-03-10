@@ -301,10 +301,10 @@
   dependencies:
     tslib "^2.0.0"
 
-"@angular/platform-server@10.2.0":
-  version "10.2.0"
-  resolved "https://registry.yarnpkg.com/@angular/platform-server/-/platform-server-10.2.0.tgz#36153c8b5486f7cd484ec09280e2395b0a43ff1a"
-  integrity sha512-eIc7xiGPylQ6uExx+LeTOHFRDtsbRe4sqgbjsfmlQfvxuVbYRzacXctvymjqr1cGzYW+CpB/3eQoz7uX/BGOog==
+"@angular/platform-server@11.2.5":
+  version "11.2.5"
+  resolved "https://registry.yarnpkg.com/@angular/platform-server/-/platform-server-11.2.5.tgz#c76b60731c054cb8923aa32bd31e75ed1779549f"
+  integrity sha512-Aptvcqgtq/uMqp7JXuQ5U7/Co499Loh5Bmaqmf6MRdJNTIZgmszc/P+F/GD0poKsD8tgwfEQHCb7mEVBbyHp9w==
   dependencies:
     domino "^2.1.2"
     tslib "^2.0.0"
