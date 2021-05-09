@@ -107,7 +107,7 @@
     "karma-jasmine-html-reporter": "1.5.4",
     "loaders.css": "0.1.2",
     "ng-in-viewport": "6.1.0",
-    "postcss": "8.2.1",
+    "postcss": "8.2.14",
     "postcss-import": "14.0.0",
     "postcss-loader": "4.1.0",
     "postcss-scss": "3.0.4",
