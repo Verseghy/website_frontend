@@ -9,6 +9,9 @@
     "tsconfig.base.json": "*"
   },
   "projects": {
+    "calendar": {
+      "tags": []
+    },
     "frontend": {
       "tags": []
     },
@@ -23,13 +26,10 @@
       "tags": [],
       "implicitDependencies": ["math-competition"]
     },
-    "calendar": {
+    "simple-slideshow": {
       "tags": []
     },
     "ui": {
-      "tags": []
-    },
-    "simple-slideshow": {
       "tags": []
     }
   },
