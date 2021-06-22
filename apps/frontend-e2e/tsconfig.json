@@ -1,10 +1,13 @@
 {
-  "extends": "../../tsconfig.base.json",
+  "extends": "../../tsconfig.json",
   "include": [],
   "files": [],
   "references": [
     {
       "path": "./tsconfig.e2e.json"
     }
-  ]
+  ],
+  "compilerOptions": {
+    "target": "es2018"
+  }
 }
