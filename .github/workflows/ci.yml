@@ -21,8 +21,8 @@ jobs:
       - name: Setup dependencies
         run: yarn
 
-      - name: Lint
-        run: yarn nx affected:lint --base=remotes/origin/master
+      #- name: Lint
+      #  run: yarn nx affected:lint --base=remotes/origin/master
 
       - name: Format
         run: yarn nx format:check --base=remotes/origin/master
