@@ -78,6 +78,11 @@
   "devDependencies": {
     "@angular-builders/custom-webpack": "11.0.0-beta.5",
     "@angular-devkit/build-angular": "0.1100.5",
+    "@angular-eslint/builder": "1.2.0",
+    "@angular-eslint/eslint-plugin": "1.2.0",
+    "@angular-eslint/eslint-plugin-template": "1.2.0",
+    "@angular-eslint/schematics": "1.2.0",
+    "@angular-eslint/template-parser": "1.2.0",
     "@angular/cli": "11.0.5",
     "@angular/compiler-cli": "11.0.5",
     "@angular/language-service": "11.0.5",
@@ -93,9 +98,14 @@
     "@types/jasminewd2": "2.0.6",
     "@types/jsdom": "16.2.5",
     "@types/node": "12.12.38",
+    "@typescript-eslint/eslint-plugin": "4.3.0",
+    "@typescript-eslint/parser": "4.3.0",
     "autoprefixer": "10.1.0",
-    "codelyzer": "6.0.1",
     "dotenv": "8.2.0",
+    "eslint": "^7.6.0",
+    "eslint-plugin-import": "2.22.1",
+    "eslint-plugin-jsdoc": "30.7.6",
+    "eslint-plugin-prefer-arrow": "1.2.2",
     "firebase-tools": "9.1.0",
     "jasmine-core": "~3.5.0",
     "jasmine-marbles": "0.6.0",
@@ -115,7 +125,6 @@
     "protractor": "~7.0.0",
     "tailwindcss": "2.0.2",
     "ts-node": "9.1.1",
-    "tslint": "~6.1.0",
     "typescript": "4.0.3"
   }
 }
