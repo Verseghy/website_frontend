@@ -76,7 +76,7 @@
     "zone.js": "0.11.4"
   },
   "devDependencies": {
-    "@angular-builders/custom-webpack": "11.0.0-beta.5",
+    "@angular-builders/custom-webpack": "12",
     "@angular-devkit/build-angular": "12.0.0",
     "@angular-eslint/builder": "1.2.0",
     "@angular-eslint/eslint-plugin": "12.0.0",
@@ -117,13 +117,13 @@
     "karma-jasmine-html-reporter": "^1.5.0",
     "loaders.css": "0.1.2",
     "ng-in-viewport": "6.1.0",
-    "postcss": "8.2.1",
+    "postcss": "8.2.4",
     "postcss-import": "14.0.0",
     "postcss-loader": "4.1.0",
     "postcss-scss": "3.0.4",
     "prettier": "2.2.1",
     "protractor": "~7.0.0",
-    "tailwindcss": "2.0.2",
+    "tailwindcss": "2.2.2",
     "ts-node": "9.1.1",
     "typescript": "4.2.4"
   }
