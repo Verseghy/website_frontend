@@ -1,9 +1,3 @@
-.pdf-container {
-    overflow: hidden;
-    display: flex;
-    height: 60vh;
-}
-
-pdf-viewer {
-    max-width: 80%;
+pdf-viewer::ng-deep .ng2-pdf-viewer-container {
+    height: unset !important;
 }
