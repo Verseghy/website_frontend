@@ -69,6 +69,7 @@
     "jsdom": "16.4.0",
     "lodash-es": "4.17.15",
     "ng-katex": "2.0.3",
+    "ng2-pdf-viewer": "^7.0.1",
     "parse-color": "1.0.0",
     "rxjs": "6.5.5",
     "subsink": "1.0.1",

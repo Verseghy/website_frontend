@@ -1,0 +1,9 @@
+.pdf-container {
+    overflow: hidden;
+    display: flex;
+    height: 60vh;
+}
+
+pdf-viewer {
+    max-width: 80%;
+}
