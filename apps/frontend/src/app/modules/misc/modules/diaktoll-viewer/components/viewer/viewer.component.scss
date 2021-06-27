@@ -1,3 +1,7 @@
 pdf-viewer::ng-deep .ng2-pdf-viewer-container {
     height: unset !important;
 }
+
+pdf-viewer::ng-deep {
+    display: block;
+}
