@@ -20,13 +20,12 @@ export class ViewerComponent implements OnInit {
     breakpoints.Large
   ]).pipe(
     map(res => {
-      console.table(res.breakpoints);
       if(res.breakpoints[breakpoints.Medium]) return 1;
       if(res.breakpoints[breakpoints.Large]) return 0.5;
     })
   );
 
-  width$ = fromEvent(window, 'resize').pipe(map(e => window.innerWidth > 992 ? '992px' : `${window.innerWidth}px`))
+  width$ = fromEvent(window, 'resize').pipe(map(() => `${window.innerWidth}px`))
 
   constructor(private breakpointObserver: BreakpointObserver) {
   }
