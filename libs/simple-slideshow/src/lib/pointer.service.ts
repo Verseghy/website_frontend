@@ -39,7 +39,7 @@ export class PointerService {
 
   // adapted from https://github.com/mdn/dom-examples/blob/master/pointerevents/Pinch_zoom_gestures.html
   private _startEVCache: PointerEvent = null
-  private _evCache: Array<PointerEvent> = new Array()
+  private _evCache: Array<PointerEvent> = []
   private _previousDiagonal = -1
   private _originalState: State = new State()
   private _slideEvent: EventEmitter<number> = new EventEmitter<number>(true)
@@ -92,7 +92,7 @@ export class PointerService {
     }
   }
 
-  public get slideEvent(): EventEmitter<Number> {
+  public get slideEvent(): EventEmitter<number> {
     return this._slideEvent
   }
 

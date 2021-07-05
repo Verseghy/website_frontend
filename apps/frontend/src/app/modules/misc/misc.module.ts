@@ -33,7 +33,7 @@ const routes: Routes = [
   {
     path: 'diaktoll',
     loadChildren: () => import('./modules/diaktoll-viewer/diak-toll-viewer.module').then((m) => DiakTollViewerModule),
-  }
+  },
 ]
 
 @NgModule({

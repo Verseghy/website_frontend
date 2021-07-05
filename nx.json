@@ -17,14 +17,18 @@
     },
     "frontend-e2e": {
       "tags": [],
-      "implicitDependencies": ["frontend"]
+      "implicitDependencies": [
+        "frontend"
+      ]
     },
     "math-competition": {
       "tags": []
     },
     "math-competition-e2e": {
       "tags": [],
-      "implicitDependencies": ["math-competition"]
+      "implicitDependencies": [
+        "math-competition"
+      ]
     },
     "simple-slideshow": {
       "tags": []
@@ -37,7 +41,12 @@
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"]
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e"
+        ]
       }
     }
   },
