@@ -257,12 +257,16 @@
   > a,
   > span {
     display: block;
-    padding: 0 15px;
+    padding: 0 10px;
     transition: background-color 300ms;
     border-radius: 3px;
 
     @media screen and (max-width: 992px) {
       padding-left: 32px;
+    }
+
+    @media screen and (min-width: 1200px) {
+      padding: 0 15px;
     }
   }
 
@@ -408,6 +412,22 @@ i {
 
     @media screen and (max-width: 992px) {
       height: 48px;
+    }
+  }
+}
+
+.new {
+  position: relative;
+
+  .new-badge {
+    position: absolute;
+    top: -6px;
+    right: 0;
+    color: #009cff;
+    font-size: 10px;
+
+    @media screen and (max-width: 992px) {
+      right: 160px;
     }
   }
 }

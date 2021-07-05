@@ -35,6 +35,10 @@
         </div>
       </div>
       <div class="menu"><a (click)="drawer = !drawer" [routerLink]="'/events'" routerLinkActive="active">Események</a></div>
+      <div class="menu new">
+        <a (click)="drawer = !drawer" [routerLink]="'/misc/diaktoll'" routerLinkActive="active">Diáktoll</a>
+        <div class="new-badge">Új</div>
+      </div>
       <div class="menu ekreta">
         <a href="https://klik035992001.e-kreta.hu/Adminisztracio/Login" target="_blank">
           <img alt="" src="assets/icons/kreta2.png" />
