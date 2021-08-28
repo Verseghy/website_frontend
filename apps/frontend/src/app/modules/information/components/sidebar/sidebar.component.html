@@ -1,8 +1,8 @@
 <aside class="container">
-  <div class="dropdown-header" (click)="dropdownOpen = !dropdownOpen">
+  <div class="dropdown-header" tabindex="0" (keydown)="keydown($event)" (click)="dropdownOpen = !dropdownOpen">
     <fa-icon [icon]="['fas', 'bars']" class="dropdown-icon"></fa-icon>
   </div>
-  <div class="dropdown-content" [@dropdown]="dropdownOpen ? 'open' : 'closed'">
+  <div class="dropdown-content" [class]="{ closed: !dropdownOpen }">
     <ng-container *ngFor="let item of data">
       <div *ngIf="item.children.length" class="section">
         <span class="section-title">{{ item.name }}</span>
