@@ -149,6 +149,14 @@
       transition: transform 0.3s cubic-bezier(0, 0, 0.2, 1);
     }
   }
+  .menu:focus-within .submenu,
+    .submenu {
+    @media screen and (max-width: 992px) {
+     display: block;
+     height: auto;
+     opacity: 1;
+    }
+  }
 }
 
 .menu-header {
@@ -208,7 +216,7 @@
     a {
       display: inline-block;
       @media screen and (max-width: 992px) {
-        padding-right: 176.79px;
+        width: 100%;
       }
     }
   }
