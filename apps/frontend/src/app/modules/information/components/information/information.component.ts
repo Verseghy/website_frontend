@@ -23,11 +23,13 @@ export class InformationComponent implements OnInit, OnDestroy {
   loadedMenu$ = this.informationFacade.loadedMenu$
 
   structuredData0 = null
+  prevSlug = ''
 
   slug$ = this.route.params.pipe(map(({ slug }) => slug))
   page$ = combineLatest([this.informationFacade.page$, this.slug$]).pipe(
     switchMap(([page, slug]) => {
-      if (!page && slug) {
+      if (slug && slug !== this.prevSlug) {
+        this.prevSlug = slug
         this.informationFacade.queryPageBySlug(slug)
         return of()
       }
