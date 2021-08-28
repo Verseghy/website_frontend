@@ -207,6 +207,9 @@
     }
     a {
       display: inline-block;
+      @media screen and (max-width: 992px) {
+        padding-right: 176.79px;
+      }
     }
   }
 
@@ -297,7 +300,8 @@
 
     @media screen and (max-width: 992px) {
       position: static;
-      display: none;
+      height: 0;
+      overflow: hidden;
     }
 
     a {
