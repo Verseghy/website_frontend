@@ -7,7 +7,7 @@
         </div>
         <div class="meta">
           <div class="author">
-            <img *ngIf="post.author.image" [src]="post.author.image" alt="" />
+            <img *ngIf="post.author.image" [src]="post.author.image" [alt]="post.author.name" />
             <span>{{ post.author.name }}</span>
           </div>
           <span class="date">Közzétéve: {{ formatDate(post.date) }}</span>
@@ -15,7 +15,7 @@
         <h2>{{ post.title }}</h2>
         <p class="description">{{ post.description }}</p>
         <span class="read-more">Tovább</span>
-        <img [src]="post.index_image" alt="" class="index-img" />
+        <img [src]="post.index_image" [alt]="post.title" class="index-img" />
       </a>
     </div>
     <div class="nav">
