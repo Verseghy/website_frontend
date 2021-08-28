@@ -145,4 +145,17 @@ export class FeaturedPostComponent implements OnDestroy, OnInit {
     this.page = page
     this.page$.next(page)
   }
+
+  toPageKeydown(event: KeyboardEvent, page: number) {
+    if (event.code === 'Enter') {
+      this.toPage(page)
+    }
+  }
+
+  switchPageKeydown(event: KeyboardEvent, direction: 'next' | 'previous') {
+    if (event.code !== 'Enter') return
+
+    if (direction === 'next') return this.next()
+    this.previous()
+  }
 }
