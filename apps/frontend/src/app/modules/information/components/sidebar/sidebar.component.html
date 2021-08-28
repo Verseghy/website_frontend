@@ -7,7 +7,9 @@
       <div *ngIf="item.children.length" class="section">
         <span class="section-title">{{ item.name }}</span>
         <ng-container *ngFor="let children of item.children">
-          <a *ngIf="children.type === 'page_link'" class="menu-item section-item" (click)="loadPage(children.slug)">{{ children.name }}</a>
+          <a *ngIf="children.type === 'page_link'" class="menu-item section-item" [routerLink]="['/information', children.slug]">{{
+            children.name
+          }}</a>
           <a *ngIf="children.type === 'internal_link'" class="menu-item section-item" [routerLink]="children.link"
             >{{ children.name }} -></a
           >
