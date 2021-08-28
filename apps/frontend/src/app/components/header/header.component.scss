@@ -150,11 +150,11 @@
     }
   }
   .menu:focus-within .submenu,
-    .submenu {
+  .submenu {
     @media screen and (max-width: 992px) {
-     display: block;
-     height: auto;
-     opacity: 1;
+      display: block;
+      height: auto;
+      opacity: 1;
     }
   }
 }
