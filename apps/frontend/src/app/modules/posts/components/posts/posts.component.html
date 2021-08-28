@@ -5,7 +5,7 @@
     </div>
     <h1>{{ post?.title }}</h1>
     <div class="small-meta">
-      <img *ngIf="post?.author.image" class="author-image" [src]="post?.author.image" alt="" />
+      <img *ngIf="post?.author.image" class="author-image" [src]="post?.author.image" [alt]="post?.author.name" />
       <p>
         <a class="name" [routerLink]="['/search', 'author', post?.author.id]">{{ post?.author.name }}&nbsp;</a>
         <span class="date"
@@ -13,7 +13,7 @@
         >
       </p>
     </div>
-    <img class="index-image" [src]="post?.index_image" alt="" />
+    <img class="index-image" [src]="post?.index_image" [alt]="post?.title" />
     <verseghy-page-renderer [data]="post?.content"></verseghy-page-renderer>
     <verseghy-slideshow
       #slideshow

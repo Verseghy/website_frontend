@@ -1,7 +1,7 @@
 <ng-container *ngIf="openHeader$ | async as openHeader">
   <header class="container" [@headerAnimation]="openHeader">
     <a class="right" [@headerAnimationRight]="openHeader" [routerLink]="'/'">
-      <img alt="" class="logo-image" src="assets/logo.svg" [@headerAnimationImage]="openHeader" />
+      <img alt="Verseghy logo" class="logo-image" src="assets/logo.svg" [@headerAnimationImage]="openHeader" />
       <div class="logo">
         <div class="logo-top">
           <h1 class="title" [@headerAnimationTitle]="openHeader">Verseghy</h1>
@@ -21,7 +21,7 @@
       <div class="menu-header"><i (click)="drawer = !drawer" class="material-icons menu-close">close</i></div>
       <div class="search top">
         <i class="material-icons">search</i>
-        <input type="text" placeholder="Keresés" (keyup)="search($event)" [(ngModel)]="searchTerm" />
+        <input aria-label="keresés" type="text" placeholder="Keresés" (keyup)="search($event)" [(ngModel)]="searchTerm" />
       </div>
       <div class="menu">
         <a (click)="drawer = !drawer" [routerLink]="'/'" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Főoldal</a>
@@ -37,12 +37,12 @@
       <div class="menu"><a (click)="drawer = !drawer" [routerLink]="'/events'" routerLinkActive="active">Események</a></div>
       <div class="menu ekreta">
         <a href="https://klik035992001.e-kreta.hu/Adminisztracio/Login" target="_blank">
-          <img alt="" src="assets/icons/kreta2.png" />
+          <img alt="Kréta" src="assets/icons/kreta2.png" />
         </a>
       </div>
       <div class="search">
         <i class="material-icons">search</i>
-        <input type="text" placeholder="Keresés" (keyup)="search($event)" [(ngModel)]="searchTerm" />
+        <input aria-label="keresés" type="text" placeholder="Keresés" (keyup)="search($event)" [(ngModel)]="searchTerm" />
       </div>
     </nav>
     <div class="left">
