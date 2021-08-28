@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
+import * as Color from 'color'
 import { Label } from '../../../../models/Post'
-import * as colorParser from 'parse-color'
 
 @Component({
   selector: 'verseghy-label',
@@ -14,8 +14,6 @@ export class LabelComponent {
   constructor() {}
 
   get isDark(): boolean {
-    const rgb = colorParser(this.label.color).rgb
-    const o = Math.round((parseInt(rgb[0], 10) * 299 + parseInt(rgb[1], 10) * 587 + parseInt(rgb[2], 10) * 114) / 1000)
-    return o <= 125
+    return Color(this.label.color).contrast(Color('#000')) < 4.5
   }
 }
