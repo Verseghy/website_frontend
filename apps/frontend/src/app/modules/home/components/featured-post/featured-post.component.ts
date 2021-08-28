@@ -1,6 +1,6 @@
-import { ApplicationRef, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core'
-import { BehaviorSubject, combineLatest, concat, interval, timer } from 'rxjs'
-import { filter, first, map, tap } from 'rxjs/operators'
+import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core'
+import { BehaviorSubject, combineLatest } from 'rxjs'
+import { map } from 'rxjs/operators'
 import { SubSink } from 'subsink'
 import { PostsFacade } from '../../state/posts/posts.facade'
 import { animate, style, transition, trigger } from '@angular/animations'
@@ -34,56 +34,11 @@ import { format } from 'date-fns'
           })
         ),
       ]),
-
-      /*,transition('left => void', [
-        animate(
-          '300ms',
-          style({
-            transform: 'translate3d(calc(-100% - 10px), 0, 0)',
-            opacity: 0,
-          })
-        ),
-      ]),
-      transition('void => left', [
-        style({
-          transform: 'translate3d(calc(100% + 10px), 0, 0)',
-          opacity: 0,
-        }),
-        animate(
-          '300ms',
-          style({
-            transform: 'translate3d(0, 0, 0)',
-            opacity: 1,
-          })
-        ),
-      ]),
-      transition('right => void', [
-        animate(
-          '300ms',
-          style({
-            transform: 'translate3d(calc(100% + 10px), 0, 0)',
-            opacity: 0,
-          })
-        ),
-      ]),
-      transition('void => right', [
-        style({
-          transform: 'translate3d(calc(-100% - 10px), 0, 0)',
-          opacity: 0,
-        }),
-        animate(
-          '300ms',
-          style({
-            transform: 'translate3d(0, 0, 0)',
-            opacity: 1,
-          })
-        ),
-      ]),*/
     ]),
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FeaturedPostComponent implements OnDestroy, OnInit {
+export class FeaturedPostComponent implements OnDestroy {
   private subs = new SubSink()
 
   autoplaySpeed = 1000
@@ -103,19 +58,7 @@ export class FeaturedPostComponent implements OnDestroy, OnInit {
 
   featuredPosts$ = this.postsFacade.featuredPosts$
 
-  constructor(private postsFacade: PostsFacade, private appRef: ApplicationRef, private changeDetectorRef: ChangeDetectorRef) {}
-
-  ngOnInit(): void {
-    const appIsStable$ = this.appRef.isStable.pipe(first((isStable) => isStable === true))
-    const interval$ = timer(5 * 1000, 5 * 1000)
-
-    // TODO(zoltanszepesi): fix this mess
-    this.subs.sink = concat(appIsStable$, interval$).subscribe((val) => {
-      if (val === true) return
-      this.next()
-      this.changeDetectorRef.detectChanges()
-    })
-  }
+  constructor(private postsFacade: PostsFacade) {}
 
   ngOnDestroy() {
     this.subs.unsubscribe()
