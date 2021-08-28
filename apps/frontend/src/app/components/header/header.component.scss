@@ -11,6 +11,24 @@
   }
 }
 
+.skip-header {
+  position: absolute;
+  top: 0;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  font-size: 1.6rem;
+  padding: 2.4rem;
+  background: #f2f2f2;
+  border-radius: 0.8rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
+
+  &:focus {
+    opacity: 1;
+    pointer-events: all;
+  }
+}
+
 .container {
   display: flex;
   padding: 0 20px;
