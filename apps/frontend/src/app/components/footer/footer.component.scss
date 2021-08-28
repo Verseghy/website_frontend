@@ -37,6 +37,7 @@
       align-items: center;
       text-decoration: none;
       color: inherit;
+      margin-bottom: 28px;
 
       h2 {
         font-family: 'Cabin', sans-serif;
@@ -64,6 +65,11 @@
         &:focus {
           outline: 0;
         }
+      }
+    }
+    .kk-logo {
+      img {
+        width: 300px;
       }
     }
   }
