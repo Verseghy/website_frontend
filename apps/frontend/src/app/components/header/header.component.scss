@@ -211,7 +211,13 @@
   }
 
   &.open {
-    &:hover,
+    &:hover .submenu,
+    .submenu {
+      @media screen and (max-width: 992px) {
+        display: block;
+        opacity: 1;
+      }
+    }
     &:focus-within .submenu,
     .submenu {
       @media screen and (max-width: 992px) {
@@ -225,7 +231,21 @@
     }
   }
 
-  &:hover,
+  &:hover {
+    > a,
+    > span {
+      background-color: #f7f7f7;
+    }
+
+    .submenu {
+      opacity: 1;
+      pointer-events: all;
+
+      @media screen and (max-width: 992px) {
+        display: none;
+      }
+    }
+  }
   &:focus-within {
     > a,
     > span {
