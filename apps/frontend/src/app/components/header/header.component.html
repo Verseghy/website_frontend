@@ -34,7 +34,9 @@
           <a (click)="drawer = !drawer" [routerLink]="'/pages/menza-befizetes'">Befizetés, információk</a>
         </div>
       </div>
-      <div class="menu"><a (click)="drawer = !drawer" [routerLink]="'/events'" routerLinkActive="active">Események</a></div>
+      <div class="menu TEMP-disabled-not-implemented-link">
+        <a tabindex="-1" (click)="drawer = !drawer" [routerLink]="'/events'" routerLinkActive="active">Események</a>
+      </div>
       <div class="menu ekreta">
         <a href="https://klik035992001.e-kreta.hu/Adminisztracio/Login" target="_blank">
           <img alt="Kréta" src="assets/icons/kreta2.png" />
