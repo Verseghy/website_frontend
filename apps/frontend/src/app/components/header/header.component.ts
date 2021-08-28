@@ -189,4 +189,8 @@ export class HeaderComponent {
     if (event.code !== 'Enter') return
     this.toggleDrawer()
   }
+
+  skipHeader() {
+    this.document.getElementById('skip-header').focus()
+  }
 }

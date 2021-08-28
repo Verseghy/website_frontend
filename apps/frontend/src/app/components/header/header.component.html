@@ -1,5 +1,6 @@
 <ng-container *ngIf="openHeader$ | async as openHeader">
   <header class="container" [@headerAnimation]="openHeader" role="banner">
+    <button (click)="skipHeader()" class="skip-header">Tovább a fő tartalomhoz</button>
     <a class="right" [@headerAnimationRight]="openHeader" [routerLink]="'/'">
       <img alt="Verseghy logo" class="logo-image" src="assets/logo.svg" [@headerAnimationImage]="openHeader" />
       <div class="logo">
@@ -78,4 +79,4 @@
     </nav>
   </header>
 </ng-container>
-<div class="backdrop" (click)="toggleDrawer()" [ngClass]="{ open: (drawer$ | async) }"></div>
+<div class="backdrop" (click)="toggleDrawer()" [ngClass]="{ open: (drawer$ | async) }" id="skip-header" tabindex="-1"></div>
