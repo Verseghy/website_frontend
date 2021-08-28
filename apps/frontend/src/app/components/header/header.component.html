@@ -1,5 +1,5 @@
 <ng-container *ngIf="openHeader$ | async as openHeader">
-  <header class="container" [@headerAnimation]="openHeader">
+  <header class="container" [@headerAnimation]="openHeader" role="banner">
     <a class="right" [@headerAnimationRight]="openHeader" [routerLink]="'/'">
       <img alt="Verseghy logo" class="logo-image" src="assets/logo.svg" [@headerAnimationImage]="openHeader" />
       <div class="logo">
@@ -17,9 +17,9 @@
         </div>
       </div>
     </a>
-    <nav [ngClass]="{ open: drawer }" class="middle">
+    <nav [ngClass]="{ open: drawer }" class="middle" role="navigation">
       <div class="menu-header"><i (click)="drawer = !drawer" class="material-icons menu-close">close</i></div>
-      <div class="search top">
+      <div class="search top" role="search">
         <i class="material-icons">search</i>
         <input aria-label="keresés" type="text" placeholder="Keresés" (keyup)="search($event)" [(ngModel)]="searchTerm" />
       </div>
@@ -40,7 +40,7 @@
           <img alt="Kréta" src="assets/icons/kreta2.png" />
         </a>
       </div>
-      <div class="search">
+      <div class="search" role="search">
         <i class="material-icons">search</i>
         <input aria-label="keresés" type="text" placeholder="Keresés" (keyup)="search($event)" [(ngModel)]="searchTerm" />
       </div>
