@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component, Inject, PLATFORM_ID } from '@angular/core'
 import { Router } from '@angular/router'
 import { animate, animateChild, group, query, state, style, transition, trigger } from '@angular/animations'
-import { combineLatest, fromEvent, Observable, of } from 'rxjs'
+import { BehaviorSubject, combineLatest, fromEvent, Observable, of } from 'rxjs'
 import { map, startWith } from 'rxjs/operators'
 import { HeaderService } from '../../services/header.service'
 import { DOCUMENT, isPlatformBrowser } from '@angular/common'
+import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout'
 
 const openCloseAnimation = (open: boolean) => {
   return [
@@ -150,23 +151,42 @@ export class HeaderComponent {
       )
     : of('close')
 
-  drawer: boolean
+  isSmallScreen$ = this.breakpointObserver.observe('(max-width: 992px)')
+
+  drawer$ = new BehaviorSubject(false)
+
   submenu1: boolean
   submenu2: boolean
 
   searchTerm: string
 
+  navTabbable$ = combineLatest([this.isSmallScreen$, this.drawer$]).pipe(
+    map(([isSmall, drawer]) => {
+      return isSmall.matches && !drawer ? -1 : 0
+    })
+  )
+
   constructor(
     private router: Router,
     private headerService: HeaderService,
+    private breakpointObserver: BreakpointObserver,
     @Inject(DOCUMENT) private document,
     @Inject(PLATFORM_ID) private platformID
   ) {}
 
-  search(event) {
+  search(event: KeyboardEvent) {
     if (event.key === 'Enter') {
       this.router.navigate(['search', 'term', this.searchTerm])
-      this.drawer = false
+      this.drawer$.next(false)
     }
+  }
+
+  toggleDrawer() {
+    this.drawer$.next(!this.drawer$.getValue())
+  }
+
+  toggleDrawerKeyboard(event: KeyboardEvent) {
+    if (event.code !== 'Enter') return
+    this.toggleDrawer()
   }
 }

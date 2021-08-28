@@ -22,6 +22,7 @@ import { AngularFirePerformanceModule } from '@angular/fire/performance'
 import { ToastComponent } from './components/toast/toast.component'
 import { faFacebookF } from '@fortawesome/free-brands-svg-icons'
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component'
+import { LayoutModule } from '@angular/cdk/layout'
 
 const stateSetter = (reducer: ActionReducer<any>): ActionReducer<any> => {
   return function (state: any, action: any) {
@@ -37,6 +38,7 @@ export const NGRX_STATE = makeStateKey('NGRX_STATE')
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent, ToastComponent, PageNotFoundComponent],
   imports: [
+    LayoutModule,
     BrowserTransferStateModule,
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
