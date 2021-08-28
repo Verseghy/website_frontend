@@ -1,5 +1,5 @@
 <aside class="container">
-  <div class="dropdown-header" tabindex="0" (keydown)="keydown($event)" (click)="dropdownOpen = !dropdownOpen">
+  <div class="dropdown-header" tabindex="0" (keyup)="keyup($event)" (click)="dropdownOpen = !dropdownOpen">
     <fa-icon [icon]="['fas', 'bars']" class="dropdown-icon"></fa-icon>
   </div>
   <div class="dropdown-content" [class]="{ closed: !dropdownOpen }">

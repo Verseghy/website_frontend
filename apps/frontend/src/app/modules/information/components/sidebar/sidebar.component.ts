@@ -14,7 +14,7 @@ export class SidebarComponent {
 
   constructor() {}
 
-  keydown(event: KeyboardEvent) {
+  keyup(event: KeyboardEvent) {
     if (event.code !== 'Enter') return
 
     this.dropdownOpen = !this.dropdownOpen

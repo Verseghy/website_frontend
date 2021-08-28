@@ -89,13 +89,13 @@ export class FeaturedPostComponent implements OnDestroy {
     this.page$.next(page)
   }
 
-  toPageKeydown(event: KeyboardEvent, page: number) {
+  toPageKeyup(event: KeyboardEvent, page: number) {
     if (event.code === 'Enter') {
       this.toPage(page)
     }
   }
 
-  switchPageKeydown(event: KeyboardEvent, direction: 'next' | 'previous') {
+  switchPageKeyup(event: KeyboardEvent, direction: 'next' | 'previous') {
     if (event.code !== 'Enter') return
 
     if (direction === 'next') return this.next()
