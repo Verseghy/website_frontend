@@ -1,5 +1,5 @@
 <verseghy-header class="header"></verseghy-header>
-<main class="content" [@routerAnimation]="outlet.isActivated ? outlet.activatedRoute : ''">
+<main class="content" [@routerAnimation]="outlet.isActivated ? outlet.activatedRoute : ''" role="main">
   <verseghy-loaders [hidden]="loaded" [loader]="'pacman'" [loaderClass]="'pacmanbg'" class="pacman-middle"></verseghy-loaders>
   <router-outlet #outlet="outlet"></router-outlet>
 </main>
