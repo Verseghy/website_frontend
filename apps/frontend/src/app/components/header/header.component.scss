@@ -167,6 +167,14 @@
       transition: transform 0.3s cubic-bezier(0, 0, 0.2, 1);
     }
   }
+  .menu:focus-within .submenu,
+  .submenu {
+    @media screen and (max-width: 992px) {
+      display: block;
+      height: auto;
+      opacity: 1;
+    }
+  }
 }
 
 .menu-header {
@@ -223,13 +231,22 @@
         margin: 0;
       }
     }
+    a {
+      display: inline-block;
+      @media screen and (max-width: 992px) {
+        width: 100%;
+        box-sizing: border-box;
+      }
+    }
   }
 
   &.open {
     &:hover .submenu,
+    &:focus-within .submenu,
     .submenu {
       @media screen and (max-width: 992px) {
         display: block;
+        height: auto;
         opacity: 1;
       }
     }
@@ -239,7 +256,8 @@
     }
   }
 
-  &:hover {
+  &:hover,
+  &:focus-within {
     > a,
     > span {
       background-color: #f7f7f7;
@@ -250,7 +268,8 @@
       pointer-events: all;
 
       @media screen and (max-width: 992px) {
-        display: none;
+        height: 0;
+        overflow: hidden;
       }
     }
   }
@@ -308,7 +327,8 @@
 
     @media screen and (max-width: 992px) {
       position: static;
-      display: none;
+      height: 0;
+      overflow: hidden;
     }
 
     a {
@@ -320,7 +340,8 @@
         padding-left: 32px;
       }
 
-      &:hover {
+      &:hover,
+      &:focus-within {
         background-color: #eceff1;
         color: #009cff;
 
