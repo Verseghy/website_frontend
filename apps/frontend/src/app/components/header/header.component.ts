@@ -68,6 +68,7 @@ const openCloseAnimation = (open: boolean) => {
         'close',
         style({
           opacity: 0,
+          pointerEvents: 'none',
         })
       ),
       transition('open <=> close', [animate('300ms')]),
