@@ -1,11 +1,19 @@
 {
   "extends": "../../.eslintrc.json",
-  "ignorePatterns": ["!**/*"],
+  "ignorePatterns": [
+    "!**/*"
+  ],
   "overrides": [
     {
-      "files": ["*.ts"],
+      "files": [
+        "*.ts"
+      ],
       "parserOptions": {
-        "project": ["apps/frontend//tsconfig.app.json", "apps/frontend//tsconfig.spec.json", "apps/frontend//e2e/tsconfig.json"],
+        "project": [
+          "apps/frontend//tsconfig.app.json",
+          "apps/frontend//tsconfig.spec.json",
+          "apps/frontend//e2e/tsconfig.json"
+        ],
         "createDefaultProgram": true
       },
       "rules": {
@@ -40,7 +48,9 @@
       }
     },
     {
-      "files": ["*.html"],
+      "files": [
+        "*.html"
+      ],
       "rules": {}
     }
   ]
