@@ -120,7 +120,7 @@
     "karma-jasmine": "4.0.1",
     "karma-jasmine-html-reporter": "1.6.0",
     "loaders.css": "0.1.2",
-    "ng-in-viewport": "6.1.0",
+    "ng-in-viewport": "6.1.5",
     "postcss": "8.2.10",
     "postcss-import": "14.0.0",
     "postcss-loader": "4.1.0",
