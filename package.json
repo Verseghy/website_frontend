@@ -68,7 +68,7 @@
     "express": "4.17.1",
     "firebase": "8.2.1",
     "jsdom": "16.4.0",
-    "lodash-es": "4.17.15",
+    "lodash-es": "4.17.21",
     "ng-katex": "2.0.3",
     "parse-color": "1.0.0",
     "rxjs": "6.5.5",
