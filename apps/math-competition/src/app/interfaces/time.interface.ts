@@ -1,3 +1,4 @@
+// @ts-ignore
 import firebase from 'firebase'
 import firestore = firebase.firestore
 
