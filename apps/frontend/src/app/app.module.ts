@@ -17,7 +17,13 @@ import { AngularFireModule } from '@angular/fire/compat'
 import { LoadersModule } from '@verseghy/ui'
 import { environment } from '../environments/environment'
 import { ServiceWorkerModule } from '@angular/service-worker'
-import { AngularFireAnalyticsModule, APP_NAME, APP_VERSION, COLLECTION_ENABLED, ScreenTrackingService } from '@angular/fire/compat/analytics'
+import {
+  AngularFireAnalyticsModule,
+  APP_NAME,
+  APP_VERSION,
+  COLLECTION_ENABLED,
+  ScreenTrackingService,
+} from '@angular/fire/compat/analytics'
 import { AngularFirePerformanceModule } from '@angular/fire/compat/performance'
 import { ToastComponent } from './components/toast/toast.component'
 import { faFacebookF } from '@fortawesome/free-brands-svg-icons'
