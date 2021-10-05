@@ -41,7 +41,7 @@
     "@angular/common": "12.0.0",
     "@angular/compiler": "12.0.0",
     "@angular/core": "12.0.0",
-    "@angular/fire": "6.1.1",
+    "@angular/fire": "7.0.4",
     "@angular/forms": "12.0.0",
     "@angular/material": "10.2.5",
     "@angular/platform-browser": "12.0.0",
