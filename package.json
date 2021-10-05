@@ -121,7 +121,7 @@
     "ng-in-viewport": "6.1.0",
     "postcss": "8.2.10",
     "postcss-import": "14.0.0",
-    "postcss-loader": "4.1.0",
+    "postcss-loader": "4.3.0",
     "postcss-scss": "3.0.4",
     "prettier": "2.2.1",
     "protractor": "7.0.0",
