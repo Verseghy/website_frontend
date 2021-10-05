@@ -1,7 +1,7 @@
 import { createSelector } from '@ngrx/store'
 import { State, timeFeatureKey } from './time.reducer'
 
-const selectTime = state => state[timeFeatureKey]
+const selectTime = (state) => state[timeFeatureKey]
 
 export const selectStartTime = createSelector(selectTime, (state: State) => state.startTime)
 

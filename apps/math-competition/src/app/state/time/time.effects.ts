@@ -20,8 +20,8 @@ export class TimeEffects {
           .doc<Time>('time')
           .valueChanges()
           .pipe(
-            map(e => setTimes(e)),
-            catchError(e => {
+            map((e) => setTimes(e)),
+            catchError((e) => {
               console.error(e)
               return EMPTY
             }) // TODO(zoltanszepesi): proper error handlings

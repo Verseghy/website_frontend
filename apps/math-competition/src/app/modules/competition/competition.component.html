@@ -7,7 +7,21 @@
     <div class="grid grid-cols-5 md:grid-cols-10 gap-4">
       <span
         *ngFor="let problem of paginated$ | async"
-        class="w-10 h-10 rounded-md text-center leading-10 font-black font-mono cursor-pointer bg-gray-300 dark:bg-gray-700 focus:ring-2 ring-black dark:ring-white outline-none"
+        class="
+          w-10
+          h-10
+          rounded-md
+          text-center
+          leading-10
+          font-black font-mono
+          cursor-pointer
+          bg-gray-300
+          dark:bg-gray-700
+          focus:ring-2
+          ring-black
+          dark:ring-white
+          outline-none
+        "
         (click)="scrollTo(problem.id)"
         [class]="{
           'bg-primary-600': problem.solution !== null,
