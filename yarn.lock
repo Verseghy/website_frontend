@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@angular-builders/custom-webpack@12.1.0":
-  version "12.1.0"
-  resolved "https://registry.yarnpkg.com/@angular-builders/custom-webpack/-/custom-webpack-12.1.0.tgz#07b5eedd004e4409a53b45585e96ce06f88e2f12"
-  integrity sha512-7tq0q4PN0L3rTTRxWz5f9xWGt2duYCutDhuRc6Rac6yG13SiTirawqUg2ROx0T3qFjo2G8IWzAageIEzHjl5DA==
+"@angular-builders/custom-webpack@12.1.3":
+  version "12.1.3"
+  resolved "https://registry.yarnpkg.com/@angular-builders/custom-webpack/-/custom-webpack-12.1.3.tgz#3eda78f573dc6d8b5278bb2d0c20937a75dec0cc"
+  integrity sha512-CzOkwYnO2Xs+z4kMeJkUALeRjVE69SlrqbEsv2Tao5PsBmFCyT5EEVoSvwOuaxZmajuGaXtz7yBIeK2hYp25/A==
   dependencies:
     "@angular-devkit/architect" ">=0.1200.0 < 0.1300.0"
     "@angular-devkit/build-angular" "^12.0.0"
