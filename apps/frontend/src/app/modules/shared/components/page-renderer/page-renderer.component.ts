@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, Inject, Input, PLATFORM_ID } from '@angular/core'
 import { DomSanitizer } from '@angular/platform-browser'
 import { isPlatformBrowser } from '@angular/common'
-import { JSDOM } from 'jsdom'
 
 @Component({
   selector: 'verseghy-page-renderer',
