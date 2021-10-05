@@ -20,10 +20,10 @@ export const initialState: State = {
 const archiveReducer = createReducer(
   initialState,
 
-  on(ArchiveActions.loadArchives, state => state),
+  on(ArchiveActions.loadArchives, (state) => state),
   on(ArchiveActions.loadArchivesSuccess, (state, action) => ({ ...state, archivesList: action.data, loading: false })),
   on(ArchiveActions.loadArchivesFailure, (state, action) => ({ ...state, error: action.error, loading: false })),
-  on(ArchiveActions.loadArchivesDetail, state => ({ ...state, archives: [] })),
+  on(ArchiveActions.loadArchivesDetail, (state) => ({ ...state, archives: [] })),
   on(ArchiveActions.loadArchivesDetailSuccess, (state, action) => ({ ...state, archives: action.data }))
 )
 

@@ -14,7 +14,7 @@ export class EventsEffects {
   queryMonth = createEffect(() =>
     this.actions$.pipe(
       ofType<MonthChange>(EventsActionTypes.MonthChange),
-      withLatestFrom(this.store.pipe(select(state => state[EVENTS_FEATURE_KEY]))),
+      withLatestFrom(this.store.pipe(select((state) => state[EVENTS_FEATURE_KEY]))),
       map(([action, storeState]) => {
         if (!storeState.loadedMonths.includes(JSON.stringify(action.payload))) {
           this.store.dispatch(new AddLoadedMonth(JSON.stringify(action.payload)))
@@ -24,8 +24,8 @@ export class EventsEffects {
           return of(empty)
         }
       }),
-      switchMap(data => data),
-      switchMap(data => {
+      switchMap((data) => data),
+      switchMap((data) => {
         return of(new EventsLoaded(data))
       })
     )

@@ -16,8 +16,8 @@ export class AuthGuard implements CanActivate {
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     return this.store.pipe(
       select(authKey),
-      filter(auth => !auth.loading),
-      map(auth => {
+      filter((auth) => !auth.loading),
+      map((auth) => {
         if (auth.uid) {
           switch (state.url) {
             case '/login':

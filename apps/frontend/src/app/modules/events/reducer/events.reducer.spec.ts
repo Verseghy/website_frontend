@@ -2,7 +2,7 @@ import { EventsLoaded } from './events.actions'
 import { Entity, eventsReducer, EventsState, initialState } from './events.reducer'
 
 describe('Events Reducer', () => {
-  const getEventsId = it => it.id
+  const getEventsId = (it) => it.id
   let createEvents
 
   beforeEach(() => {

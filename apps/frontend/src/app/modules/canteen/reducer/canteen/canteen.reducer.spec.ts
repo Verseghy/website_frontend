@@ -3,7 +3,7 @@ import { canteenReducer, CanteenState, Entity, initialState, Menu } from './cant
 import { setDay } from 'date-fns'
 
 describe('Canteen Reducer', () => {
-  const getCanteenId = it => it.id
+  const getCanteenId = (it) => it.id
   let createCanteen
 
   beforeEach(() => {
