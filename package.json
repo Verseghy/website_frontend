@@ -60,7 +60,7 @@
     "@nguniversal/express-engine": "10.1.0",
     "@ngx-loading-bar/core": "4.2.0",
     "@ngx-loading-bar/http-client": "4.2.0",
-    "@ngx-loading-bar/router": "4.2.0",
+    "@ngx-loading-bar/router": "5.1.2",
     "@nrwl/angular": "12.4.0",
     "color": "^4.0.1",
     "core-js": "2.6.11",
