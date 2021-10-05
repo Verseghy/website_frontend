@@ -1,18 +1,11 @@
 {
   "extends": "../../.eslintrc.json",
-  "ignorePatterns": [
-    "!**/*"
-  ],
+  "ignorePatterns": ["!**/*"],
   "overrides": [
     {
-      "files": [
-        "*.ts"
-      ],
+      "files": ["*.ts"],
       "parserOptions": {
-        "project": [
-          "libs/calendar/tsconfig.lib.json",
-          "libs/calendar/tsconfig.spec.json"
-        ],
+        "project": ["libs/calendar/tsconfig.lib.json", "libs/calendar/tsconfig.spec.json"],
         "createDefaultProgram": true
       },
       "rules": {
@@ -46,9 +39,7 @@
       }
     },
     {
-      "files": [
-        "*.html"
-      ],
+      "files": ["*.html"],
       "rules": {}
     }
   ]
