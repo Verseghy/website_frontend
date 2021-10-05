@@ -460,13 +460,13 @@
   dependencies:
     tslib "^2.1.0"
 
-"@angular/platform-server@10.2.0":
-  version "10.2.0"
-  resolved "https://registry.yarnpkg.com/@angular/platform-server/-/platform-server-10.2.0.tgz#36153c8b5486f7cd484ec09280e2395b0a43ff1a"
-  integrity sha512-eIc7xiGPylQ6uExx+LeTOHFRDtsbRe4sqgbjsfmlQfvxuVbYRzacXctvymjqr1cGzYW+CpB/3eQoz7uX/BGOog==
+"@angular/platform-server@12.2.8":
+  version "12.2.8"
+  resolved "https://registry.yarnpkg.com/@angular/platform-server/-/platform-server-12.2.8.tgz#776c58d1dd97c296368ea742fe5e4e7c6de03928"
+  integrity sha512-SfqqVs5sq9/MLPOI8CnC9GpLfJhdTVj5tKvkUoWoDHi1DPR9VNWwXhFRHJXQTVYMsGkTADuFuWawiaXchNYqcg==
   dependencies:
     domino "^2.1.2"
-    tslib "^2.0.0"
+    tslib "^2.2.0"
     xhr2 "^0.2.0"
 
 "@angular/router@12.0.0":
@@ -14434,6 +14434,11 @@ tslib@^2.1.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.3.0.tgz#803b8cdab3e12ba581a4ca41c8839bbb0dacb09e"
   integrity sha512-N82ooyxVNm6h1riLCoyS9e3fuJ3AMG2zIZs2Gd1ATcSFjSA23Q0fzjjZeh0jbJvWVDZ0cJT8yaNNaaXHzueNjg==
+
+tslib@^2.2.0:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.3.1.tgz#e8a335add5ceae51aa261d32a490158ef042ef01"
+  integrity sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw==
 
 tslint-to-eslint-config@2.0.1:
   version "2.0.1"
