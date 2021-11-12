@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core'
-import { Observable } from 'rxjs'
+import { Observable, of } from 'rxjs'
 import { AlertMessage } from '../models/alert-message'
-import { AngularFirestore } from '@angular/fire/compat/firestore'
 
 @Injectable({
   providedIn: 'root',
 })
 export class AlertService {
-  constructor(private firestore: AngularFirestore) {}
+  constructor() {}
 
   getAlertMessages(): Observable<AlertMessage[]> {
-    return this.firestore.collection<AlertMessage>('messages').valueChanges()
+    return of([])
   }
 }
