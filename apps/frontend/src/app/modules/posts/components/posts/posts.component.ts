@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router'
 import { catchError, map, switchMap, tap } from 'rxjs/operators'
 import { format } from 'date-fns'
 import { TitleService } from '../../../../services/title.service'
-import {Meta} from "@angular/platform-browser";
+import { Meta } from '@angular/platform-browser'
 
 @Component({
   selector: 'verseghy-posts',
@@ -24,7 +24,7 @@ export class PostsComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private titleService: TitleService,
-    private metaService: Meta,
+    private metaService: Meta
   ) {}
 
   ngOnInit() {
@@ -47,13 +47,13 @@ export class PostsComponent implements OnInit {
         this.titleService.setTitle(post.title)
 
         this.metaService.addTags([
-          {property: 'og:type', content: 'article'},
-          {property: 'og:title', content: post.title},
-          {property: 'og:image', content: post.index_image},
-          {property: 'og:description', content: post.description},
-          {property: 'article:author', content: post.author.name},
-          {property: 'article:published_time', content: post.date},
-          ...post.labels.map(l => ({property: 'article:tag', content: l.name})),
+          { property: 'og:type', content: 'article' },
+          { property: 'og:title', content: post.title },
+          { property: 'og:image', content: post.index_image },
+          { property: 'og:description', content: post.description },
+          { property: 'article:author', content: post.author.name },
+          { property: 'article:published_time', content: post.date },
+          ...post.labels.map((l) => ({ property: 'article:tag', content: l.name })),
         ])
       })
     )
