@@ -3,6 +3,7 @@ FROM node:14-alpine
 WORKDIR /usr/src/app
 COPY . .
 RUN yarn install --frozen-lockfile
+RUN npx browserslist@latest --update-db
 RUN yarn ng run frontend:build:production
 RUN yarn ng run frontend:server:production
 
