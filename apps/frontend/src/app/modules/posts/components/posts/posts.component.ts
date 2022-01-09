@@ -46,6 +46,9 @@ export class PostsComponent implements OnInit {
 
         this.titleService.setTitle(post.title)
 
+        this.metaService.removeTag('property="og:type"')
+        this.metaService.removeTag('property="og:image"')
+        this.metaService.removeTag('property="og:description"')
         this.metaService.addTags([
           { property: 'og:type', content: 'article' },
           { property: 'og:title', content: post.title },

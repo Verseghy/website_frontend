@@ -7,6 +7,7 @@ import { concat, interval } from 'rxjs'
 import { ToastService } from './services/toast.service'
 import { HeaderService } from './services/header.service'
 import { environment } from '../environments/environment'
+import { Meta } from '@angular/platform-browser'
 
 @Component({
   selector: 'verseghy-root',
@@ -56,7 +57,8 @@ export class AppComponent implements AfterViewInit, OnInit {
     private swupdate: SwUpdate,
     private appRef: ApplicationRef,
     private toastService: ToastService,
-    private headerSevice: HeaderService
+    private headerSevice: HeaderService,
+    private metaService: Meta
   ) {}
 
   ngOnInit() {
@@ -77,6 +79,12 @@ export class AppComponent implements AfterViewInit, OnInit {
         },
       ])
     })
+
+    this.metaService.addTags([
+      { property: 'og:type', content: 'website' },
+      { property: 'og:image', content: 'https://verseghy-gimnazium.net/assets/img.svg' },
+      { property: 'og:description', content: 'Verseghy Ferenc Gimnázium weboldala' },
+    ])
   }
 
   ngAfterViewInit(): void {
