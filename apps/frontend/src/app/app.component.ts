@@ -82,7 +82,7 @@ export class AppComponent implements AfterViewInit, OnInit {
 
     this.metaService.addTags([
       { property: 'og:type', content: 'website' },
-      { property: 'og:image', content: 'https://verseghy-gimnazium.net/assets/img.svg' },
+      { property: 'og:image', content: 'https://verseghy-gimnazium.net/assets/img.png' },
       { property: 'og:description', content: 'Verseghy Ferenc Gimnázium weboldala' },
     ])
   }
