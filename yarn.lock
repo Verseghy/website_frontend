@@ -6214,6 +6214,13 @@ cli-spinners@^2.5.0:
   resolved "https://registry.yarnpkg.com/cli-spinners/-/cli-spinners-2.6.0.tgz#36c7dc98fb6a9a76bd6238ec3f77e2425627e939"
   integrity sha512-t+4/y50K/+4xcCRosKkA7W4gTr1MySvLV0q+PxmG7FJ5g+66ChKurYjxBCjHggHH3HA5Hh9cy+lcUGWDqVH+4Q==
 
+cli-table@0.3.11:
+  version "0.3.11"
+  resolved "https://registry.yarnpkg.com/cli-table/-/cli-table-0.3.11.tgz#ac69cdecbe81dccdba4889b9a18b7da312a9d3ee"
+  integrity sha512-IqLQi4lO0nIB4tcdTpN4LCB9FI3uqrJZK7RC515EnhZ6qBaglkIgICb1wjeAqpdoOabm1+SuQtkXIPdYC93jhQ==
+  dependencies:
+    colors "1.0.3"
+
 cli-table@^0.3.1:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/cli-table/-/cli-table-0.3.1.tgz#f53b05266a8b1a0b934b3d0821e6e2dc5914ae23"
@@ -8691,10 +8698,10 @@ find-up@^4.0.0, find-up@^4.1.0:
     locate-path "^5.0.0"
     path-exists "^4.0.0"
 
-firebase-tools@^9.0.0:
-  version "9.19.0"
-  resolved "https://registry.yarnpkg.com/firebase-tools/-/firebase-tools-9.19.0.tgz#f2684ba19cb1fb0a8d44de6554e96ab2178afc9c"
-  integrity sha512-jo9IhtddYBXEwO5m99oPZ53H4KInfhyYWD5+j6LD1bCsT9M95u+hNx+oXnRBVNTJjbwvlv/stF+zDy1WrpU1FA==
+firebase-tools@9.23.3:
+  version "9.23.3"
+  resolved "https://registry.yarnpkg.com/firebase-tools/-/firebase-tools-9.23.3.tgz#a20d0b17bbac07a220faafe8ee37cf36ea07c358"
+  integrity sha512-J1S/T96rL3vKObDtTuBkop9JtW3vYnfwyU83NopiuOy9oPBRxFkitgzk034qGrpGyZvDA6Do6ZHI50taB3hrEg==
   dependencies:
     "@google-cloud/pubsub" "^2.7.0"
     "@types/archiver" "^5.1.0"
@@ -8706,7 +8713,7 @@ firebase-tools@^9.0.0:
     chokidar "^3.0.2"
     cjson "^0.3.1"
     cli-color "^1.2.0"
-    cli-table "^0.3.1"
+    cli-table "0.3.11"
     commander "^4.0.1"
     configstore "^5.0.1"
     cors "^2.8.5"
@@ -8750,7 +8757,7 @@ firebase-tools@^9.0.0:
     universal-analytics "^0.4.16"
     unzipper "^0.10.10"
     update-notifier "^5.1.0"
-    uuid "^3.0.0"
+    uuid "^8.3.2"
     winston "^3.0.0"
     winston-transport "^4.4.0"
     ws "^7.2.3"
@@ -17242,7 +17249,7 @@ utils-merge@1.0.1:
   resolved "https://registry.yarnpkg.com/utils-merge/-/utils-merge-1.0.1.tgz#9f95710f50a267947b2ccc124741c1028427e713"
   integrity sha1-n5VxD1CiZ5R7LMwSR0HBAoQn5xM=
 
-uuid@8.3.2:
+uuid@8.3.2, uuid@^8.3.2:
   version "8.3.2"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.2.tgz#80d5b5ced271bb9af6c445f21a1a04c606cefbe2"
   integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
