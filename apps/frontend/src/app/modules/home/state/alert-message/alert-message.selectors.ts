@@ -2,7 +2,7 @@ import { createFeatureSelector, createSelector } from '@ngrx/store'
 import { ALERTMESSAGE_FEATURE_KEY, State, AlertMessagePartialState } from './alert-message.reducer'
 import { AlertMessagePriority } from '../../models/alert-message'
 
-export const getAlertMessageState = createFeatureSelector<AlertMessagePartialState, State>(ALERTMESSAGE_FEATURE_KEY)
+export const getAlertMessageState = createFeatureSelector<State>(ALERTMESSAGE_FEATURE_KEY)
 
 export const getAlertMessageLoaded = createSelector(getAlertMessageState, (state: State) => state.loaded)
 
