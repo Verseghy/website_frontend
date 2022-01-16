@@ -2,7 +2,7 @@ import { AfterViewInit, ApplicationRef, ChangeDetectionStrategy, Component, OnIn
 import { animate, group, query, style, transition, trigger } from '@angular/animations'
 import { NavigationCancel, NavigationEnd, NavigationStart, Router } from '@angular/router'
 import { SwUpdate } from '@angular/service-worker'
-import { first } from 'rxjs/operators'
+import {filter, first} from 'rxjs/operators'
 import { concat, interval } from 'rxjs'
 import { ToastService } from './services/toast.service'
 import { HeaderService } from './services/header.service'
@@ -67,7 +67,9 @@ export class AppComponent implements AfterViewInit, OnInit {
 
     concat(appIsStable$, hourly$).subscribe(() => environment.production && this.swupdate.checkForUpdate())
 
-    this.swupdate.available.subscribe(() => {
+    this.swupdate.versionUpdates.pipe(
+        filter(evt => evt.type === 'VERSION_READY')
+    ).subscribe(() => {
       this.toastService.createToast('Frissítés elérhető. Kérlek töltsd újra az oldalt!', [
         {
           title: 'Újratöltés',
