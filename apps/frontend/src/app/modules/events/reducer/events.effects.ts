@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { Actions, createEffect, Effect, ofType } from '@ngrx/effects'
+import { Actions, createEffect, ofType } from '@ngrx/effects'
 
 import { Entity, EVENTS_FEATURE_KEY, EventsState } from './events.reducer'
 import { AddLoadedMonth, EventsActionTypes, EventsLoaded, MonthChange } from './events.actions'
@@ -10,7 +10,6 @@ import { RequestService } from '../services/request.service'
 
 @Injectable()
 export class EventsEffects {
-  @Effect()
   queryMonth = createEffect(() =>
     this.actions$.pipe(
       ofType<MonthChange>(EventsActionTypes.MonthChange),

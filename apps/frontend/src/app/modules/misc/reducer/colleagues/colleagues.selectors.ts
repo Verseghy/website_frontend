@@ -1,11 +1,9 @@
 import { COLLEAGUES_FEATURE_KEY, ColleaguesState } from './colleagues.reducer'
-import { createSelector } from '@ngrx/store'
+import { createFeatureSelector, createSelector } from '@ngrx/store'
 
-const selectState = (state: any) => {
-  return state[COLLEAGUES_FEATURE_KEY]
-}
+const selectState = createFeatureSelector<ColleaguesState>(COLLEAGUES_FEATURE_KEY)
 
-export const selectVisible = createSelector(selectState, (state: ColleaguesState) => {
+export const selectVisible = createSelector(selectState, (state) => {
   for (const visible of state.visibleCategories.entries()) {
     if (visible[1]) {
       return visible[0]

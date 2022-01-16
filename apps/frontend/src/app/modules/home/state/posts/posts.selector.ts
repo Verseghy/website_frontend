@@ -1,14 +1,14 @@
 import { postsFeatureKey, State } from './posts.reducer'
-import { createSelector } from '@ngrx/store'
+import { createFeatureSelector, createSelector } from '@ngrx/store'
 
-const selectFeature = (state) => state[postsFeatureKey]
+const selectFeature = createFeatureSelector<State>(postsFeatureKey)
 
-export const selectPosts = createSelector(selectFeature, (state: State) => state.posts)
+export const selectPosts = createSelector(selectFeature, (state) => state.posts)
 
-export const selectPagesLoaded = createSelector(selectFeature, (state: State) => state.pagesLoaded)
+export const selectPagesLoaded = createSelector(selectFeature, (state) => state.pagesLoaded)
 
-export const selectFeaturedPostsLoaded = createSelector(selectFeature, (state: State) => state.featuredPostsLoaded)
+export const selectFeaturedPostsLoaded = createSelector(selectFeature, (state) => state.featuredPostsLoaded)
 
-export const selectFeaturedPosts = createSelector(selectFeature, (state: State) => state.featuredPosts)
+export const selectFeaturedPosts = createSelector(selectFeature, (state) => state.featuredPosts)
 
-export const selectLoading = createSelector(selectFeature, (state: State) => state.loading)
+export const selectLoading = createSelector(selectFeature, (state) => state.loading)
