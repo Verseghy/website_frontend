@@ -3,6 +3,8 @@ import { DomSanitizer } from '@angular/platform-browser'
 import { isPlatformBrowser } from '@angular/common'
 import { environment } from 'apps/frontend/src/environments/environment'
 
+const imageOrigin = new URL(environment.origin)
+
 @Component({
   selector: 'verseghy-page-renderer',
   templateUrl: './page-renderer.component.html',
@@ -10,8 +12,6 @@ import { environment } from 'apps/frontend/src/environments/environment'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PageRendererComponent {
-  private static imageOrigin = new URL(environment.origin)
-
   @Input() title: string
   @Input() data: string
 
@@ -24,10 +24,10 @@ export class PageRendererComponent {
   private fixURLOrigin(src: string): string {
     const url = new URL(src)
 
-    if (url.origin != PageRendererComponent.imageOrigin.origin) {
-      url.host = PageRendererComponent.imageOrigin.host
-      url.protocol = PageRendererComponent.imageOrigin.protocol
-      url.port = PageRendererComponent.imageOrigin.port
+    if (url.origin != imageOrigin.origin) {
+      url.host = imageOrigin.host
+      url.protocol = imageOrigin.protocol
+      url.port = imageOrigin.port
     }
 
     return url.href
