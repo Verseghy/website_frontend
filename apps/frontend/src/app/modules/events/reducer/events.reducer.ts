@@ -4,8 +4,8 @@ export const EVENTS_FEATURE_KEY = 'events'
 
 export interface Entity {
   id: number
-  date_from: Date
-  date_to: Date
+  dateFrom: Date
+  dateTo: Date
   title: string
   description: string
   color: string
