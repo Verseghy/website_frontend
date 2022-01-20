@@ -23,6 +23,6 @@ export class SearchFacade {
   }
 
   queryAuthor(authorID: number) {
-    this.store.dispatch(queryAuthor({ authorID: authorID.toString() }))
+    this.store.dispatch(queryAuthor({ authorID }))
   }
 }

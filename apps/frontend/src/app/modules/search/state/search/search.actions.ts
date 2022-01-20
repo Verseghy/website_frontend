@@ -5,7 +5,7 @@ export const queryTerm = createAction('[search] Load Search term query', props<{
 
 export const queryLabel = createAction('[search] Load Search label query', props<{ labelID: string }>())
 
-export const queryAuthor = createAction('[search] Load Search author query', props<{ authorID: string }>())
+export const queryAuthor = createAction('[search] Load Search author query', props<{ authorID: number }>())
 
 export const loadSearchSuccess = createAction('[search] Load Search Success', props<{ posts: Post[] }>())
 

@@ -35,7 +35,7 @@ export class SearchComponent implements OnInit, OnDestroy {
         this.titleService.setTitle(`Keresés: "${params.term}"`)
       }
       if (data.type === 'label') this.searchFacade.queryLabel(params.labelID)
-      if (data.type === 'author') this.searchFacade.queryAuthor(params.authorID)
+      if (data.type === 'author') this.searchFacade.queryAuthor(parseInt(params.authorID, 10))
     })
   }
 

@@ -52,7 +52,7 @@ export class PostsComponent implements OnInit {
         this.metaService.addTags([
           { property: 'og:type', content: 'article' },
           { property: 'og:title', content: post.title },
-          { property: 'og:image', content: post.index_image },
+          { property: 'og:image', content: post.indexImage },
           { property: 'og:description', content: post.description },
           { property: 'article:author', content: post.author.name },
           { property: 'article:published_time', content: post.date },

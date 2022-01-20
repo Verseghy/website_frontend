@@ -1,6 +1,6 @@
 <a class="content" [ngStyle]="{ 'background-color': color }" [routerLink]="['/posts', post.id]">
   <article>
-    <img class="index-img" [src]="post.index_image" [alt]="post.title" />
+    <img class="index-img" [src]="post.indexImage" [alt]="post.title" />
     <div class="label-container">
       <verseghy-label *ngFor="let label of post.labels" [label]="label"></verseghy-label>
     </div>
