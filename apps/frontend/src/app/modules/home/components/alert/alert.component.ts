@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
-import { AlertMessageFacade } from '../../state/alert-message/alert-message.facade'
 
 @Component({
   selector: 'verseghy-alert',
@@ -8,13 +7,8 @@ import { AlertMessageFacade } from '../../state/alert-message/alert-message.faca
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AlertComponent implements OnInit {
-  loaded$ = this.alertMessageFacade.loaded$
-  error$ = this.alertMessageFacade.error$
-  alertMessages$ = this.alertMessageFacade.alertMessages$
-
-  constructor(private alertMessageFacade: AlertMessageFacade) {}
+  constructor() {}
 
   ngOnInit(): void {
-    this.alertMessageFacade.queryMessages()
   }
 }

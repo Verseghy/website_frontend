@@ -33,6 +33,8 @@ interface Result {
   providedIn: 'root',
 })
 export class CanteenService {
+  constructor(private gql: Apollo) {}
+
   getCanteen(): Observable<[CanteenDay[], CanteenDay[]]> {
     const now: Date = new Date()
     const year: number = now.getFullYear()
@@ -52,6 +54,4 @@ export class CanteenService {
       })
     )
   }
-
-  constructor(private gql: Apollo) {}
 }
