@@ -2,13 +2,35 @@ import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs'
 import { Post } from '../../../models/Post'
-import { environment } from '../../../../environments/environment'
 import {Apollo, gql} from "apollo-angular";
 import {map, take} from "rxjs/operators";
 
 const authorQUERY = gql`
   query AuthorQuery($authorID: Int!) {
     author(id: $authorID) {
+      posts {
+        id
+        title
+        description
+        color
+        author {
+          name
+          image
+        }
+        date
+        indexImage
+        labels {
+          name
+          color
+        }
+      }
+    }
+  }
+`
+
+const labelQUERY = gql`
+  query LabelQuery($labelID: Int!) {
+    label(id: $labelID) {
       posts {
         id
         title
@@ -84,6 +106,12 @@ interface termResult {
   }
 }
 
+interface labelResult {
+  label: {
+    posts: Post[]
+  }
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -104,8 +132,18 @@ export class SearchService {
     )
   }
 
-  queryLabel(labelID: string): Observable<Post[]> {
-    return this.http.get<Post[]>(environment.baseURL + '/posts/getPostsByLabel', { params: { id: labelID } })
+  queryLabel(labelID: number): Observable<Post[]> {
+    return this.gql.watchQuery<labelResult>({
+      query: labelQUERY,
+      variables: {
+        labelID
+      }
+    }).valueChanges.pipe(
+      map(res => {
+        return res.data.label.posts
+      }),
+      take(1)
+    )
   }
 
   queryAuthor(authorID: number): Observable<Post[]> {
