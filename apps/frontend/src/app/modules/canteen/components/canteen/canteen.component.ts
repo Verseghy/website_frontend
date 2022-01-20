@@ -1,11 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core'
-import { CANTEEN_FEATURE_KEY, CanteenState, WeekCanteen } from '../../reducer/canteen/canteen.reducer'
-import { select, Store } from '@ngrx/store'
-import { LoadCanteen } from '../../reducer/canteen/canteen.actions'
-import { map } from 'rxjs/operators'
 import { Observable } from 'rxjs'
 import { StructuredDataService } from '../../../../services/structured-data.service'
 import { TitleService } from '../../../../services/title.service'
+import {CanteenDay} from "../../models/cateen";
+import {CanteenService} from "../../services/canteen.service";
 
 @Component({
   selector: 'verseghy-canteen',
@@ -14,7 +12,7 @@ import { TitleService } from '../../../../services/title.service'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CanteenComponent implements OnInit, OnDestroy {
-  canteen: Observable<WeekCanteen[]>
+  canteen: Observable<[CanteenDay[], CanteenDay[]]>
 
   weekdays = ['Hétfő', 'Kedd', 'Szerda', 'Csütörtök', 'Péntek', 'Szombat', 'Vasárnap']
   week_prefixes = ['Heti menü', 'Jövő heti menü']
@@ -25,20 +23,14 @@ export class CanteenComponent implements OnInit, OnDestroy {
   ])
 
   constructor(
-    private store: Store<CanteenState>,
     private structuredDataService: StructuredDataService,
-    private titleService: TitleService
+    private titleService: TitleService,
+    private canteenService: CanteenService,
   ) {}
 
   ngOnInit() {
     this.titleService.setTitle('Menza')
-    this.store.dispatch(new LoadCanteen())
-    this.canteen = this.store.pipe(
-      select((state) => state[CANTEEN_FEATURE_KEY]),
-      map((state: CanteenState) => {
-        return [state.thisWeek, state.nextWeek]
-      })
-    )
+    this.canteen = this.canteenService.getCanteen()
   }
 
   ngOnDestroy() {

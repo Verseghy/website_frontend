@@ -20,6 +20,9 @@ import { ToastComponent } from './components/toast/toast.component'
 import { faFacebookF } from '@fortawesome/free-brands-svg-icons'
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component'
 import { LayoutModule } from '@angular/cdk/layout'
+import {APOLLO_OPTIONS} from "apollo-angular";
+import {HttpLink} from "apollo-angular/http";
+import {InMemoryCache} from "@apollo/client/core";
 
 const stateSetter = (reducer: ActionReducer<any>): ActionReducer<any> => {
   return function (state: any, action: any) {
@@ -52,7 +55,20 @@ export const NGRX_STATE = makeStateKey('NGRX_STATE')
     }),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: APOLLO_OPTIONS,
+      useFactory: (httpLink: HttpLink) => {
+        return {
+          cache: new InMemoryCache(),
+          link: httpLink.create({
+            uri: environment.gqlURL
+          })
+        }
+      },
+      deps: [HttpLink]
+    }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {
