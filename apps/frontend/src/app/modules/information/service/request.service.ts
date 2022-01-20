@@ -24,6 +24,27 @@ interface pageResult {
   page: PageData
 }
 
+const menuQUERY = gql`
+  query {
+    menu {
+      name
+      type
+      link
+      slug
+      children {
+        name
+        type
+        link
+        slug
+      }
+    }
+  }
+`
+
+interface menuResult {
+  menu: MenuItem[]
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -31,7 +52,6 @@ export class RequestService {
   constructor(private gql: Apollo, private http: HttpClient) {}
 
   getPageBySlug(slug: string): Observable<PageData> {
-    console.log("got query", slug)
     return this.gql.watchQuery<pageResult>({
       query: pageQUERY,
       variables: {
@@ -46,6 +66,13 @@ export class RequestService {
   }
 
   getMenuItems(): Observable<MenuItem[]> {
-    return this.http.get<MenuItem[]>(environment.baseURL + '/menu/getMenuItems')
+    return this.gql.watchQuery<menuResult>({
+      query: menuQUERY
+    }).valueChanges.pipe(
+      map(res => {
+        return res.data.menu
+      }),
+      take(1)
+    )
   }
 }
