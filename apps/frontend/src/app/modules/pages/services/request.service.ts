@@ -1,18 +1,42 @@
 import { Injectable } from '@angular/core'
-import { HttpClient, HttpParams } from '@angular/common/http'
 import { PageData } from '../../../models/page'
-import { environment } from '../../../../environments/environment.prod'
 import { Observable } from 'rxjs'
+import {Apollo, gql} from "apollo-angular";
+import {map} from "rxjs/operators";
+
+const QUERY = gql`
+  query Page($slug: String!) {
+    page(slug: $slug) {
+      id
+      template
+      name
+      title
+      content
+      extras
+    }
+  }
+`
+
+interface Result {
+  page: PageData
+}
 
 @Injectable({
   providedIn: 'root',
 })
 export class RequestService {
-  constructor(private http: HttpClient) {}
+  constructor(private gql: Apollo) {}
 
   getPageBySlug(slug: string): Observable<PageData> {
-    return this.http.get<PageData>(environment.baseURL + '/pages/getPageBySlug', {
-      params: new HttpParams().set('slug', slug),
-    })
+    return this.gql.watchQuery<Result>({
+      query: QUERY,
+      variables: {
+        slug
+      }
+    }).valueChanges.pipe(
+      map(res => {
+        return res.data.page
+      })
+    )
   }
 }
