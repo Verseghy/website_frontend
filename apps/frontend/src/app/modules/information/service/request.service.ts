@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
-import { environment } from '../../../../environments/environment.prod'
 import { Observable } from 'rxjs'
 import { PageData } from '../../../models/page'
 import { MenuItem } from '../models/menu-item'
