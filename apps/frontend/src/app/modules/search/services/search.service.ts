@@ -29,9 +29,58 @@ const authorQUERY = gql`
   }
 `
 
+const termQUERY = gql`
+  query TermQuery($term: Int!) {
+    search(term: $term, last: 20) {
+      edges {
+        cursor
+        node {
+          id
+          title
+          description
+          color
+          author {
+            name
+            image
+          }
+          date
+          indexImage
+          labels {
+            name
+            color
+          }
+        }
+      }
+      pageInfo {
+        startCursor
+        endCursor
+        hasPreviousPage
+        hasNextPage
+      }
+    }
+  }
+`
+
 interface authorResult {
   author: {
     posts: Post[]
+  }
+}
+
+interface PageInfo {
+  hasPreviousPage: boolean
+  hasNextPage: boolean
+  startCursor: string
+  endCursor: string
+}
+
+interface termResult {
+  search: {
+    pageInfo: PageInfo
+    edges: {
+      node: Post
+      cursor: string
+    }[]
   }
 }
 
@@ -42,7 +91,17 @@ export class SearchService {
   constructor(private gql: Apollo, private http: HttpClient) {}
 
   queryTerm(term: string): Observable<Post[]> {
-    return this.http.get<Post[]>(environment.baseURL + '/posts/search', { params: { term } })
+    return this.gql.watchQuery<termResult>({
+      query: termQUERY,
+      variables: {
+        term
+      }
+    }).valueChanges.pipe(
+      map(res => {
+        return res.data.search.edges.map(edge => edge.node)
+      }),
+      take(1)
+    )
   }
 
   queryLabel(labelID: string): Observable<Post[]> {
