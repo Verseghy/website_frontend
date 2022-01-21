@@ -9,7 +9,7 @@ import {map, take} from "rxjs/operators";
 
 const QUERY = gql`
   query Post($id: Int!, $token: String) {
-    post(id: $id) {
+    post(id: $id, token: $token) {
       id
       title
       color
