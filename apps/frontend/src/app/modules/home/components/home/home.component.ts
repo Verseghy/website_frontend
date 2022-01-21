@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   posts$ = this.requestService.listPosts()
   isLoading$ = this.requestService.listPosts().pipe(map(posts => !posts.length))
+  hasPreviousPage$ = this.requestService.hasPreviousPage()
 
   structuredData0 = this.structuredDataService.addWebSite()
   structuredData1 = this.structuredDataService.addBreadcrumb([{ item: 'https://verseghy-gimnazium.net/', position: 0, name: 'Főoldal' }])

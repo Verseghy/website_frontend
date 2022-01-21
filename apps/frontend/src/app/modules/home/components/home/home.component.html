@@ -10,7 +10,7 @@
     <ng-container *ngIf="posts$ | async as posts">
       <ng-container *ngIf="posts.length">
         <div class="grid"><verseghy-card [post]="post" *ngFor="let post of posts; trackBy: trackByFn"></verseghy-card></div>
-        <button class="load-more" [disabled]="isLoading$ | async" (click)="nextPage()">Több betöltése</button>
+        <button class="load-more" [disabled]="(isLoading$ | async) || !(hasPreviousPage$ | async)" (click)="nextPage()">Több betöltése</button>
       </ng-container>
       <ng-container *ngIf="!posts.length">
         <div class="grid">

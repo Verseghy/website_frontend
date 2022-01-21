@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core'
-import { Observable, of } from 'rxjs'
+import {BehaviorSubject, Observable, of, Subject} from 'rxjs'
 import { Post } from '../../../models/Post'
 import { HttpClient } from '@angular/common/http'
 import { environment } from '../../../../environments/environment.prod'
 import {Apollo, gql, QueryRef} from "apollo-angular";
 import {CanteenDay} from "../../canteen/models/cateen";
-import {map, take} from "rxjs/operators";
+import {map, take, tap} from "rxjs/operators";
 
 const QUERY = gql`
   query Posts($featured: Boolean, $after: String, $before: String, $first: Int, $last: Int) {
@@ -63,6 +63,7 @@ export class RequestService {
   listQuery: QueryRef<Result>
   posts?: Post[]
   pageInfo?: PageInfo
+  pageInfo$: Subject<PageInfo> = new BehaviorSubject<PageInfo>({hasPreviousPage: true, hasNextPage: false, startCursor: "", endCursor: ""})
 
   constructor(private gql: Apollo) {
     this.listQuery = this.gql.watchQuery<Result>({
@@ -76,6 +77,7 @@ export class RequestService {
 
     const s = this.listQuery.valueChanges.subscribe(res => {
       this.pageInfo = res.data.posts.pageInfo
+      this.pageInfo$.next(this.pageInfo)
       s.unsubscribe()
     })
   }
@@ -88,6 +90,7 @@ export class RequestService {
       },
       updateQuery: (prev, { fetchMoreResult }) => {
         this.pageInfo = fetchMoreResult.posts.pageInfo
+        this.pageInfo$.next(this.pageInfo)
 
         return {
           posts: {
@@ -99,8 +102,8 @@ export class RequestService {
     })
   }
 
-  hasPreviousPage(): boolean {
-    return this.pageInfo?.hasPreviousPage
+  hasPreviousPage(): Observable<PageInfo> {
+    return this.pageInfo$
   }
 
   listPosts(): Observable<Post[]> {
