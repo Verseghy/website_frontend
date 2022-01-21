@@ -105,7 +105,6 @@ export class RequestService {
 
   listPosts(): Observable<Post[]> {
     return this.listQuery.valueChanges.pipe(map(res => {
-      console.log(res)
       return res.data.posts.edges.map(edge => edge.node)
     }))
   }

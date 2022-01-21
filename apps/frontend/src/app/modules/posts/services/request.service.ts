@@ -43,7 +43,7 @@ interface Result {
 export class RequestService {
   constructor(private gql: Apollo) {}
 
-  getPostById(id: string): Observable<Post> {
+  getPostById(id: number): Observable<Post> {
     return this.gql.watchQuery<Result>({
       query: QUERY,
       variables: {
@@ -57,7 +57,7 @@ export class RequestService {
     )
   }
 
-  getPostByIdPreview(id: string, token: string): Observable<Post> {
+  getPostByIdPreview(id: number, token: string): Observable<Post> {
     return this.gql.watchQuery<Result>({
       query: QUERY,
       variables: {
