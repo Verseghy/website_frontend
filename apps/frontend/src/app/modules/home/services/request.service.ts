@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http'
 import { environment } from '../../../../environments/environment.prod'
 import {Apollo, gql, QueryRef} from "apollo-angular";
 import {CanteenDay} from "../../canteen/models/cateen";
-import {map} from "rxjs/operators";
+import {map, take} from "rxjs/operators";
 
 const QUERY = gql`
   query Posts($featured: Boolean, $after: String, $before: String, $first: Int, $last: Int) {
@@ -119,7 +119,8 @@ export class RequestService {
     }).valueChanges.pipe(
       map(res => {
         return res.data.posts.edges.map(edge => edge.node)
-      })
+      }),
+      take(1)
     )
   }
 }

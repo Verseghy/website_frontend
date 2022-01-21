@@ -3,7 +3,7 @@ import {Observable, of} from 'rxjs'
 import { getISOWeek } from 'date-fns'
 import { CanteenDay } from "../models/cateen";
 import {Apollo, gql} from "apollo-angular";
-import {map} from "rxjs/operators";
+import {map, take} from "rxjs/operators";
 
 const QUERY = gql`
   query CanteenTwoWeeks($year1: Int!, $week1: Int!, $year2: Int!, $week2: Int!) {
@@ -49,6 +49,7 @@ export class CanteenService {
         week2: week + 1,
       }
     }).valueChanges.pipe(
+      take(1),
       map(res => {
         return [res.data.w1, res.data.w2]
       })

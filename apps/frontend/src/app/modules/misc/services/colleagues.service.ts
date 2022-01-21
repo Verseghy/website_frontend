@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http'
 import { environment } from '../../../../environments/environment.prod'
 import {Apollo, gql} from "apollo-angular";
 import {CanteenDay} from "../../canteen/models/cateen";
-import {map} from "rxjs/operators";
+import {map, take} from "rxjs/operators";
 
 const QUERY = gql`
   query {
@@ -33,7 +33,10 @@ export class ColleaguesService {
   getColleagues(): Observable<Entity[]> {
     return this.gql.watchQuery<Result>({
       query: QUERY
-    }).valueChanges.pipe(map(res => res.data.colleagues))
+    }).valueChanges.pipe(
+      map(res => res.data.colleagues),
+      take(1)
+    )
   }
 
   constructor(private gql: Apollo) {}

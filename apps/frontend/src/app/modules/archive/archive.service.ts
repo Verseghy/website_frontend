@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import { environment } from '../../../environments/environment'
 import {Apollo, gql} from "apollo-angular";
-import {map} from "rxjs/operators";
+import {map, take} from "rxjs/operators";
 import {Observable} from "rxjs";
 import {Post} from "../../models/Post";
 
@@ -47,7 +47,8 @@ export class ArchiveService {
     }).valueChanges.pipe(
       map(res => {
         return res.data.archive.info
-      })
+      }),
+      take(1)
     )
   }
 
@@ -61,7 +62,8 @@ export class ArchiveService {
     }).valueChanges.pipe(
       map(res => {
         return res.data.archive.posts
-      })
+      }),
+      take(1)
     )
   }
 }

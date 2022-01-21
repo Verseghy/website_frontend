@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core'
 import { PageData } from '../../../models/page'
 import { Observable } from 'rxjs'
 import {Apollo, gql} from "apollo-angular";
-import {map} from "rxjs/operators";
+import {map, take} from "rxjs/operators";
 
 const QUERY = gql`
   query Page($slug: String!) {
@@ -36,7 +36,8 @@ export class RequestService {
     }).valueChanges.pipe(
       map(res => {
         return res.data.page
-      })
+      }),
+      take(1)
     )
   }
 }

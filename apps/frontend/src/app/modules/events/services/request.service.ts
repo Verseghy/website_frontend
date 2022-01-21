@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core'
 import { Entity } from '../reducer/events.reducer'
 import { Observable } from 'rxjs'
 import {Apollo, gql} from "apollo-angular";
-import {map} from "rxjs/operators";
+import {map, take} from "rxjs/operators";
 
 const QUERY = gql`
   query EventsSeptember($year: Int!, $month: Int!) {
@@ -38,7 +38,8 @@ export class RequestService {
     }).valueChanges.pipe(
       map(res => {
         return res.data.events
-      })
+      }),
+      take(1)
     )
   }
 }
