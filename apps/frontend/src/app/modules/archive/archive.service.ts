@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core'
-import { HttpClient } from '@angular/common/http'
-import { environment } from '../../../environments/environment'
 import {Apollo, gql} from "apollo-angular";
 import {map, take} from "rxjs/operators";
 import {Observable} from "rxjs";
@@ -21,7 +19,12 @@ const infoQUERY = gql`
 const postsQUERY = gql`
   query Archive($year: Int!, $month: Int!) {
     archive {
-      posts(year: $year, month: $month)
+      posts(year: $year, month: $month) {
+        id
+        date
+        title
+        description
+      }
     }
   }
 `
@@ -54,7 +57,7 @@ export class ArchiveService {
 
   getDetailedArchives({ year, month }: { year: number; month: number }): Observable<Post[]> {
     return this.gql.watchQuery<Result>({
-      query: infoQUERY,
+      query: postsQUERY,
       variables: {
         year,
         month,
