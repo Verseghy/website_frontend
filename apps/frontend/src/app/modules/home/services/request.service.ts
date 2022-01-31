@@ -1,17 +1,13 @@
 import { Injectable } from '@angular/core'
-import {BehaviorSubject, Observable, of, Subject} from 'rxjs'
+import {BehaviorSubject, Observable, Subject} from 'rxjs'
 import { Post } from '../../../models/Post'
-import { HttpClient } from '@angular/common/http'
-import { environment } from '../../../../environments/environment.prod'
 import {Apollo, gql, QueryRef} from "apollo-angular";
-import {CanteenDay} from "../../canteen/models/cateen";
-import {map, take, tap} from "rxjs/operators";
+import {map, take} from "rxjs/operators";
 
 const QUERY = gql`
   query Posts($featured: Boolean, $after: String, $before: String, $first: Int, $last: Int) {
     posts(featured: $featured, after: $after, before: $before, first: $first, last: $last) {
       edges {
-        cursor
         node {
           id
           title
@@ -30,10 +26,8 @@ const QUERY = gql`
         }
       }
       pageInfo {
-        startCursor
         endCursor
         hasPreviousPage
-        hasNextPage
       }
     }
   }
@@ -102,8 +96,8 @@ export class RequestService {
     })
   }
 
-  hasPreviousPage(): Observable<PageInfo> {
-    return this.pageInfo$
+  hasPreviousPage(): Observable<boolean> {
+    return this.pageInfo$.pipe(map(e => e.hasPreviousPage))
   }
 
   listPosts(): Observable<Post[]> {

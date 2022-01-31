@@ -9,19 +9,27 @@ const authorQUERY = gql`
   query AuthorQuery($authorID: Int!) {
     author(id: $authorID) {
       posts {
-        id
-        title
-        description
-        color
-        author {
-          name
-          image
+        edges {
+          node {
+            id
+            title
+            description
+            color
+            author {
+              name
+              image
+            }
+            date
+            indexImage
+            labels {
+              name
+              color
+            }
+          }
         }
-        date
-        indexImage
-        labels {
-          name
-          color
+        pageInfo {
+          endCursor
+          hasPreviousPage
         }
       }
     }
@@ -32,19 +40,27 @@ const labelQUERY = gql`
   query LabelQuery($labelID: Int!) {
     label(id: $labelID) {
       posts {
-        id
-        title
-        description
-        color
-        author {
-          name
-          image
+        edges {
+          node {
+            id
+            title
+            description
+            color
+            author {
+              name
+              image
+            }
+            date
+            indexImage
+            labels {
+              name
+              color
+            }
+          }
         }
-        date
-        indexImage
-        labels {
-          name
-          color
+        pageInfo {
+          endCursor
+          hasPreviousPage
         }
       }
     }
@@ -55,7 +71,6 @@ const termQUERY = gql`
   query TermQuery($term: Int!) {
     search(term: $term, last: 20) {
       edges {
-        cursor
         node {
           id
           title
@@ -74,10 +89,8 @@ const termQUERY = gql`
         }
       }
       pageInfo {
-        startCursor
         endCursor
         hasPreviousPage
-        hasNextPage
       }
     }
   }
@@ -85,7 +98,13 @@ const termQUERY = gql`
 
 interface authorResult {
   author: {
-    posts: Post[]
+    posts: {
+      pageInfo: PageInfo
+      edges: {
+        node: Post
+        cursor: string
+      }[]
+    }
   }
 }
 
@@ -108,7 +127,13 @@ interface termResult {
 
 interface labelResult {
   label: {
-    posts: Post[]
+    posts: {
+      pageInfo: PageInfo
+      edges: {
+        node: Post
+        cursor: string
+      }[]
+    }
   }
 }
 
@@ -140,7 +165,7 @@ export class SearchService {
       }
     }).valueChanges.pipe(
       map(res => {
-        return res.data.label.posts
+        return res.data.label.posts.edges.map(edge => edge.node)
       }),
       take(1)
     )
@@ -154,7 +179,7 @@ export class SearchService {
       }
     }).valueChanges.pipe(
       map(res => {
-        return res.data.author.posts
+        return res.data.author.posts.edges.map(edge => edge.node)
       }),
       take(1)
     )
