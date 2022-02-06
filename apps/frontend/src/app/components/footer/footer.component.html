@@ -1,8 +1,8 @@
-<footer>
+<footer role="contentinfo">
   <div class="top">
     <div class="logo-container">
       <a [routerLink]="'/'" class="logo">
-        <img alt="" src="assets/logo.svg" />
+        <img alt="Verseghy logo" src="assets/logo.svg" />
         <h2>Verseghy<span class="web">WEB</span></h2>
       </a>
       <a class="kk-logo" href="https://kk.gov.hu/szolnok" target="_blank" rel="noopener noreferrer">
@@ -10,7 +10,7 @@
       </a>
     </div>
     <div class="block">
-      <h4>Rólunk</h4>
+      <span class="block-title">Rólunk</span>
       <span>5000 Szolnok, Tisza park 1.</span>
       <span>Telefon: 56/514-953; 20/540-4896</span>
       <a href="mailto: verseghygimnazium@gmail.com">E-mail: verseghygimnazium@gmail.com</a>
@@ -18,19 +18,19 @@
       <span (click)="devClickHandler()">Honlap verzió: {{ appVersion }}</span>
     </div>
     <div class="block">
-      <h4>Linkek</h4>
+      <span class="block-title">Linkek</span>
       <a [routerLink]="'/archive'">Archívum</a>
-      <a href class="TEMP-disabled-not-implemented-link">Impresszum</a>
-      <a href class="TEMP-disabled-not-implemented-link">Oldaltérkép</a>
+      <a href tabindex="-1" aria-disabled="true" class="TEMP-disabled-not-implemented-link">Impresszum</a>
+      <a href tabindex="-1" aria-disabled="true" class="TEMP-disabled-not-implemented-link">Oldaltérkép</a>
       <a href="http://regi.verseghy-gimnazium.net/">Vissza a régi oldalra</a>
     </div>
     <div class="block">
-      <h4>KRÉTA</h4>
+      <span class="block-title">KRÉTA</span>
       <a href="https://klik035992001.e-kreta.hu/Adminisztracio/Login" target="_blank" rel="noopener noreferrer">
-        <img alt="" src="assets/icons/kreta2.png" />
+        <img alt="Kréta" src="assets/icons/kreta2.png" />
       </a>
       <a href="https://eugyintezes.e-kreta.hu/" target="_blank" rel="noopener noreferrer">
-        <img alt="" src="assets/icons/eugy.png" />
+        <img alt="Kréta E-Ügyintézés" src="assets/icons/eugy.png" />
       </a>
     </div>
   </div>
@@ -38,7 +38,7 @@
     <div class="container">
       <span>Honlap észrevételek, visszajelzések: contact@zoltanszepesi.com</span>
       <div class="right">
-        <a href="#">
+        <a href="#" aria-label="Facebook oldal">
           <fa-icon [icon]="['fab', 'facebook-f']"></fa-icon>
         </a>
       </div>

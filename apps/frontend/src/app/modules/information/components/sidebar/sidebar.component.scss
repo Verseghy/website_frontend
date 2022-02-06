@@ -5,8 +5,10 @@
   .dropdown-content {
     overflow: hidden;
 
-    @media screen and (min-width: 993px) {
-      height: 100% !important;
+    @media screen and (max-width: 992px) {
+      &.closed {
+        display: none;
+      }
     }
 
     @media screen and (max-width: 992px) {
@@ -52,7 +54,7 @@
       }
       margin-bottom: 5px;
       border-bottom: 1px solid #d2d2d2;
-      opacity: 0.45;
+      opacity: 0.55;
 
       @media screen and (max-width: 992px) {
         width: 100%;

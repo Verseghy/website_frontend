@@ -11,7 +11,7 @@
       >
         <h2 class="card-title">{{ categories[categoryId] }}</h2>
         <div *ngFor="let colleague of (colleagues | async)[categoryId]" class="item">
-          <img *ngIf="colleague.image" alt="" [src]="colleague.image" />
+          <img *ngIf="colleague.image" [alt]="colleague.name" [src]="colleague.image" />
           <div class="right-side">
             <span class="name">{{ colleague.name }}</span>
             <span class="subject">{{ colleague.subjects }}</span>

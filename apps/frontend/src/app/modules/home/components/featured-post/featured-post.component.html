@@ -7,7 +7,7 @@
         </div>
         <div class="meta">
           <div class="author">
-            <img *ngIf="post.author.image" [src]="post.author.image" alt="" />
+            <img *ngIf="post.author.image" [src]="post.author.image" [alt]="post.author.name" />
             <span>{{ post.author.name }}</span>
           </div>
           <span class="date">Közzétéve: {{ formatDate(post.date) }}</span>
@@ -15,22 +15,24 @@
         <h2>{{ post.title }}</h2>
         <p class="description">{{ post.description }}</p>
         <span class="read-more">Tovább</span>
-        <img [src]="post.index_image" alt="" class="index-img" />
+        <img [src]="post.index_image" [alt]="post.title" class="index-img" />
       </a>
     </div>
     <div class="nav">
-      <i (click)="previous()" class="material-icons">navigate_before</i>
+      <i (click)="previous()" (keyup)="switchPageKeyup($event, 'previous')" tabindex="0" class="material-icons">navigate_before</i>
       <ng-container *ngIf="featuredPosts$ | async as featuredPosts">
         <span
           class="dot"
           *ngFor="let a of featuredPosts; let i = index"
           [class]="{ active: i % featuredPosts.length === page }"
           (click)="toPage(i)"
+          (keyup)="toPageKeyup($event, i)"
+          tabindex="0"
         >
           <span class="inner"></span>
         </span>
       </ng-container>
-      <i (click)="next()" class="material-icons">navigate_next</i>
+      <i (click)="next()" (keyup)="switchPageKeyup($event, 'next')" tabindex="0" class="material-icons">navigate_next</i>
     </div>
   </ng-container>
   <ng-container *ngIf="!posts.length"> </ng-container>

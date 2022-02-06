@@ -2,7 +2,7 @@ import { ColleaguesLoaded } from './colleagues.actions'
 import { colleaguesReducer, ColleaguesState, Entity, initialState } from './colleagues.reducer'
 
 describe('Colleagues Reducer', () => {
-  const getColleaguesId = it => it.id
+  const getColleaguesId = (it) => it.id
   let createColleagues
 
   beforeEach(() => {

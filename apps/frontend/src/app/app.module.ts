@@ -13,15 +13,13 @@ import { NxModule } from '@nrwl/angular'
 import { ActionReducer, Store, StoreModule } from '@ngrx/store'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 import { EffectsModule } from '@ngrx/effects'
-import { AngularFireModule } from '@angular/fire'
 import { LoadersModule } from '@verseghy/ui'
 import { environment } from '../environments/environment'
 import { ServiceWorkerModule } from '@angular/service-worker'
-import { AngularFireAnalyticsModule, APP_NAME, APP_VERSION, COLLECTION_ENABLED, ScreenTrackingService } from '@angular/fire/analytics'
-import { AngularFirePerformanceModule } from '@angular/fire/performance'
 import { ToastComponent } from './components/toast/toast.component'
 import { faFacebookF } from '@fortawesome/free-brands-svg-icons'
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component'
+import { LayoutModule } from '@angular/cdk/layout'
 
 const stateSetter = (reducer: ActionReducer<any>): ActionReducer<any> => {
   return function (state: any, action: any) {
@@ -37,6 +35,7 @@ export const NGRX_STATE = makeStateKey('NGRX_STATE')
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent, ToastComponent, PageNotFoundComponent],
   imports: [
+    LayoutModule,
     BrowserTransferStateModule,
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
@@ -51,17 +50,9 @@ export const NGRX_STATE = makeStateKey('NGRX_STATE')
     StoreDevtoolsModule.instrument({
       maxAge: 25,
     }),
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAnalyticsModule,
-    AngularFirePerformanceModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
-  providers: [
-    ScreenTrackingService,
-    { provide: APP_NAME, useValue: 'Verseghy Honlap' },
-    { provide: APP_VERSION, useValue: environment.version },
-    { provide: COLLECTION_ENABLED, useValue: environment.production },
-  ],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {

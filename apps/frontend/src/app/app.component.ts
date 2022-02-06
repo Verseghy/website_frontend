@@ -2,11 +2,12 @@ import { AfterViewInit, ApplicationRef, ChangeDetectionStrategy, Component, OnIn
 import { animate, group, query, style, transition, trigger } from '@angular/animations'
 import { NavigationCancel, NavigationEnd, NavigationStart, Router } from '@angular/router'
 import { SwUpdate } from '@angular/service-worker'
-import { first } from 'rxjs/operators'
+import { filter, first } from 'rxjs/operators'
 import { concat, interval } from 'rxjs'
 import { ToastService } from './services/toast.service'
 import { HeaderService } from './services/header.service'
 import { environment } from '../environments/environment'
+import { Meta } from '@angular/platform-browser'
 
 @Component({
   selector: 'verseghy-root',
@@ -56,7 +57,8 @@ export class AppComponent implements AfterViewInit, OnInit {
     private swupdate: SwUpdate,
     private appRef: ApplicationRef,
     private toastService: ToastService,
-    private headerSevice: HeaderService
+    private headerSevice: HeaderService,
+    private metaService: Meta
   ) {}
 
   ngOnInit() {
@@ -65,7 +67,7 @@ export class AppComponent implements AfterViewInit, OnInit {
 
     concat(appIsStable$, hourly$).subscribe(() => environment.production && this.swupdate.checkForUpdate())
 
-    this.swupdate.available.subscribe(() => {
+    this.swupdate.versionUpdates.pipe(filter((evt) => evt.type === 'VERSION_READY')).subscribe(() => {
       this.toastService.createToast('Frissítés elérhető. Kérlek töltsd újra az oldalt!', [
         {
           title: 'Újratöltés',
@@ -77,6 +79,12 @@ export class AppComponent implements AfterViewInit, OnInit {
         },
       ])
     })
+
+    this.metaService.addTags([
+      { property: 'og:type', content: 'website' },
+      { property: 'og:image', content: 'https://verseghy-gimnazium.net/assets/img.png' },
+      { property: 'og:description', content: 'Verseghy Ferenc Gimnázium weboldala' },
+    ])
   }
 
   ngAfterViewInit(): void {

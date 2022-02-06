@@ -70,14 +70,14 @@
         line-height: 30px;
         font-size: 1.4rem;
         font-weight: 400;
-        color: #757575;
+        color: #6d6d6d;
       }
     }
 
     .date {
       font-size: 1.3rem;
       font-weight: 300;
-      color: #757575;
+      color: #6d6d6d;
       grid-column: 2;
       margin-left: 20px;
       vertical-align: middle;
@@ -109,7 +109,8 @@
   .read-more {
     text-transform: uppercase;
     text-decoration: none;
-    color: #009cff;
+    color: #0071b9;
+    font-weight: 700;
     margin: 10px 30px 30px;
     display: inline-block;
     position: relative;
@@ -143,12 +144,12 @@
     display: inline-block;
 
     .inner {
-      width: 5px;
-      height: 5px;
+      width: 3px;
+      height: 3px;
       margin: 0 auto;
       vertical-align: middle;
       border-radius: 50%;
-      background: #ccc;
+      background: #949494;
       display: inline-block;
       transition: background 300ms;
     }

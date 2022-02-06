@@ -1,7 +1,9 @@
 import { ChangeDetectionStrategy, Component, Inject, Input, PLATFORM_ID } from '@angular/core'
 import { DomSanitizer } from '@angular/platform-browser'
 import { isPlatformBrowser } from '@angular/common'
-import { JSDOM } from 'jsdom'
+import { environment } from 'apps/frontend/src/environments/environment'
+
+const imageOrigin = new URL(environment.origin)
 
 @Component({
   selector: 'verseghy-page-renderer',
@@ -17,6 +19,18 @@ export class PageRendererComponent {
 
   get content() {
     return this.domSanitizer.bypassSecurityTrustHtml(this.processCustomTags(this.data))
+  }
+
+  private fixURLOrigin(src: string): string {
+    const url = new URL(src)
+
+    if (url.origin != imageOrigin.origin) {
+      url.host = imageOrigin.host
+      url.protocol = imageOrigin.protocol
+      url.port = imageOrigin.port
+    }
+
+    return url.href
   }
 
   private processCustomTags(html: string): string {
@@ -56,6 +70,8 @@ export class PageRendererComponent {
 
       image.style.maxWidth = image.style.width
       image.style.width = '100%'
+
+      image.src = this.fixURLOrigin(image.src)
     }
 
     return dom.documentElement.innerHTML

@@ -1,6 +1,7 @@
 export const environment = {
   production: true,
   hmr: false,
+  origin: 'https://backend.verseghy-gimnazium.net',
   baseURL: 'https://backend.verseghy-gimnazium.net/api',
   firebase: {
     apiKey: 'AIzaSyCF0TKD1kp1YgihjB4SMAHkfIPp8euaNLQ',
@@ -12,5 +13,5 @@ export const environment = {
     appId: '1:616435986324:web:b449b36b597fdb3d',
     measurementId: 'G-HMG0GDHDR6',
   },
-  version: 'v1.5.18',
+  version: 'v1.5.23',
 }

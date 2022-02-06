@@ -4,7 +4,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects'
 import { catchError, concatMap, exhaustMap, map, mergeMap, switchMap, tap, withLatestFrom } from 'rxjs/operators'
 
 import * as CompetitionActions from './competition.actions'
-import { AngularFirestore } from '@angular/fire/firestore'
+import { AngularFirestore } from '@angular/fire/compat/firestore'
 import { Problem } from '../../interfaces/problem.interface'
 import { combineLatest, EMPTY, forkJoin, from, of } from 'rxjs'
 import {
@@ -22,7 +22,7 @@ import { AuthFacade } from '../auth/auth.facade'
 import { Team } from '../../interfaces/team.interface'
 import { CompetitionFacade } from './competition.facade'
 import { Solution } from '../../interfaces/solution.interface'
-import { AngularFireStorage } from '@angular/fire/storage'
+import { AngularFireStorage } from '@angular/fire/compat/storage'
 import { Store } from '@ngrx/store'
 import { selectProblems } from './competition.selectors'
 
@@ -75,9 +75,7 @@ export class CompetitionEffects {
     combineLatest([this.actions$.pipe(ofType(CompetitionActions.loadTeam)), this.authFacade.uid$]).pipe(
       switchMap(([, uid]) => {
         if (uid === '') return of([])
-        return this.afs
-          .collection<Team>('teams', (ref) => ref.where('members', 'array-contains', uid))
-          .stateChanges()
+        return this.afs.collection<Team>('teams', (ref) => ref.where('members', 'array-contains', uid)).stateChanges()
       }),
       map((e) => {
         if (e.length) {

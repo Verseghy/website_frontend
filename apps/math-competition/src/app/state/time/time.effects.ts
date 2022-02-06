@@ -5,7 +5,7 @@ import { catchError, concatMap, map } from 'rxjs/operators'
 import { EMPTY } from 'rxjs'
 
 import * as TimeActions from './time.actions'
-import { AngularFirestore } from '@angular/fire/firestore'
+import { AngularFirestore } from '@angular/fire/compat/firestore'
 import { Time } from '../../interfaces/time.interface'
 import { setTimes } from './time.actions'
 
@@ -20,8 +20,8 @@ export class TimeEffects {
           .doc<Time>('time')
           .valueChanges()
           .pipe(
-            map(e => setTimes(e)),
-            catchError(e => {
+            map((e) => setTimes(e)),
+            catchError((e) => {
               console.error(e)
               return EMPTY
             }) // TODO(zoltanszepesi): proper error handlings

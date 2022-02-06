@@ -24,7 +24,8 @@
           },
           "outputs": ["coverage/libs/calendar"]
         }
-      }
+      },
+      "tags": []
     },
     "frontend": {
       "root": "apps/frontend/",
@@ -180,7 +181,8 @@
             "production": {}
           }
         }
-      }
+      },
+      "tags": []
     },
     "frontend-e2e": {
       "root": "apps/frontend-e2e",
@@ -205,7 +207,9 @@
             "lintFilePatterns": ["apps/frontend-e2e/**/*.ts", "apps/frontend-e2e/**/*.html"]
           }
         }
-      }
+      },
+      "tags": [],
+      "implicitDependencies": ["frontend"]
     },
     "math-competition": {
       "root": "apps/math-competition/",
@@ -311,7 +315,8 @@
           },
           "outputs": ["coverage/apps/math-competition/"]
         }
-      }
+      },
+      "tags": []
     },
     "math-competition-e2e": {
       "root": "apps/math-competition-e2e",
@@ -336,7 +341,9 @@
             "lintFilePatterns": ["apps/math-competition-e2e/**/*.ts", "apps/math-competition-e2e/**/*.html"]
           }
         }
-      }
+      },
+      "tags": [],
+      "implicitDependencies": ["math-competition"]
     },
     "simple-slideshow": {
       "projectType": "library",
@@ -364,7 +371,8 @@
         "@nrwl/angular:component": {
           "styleext": "scss"
         }
-      }
+      },
+      "tags": []
     },
     "ui": {
       "root": "libs/ui",
@@ -392,29 +400,8 @@
         "@nrwl/schematics:component": {
           "styleext": "scss"
         }
-      }
-    }
-  },
-  "cli": {
-    "warnings": {
-      "versionMismatch": false
-    },
-    "defaultCollection": "@nrwl/angular",
-    "packageManager": "yarn",
-    "analytics": "3ef1259c-eca0-415b-a73f-f34c485d92e8"
-  },
-  "defaultProject": "frontend",
-  "schematics": {
-    "@nrwl/schematics:library": {
-      "unitTestRunner": "karma",
-      "framework": "angular"
-    },
-    "@nrwl/schematics:application": {
-      "unitTestRunner": "karma",
-      "e2eTestRunner": "protractor"
-    },
-    "@nrwl/schematics:node-application": {
-      "framework": "express"
+      },
+      "tags": []
     }
   }
 }
