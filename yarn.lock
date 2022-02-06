@@ -10800,6 +10800,14 @@ ng-katex@2.0.3:
     katex "0.11.1"
     tslib "^1.9.0"
 
+ng2-pdf-viewer@^7.0.1:
+  version "7.0.2"
+  resolved "https://registry.yarnpkg.com/ng2-pdf-viewer/-/ng2-pdf-viewer-7.0.2.tgz#101d43422ae2b1b1b8285faae71a0d9ec241d4b1"
+  integrity sha512-yAd8OddmPCnkERv3IWFyZ1GxkMx+n2fc8NQQtWCjQbhr1sKjrP0TQH41AmgudSzTtvWJw9z784V+TKIaWA0eKw==
+  dependencies:
+    pdfjs-dist "~2.11.338"
+    tslib "^2.0.0"
+
 nice-napi@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/nice-napi/-/nice-napi-1.0.2.tgz#dc0ab5a1eac20ce548802fc5686eaa6bc654927b"
@@ -11553,6 +11561,11 @@ path-type@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-4.0.0.tgz#84ed01c0a7ba380afe09d90a8c180dcd9d03043b"
   integrity sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==
+
+pdfjs-dist@~2.11.338:
+  version "2.11.338"
+  resolved "https://registry.yarnpkg.com/pdfjs-dist/-/pdfjs-dist-2.11.338.tgz#6aafe34b0eb399d358bf899f52838905ddf3b1a5"
+  integrity sha512-Ti5VTB0VvSdtTtc7TG71ghMx0SEuNcEs4ghVuZxW0p6OqLjMc0xekZV1B+MmlxEG2Du2e5jgazucWIG/SXTcdA==
 
 performance-now@^2.1.0:
   version "2.1.0"
