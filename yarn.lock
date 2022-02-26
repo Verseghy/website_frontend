@@ -9019,13 +9019,13 @@ ng-katex@2.0.3:
     katex "0.11.1"
     tslib "^1.9.0"
 
-ng2-pdf-viewer@^7.0.1:
-  version "7.0.2"
-  resolved "https://registry.yarnpkg.com/ng2-pdf-viewer/-/ng2-pdf-viewer-7.0.2.tgz#101d43422ae2b1b1b8285faae71a0d9ec241d4b1"
-  integrity sha512-yAd8OddmPCnkERv3IWFyZ1GxkMx+n2fc8NQQtWCjQbhr1sKjrP0TQH41AmgudSzTtvWJw9z784V+TKIaWA0eKw==
+ng2-pdf-viewer@8.0.1:
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/ng2-pdf-viewer/-/ng2-pdf-viewer-8.0.1.tgz#3e0c40e836045e990676e59051089d7a8e064007"
+  integrity sha512-uJNHo0VanlK0VZUryzO66xzskg3ounD2Uz9OOtpCjGKjlJjnoKToxa2QJlJiLmmyErEWd4KI6dSeHvAaiTZ+SA==
   dependencies:
     pdfjs-dist "~2.11.338"
-    tslib "^2.0.0"
+    tslib "^2.3.1"
 
 nice-napi@^1.0.2:
   version "1.0.2"
@@ -11888,7 +11888,7 @@ tsconfig-paths@^3.9.0:
     minimist "^1.2.0"
     strip-bom "^3.0.0"
 
-tslib@2.3.1, tslib@>=1.7.1, tslib@^2.1.0, tslib@^2.2.0, tslib@^2.3.0:
+tslib@2.3.1, tslib@>=1.7.1, tslib@^2.1.0, tslib@^2.2.0, tslib@^2.3.0, tslib@^2.3.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.3.1.tgz#e8a335add5ceae51aa261d32a490158ef042ef01"
   integrity sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw==
