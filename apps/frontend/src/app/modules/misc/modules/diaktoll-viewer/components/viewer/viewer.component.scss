@@ -1,0 +1,28 @@
+pdf-viewer::ng-deep .ng2-pdf-viewer-container {
+  height: unset !important;
+}
+
+pdf-viewer::ng-deep {
+  display: block;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 20px auto 0;
+  padding: 0 10px 5px;
+}
+
+h1 {
+  font-size: 3.6rem;
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: 500;
+
+  @media screen and (max-width: 576px) {
+    font-size: 3.2rem;
+  }
+
+  &:not(:first-child) {
+    margin-top: 30px;
+  }
+}

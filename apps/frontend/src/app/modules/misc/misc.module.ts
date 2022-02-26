@@ -12,6 +12,7 @@ import { EffectsModule } from '@ngrx/effects'
 import { COLLEAGUES_FEATURE_KEY, colleaguesReducer, initialState as colleaguesInitialState } from './reducer/colleagues/colleagues.reducer'
 import { ColleaguesEffects } from './reducer/colleagues/colleagues.effects'
 import { InViewportModule } from 'ng-in-viewport'
+import { DiakTollViewerModule } from './modules/diaktoll-viewer/diak-toll-viewer.module'
 
 library.add(faGithub, faLinkedin, faFileAlt, faEnvelope)
 
@@ -28,6 +29,10 @@ const routes: Routes = [
   {
     path: 'colleagues',
     component: ColleaguesComponent,
+  },
+  {
+    path: 'diaktoll',
+    loadChildren: () => import('./modules/diaktoll-viewer/diak-toll-viewer.module').then((m) => DiakTollViewerModule),
   },
 ]
 

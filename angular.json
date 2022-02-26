@@ -155,7 +155,10 @@
             "outputPath": "dist/frontend/server",
             "main": "apps/frontend/server.ts",
             "tsConfig": "apps/frontend/tsconfig.server.json",
-            "externalDependencies": ["@firebase/firestore"]
+            "externalDependencies": [
+              "@firebase/firestore",
+              "canvas"
+            ]
           },
           "configurations": {
             "production": {

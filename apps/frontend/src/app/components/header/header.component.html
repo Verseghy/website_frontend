@@ -72,6 +72,10 @@
       <div class="menu TEMP-disabled-not-implemented-link">
         <a tabindex="-1" (click)="toggleDrawer()" [routerLink]="'/events'" routerLinkActive="active">Események</a>
       </div>
+      <div class="menu new">
+        <a (click)="toggleDrawer()" [routerLink]="'/misc/diaktoll'" routerLinkActive="active">Diáktoll</a>
+        <div class="new-badge">Új</div>
+      </div>
       <div class="menu ekreta">
         <a href="https://klik035992001.e-kreta.hu/Adminisztracio/Login" target="_blank" [tabindex]="navTabbable$ | async">
           <img alt="Kréta" src="assets/icons/kreta2.png" />
