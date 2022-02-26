@@ -55,7 +55,7 @@ export class EventsComponent implements OnInit, OnDestroy {
       map((data: EventsState) => {
         let calendarEvents: Event[] = []
         for (const item of data.list) {
-          calendarEvents = [...calendarEvents, new Event(item.id, item.title, item.description, item.date_from, item.date_to, item.color)]
+          calendarEvents = [...calendarEvents, new Event(item.id, item.title, item.description, item.dateFrom, item.dateTo, item.color)]
         }
         return calendarEvents
       })

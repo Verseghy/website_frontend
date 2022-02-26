@@ -1,37 +1,58 @@
 import { Injectable } from '@angular/core'
-import { environment } from '../../../../environments/environment.prod'
-import { forkJoin, Observable, of } from 'rxjs'
-import { Entity } from '../reducer/canteen/canteen.reducer'
-import { HttpClient } from '@angular/common/http'
+import {Observable, of} from 'rxjs'
 import { getISOWeek } from 'date-fns'
-import { catchError } from 'rxjs/operators'
+import { CanteenDay } from "../models/cateen";
+import {Apollo, gql} from "apollo-angular";
+import {map, take} from "rxjs/operators";
+
+const QUERY = gql`
+  query CanteenTwoWeeks($year1: Int!, $week1: Int!, $year2: Int!, $week2: Int!) {
+    w1: canteen(year: $year1, week: $week1) {
+      ...canteen
+    }
+    w2: canteen(year: $year2, week: $week2) {
+      ...canteen
+    }
+  }
+    
+  fragment canteen on Canteen {
+    date
+    menus {
+      menu
+      type
+    }
+  }
+`
+
+interface Result {
+  w1: CanteenDay[]
+  w2: CanteenDay[]
+}
 
 @Injectable({
   providedIn: 'root',
 })
 export class CanteenService {
-  private baseURL: string = environment.baseURL + '/canteen'
+  constructor(private gql: Apollo) {}
 
-  private getForWeek(year: number, week: number): Observable<Entity[]> {
-    return this.http
-      .get<Entity[]>(`${this.baseURL}/getCanteenByWeek`, {
-        params: {
-          week: String(week),
-          year: String(year),
-        },
-      })
-      .pipe(catchError(() => of([])))
-  }
-  getCanteen(): Observable<[Entity[], Entity[]]> {
+  getCanteen(): Observable<[CanteenDay[], CanteenDay[]]> {
     const now: Date = new Date()
     const year: number = now.getFullYear()
     const week: number = getISOWeek(now)
 
-    const thisWeek = this.getForWeek(year, week)
-    const nextWeek = this.getForWeek(year, week + 1)
-
-    return forkJoin([thisWeek, nextWeek])
+    return this.gql.watchQuery<Result>({
+      query: QUERY,
+      variables: {
+        year1: year,
+        year2: year,
+        week1: week,
+        week2: week + 1,
+      }
+    }).valueChanges.pipe(
+      take(1),
+      map(res => {
+        return [res.data.w1, res.data.w2]
+      })
+    )
   }
-
-  constructor(private http: HttpClient) {}
 }

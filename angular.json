@@ -1,5 +1,8 @@
 {
   "$schema": "node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": false
+  },
   "version": 1,
   "newProjectRoot": "",
   "projects": {
@@ -91,6 +94,14 @@
                   "with": "apps/frontend/src/environments/environment.hmr.ts"
                 }
               ]
+            },
+            "dev": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
             }
           },
           "outputs": ["{options.outputPath}"]
@@ -107,6 +118,9 @@
             "hmr": {
               "hmr": true,
               "browserTarget": "frontend:build:hmr"
+            },
+            "dev": {
+              "browserTarget": "frontend:build:dev"
             }
           }
         },

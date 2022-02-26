@@ -31,10 +31,11 @@ export class PostsComponent implements OnInit {
     this.post$ = combineLatest([this.route.params, this.route.queryParams]).pipe(
       map(([params, queryParams]) => ({ params, queryParams })),
       switchMap((x) => {
+        const id = parseInt(x.params.id, 10)
         if (x.queryParams.token) {
-          return this.requestService.getPostByIdPreview(x.params.id, x.queryParams.token)
+          return this.requestService.getPostByIdPreview(id, x.queryParams.token)
         } else {
-          return this.requestService.getPostById(x.params.id)
+          return this.requestService.getPostById(id)
         }
       }),
       catchError((error) => {
@@ -52,7 +53,7 @@ export class PostsComponent implements OnInit {
         this.metaService.addTags([
           { property: 'og:type', content: 'article' },
           { property: 'og:title', content: post.title },
-          { property: 'og:image', content: post.index_image },
+          { property: 'og:image', content: post.indexImage },
           { property: 'og:description', content: post.description },
           { property: 'article:author', content: post.author.name },
           { property: 'article:published_time', content: post.date },

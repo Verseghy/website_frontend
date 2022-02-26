@@ -2,9 +2,9 @@ import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core'
 import { BehaviorSubject, combineLatest } from 'rxjs'
 import { map } from 'rxjs/operators'
 import { SubSink } from 'subsink'
-import { PostsFacade } from '../../state/posts/posts.facade'
 import { animate, style, transition, trigger } from '@angular/animations'
 import { format } from 'date-fns'
+import {RequestService} from "../../services/request.service";
 
 @Component({
   selector: 'verseghy-featured-post',
@@ -44,7 +44,8 @@ export class FeaturedPostComponent implements OnDestroy {
   autoplaySpeed = 1000
   isHovered = false
   page$ = new BehaviorSubject(0)
-  posts$ = combineLatest([this.postsFacade.featuredPosts$, this.page$]).pipe(
+  featuredPosts$ = this.requestService.listFeaturedPosts()
+  posts$ = combineLatest([this.featuredPosts$, this.page$]).pipe(
     map(([posts, page]) => {
       // @ts-ignore TODO(zoltanszepesi): check this again after updating typescript
       this.page = ((page % posts.length) + posts.length) % posts.length
@@ -56,9 +57,7 @@ export class FeaturedPostComponent implements OnDestroy {
   page = 0
   animate = ''
 
-  featuredPosts$ = this.postsFacade.featuredPosts$
-
-  constructor(private postsFacade: PostsFacade) {}
+  constructor(private requestService: RequestService) {}
 
   ngOnDestroy() {
     this.subs.unsubscribe()

@@ -19,10 +19,10 @@ export class SearchFacade {
   }
 
   queryLabel(labelID: number) {
-    this.store.dispatch(queryLabel({ labelID: labelID.toString() }))
+    this.store.dispatch(queryLabel({ labelID }))
   }
 
   queryAuthor(authorID: number) {
-    this.store.dispatch(queryAuthor({ authorID: authorID.toString() }))
+    this.store.dispatch(queryAuthor({ authorID }))
   }
 }
