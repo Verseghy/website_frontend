@@ -28,7 +28,7 @@ export class PostsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    const hack = setInterval(() =>{}, 1000)
+    const hack = setInterval(() => {}, 1000)
     this.post$ = combineLatest([this.route.params, this.route.queryParams]).pipe(
       map(([params, queryParams]) => ({ params, queryParams })),
       switchMap((x) => {
