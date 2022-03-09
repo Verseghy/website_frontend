@@ -171,6 +171,11 @@
               ],
               "sourceMap": false,
               "optimization": true
+            },
+            "dev": {
+              "optimization": false,
+              "sourceMap": true,
+              "extractLicenses": false
             }
           }
         },
@@ -184,6 +189,10 @@
             "production": {
               "browserTarget": "frontend:build:production",
               "serverTarget": "frontend:server:production"
+            },
+            "dev": {
+              "browserTarget": "frontend:build:dev",
+              "serverTarget": "frontend:server:dev"
             }
           }
         },
