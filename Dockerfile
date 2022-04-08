@@ -1,4 +1,4 @@
-FROM node:16-alpine as builder
+FROM node:17-alpine as builder
 
 WORKDIR /usr/src/app
 COPY ["./yarn.lock", "./package.json", "./decorate-angular-cli.js", "./"]
@@ -9,7 +9,7 @@ RUN yarn ng run frontend:build:production && \
     yarn ng run frontend:server:production && \
     rm -rf ./node_modules
 
-FROM node:16-alpine
+FROM node:17-alpine
 WORKDIR /app
 # RUN mkdir -p ./dist/frontend/ ./apps/frontend/dist/
 COPY --from=builder ["/usr/src/app/dist/frontend/server/", "./dist/frontend/server/"]
