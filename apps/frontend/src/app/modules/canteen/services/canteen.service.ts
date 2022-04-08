@@ -40,7 +40,7 @@ export class CanteenService {
     const year: number = now.getFullYear()
     const week: number = getISOWeek(now)
 
-    return this.gql.watchQuery<Result>({
+    return this.gql.query<Result>({
       query: QUERY,
       variables: {
         year1: year,
@@ -48,7 +48,7 @@ export class CanteenService {
         week1: week,
         week2: week + 1,
       }
-    }).valueChanges.pipe(
+    }).pipe(
       take(1),
       map(res => {
         return [res.data.w1, res.data.w2]

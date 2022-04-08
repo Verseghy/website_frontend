@@ -31,9 +31,9 @@ interface Result {
 })
 export class ColleaguesService {
   getColleagues(): Observable<Entity[]> {
-    return this.gql.watchQuery<Result>({
+    return this.gql.query<Result>({
       query: QUERY
-    }).valueChanges.pipe(
+    }).pipe(
       map(res => res.data.colleagues),
       take(1)
     )

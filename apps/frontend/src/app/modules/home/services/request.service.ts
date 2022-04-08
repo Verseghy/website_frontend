@@ -107,13 +107,13 @@ export class RequestService {
   }
 
   listFeaturedPosts(): Observable<Post[]> {
-    return this.gql.watchQuery<Result>({
+    return this.gql.query<Result>({
       query: QUERY,
       variables: {
         featured: true,
         last: 20
       }
-    }).valueChanges.pipe(
+    }).pipe(
       map(res => {
         return res.data.posts.edges.map(edge => edge.node)
       }),

@@ -29,13 +29,13 @@ export class RequestService {
   constructor(private gql: Apollo) {}
 
   getEvents({year, month}: { year: number; month: number }): Observable<Entity[]> {
-    return this.gql.watchQuery<Result>({
+    return this.gql.query<Result>({
       query: QUERY,
       variables: {
         year,
         month
       }
-    }).valueChanges.pipe(
+    }).pipe(
       map(res => {
         return res.data.events
       }),

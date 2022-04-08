@@ -45,9 +45,9 @@ export class ArchiveService {
   constructor(private gql: Apollo) {}
 
   getArchives(): Observable<Stats[]> {
-    return this.gql.watchQuery<Result>({
+    return this.gql.query<Result>({
       query: infoQUERY
-    }).valueChanges.pipe(
+    }).pipe(
       map(res => {
         return res.data.archive.info
       }),
@@ -56,13 +56,13 @@ export class ArchiveService {
   }
 
   getDetailedArchives({ year, month }: { year: number; month: number }): Observable<Post[]> {
-    return this.gql.watchQuery<Result>({
+    return this.gql.query<Result>({
       query: postsQUERY,
       variables: {
         year,
         month,
       }
-    }).valueChanges.pipe(
+    }).pipe(
       map(res => {
         return res.data.archive.posts
       }),

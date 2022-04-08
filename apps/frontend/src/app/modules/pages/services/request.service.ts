@@ -28,12 +28,12 @@ export class RequestService {
   constructor(private gql: Apollo) {}
 
   getPageBySlug(slug: string): Observable<PageData> {
-    return this.gql.watchQuery<Result>({
+    return this.gql.query<Result>({
       query: QUERY,
       variables: {
         slug
       }
-    }).valueChanges.pipe(
+    }).pipe(
       map(res => {
         return res.data.page
       }),
