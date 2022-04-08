@@ -51,12 +51,12 @@ export class RequestService {
   constructor(private gql: Apollo, private http: HttpClient) {}
 
   getPageBySlug(slug: string): Observable<PageData> {
-    return this.gql.watchQuery<pageResult>({
+    return this.gql.query<pageResult>({
       query: pageQUERY,
       variables: {
         slug
       }
-    }).valueChanges.pipe(
+    }).pipe(
       map(res => {
         return res.data.page
       }),
@@ -65,9 +65,9 @@ export class RequestService {
   }
 
   getMenuItems(): Observable<MenuItem[]> {
-    return this.gql.watchQuery<menuResult>({
+    return this.gql.query<menuResult>({
       query: menuQUERY
-    }).valueChanges.pipe(
+    }).pipe(
       map(res => {
         return res.data.menu
       }),

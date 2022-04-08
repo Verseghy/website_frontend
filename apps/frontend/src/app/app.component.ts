@@ -90,7 +90,7 @@ export class AppComponent implements AfterViewInit, OnInit {
   ngAfterViewInit(): void {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
-        window.scrollTo(0, 0)
+        globalThis.window.scrollTo(0, 0)
         this.loaded = false
       } else if (event instanceof NavigationEnd || event instanceof NavigationCancel) {
         this.loaded = true

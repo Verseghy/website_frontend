@@ -44,12 +44,12 @@ export class RequestService {
   constructor(private gql: Apollo) {}
 
   getPostById(id: number): Observable<Post> {
-    return this.gql.watchQuery<Result>({
+    return this.gql.query<Result>({
       query: QUERY,
       variables: {
         id
       }
-    }).valueChanges.pipe(
+    }).pipe(
       map(res => {
         return res.data.post
       }),
@@ -58,13 +58,13 @@ export class RequestService {
   }
 
   getPostByIdPreview(id: number, token: string): Observable<Post> {
-    return this.gql.watchQuery<Result>({
+    return this.gql.query<Result>({
       query: QUERY,
       variables: {
         id,
         token
       }
-    }).valueChanges.pipe(
+    }).pipe(
       map(res => {
         return res.data.post
       }),

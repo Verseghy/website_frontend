@@ -144,12 +144,12 @@ export class SearchService {
   constructor(private gql: Apollo, private http: HttpClient) {}
 
   queryTerm(term: string): Observable<Post[]> {
-    return this.gql.watchQuery<termResult>({
+    return this.gql.query<termResult>({
       query: termQUERY,
       variables: {
         term
       }
-    }).valueChanges.pipe(
+    }).pipe(
       map(res => {
         return res.data.search.edges.map(edge => edge.node)
       }),
@@ -158,12 +158,12 @@ export class SearchService {
   }
 
   queryLabel(labelID: number): Observable<Post[]> {
-    return this.gql.watchQuery<labelResult>({
+    return this.gql.query<labelResult>({
       query: labelQUERY,
       variables: {
         labelID
       }
-    }).valueChanges.pipe(
+    }).pipe(
       map(res => {
         return res.data.label.posts.edges.map(edge => edge.node)
       }),
@@ -172,12 +172,12 @@ export class SearchService {
   }
 
   queryAuthor(authorID: number): Observable<Post[]> {
-    return this.gql.watchQuery<authorResult>({
+    return this.gql.query<authorResult>({
       query: authorQUERY,
       variables: {
         authorID
       }
-    }).valueChanges.pipe(
+    }).pipe(
       map(res => {
         return res.data.author.posts.edges.map(edge => edge.node)
       }),

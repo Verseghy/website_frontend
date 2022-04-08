@@ -28,6 +28,7 @@ export class PostsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    const hack = setInterval(() => {}, 1000)
     this.post$ = combineLatest([this.route.params, this.route.queryParams]).pipe(
       map(([params, queryParams]) => ({ params, queryParams })),
       switchMap((x) => {
@@ -39,11 +40,16 @@ export class PostsComponent implements OnInit {
         }
       }),
       catchError((error) => {
+        clearInterval(hack)
         this.router.navigate(['/404'])
         return throwError(error)
       }),
       tap((post: Post | null) => {
-        if (!post) return
+        if (!post) {
+          clearInterval(hack)
+          this.router.navigate(['/404'])
+          return
+        }
 
         this.titleService.setTitle(post.title)
 
@@ -59,6 +65,7 @@ export class PostsComponent implements OnInit {
           { property: 'article:published_time', content: post.date },
           ...post.labels.map((l) => ({ property: 'article:tag', content: l.name })),
         ])
+        clearInterval(hack)
       })
     )
   }
