@@ -1,13 +1,13 @@
 <a class="content" [ngStyle]="{ 'background-color': color }" [routerLink]="['/posts', post.id]">
   <article>
-    <img class="index-img" [src]="post.indexImage" [alt]="post.title" />
+    <img class="index-img" [src]="post.indexImage" [alt]="post.title" loading="lazy" />
     <div class="label-container">
       <verseghy-label *ngFor="let label of post.labels" [label]="label"></verseghy-label>
     </div>
     <h2 class="title">{{ post.title }}</h2>
     <p class="description" *ngIf="post.description">{{ post.description }}</p>
     <div class="bottom">
-      <img *ngIf="post.author.image" class="author-img" [src]="post.author.image" [alt]="post.author.name" />
+      <img *ngIf="post.author.image" class="author-img" [src]="post.author.image" [alt]="post.author.name" loading="lazy" />
       <p>{{ post.author.name }}</p>
       <time [dateTime]="formatDate(post.date)">{{ formatDate(post.date) }}</time>
     </div>
