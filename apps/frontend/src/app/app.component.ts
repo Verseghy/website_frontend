@@ -1,4 +1,12 @@
-import { AfterViewInit, ApplicationRef, ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
+import {
+  AfterViewInit,
+  ApplicationRef,
+  ChangeDetectionStrategy,
+  Component,
+  Inject,
+  OnInit,
+  PLATFORM_ID
+} from '@angular/core'
 import { animate, group, query, style, transition, trigger } from '@angular/animations'
 import { NavigationCancel, NavigationEnd, NavigationStart, Router } from '@angular/router'
 import { SwUpdate } from '@angular/service-worker'
@@ -8,6 +16,7 @@ import { ToastService } from './services/toast.service'
 import { HeaderService } from './services/header.service'
 import { environment } from '../environments/environment'
 import { Meta } from '@angular/platform-browser'
+import { isPlatformBrowser } from "@angular/common";
 
 @Component({
   selector: 'verseghy-root',
@@ -58,14 +67,15 @@ export class AppComponent implements AfterViewInit, OnInit {
     private appRef: ApplicationRef,
     private toastService: ToastService,
     private headerSevice: HeaderService,
-    private metaService: Meta
+    private metaService: Meta,
+    @Inject(PLATFORM_ID) private platformID: string
   ) {}
 
   ngOnInit() {
     const appIsStable$ = this.appRef.isStable.pipe(first((isStable) => isStable === true))
     const hourly$ = interval(60 * 60 * 1000)
 
-    concat(appIsStable$, hourly$).subscribe(() => environment.production && this.swupdate.checkForUpdate())
+    concat(appIsStable$, hourly$).subscribe(() => environment.production && isPlatformBrowser(this.platformID) && this.swupdate.checkForUpdate())
 
     this.swupdate.versionUpdates.pipe(filter((evt) => evt.type === 'VERSION_READY')).subscribe(() => {
       this.toastService.createToast('Frissítés elérhető. Kérlek töltsd újra az oldalt!', [
