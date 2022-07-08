@@ -10,9 +10,14 @@
   },
   "tasksRunnerOptions": {
     "default": {
-      "runner": "@nrwl/workspace/tasks-runners/default",
+      "runner": "nx/tasks-runners/default",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"],
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e"
+        ],
         "parallel": 3
       }
     }
@@ -20,19 +25,10 @@
   "affected": {
     "defaultBase": "master"
   },
-  "targetDependencies": {
-    "build": [
-      {
-        "target": "build",
-        "projects": "dependencies"
-      }
-    ]
-  },
   "cli": {
     "warnings": {
       "versionMismatch": false
     },
-    "defaultCollection": "@nrwl/angular",
     "packageManager": "yarn",
     "analytics": "3ef1259c-eca0-415b-a73f-f34c485d92e8"
   },
@@ -48,6 +44,14 @@
     },
     "@nrwl/schematics:node-application": {
       "framework": "express"
+    }
+  },
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "targetDefaults": {
+    "build": {
+      "dependsOn": [
+        "^build"
+      ]
     }
   }
 }
