@@ -61,7 +61,7 @@
     "@ngx-loading-bar/router": "5.1.2",
     "@nrwl/angular": "13.4.5",
     "apollo-angular": "2.6.0",
-    "color": "^4.0.1",
+    "color": "4.2.3",
     "core-js": "3.18.1",
     "crypto-hash": "^2.0.1",
     "date-fns": "1.30.1",
