@@ -1,9 +1,9 @@
 {
   "$schema": "node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
-  "newProjectRoot": "",
   "projects": {
     "calendar": {
+      "$schema": "../../node_modules/nx/schemas/project-schema.json",
       "root": "libs/calendar",
       "sourceRoot": "libs/calendar/src",
       "projectType": "library",
@@ -28,6 +28,7 @@
       "tags": []
     },
     "frontend": {
+      "$schema": "../../node_modules/nx/schemas/project-schema.json",
       "root": "apps/frontend/",
       "sourceRoot": "apps/frontend/src",
       "projectType": "application",
@@ -205,6 +206,7 @@
       "tags": []
     },
     "frontend-e2e": {
+      "$schema": "../../node_modules/nx/schemas/project-schema.json",
       "root": "apps/frontend-e2e",
       "projectType": "application",
       "prefix": "",
@@ -232,6 +234,7 @@
       "implicitDependencies": ["frontend"]
     },
     "simple-slideshow": {
+      "$schema": "../../node_modules/nx/schemas/project-schema.json",
       "projectType": "library",
       "root": "libs/simple-slideshow",
       "sourceRoot": "libs/simple-slideshow/src",
@@ -261,6 +264,7 @@
       "tags": []
     },
     "ui": {
+      "$schema": "../../node_modules/nx/schemas/project-schema.json",
       "root": "libs/ui",
       "sourceRoot": "libs/ui/src",
       "projectType": "library",
