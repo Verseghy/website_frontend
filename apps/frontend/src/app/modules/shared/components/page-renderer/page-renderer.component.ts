@@ -39,22 +39,7 @@ export class PageRendererComponent {
     if (!isPlatformBrowser(this.platformID)) return html // TODO(zoltanszepesi): fix this
     const parser = new DOMParser()
     const dom = parser.parseFromString(html, 'text/html')
-    const tables = Array.from(dom.getElementsByTagName('table'))
     const links = Array.from(dom.getElementsByTagName('a'))
-
-    for (const table of tables) {
-      const parentNode = table.parentNode
-      const index = Array.from(parentNode.children).indexOf(table)
-
-      const element = dom.createElement('div')
-      element.classList.add('table-container')
-      element.append(table)
-      element.style.maxWidth = table.style.width
-
-      table.style.width = '100%'
-
-      parentNode.insertBefore(element, parentNode.children[index])
-    }
 
     links.forEach((link) => {
       link.setAttribute('target', '_blank')
