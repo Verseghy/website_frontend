@@ -2,7 +2,7 @@
   --content-page-width: 70rem;
   --content-page-width-wide: 100rem;
 
-  font-size: 2.1rem;
+  font-size: 1.8rem;
   font-weight: 400;
   color: #202124;
   line-height: 1.55;
@@ -41,51 +41,31 @@
     }
 
     h1 {
-      font-size: 2.6rem;
-
-      @media (max-width: 992px) {
-        font-size: 2.1rem;
-      }
+      font-size: 2em;
     }
 
     h2 {
-      font-size: 2.2rem;
-
-      @media (max-width: 992px) {
-        font-size: 1.7rem;
-      }
+      font-size: 1.5em;
     }
 
     h3 {
-      font-size: 2rem;
-
-      @media (max-width: 992px) {
-        font-size: 1.5rem;
-      }
+      font-size: 1.17em;
+      margin-bottom: 1rem;
     }
 
     h4 {
-      font-size: 1.9rem;
-
-      @media (max-width: 992px) {
-        font-size: 1.4rem;
-      }
+      font-size: 1em;
+      margin-bottom: 1rem;
     }
 
     h5 {
-      font-size: 1.7rem;
-
-      @media (max-width: 992px) {
-        font-size: 1.2rem;
-      }
+      font-size: .83em;
+      margin-bottom: 1rem;
     }
 
     h6 {
-      font-size: 1.5rem;
-
-      @media (max-width: 992px) {
-        font-size: 1rem;
-      }
+      font-size: .67em;
+      margin-bottom: 1rem;
     }
 
     blockquote {
