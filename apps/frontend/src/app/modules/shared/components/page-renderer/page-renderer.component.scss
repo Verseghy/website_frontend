@@ -87,12 +87,10 @@
       font-size: 1.6rem;
       box-sizing: border-box;
       border-collapse: collapse;
-      overflow-x: scroll;
+      overflow-x: auto;
       white-space: nowrap;
       display: block;
-      width: min-content;
-      max-width: min(100%, var(--content-page-width-wide));
-      min-width: var(--content-page-width);
+      width: clap(var(--content-page-width), 100%, var(--content-page-width-wide));
 
       tbody {
         display: table;
