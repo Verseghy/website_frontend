@@ -1,6 +1,7 @@
 :host {
-  max-width: 1000px;
-  padding: 0 20px;
+  --padding: 20px;
+  max-width: min(1000px, calc(100vw - 2 * var(--padding)));
+  padding: 0 var(--padding);
   margin: 0 auto;
   display: block;
 }
