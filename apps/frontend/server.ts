@@ -8,8 +8,23 @@ import { AppServerModule } from './src/main.server'
 import { APP_BASE_HREF } from '@angular/common'
 import { existsSync } from 'fs'
 
+import * as winston from "winston"
+import * as crypto from "crypto"
+
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
+  const logger = winston.createLogger({
+    level: 'info',
+    format: winston.format.combine(
+        winston.format.timestamp(),
+        winston.format.json()
+    ),
+    defaultMeta: {service: 'frontend-ssr'},
+    transports: [
+        new winston.transports.Console()
+    ]
+  })
+
   const server = express()
   const distFolder = join(process.cwd(), 'apps/frontend/dist')
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index'
@@ -35,13 +50,20 @@ export function app(): express.Express {
     })
   )
 
+  // hack to get around rendering diaktoll
   server.get('/misc/diaktoll', (req, res) => {
+    const l = logger.child({ requestID: crypto.randomUUID(), route: req.baseUrl })
+    l.info("Starting render")
     res.sendFile(distFolder + '/index.html');
+    l.info("Finished render")
   });
 
   // All regular routes use the Universal engine
   server.get('*', (req, res) => {
+    const l = logger.child({ requestID: crypto.randomUUID(), route: req.path })
+    l.info("Starting render")
     res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] })
+    l.info("Finished render")
   })
 
   return server
