@@ -89,7 +89,7 @@
     "@angularclass/hmr": "3.0.0",
     "@ngrx/schematics": "13.0.2",
     "@ngrx/store-devtools": "13.0.2",
-    "@nguniversal/builders": "13.0.1",
+    "@nguniversal/builders": "16.2.0",
     "@nrwl/cli": "13.4.5",
     "@nrwl/tao": "13.4.5",
     "@nrwl/workspace": "13.4.5",
