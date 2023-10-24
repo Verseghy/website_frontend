@@ -53,7 +53,7 @@
     "@ngrx/entity": "13.0.2",
     "@ngrx/router-store": "13.0.2",
     "@ngrx/store": "13.0.2",
-    "@nguniversal/express-engine": "13.0.1",
+    "@nguniversal/express-engine": "13.1.1",
     "@ngx-loading-bar/core": "5.1.2",
     "@ngx-loading-bar/http-client": "5.1.2",
     "@ngx-loading-bar/router": "5.1.2",
