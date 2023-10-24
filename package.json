@@ -123,7 +123,7 @@
     "loaders.css": "0.1.2",
     "ng-in-viewport": "6.1.5",
     "open": "^7.0.3",
-    "postcss": "8.3.9",
+    "postcss": "8.4.31",
     "postcss-import": "14.0.2",
     "postcss-loader": "6.1.1",
     "postcss-scss": "4.0.1",
