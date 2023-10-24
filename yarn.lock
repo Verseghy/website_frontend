@@ -2302,12 +2302,12 @@
   dependencies:
     tslib "^1.10.0"
 
-"@ngx-loading-bar/router@5.1.2":
-  version "5.1.2"
-  resolved "https://registry.yarnpkg.com/@ngx-loading-bar/router/-/router-5.1.2.tgz#333ee5e105c05fcd0f2502e47ee88e6e7cc8ec8c"
-  integrity sha512-k/Ne2rWYX3HFFWTemm/vBEEkP1YxE0QCd+poaP2G3QKI78SOntYLVdRnRvbvNJpZUtiH8eb+RvExxfdYpm4CPQ==
+"@ngx-loading-bar/router@6.0.2":
+  version "6.0.2"
+  resolved "https://registry.yarnpkg.com/@ngx-loading-bar/router/-/router-6.0.2.tgz#d10ac7d0f6e7b1af71bb2fbab581533fed31cbf0"
+  integrity sha512-el+32ysDhqr46Zcg+H8UiKpOEz43qY0++CUxj8DADLRm3mAzKqNn/X+5qhFQS4o5Nb/SdvZn5apfFlXoNNUViQ==
   dependencies:
-    tslib "^1.10.0"
+    tslib "^2.0.0"
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
