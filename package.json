@@ -66,7 +66,7 @@
     "express": "4.17.1",
     "graphql": "15.7.2",
     "ng-katex": "2.0.3",
-    "ng2-pdf-viewer": "^7.0.1",
+    "ng2-pdf-viewer": "^10.0.0",
     "parse-color": "1.0.0",
     "rxjs": "6.6.7",
     "subsink": "1.0.2",
