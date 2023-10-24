@@ -54,7 +54,7 @@
     "@ngrx/router-store": "13.0.2",
     "@ngrx/store": "13.0.2",
     "@nguniversal/express-engine": "13.0.1",
-    "@ngx-loading-bar/core": "5.1.2",
+    "@ngx-loading-bar/core": "6.0.2",
     "@ngx-loading-bar/http-client": "5.1.2",
     "@ngx-loading-bar/router": "5.1.2",
     "@nrwl/angular": "13.4.5",
