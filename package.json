@@ -58,7 +58,7 @@
     "@ngx-loading-bar/http-client": "5.1.2",
     "@ngx-loading-bar/router": "5.1.2",
     "@nrwl/angular": "13.4.5",
-    "apollo-angular": "2.6.0",
+    "apollo-angular": "6.0.0",
     "color": "^4.0.1",
     "core-js": "3.18.1",
     "crypto-hash": "^2.0.1",
