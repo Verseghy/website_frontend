@@ -105,7 +105,7 @@
     "autoprefixer": "10.3.7",
     "dotenv": "10.0.0",
     "eslint": "^8.2.0",
-    "eslint-plugin-import": "2.25.2",
+    "eslint-plugin-import": "2.29.1",
     "eslint-plugin-jsdoc": "36.1.0",
     "eslint-plugin-prefer-arrow": "1.2.3",
     "fuzzy": "^0.1.3",
