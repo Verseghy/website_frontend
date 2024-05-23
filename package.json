@@ -45,7 +45,7 @@
     "@angular/router": "13.2.1",
     "@angular/service-worker": "13.2.1",
     "@apollo/client": "3.5.7",
-    "@fortawesome/angular-fontawesome": "0.9.0",
+    "@fortawesome/angular-fontawesome": "0.15.0",
     "@fortawesome/fontawesome-svg-core": "1.2.36",
     "@fortawesome/free-brands-svg-icons": "5.15.4",
     "@fortawesome/free-solid-svg-icons": "5.15.4",
