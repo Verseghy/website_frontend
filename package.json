@@ -127,7 +127,7 @@
     "postcss-import": "14.0.2",
     "postcss-loader": "6.1.1",
     "postcss-scss": "4.0.1",
-    "prettier": "2.4.1",
+    "prettier": "3.3.3",
     "protractor": "7.0.0",
     "tailwindcss": "2.2.16",
     "ts-node": "10.2.1",
