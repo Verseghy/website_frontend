@@ -38,6 +38,25 @@ export function colleaguesReducer(state: ColleaguesState = initialState, action:
       for (const colleague of action.payload) {
         categories[colleague.category].push(colleague)
       }
+
+      for (const category of categories) {
+        category.sort((a, b) => {
+          if (a.name === 'Szűcs Sándor') {
+            return -1
+          }
+
+          if (b.name === 'Szűcs Sándor') {
+            return 1
+          }
+
+          if (a.name > b.name) {
+            return 1
+          } else {
+            return -1
+          }
+        })
+      }
+
       state = {
         ...state,
         categories,
