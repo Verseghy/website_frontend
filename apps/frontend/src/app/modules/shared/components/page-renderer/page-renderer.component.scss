@@ -90,7 +90,7 @@
       overflow-x: auto;
       white-space: nowrap;
       display: block;
-      width: clap(var(--content-page-width), 100%, var(--content-page-width-wide));
+      width: clap(var(--content-page-width), 100%, var(--content-page-width-wide)) !important;
 
       tbody {
         display: table;
