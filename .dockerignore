@@ -3,3 +3,5 @@ npm-debug.log
 dist
 apps/frontend/dist
 Dockerfile
+.angular
+.nx

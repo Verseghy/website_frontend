@@ -1,4 +1,4 @@
-import { BrowserModule, BrowserTransferStateModule, makeStateKey, TransferState } from '@angular/platform-browser'
+import { BrowserModule, makeStateKey, TransferState } from '@angular/platform-browser'
 import { NgModule } from '@angular/core'
 
 import { AppComponent } from './app.component'
@@ -20,11 +20,11 @@ import { ToastComponent } from './components/toast/toast.component'
 import { faFacebookF } from '@fortawesome/free-brands-svg-icons'
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component'
 import { LayoutModule } from '@angular/cdk/layout'
-import {APOLLO_OPTIONS} from "apollo-angular";
-import {HttpLink} from "apollo-angular/http";
-import {InMemoryCache} from "@apollo/client/core";
-import {createPersistedQueryLink} from "apollo-angular/persisted-queries";
-import {sha256} from "crypto-hash";
+import { APOLLO_OPTIONS } from 'apollo-angular'
+import { HttpLink } from 'apollo-angular/http'
+import { InMemoryCache } from '@apollo/client/core'
+import { createPersistedQueryLink } from 'apollo-angular/persisted-queries'
+import { sha256 } from 'crypto-hash'
 
 const stateSetter = (reducer: ActionReducer<any>): ActionReducer<any> => {
   return function (state: any, action: any) {
@@ -41,7 +41,6 @@ export const NGRX_STATE = makeStateKey('NGRX_STATE')
   declarations: [AppComponent, HeaderComponent, FooterComponent, ToastComponent, PageNotFoundComponent],
   imports: [
     LayoutModule,
-    BrowserTransferStateModule,
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
     RoutingModule,
@@ -62,17 +61,15 @@ export const NGRX_STATE = makeStateKey('NGRX_STATE')
       provide: APOLLO_OPTIONS,
       useFactory: (httpLink: HttpLink) => {
         const link = createPersistedQueryLink({
-          sha256
-        }).concat(
-          httpLink.create({uri: environment.gqlURL}),
-        );
+          sha256,
+        }).concat(httpLink.create({ uri: environment.gqlURL }))
         return {
           cache: new InMemoryCache(),
-          link
+          link,
         }
       },
-      deps: [HttpLink]
-    }
+      deps: [HttpLink],
+    },
   ],
   bootstrap: [AppComponent],
 })

@@ -6,7 +6,7 @@ jobs:
     name: Lint, Build, Test, E2E
     strategy:
       matrix:
-        node: [12]
+        node: [18]
         os: [ubuntu-latest]
     runs-on: ${{ matrix.os }}
     steps:
@@ -19,7 +19,7 @@ jobs:
           node-version: ${{ matrix.node }}
 
       - name: Setup dependencies
-        run: yarn
+        run: yarn --ignore-engines
 
       #- name: Lint
       #  run: yarn nx affected:lint --base=origin/master

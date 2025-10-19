@@ -1,10 +1,6 @@
 {
   "$schema": "node_modules/@angular/cli/lib/config/schema.json",
-  "cli": {
-    "analytics": true
-  },
   "version": 1,
-  "newProjectRoot": "",
   "projects": {
     "calendar": {
       "root": "libs/calendar",
