@@ -13,8 +13,8 @@
     "baseUrl": ".",
     "paths": {
       "@verseghy/calendar": ["libs/calendar/src/index.ts"],
-      "@verseghy/ui": ["libs/ui/src/index.ts"],
-      "@verseghy/simple-slideshow": ["libs/simple-slideshow/src/index.ts"]
+      "@verseghy/simple-slideshow": ["libs/simple-slideshow/src/index.ts"],
+      "@verseghy/ui": ["libs/ui/src/index.ts"]
     },
     "module": "esnext",
     "rootDir": "."

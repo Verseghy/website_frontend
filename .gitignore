@@ -49,3 +49,5 @@ Thumbs.db
 deploy_key
 
 venv/
+
+.nx/

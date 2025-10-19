@@ -1,10 +1,6 @@
 {
   "$schema": "node_modules/@angular/cli/lib/config/schema.json",
-  "cli": {
-    "analytics": true
-  },
   "version": 1,
-  "newProjectRoot": "",
   "projects": {
     "calendar": {
       "root": "libs/calendar",
@@ -15,7 +11,10 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": ["libs/calendar/**/*.ts", "libs/calendar/**/*.html"]
+            "lintFilePatterns": [
+              "libs/calendar/**/*.ts",
+              "libs/calendar/**/*.html"
+            ]
           }
         },
         "test": {
@@ -25,7 +24,9 @@
             "tsConfig": "libs/calendar/tsconfig.spec.json",
             "karmaConfig": "libs/calendar/karma.conf.js"
           },
-          "outputs": ["coverage/libs/calendar"]
+          "outputs": [
+            "coverage/libs/calendar"
+          ]
         }
       },
       "tags": []
@@ -55,7 +56,9 @@
               "apps/frontend/src/.htaccess",
               "apps/frontend/src/manifest.webmanifest"
             ],
-            "styles": ["apps/frontend/src/styles.scss"],
+            "styles": [
+              "apps/frontend/src/styles.scss"
+            ],
             "scripts": [],
             "aot": true
           },
@@ -104,7 +107,9 @@
               "namedChunks": true
             }
           },
-          "outputs": ["{options.outputPath}"]
+          "outputs": [
+            "{options.outputPath}"
+          ]
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -133,7 +138,10 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": ["apps/frontend//**/*.ts", "apps/frontend//**/*.html"]
+            "lintFilePatterns": [
+              "apps/frontend//**/*.ts",
+              "apps/frontend//**/*.html"
+            ]
           }
         },
         "test": {
@@ -145,9 +153,13 @@
             "polyfills": "apps/frontend/src/polyfills.ts",
             "styles": [],
             "scripts": [],
-            "assets": ["apps/frontend/src/manifest.webmanifest"]
+            "assets": [
+              "apps/frontend/src/manifest.webmanifest"
+            ]
           },
-          "outputs": ["coverage/apps/frontend/"]
+          "outputs": [
+            "coverage/apps/frontend/"
+          ]
         },
         "server": {
           "builder": "@angular-devkit/build-angular:server",
@@ -155,7 +167,10 @@
             "outputPath": "dist/frontend/server",
             "main": "apps/frontend/server.ts",
             "tsConfig": "apps/frontend/tsconfig.server.json",
-            "externalDependencies": ["@firebase/firestore", "canvas"]
+            "externalDependencies": [
+              "@firebase/firestore",
+              "canvas"
+            ]
           },
           "configurations": {
             "production": {
@@ -198,7 +213,9 @@
           "options": {
             "browserTarget": "frontend:build:production",
             "serverTarget": "frontend:server:production",
-            "routes": ["/"]
+            "routes": [
+              "/"
+            ]
           },
           "configurations": {
             "production": {}
@@ -227,12 +244,17 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": ["apps/frontend-e2e/**/*.ts", "apps/frontend-e2e/**/*.html"]
+            "lintFilePatterns": [
+              "apps/frontend-e2e/**/*.ts",
+              "apps/frontend-e2e/**/*.html"
+            ]
           }
         }
       },
       "tags": [],
-      "implicitDependencies": ["frontend"]
+      "implicitDependencies": [
+        "frontend"
+      ]
     },
     "simple-slideshow": {
       "projectType": "library",
@@ -243,7 +265,10 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": ["libs/simple-slideshow/**/*.ts", "libs/simple-slideshow/**/*.html"]
+            "lintFilePatterns": [
+              "libs/simple-slideshow/**/*.ts",
+              "libs/simple-slideshow/**/*.html"
+            ]
           }
         },
         "test": {
@@ -253,7 +278,9 @@
             "tsConfig": "libs/simple-slideshow/tsconfig.spec.json",
             "karmaConfig": "libs/simple-slideshow/karma.conf.js"
           },
-          "outputs": ["coverage/libs/simple-slideshow"]
+          "outputs": [
+            "coverage/libs/simple-slideshow"
+          ]
         }
       },
       "schematics": {
@@ -272,7 +299,10 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": ["libs/ui/**/*.ts", "libs/ui/**/*.html"]
+            "lintFilePatterns": [
+              "libs/ui/**/*.ts",
+              "libs/ui/**/*.html"
+            ]
           }
         },
         "test": {
@@ -282,7 +312,9 @@
             "tsConfig": "libs/ui/tsconfig.spec.json",
             "karmaConfig": "libs/ui/karma.conf.js"
           },
-          "outputs": ["coverage/libs/ui"]
+          "outputs": [
+            "coverage/libs/ui"
+          ]
         }
       },
       "schematics": {
