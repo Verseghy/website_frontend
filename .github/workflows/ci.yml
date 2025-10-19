@@ -19,7 +19,7 @@ jobs:
           node-version: ${{ matrix.node }}
 
       - name: Setup dependencies
-        run: yarn
+        run: yarn --ignore-engines
 
       #- name: Lint
       #  run: yarn nx affected:lint --base=origin/master
