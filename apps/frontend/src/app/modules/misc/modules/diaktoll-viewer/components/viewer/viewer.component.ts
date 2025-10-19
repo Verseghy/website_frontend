@@ -1,6 +1,6 @@
 import { Component, HostBinding, OnInit } from '@angular/core'
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout'
-import { map, takeUntil } from 'rxjs/operators'
+import { BreakpointObserver } from '@angular/cdk/layout'
+import { map } from 'rxjs/operators'
 import { fromEvent, Observable } from 'rxjs'
 
 const breakpoints = {
@@ -22,7 +22,7 @@ export class ViewerComponent implements OnInit {
     })
   )
 
-  width$ = fromEvent(window, 'resize').pipe(map(() => `${window.innerWidth}px`))
+  width$ = fromEvent(window, 'resize').pipe(map(() => `${window.innerWidth - 20}px`))
 
   constructor(private breakpointObserver: BreakpointObserver) {}
 
