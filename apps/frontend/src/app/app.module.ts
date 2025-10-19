@@ -1,4 +1,4 @@
-import { BrowserModule, BrowserTransferStateModule, makeStateKey, TransferState } from '@angular/platform-browser'
+import { BrowserModule, makeStateKey, TransferState } from '@angular/platform-browser'
 import { NgModule } from '@angular/core'
 
 import { AppComponent } from './app.component'
@@ -41,7 +41,6 @@ export const NGRX_STATE = makeStateKey('NGRX_STATE')
   declarations: [AppComponent, HeaderComponent, FooterComponent, ToastComponent, PageNotFoundComponent],
   imports: [
     LayoutModule,
-    BrowserTransferStateModule,
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
     RoutingModule,
