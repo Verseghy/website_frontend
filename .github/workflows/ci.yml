@@ -6,7 +6,7 @@ jobs:
     name: Lint, Build, Test, E2E
     strategy:
       matrix:
-        node: [12]
+        node: [16]
         os: [ubuntu-latest]
     runs-on: ${{ matrix.os }}
     steps:
