@@ -9,8 +9,8 @@ describe('Events Reducer', () => {
     createEvents = (id: number, title = ''): Entity => ({
       id,
       title: title || `name-${id}`,
-      date_from: new Date(),
-      date_to: new Date(),
+      dateFrom: new Date(),
+      dateTo: new Date(),
       description: '',
       color: '',
     })
