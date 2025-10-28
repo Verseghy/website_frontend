@@ -30,14 +30,14 @@
       "installMode": "lazy",
       "updateMode": "lazy",
       "resources": {
-        "urls": ["https://backend.verseghy-gimnazium.net/storage/**", "https://i.imgur.com/**"]
+        "urls": ["https://backend.microshift.verseghy-gimnazium.net/storage/**", "https://i.imgur.com/**"]
       }
     }
   ],
   "dataGroups": [
     {
       "name": "Posts",
-      "urls": ["https://backend.verseghy-gimnazium.net/api/posts/**"],
+      "urls": ["https://backend.microshift.verseghy-gimnazium.net/api/posts/**"],
       "version": 1,
       "cacheConfig": {
         "maxSize": 100,
@@ -47,7 +47,7 @@
     },
     {
       "name": "Canteen",
-      "urls": ["https://backend.verseghy-gimnazium.net/api/canteen/**"],
+      "urls": ["https://backend.microshift.verseghy-gimnazium.net/api/canteen/**"],
       "version": 1,
       "cacheConfig": {
         "maxSize": 100,
@@ -57,7 +57,7 @@
     },
     {
       "name": "Events",
-      "urls": ["https://backend.verseghy-gimnazium.net/api/events/**"],
+      "urls": ["https://backend.microshift.verseghy-gimnazium.net/api/events/**"],
       "version": 1,
       "cacheConfig": {
         "maxSize": 100,
@@ -67,7 +67,7 @@
     },
     {
       "name": "Colleagues",
-      "urls": ["https://backend.verseghy-gimnazium.net/api/colleagues/**"],
+      "urls": ["https://backend.microshift.verseghy-gimnazium.net/api/colleagues/**"],
       "version": 1,
       "cacheConfig": {
         "maxSize": 100,
