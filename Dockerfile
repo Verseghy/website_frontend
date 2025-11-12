@@ -8,7 +8,7 @@ COPY . ./
 RUN yarn ng run frontend:build:production && \
     yarn ng run frontend:server:production
 
-FROM node:18-alpine
+FROM registry.access.redhat.com/ubi9/nodejs-18
 WORKDIR /app
 # RUN mkdir -p ./dist/frontend/ ./apps/frontend/dist/
 COPY --from=builder ["/app/dist/frontend/server/", "./dist/frontend/server/"]
