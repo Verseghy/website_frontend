@@ -82,6 +82,10 @@ export class RequestService {
   }
 
   async fetchMore() {
+    if (!this.pageInfo) {
+      return
+    }
+    
     const result = await this.listQuery.fetchMore({
       variables: {
         last: 20,
