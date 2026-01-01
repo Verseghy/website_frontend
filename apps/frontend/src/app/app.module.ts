@@ -9,7 +9,6 @@ import { HttpClientModule } from '@angular/common/http'
 import { FooterComponent } from './components/footer/footer.component'
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { FormsModule } from '@angular/forms'
-import { NxModule } from '@nrwl/angular'
 import { ActionReducer, Store, StoreModule } from '@ngrx/store'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 import { EffectsModule } from '@ngrx/effects'
@@ -20,7 +19,7 @@ import { ToastComponent } from './components/toast/toast.component'
 import { faFacebookF } from '@fortawesome/free-brands-svg-icons'
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component'
 import { LayoutModule } from '@angular/cdk/layout'
-import { APOLLO_OPTIONS } from 'apollo-angular'
+import { ApolloModule, APOLLO_OPTIONS } from 'apollo-angular'
 import { HttpLink } from 'apollo-angular/http'
 import { InMemoryCache } from '@apollo/client/core'
 import { createPersistedQueryLink } from 'apollo-angular/persisted-queries'
@@ -48,13 +47,13 @@ export const NGRX_STATE = makeStateKey('NGRX_STATE')
     FontAwesomeModule,
     FormsModule,
     LoadersModule,
-    NxModule.forRoot(),
     StoreModule.forRoot({}, { metaReducers: [stateSetter] }),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
     }),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    ApolloModule,
   ],
   providers: [
     {
