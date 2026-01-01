@@ -18,7 +18,7 @@
     "@jridgewell/gen-mapping" "^0.3.5"
     "@jridgewell/trace-mapping" "^0.3.24"
 
-"@angular-builders/custom-webpack@15":
+"@angular-builders/custom-webpack@15.0.0":
   version "15.0.0"
   resolved "https://registry.yarnpkg.com/@angular-builders/custom-webpack/-/custom-webpack-15.0.0.tgz#bc05c5fdc1153ae2f48417f6529034282398940d"
   integrity sha512-i8ZQ7rJ+RTy73MivvIdNAa8sZpiDy9wHBetAEyYSlGtjaSB3lntEFtBw9edfyRkpbifw53QA/N5haOwox987/Q==
@@ -2332,7 +2332,7 @@
   resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.57.1.tgz#de633db3ec2ef6a3c89e2f19038063e8a122e2c2"
   integrity sha512-d9zaMRSTIKDLhctzH12MtXvJKSSUhaHcjV+2Z+GK+EEY7XKpP5yR4x+N3TAcHTcu963nIr+TMcCb4DBCYX1z6Q==
 
-"@fortawesome/angular-fontawesome@0.12":
+"@fortawesome/angular-fontawesome@0.12.1":
   version "0.12.1"
   resolved "https://registry.yarnpkg.com/@fortawesome/angular-fontawesome/-/angular-fontawesome-0.12.1.tgz#00f0d43563701f2253741b556292ada42a0374b0"
   integrity sha512-vGGUfmWhsCtC+wUhnLXPeWBod33XKMFERwvD21LTbVBOCwUDUfwcS9nqfTmrULcpFl/bn20REZH/1vSreWd3ZA==
@@ -3433,21 +3433,21 @@
     "@nguniversal/common" "15.2.1"
     tslib "^2.3.0"
 
-"@ngx-loading-bar/core@6":
+"@ngx-loading-bar/core@6.0.2":
   version "6.0.2"
   resolved "https://registry.yarnpkg.com/@ngx-loading-bar/core/-/core-6.0.2.tgz#8e0bfc106140804ca7195d8bbbc75858434b5fd4"
   integrity sha512-8r+OQEYXwvU+2ZXK6CY3Guh2yJuG8pQ2XNryHVbPZB2Ub3VmzhGWqjxXAQgxmsi+GxrD4m+nGmGZPeOrNH1ztA==
   dependencies:
     tslib "^2.0.0"
 
-"@ngx-loading-bar/http-client@6":
+"@ngx-loading-bar/http-client@6.0.2":
   version "6.0.2"
   resolved "https://registry.yarnpkg.com/@ngx-loading-bar/http-client/-/http-client-6.0.2.tgz#8210ef31a97e97e53780cab0653d459b56b3e893"
   integrity sha512-wMzyg9YBvHlOqYMQK82j7fnF6GlXb1RNg/rjvl34uq3+xsqic9vUhEziEDlVEKvpbnXh5yMd05Aj7J4GwRaFcw==
   dependencies:
     tslib "^2.0.0"
 
-"@ngx-loading-bar/router@6":
+"@ngx-loading-bar/router@6.0.2":
   version "6.0.2"
   resolved "https://registry.yarnpkg.com/@ngx-loading-bar/router/-/router-6.0.2.tgz#d10ac7d0f6e7b1af71bb2fbab581533fed31cbf0"
   integrity sha512-el+32ysDhqr46Zcg+H8UiKpOEz43qY0++CUxj8DADLRm3mAzKqNn/X+5qhFQS4o5Nb/SdvZn5apfFlXoNNUViQ==
@@ -4289,7 +4289,7 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-15.12.4.tgz#e1cf817d70a1e118e81922c4ff6683ce9d422e26"
   integrity sha512-zrNj1+yqYF4WskCMOHwN+w9iuD12+dGm0rQ35HLl9/Ouuq52cEtd0CH9qMgrdNmi5ejC1/V7vKEXYubB+65DkA==
 
-"@types/node@18":
+"@types/node@18.19.130":
   version "18.19.130"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-18.19.130.tgz#da4c6324793a79defb7a62cba3947ec5add00d59"
   integrity sha512-GRaXQx6jGfL8sKfaIDD6OupbIHBr9jv7Jnaml9tB7l4v068PAOXqfcujMMo5PhbIs6ggR1XODELqahT2R8v0fg==
@@ -5226,7 +5226,7 @@ anymatch@^3.0.1, anymatch@^3.0.3, anymatch@~3.1.2:
     normalize-path "^3.0.0"
     picomatch "^2.0.4"
 
-apollo-angular@4:
+apollo-angular@4.2.1:
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/apollo-angular/-/apollo-angular-4.2.1.tgz#74f805195c3bf908b41a16ac3d0e5693faeb4739"
   integrity sha512-lMFVZmw7hIa4+VGutoiUMwHWggXFiDhbsrnZddQYzfdV6lkJRjm0hANG0KxXoaoLqEqkGTHdq5DaMCdsp6E4rw==
@@ -11398,7 +11398,7 @@ neo-async@^2.6.2:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
-ng-in-viewport@15:
+ng-in-viewport@15.0.2:
   version "15.0.2"
   resolved "https://registry.yarnpkg.com/ng-in-viewport/-/ng-in-viewport-15.0.2.tgz#6b1c3c1ece53b2a8eaca503b6ea591253fd24bed"
   integrity sha512-4k53RJ9JyvaXr9ipUvPsxWGRl25Sq0V5tpk/xfrISgcWW0EFWM1k6HRDMqJauQwncDrFbOlLM747G5g9l1HBdw==
