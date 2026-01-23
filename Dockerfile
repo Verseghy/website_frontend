@@ -1,10 +1,13 @@
-FROM node:18-alpine as builder
+FROM registry.access.redhat.com/ubi9/nodejs-18 as builder
 
 WORKDIR /app
-COPY ["./yarn.lock", "./package.json", "./decorate-angular-cli.js", "./"]
-RUN yarn install --frozen-lockfile --ignore-engines && \
-    npx browserslist@latest --update-db
-COPY . ./
+RUN mkdir -p ~/.npm-global && \
+    npm config set prefix '~/.npm-global' && \
+    npm install -g yarn
+ENV PATH="/opt/app-root/src/.npm-global/bin:$PATH"
+COPY --chown=1001:1001 ["./yarn.lock", "./package.json", "./decorate-angular-cli.js", "./"]
+RUN yarn install --frozen-lockfile --ignore-engines
+COPY --chown=1001:1001 . ./
 RUN yarn ng run frontend:build:production && \
     yarn ng run frontend:server:production
 
