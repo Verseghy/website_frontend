@@ -1,0 +1,49 @@
+# Pipelines-as-Code trigger: rebuild the frontend image on every push to master.
+#
+# PAC matches this repo to the `website-frontend` Repository CR in the verseghy
+# namespace (website_k8s/verseghy-website/builds/pac-repository-frontend.yaml),
+# reads this file from the pushed revision, and runs it as a PipelineRun there.
+#
+# The single task references the cluster's maintained `openshift-client` task
+# (no hand-rolled taskSpec/image). Its SCRIPT creates a self-contained Shipwright
+# BuildRun — the full build recipe lives inline in spec.build.spec, with
+# source.git.revision pinned to the exact pushed commit — then `oc wait`s for it
+# to complete and reports the verdict back onto the commit as a GitHub check.
+# `oc wait --for=jsonpath={.status.completionTime}` returns as soon as the build
+# finishes (success OR failure), so no polling loop is needed.
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  name: build-frontend
+  annotations:
+    pipelinesascode.tekton.dev/on-event: '[push]'
+    pipelinesascode.tekton.dev/on-target-branch: '[master]'
+    pipelinesascode.tekton.dev/max-keep-runs: '5'
+spec:
+  timeouts:
+    pipeline: '1h30m0s'
+  taskRunTemplate:
+    # Runs in verseghy; this SA can create/get BuildRuns via ClusterRole/edit.
+    serviceAccountName: pipeline
+  pipelineSpec:
+    tasks:
+      - name: trigger-shipwright-build
+        taskRef:
+          # Maintained task shipped with OpenShift Pipelines; pulled in-cluster.
+          resolver: cluster
+          params:
+            - name: kind
+              value: task
+            - name: name
+              value: openshift-client
+            - name: namespace
+              value: openshift-pipelines
+        params:
+          - name: SCRIPT
+            value: |
+              BR=$(echo '{"apiVersion":"shipwright.io/v1beta1","kind":"BuildRun","metadata":{"generateName":"frontend-pac-","labels":{"pipelinesascode.tekton.dev/sha":"{{ revision }}","app.kubernetes.io/managed-by":"pipelines-as-code"}},"spec":{"build":{"spec":{"source":{"type":"Git","git":{"url":"https://github.com/Verseghy/website_frontend","revision":"{{ revision }}"}},"strategy":{"name":"buildah","kind":"ClusterBuildStrategy"},"output":{"image":"ghcr.io/verseghy/website_frontend","pushSecret":"ghcr-pull-secret"},"timeout":"1h0m0s"}}}}' | oc create -o name -f -)
+              echo "==> Created $BR (revision {{ revision }})"
+              oc wait --for=jsonpath='{.status.completionTime}' "$BR" --timeout=80m
+              succeeded=$(oc get "$BR" -o jsonpath='{.status.conditions[?(@.type=="Succeeded")].status}')
+              echo "==> Succeeded=$succeeded"
+              [ "$succeeded" = True ] || { oc get "$BR" -o jsonpath='{.status.conditions[?(@.type=="Succeeded")].message}{"\n"}'; exit 1; }
