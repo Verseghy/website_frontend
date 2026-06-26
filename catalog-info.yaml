@@ -1,0 +1,28 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: website-frontend
+  title: Website Frontend
+  description: SSR public site at verseghy-gimnazium.net
+  annotations:
+    github.com/project-slug: Verseghy/website_frontend
+    argocd/instance-name: verseghy
+    argocd/app-selector: verseghy.net/component=frontend
+    janus-idp.io/tekton: website-frontend
+    backstage.io/kubernetes-namespace: verseghy
+    backstage.io/kubernetes-label-selector: 'pipelinesascode.tekton.dev/repository=website-frontend'
+    backstage.io/source-location: url:https://github.com/Verseghy/website_frontend/tree/master/
+    backstage.io/techdocs-ref: dir:.
+  tags:
+    - website
+    - ghcr
+  links:
+    - url: https://verseghy-gimnazium.net
+      title: Live site
+spec:
+  type: website
+  lifecycle: production
+  owner: group:verseghy
+  system: verseghy-website
+  consumesApis:
+    - backend2-graphql
