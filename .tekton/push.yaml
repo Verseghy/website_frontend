@@ -11,6 +11,18 @@
 # to complete and reports the verdict back onto the commit as a GitHub check.
 # `oc wait --for=jsonpath={.status.completionTime}` returns as soon as the build
 # finishes (success OR failure), so no polling loop is needed.
+#
+# The output image MUST be tagged with the pushed commit SHA ({{ revision }}):
+# argocd-image-updater (ImageUpdater CR in website_k8s) only considers tags
+# matching ^[0-9a-f]{40}$ when opening the deploy PR against website_k8s.
+# An untagged push lands on :latest, which the updater ignores — the image
+# builds fine but never deploys.
+#
+# Timeouts: the BuildRun gets 2h because both June 2026 builds hit the old 1h
+# wall (one of them raced a concurrent backend2 build for the node's CPU).
+# The `oc wait` timeout must EXCEED the BuildRun timeout so the wait observes
+# the failure verdict instead of giving up first, and the pipeline timeout
+# must exceed the wait in turn: 2h build < 130m wait < 2h30m pipeline.
 apiVersion: tekton.dev/v1
 kind: PipelineRun
 metadata:
@@ -21,7 +33,7 @@ metadata:
     pipelinesascode.tekton.dev/max-keep-runs: '5'
 spec:
   timeouts:
-    pipeline: '1h30m0s'
+    pipeline: '2h30m0s'
   taskRunTemplate:
     # Runs in verseghy; this SA can create/get BuildRuns via ClusterRole/edit.
     serviceAccountName: pipeline
@@ -41,9 +53,9 @@ spec:
         params:
           - name: SCRIPT
             value: |
-              BR=$(echo '{"apiVersion":"shipwright.io/v1beta1","kind":"BuildRun","metadata":{"generateName":"frontend-pac-","labels":{"pipelinesascode.tekton.dev/sha":"{{ revision }}","app.kubernetes.io/managed-by":"pipelines-as-code"}},"spec":{"build":{"spec":{"source":{"type":"Git","git":{"url":"https://github.com/Verseghy/website_frontend","revision":"{{ revision }}"}},"strategy":{"name":"buildah","kind":"ClusterBuildStrategy"},"output":{"image":"ghcr.io/verseghy/website_frontend","pushSecret":"ghcr-pull-secret"},"timeout":"1h0m0s"}}}}' | oc create -o name -f -)
+              BR=$(echo '{"apiVersion":"shipwright.io/v1beta1","kind":"BuildRun","metadata":{"generateName":"frontend-pac-","labels":{"pipelinesascode.tekton.dev/sha":"{{ revision }}","app.kubernetes.io/managed-by":"pipelines-as-code"}},"spec":{"build":{"spec":{"source":{"type":"Git","git":{"url":"https://github.com/Verseghy/website_frontend","revision":"{{ revision }}"}},"strategy":{"name":"buildah","kind":"ClusterBuildStrategy"},"output":{"image":"ghcr.io/verseghy/website_frontend:{{ revision }}","pushSecret":"ghcr-pull-secret"},"timeout":"2h0m0s"}}}}' | oc create -o name -f -)
               echo "==> Created $BR (revision {{ revision }})"
-              oc wait --for=jsonpath='{.status.completionTime}' "$BR" --timeout=80m
+              oc wait --for=jsonpath='{.status.completionTime}' "$BR" --timeout=130m
               succeeded=$(oc get "$BR" -o jsonpath='{.status.conditions[?(@.type=="Succeeded")].status}')
               echo "==> Succeeded=$succeeded"
               [ "$succeeded" = True ] || { oc get "$BR" -o jsonpath='{.status.conditions[?(@.type=="Succeeded")].message}{"\n"}'; exit 1; }
