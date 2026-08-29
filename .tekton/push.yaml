@@ -18,11 +18,20 @@
 # An untagged push lands on :latest, which the updater ignores — the image
 # builds fine but never deploys.
 #
-# Timeouts: the BuildRun gets 2h because both June 2026 builds hit the old 1h
-# wall (one of them raced a concurrent backend2 build for the node's CPU).
-# The `oc wait` timeout must EXCEED the BuildRun timeout so the wait observes
-# the failure verdict instead of giving up first, and the pipeline timeout
-# must exceed the wait in turn: 2h build < 130m wait < 2h30m pipeline.
+# Timeouts, from the inside out: the BuildRun gets 2h; the `oc wait` gets 130m
+# so it outlives the BuildRun and reports the verdict instead of giving up
+# first; the pipeline TASK carries an explicit 2h20m timeout because Tekton
+# otherwise applies its cluster default TaskRun timeout of 60m — that default
+# is what killed the 2026-08-28 run at exactly 1h despite the 2h30m pipeline
+# timeout; the pipeline gets 2h30m. Every layer must exceed the one inside it:
+# 2h build < 130m wait < 2h20m task < 2h30m pipeline.
+#
+# Resources: the buildah ClusterBuildStrategy caps its build-and-push step at
+# 1 CPU / 2Gi. The webpack production build pins that single CPU and sits at
+# the 2Gi ceiling (observed 2026-08-28: 1003m / 2046Mi with no log output for
+# 90+ minutes — GC thrash), which is why builds outlived every timeout. The
+# stepResources override below raises the limits for THIS build only
+# (4 CPU / 6Gi; each node has 31.5 CPU / 62Gi allocatable, so no contention).
 apiVersion: tekton.dev/v1
 kind: PipelineRun
 metadata:
@@ -40,6 +49,8 @@ spec:
   pipelineSpec:
     tasks:
       - name: trigger-shipwright-build
+        # Overrides Tekton's cluster default TaskRun timeout (60m) — see header.
+        timeout: '2h20m0s'
         taskRef:
           # Maintained task shipped with OpenShift Pipelines; pulled in-cluster.
           resolver: cluster
@@ -53,7 +64,7 @@ spec:
         params:
           - name: SCRIPT
             value: |
-              BR=$(echo '{"apiVersion":"shipwright.io/v1beta1","kind":"BuildRun","metadata":{"generateName":"frontend-pac-","labels":{"pipelinesascode.tekton.dev/sha":"{{ revision }}","app.kubernetes.io/managed-by":"pipelines-as-code"}},"spec":{"build":{"spec":{"source":{"type":"Git","git":{"url":"https://github.com/Verseghy/website_frontend","revision":"{{ revision }}"}},"strategy":{"name":"buildah","kind":"ClusterBuildStrategy"},"output":{"image":"ghcr.io/verseghy/website_frontend:{{ revision }}","pushSecret":"ghcr-pull-secret"},"timeout":"2h0m0s"}}}}' | oc create -o name -f -)
+              BR=$(echo '{"apiVersion":"shipwright.io/v1beta1","kind":"BuildRun","metadata":{"generateName":"frontend-pac-","labels":{"pipelinesascode.tekton.dev/sha":"{{ revision }}","app.kubernetes.io/managed-by":"pipelines-as-code"}},"spec":{"build":{"spec":{"source":{"type":"Git","git":{"url":"https://github.com/Verseghy/website_frontend","revision":"{{ revision }}"}},"strategy":{"name":"buildah","kind":"ClusterBuildStrategy","stepResources":[{"name":"build-and-push","resources":{"requests":{"cpu":"1","memory":"2Gi"},"limits":{"cpu":"4","memory":"6Gi"}}}]},"output":{"image":"ghcr.io/verseghy/website_frontend:{{ revision }}","pushSecret":"ghcr-pull-secret"},"timeout":"2h0m0s"}}}}' | oc create -o name -f -)
               echo "==> Created $BR (revision {{ revision }})"
               oc wait --for=jsonpath='{.status.completionTime}' "$BR" --timeout=130m
               succeeded=$(oc get "$BR" -o jsonpath='{.status.conditions[?(@.type=="Succeeded")].status}')
