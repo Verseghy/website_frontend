@@ -1,6 +1,9 @@
 :host {
   @media screen and (max-width: 740px) {
-    display: block;
+    height: 700px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 }
 
