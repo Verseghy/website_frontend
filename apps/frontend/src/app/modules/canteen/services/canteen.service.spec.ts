@@ -2,10 +2,10 @@ import { TestBed } from '@angular/core/testing'
 
 import { CanteenService } from './canteen.service'
 import { of } from 'rxjs'
-import { HttpClient } from '@angular/common/http'
+import { Apollo } from 'apollo-angular'
 
-const HttpMock = {
-  get: () => of([]),
+const ApolloMock = {
+  query: () => of({ data: { w1: [], w2: [] } }),
 }
 
 describe('CanteenService', () => {
@@ -13,8 +13,8 @@ describe('CanteenService', () => {
     TestBed.configureTestingModule({
       providers: [
         {
-          provide: HttpClient,
-          useValue: HttpMock,
+          provide: Apollo,
+          useValue: ApolloMock,
         },
       ],
     })
