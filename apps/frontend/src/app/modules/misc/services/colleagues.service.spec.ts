@@ -2,10 +2,10 @@ import { TestBed } from '@angular/core/testing'
 
 import { ColleaguesService } from './colleagues.service'
 import { of } from 'rxjs'
-import { HttpClient } from '@angular/common/http'
+import { Apollo } from 'apollo-angular'
 
-const HttpMock = {
-  get: () => of([]),
+const ApolloMock = {
+  query: () => of({ data: { colleagues: [] } }),
 }
 
 describe('ColleaguesService', () => {
@@ -13,8 +13,8 @@ describe('ColleaguesService', () => {
     return TestBed.configureTestingModule({
       providers: [
         {
-          provide: HttpClient,
-          useValue: HttpMock,
+          provide: Apollo,
+          useValue: ApolloMock,
         },
       ],
     })

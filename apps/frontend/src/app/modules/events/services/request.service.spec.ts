@@ -1,14 +1,17 @@
 import { TestBed } from '@angular/core/testing'
 
 import { RequestService } from './request.service'
-import { HttpClient } from '@angular/common/http'
+import { Apollo } from 'apollo-angular'
+import { of } from 'rxjs'
 
-const httpClientMock = {}
+const ApolloMock = {
+  query: () => of({ data: { events: [] } }),
+}
 
 describe('RequestService', () => {
   beforeEach(() =>
     TestBed.configureTestingModule({
-      providers: [{ provide: HttpClient, useValue: httpClientMock }],
+      providers: [{ provide: Apollo, useValue: ApolloMock }],
     })
   )
 

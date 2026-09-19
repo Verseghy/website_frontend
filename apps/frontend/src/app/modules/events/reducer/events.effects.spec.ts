@@ -6,12 +6,12 @@ import { EffectsModule } from '@ngrx/effects'
 import { StoreModule } from '@ngrx/store'
 import { provideMockActions } from '@ngrx/effects/testing'
 
-import { DataPersistence, NxModule } from '@nrwl/angular'
-
 import { EventsEffects } from './events.effects'
-import { HttpClient } from '@angular/common/http'
+import { RequestService } from '../services/request.service'
 
-const httpMock = {}
+const RequestServiceMock = {
+  getEvents: () => of([]),
+}
 
 describe('EventsEffects', () => {
   const actions: Observable<any> = of({})
@@ -19,8 +19,8 @@ describe('EventsEffects', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [NxModule.forRoot(), StoreModule.forRoot({}), EffectsModule.forRoot([])],
-      providers: [EventsEffects, DataPersistence, provideMockActions(() => actions), { provide: HttpClient, useValue: httpMock }],
+      imports: [StoreModule.forRoot({}), EffectsModule.forRoot([])],
+      providers: [EventsEffects, provideMockActions(() => actions), { provide: RequestService, useValue: RequestServiceMock }],
     })
 
     effects = TestBed.inject(EventsEffects)
