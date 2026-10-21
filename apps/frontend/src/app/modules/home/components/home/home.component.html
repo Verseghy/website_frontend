@@ -1,16 +1,18 @@
 <div class="container">
   <section>
-    <verseghy-featured-post></verseghy-featured-post>
+    <verseghy-alert></verseghy-alert>
   </section>
   <section>
-    <verseghy-alert></verseghy-alert>
+    <verseghy-featured-post></verseghy-featured-post>
   </section>
   <section>
     <h2>Legfrissebb hírek</h2>
     <ng-container *ngIf="posts$ | async as posts">
       <ng-container *ngIf="posts.length">
         <div class="grid"><verseghy-card [post]="post" *ngFor="let post of posts; trackBy: trackByFn"></verseghy-card></div>
-        <button class="load-more" [disabled]="(isLoading$ | async) || !(hasPreviousPage$ | async)" (click)="nextPage()">Több betöltése</button>
+        <button class="load-more" [disabled]="(isLoading$ | async) || !(hasPreviousPage$ | async)" (click)="nextPage()">
+          Több betöltése
+        </button>
       </ng-container>
       <ng-container *ngIf="!posts.length">
         <div class="grid">
