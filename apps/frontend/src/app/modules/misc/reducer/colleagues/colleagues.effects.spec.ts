@@ -6,8 +6,6 @@ import { EffectsModule } from '@ngrx/effects'
 import { StoreModule } from '@ngrx/store'
 import { provideMockActions } from '@ngrx/effects/testing'
 
-import { DataPersistence, NxModule } from '@nrwl/angular'
-
 import { ColleaguesEffects } from './colleagues.effects'
 import { ColleaguesService } from '../../services/colleagues.service'
 
@@ -23,10 +21,9 @@ describe('ColleaguesEffects', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [NxModule.forRoot(), StoreModule.forRoot({}), EffectsModule.forRoot([])],
+      imports: [StoreModule.forRoot({}), EffectsModule.forRoot([])],
       providers: [
         ColleaguesEffects,
-        DataPersistence,
         provideMockActions(() => actions),
         {
           provide: ColleaguesService,
